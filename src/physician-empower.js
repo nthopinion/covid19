@@ -1,0 +1,68 @@
+import React from 'react';
+// import './App.scss'
+import { AutoComplete } from '@bit/primefaces.primereact.autocomplete';
+import PrimereactStyle from '@bit/primefaces.primereact.internal.stylelinks';
+
+
+const countryservice = [
+    { name: 'pericarditis', code: 'AP' },
+    { name: 'congestive heart failure', code: 'AP' },
+    { name: 'cholecystis', code: 'AP' },
+    { name: 'pancreatitis', code: 'AP' },
+    { name: 'Hemorrhoids', code: 'Hemi' }
+    
+];
+
+class Example extends React.Component {
+	constructor(props) {
+		super(props);
+		// this.filterCountryMultiple = this.filterCountryMultiple.bind(this)
+		this.state = {
+			countriesData: countryservice,
+			filteredCountriesMultiple: null
+		};
+
+
+		this.filterCountryMultiple = this.filterCountryMultiple.bind(this);
+	}
+	
+
+	filterCountryMultiple(event) {
+		setTimeout(() => {
+			let results = this.state.countriesData.filter(country => {
+				return country.name.toLowerCase().startsWith(event.query.toLowerCase());
+			});
+
+			this.setState({ filteredCountriesMultiple: results });
+		}, 0);
+	}
+
+	render() {
+		const diagnosis = this.state.countries;
+
+		console.log(this.state.filteredCountriesMultiple)
+
+		return (
+			<div className='content-section implementation'>
+				<PrimereactStyle />
+				<h3 className='style-appname'>Design Your AI and Scale</h3>
+				<span className='p-fluid'>
+					<div className='style-physicianbar'>
+						<AutoComplete 
+							value={this.state.countries}
+							suggestions={this.state.filteredCountriesMultiple}
+							completeMethod={this.filterCountryMultiple}
+							minLength={1}
+							placeholder='i.e. pericarditis'
+							field='name'
+							multiple={true}
+							onChange={e => this.setState({ countries: e.value })}
+						/>
+					</div>
+				</span>
+			</div>
+		);
+	}
+}
+
+export default Example;
