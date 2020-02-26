@@ -9,6 +9,7 @@ import DisplayQrcode from '@bit/globalinput.web.display-qrcode';
 import DragAndDrop from '@bit/bronz3beard.react-component-collection.drag-and-drop';
 
 import ToDoList from '@bit/learn-bit.react-demo-app.to-do-list';
+import Timer from './Timer'
 // import './font.css';
 
 
@@ -39,24 +40,25 @@ const handleDrop = (files) => {
 
 
 export class App extends Component {
-  constructor(props) {
-    super(props)
-    this.handleQRsend = 50.00
-  }
+
   render() {
 
     return (
       <div>
         <p className="Company-name">Nᵀᴴ OPINION</p>
-        <div>What is best anticoagulant for atrial fibrillation?</div>
-        <div style={{width: '100vw'}}>
-          <ToDoList/>
+        <div className='question'>What is best anticoagulant for atrial fibrillation?</div>
+        <div className='Checkbox-container'>
+          <div className = 'Test' style={{width: '150vw'}}>
+            <ToDoList/>
+          </div>
         </div>
+        
         {/* <Userexperiences></Userexperiences>      */}
         <div className='toolbar'>{style}<ButtonExampleGroupIconSize/></div>
         <div className='QR-container'>
           <div className='QR-format'>
-            <DisplayQrcode size={parseFloat(100)} code={`You received ${this.handleQRsend} NTO Thank you!`} label={`Scan to receive: ${this.handleQRsend} NTO`}/>
+ 
+            {/* <DisplayQrcode size={parseFloat(100)} code={`You received ${this.handleQRsend.NTO} NTO Thank you!`} label={`Scan to receive: ${this.handleQRsend.NTO} NTO`}/> */}
           </div> 
         </div>
         <DragAndDrop handleDrop={handleDrop}>
@@ -70,6 +72,7 @@ export class App extends Component {
         </DragAndDrop>
         
         Library   
+        <Timer></Timer>
       </div>
       
     )
