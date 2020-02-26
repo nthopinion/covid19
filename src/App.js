@@ -50,6 +50,8 @@ export class App extends Component {
         <div className='Checkbox-container'>
           <div className = 'Test' style={{width: '150vw'}}>
             <ToDoList/>
+            <Timer></Timer>
+
           </div>
         </div>
         
@@ -58,7 +60,7 @@ export class App extends Component {
         <div className='QR-container'>
           <div className='QR-format'>
  
-            {/* <DisplayQrcode size={parseFloat(100)} code={`You received ${this.handleQRsend.NTO} NTO Thank you!`} label={`Scan to receive: ${this.handleQRsend.NTO} NTO`}/> */}
+            
           </div> 
         </div>
         <DragAndDrop handleDrop={handleDrop}>
@@ -71,8 +73,6 @@ export class App extends Component {
           ></div>
         </DragAndDrop>
         
-        Library   
-        <Timer></Timer>
       </div>
       
     )
