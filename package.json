@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@bit/bondz.react-epic-spinners.atom-spinner": "^0.3.0",
     "@bit/bronz3beard.react-component-collection.drag-and-drop": "^0.4.4",
     "@bit/globalinput.web.display-qrcode": "^1.1.1",
     "@bit/learn-bit.react-demo-app.to-do-list": "0.0.1",

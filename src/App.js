@@ -10,6 +10,9 @@ import DragAndDrop from '@bit/bronz3beard.react-component-collection.drag-and-dr
 
 import ToDoList from '@bit/learn-bit.react-demo-app.to-do-list';
 import Timer from './Timer'
+import AtomSpinner from '@bit/bondz.react-epic-spinners.atom-spinner';
+
+
 // import './font.css';
 
 
@@ -45,7 +48,15 @@ export class App extends Component {
 
     return (
       <div>
-        <p className="Company-name">Nᵀᴴ OPINION</p>
+        <p className="Company-name">
+          <div className="Atoms">
+              <AtomSpinner
+              color='#000000'
+              size='100'
+              />
+            </div>
+            Nᵀᴴ OPINION
+          </p>
         <div className='question'>What is best anticoagulant for atrial fibrillation?</div>
         <div className='Checkbox-container'>
           <div className = 'Test' style={{width: '150vw'}}>
