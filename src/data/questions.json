@@ -1,0 +1,55 @@
+[
+  {
+    "title": "Can my headache history help diagnose a migraine headache?",
+    "answers": [
+      "How old you were when the headaches started",
+      "How long you have been experiencing them",
+      "If you experience a single type of headache or multiple types of headaches",
+      "How often the headaches occur"
+    ],
+    "tags": ["headache", "migraine"]
+  },
+  {
+    "title": "How can a headache diary help you if you have a migraine headache and are pregnant?",
+    "answers": [
+      "Your specific symptoms: where you feel the pain, what the pain feels like, and any other symptoms such as vomiting or sensitivity to noise, smells, or bright light",
+      "The time your headache started and ended",
+      "Food and beverages you had during the 24 hours before the migraine",
+      "Any change in your environment, such as traveling to a new place, a change in weather, or trying new kinds of food"
+    ],
+    "tags": ["headache", "pregnant"]
+  },
+  {
+    "title": "What are common triggers of migraine headaches in pregnancy?",
+    "answers": ["Chocolate", "Caffeine", "Foods that contain the preservatives MSG (monosodium glutamate) and nitrates",
+      "Aspartame, the sweetener in NutraSweet and Equal"
+    ],
+    "tags": ["headache", "pregnant"]
+  },
+  {
+    "title": "When are you more likely to get toe infections?",
+    "answers": ["You're more likely to get an infected toe if you have diabetes. Damage to your blood vessels from high blood sugar can make it harder for your body to fight off infections. And diabetic nerve damage can prevent you from feeling minor trauma that could lead to a toe infection. If you have a weakened immune system, you’re also more likely to get toe infections. This includes people with HIV, or those who've had an organ transplant."],
+    "tags": ["toe"]
+  },
+  {
+    "title": "How is a fever diagnosed?",
+    "answers": ["Besides a physical exam, your doctor will ask about symptoms and conditions, medications, and if you've recently traveled to areas with infections or have other infection risks. A malaria infection, for example, may be have a fever that typically recurs. Some areas of the U.S. are hotspots for infections such as Lyme disease and Rocky Mountain spotted fever."
+    ],
+    "tags": ["fever"]
+  },
+  {
+    "title": "How is a fever treated?",
+    "answers": ["Treatments vary depending on the cause of the fever. For example, antibiotics would be used for a bacterial infection such as strep throat."
+    ],
+    "tags": ["fever"]
+  },
+  {
+    "title": "What causes toe infections?",
+    "answers": [
+      "You cut the nail too short, or you cut the cuticle around the nail.",
+      "You have an ingrown toenail (the side of your nail grows into the skin).",
+      "You've picked up a fungus, which you can get if you walk barefoot in common areas like a gym shower or locker room."
+    ],
+    "tags": ["toe", "infection"]
+  }
+]
