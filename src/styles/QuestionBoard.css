@@ -1,0 +1,41 @@
+
+.container {
+  max-width: 80%;
+  padding-top: 100px;
+  margin: auto;
+}
+
+.searchBarDiv {
+  padding-bottom: 50px;
+}
+
+.searchBar .input {
+  width: 100%;
+}
+
+.qCard {
+  padding: 40px 20px !important;
+}
+
+.qTitle {
+  /* height: 30px; */
+  font-size: 18px;
+}
+.qTag {
+  /* padding: 20px 0px; */
+}
+
+.qLeftCard{
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.qTitle > span {
+  font-weight: 700;
+}
+
+.qAnswer {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
