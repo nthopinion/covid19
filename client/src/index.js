@@ -1,21 +1,11 @@
-import React from 'react'
-import { render } from 'react-dom'
-import { createStore, applyMiddleware } from 'redux'
-import { Provider } from 'react-redux'
-import App from './containers/App'
-import * as serviceWorker from './serviceWorker'
-import rootReducer from './reducers'
-import thunk from 'redux-thunk';
+import { runWithAdal } from 'react-adal';
+import { authContext } from './adalConfig';
 
-const store = createStore(
-    rootReducer,
-    applyMiddleware(thunk)
-)
+const DO_NOT_LOGIN = true;
 
-render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
-)
-serviceWorker.unregister()
+runWithAdal(authContext, () => {
+
+  // eslint-disable-next-line
+  require('./indexApp.js');
+
+},DO_NOT_LOGIN);
