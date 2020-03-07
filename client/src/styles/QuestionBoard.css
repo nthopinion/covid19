@@ -1,6 +1,6 @@
 
 .container {
-  max-width: 80%;
+  /* max-width: 80%; */
   padding-top: 100px;
   margin: auto;
 }
@@ -38,4 +38,8 @@
 .qAnswer {
   font-size: 18px;
   margin-bottom: 20px;
+}
+
+.answer-image {
+  margin-top: 20px;
 }

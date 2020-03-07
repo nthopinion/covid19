@@ -21,6 +21,7 @@ render(
   <Provider store={store}>
     <Router>
     <Route exact path="/physician" component={ProtectedPhysicianView} />
+      <Route exact path="/physician-public" component={PhysicianView} />
       <Route exact path="/about" component={About} />
       <Route exact path="/" component={App} />
     </Router>

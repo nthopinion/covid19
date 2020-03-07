@@ -8,26 +8,30 @@ class PostList {
   constructor(questionDao) {
     this.questionDao = questionDao;
   }
-  async showQuestions(req, res) {
+  async showQuestions(req, res, answered) {
+    console.log('showQuestions')
+
     const querySpec = {
-      query: "SELECT * FROM root r WHERE r.completed=@completed",
+      query: "SELECT * FROM root r WHERE r.answered=@answered",
       parameters: [
         {
-          name: "@completed",
-          value: false
+          name: "@answered",
+          value: answered
         }
       ]
     };
-
     const items = await this.questionDao.find(querySpec);
+    console.log('items', items, querySpec)
     res.send(items);
   }
 
   async addQuestion(req, res) {
+    console.log('req' + JSON.stringify(req.body))
     const item = req.body;
+    const itemAdd = await this.questionDao.addItem(item);
+    // res.redirect("/");
+    res.send(itemAdd);
 
-    await this.questionDao.addItem(item);
-    res.redirect("/");
   }
 
 
@@ -35,7 +39,8 @@ class PostList {
     const items = req.body;
 
     await this.questionDao.addItems(items);
-    res.redirect("/");
+    // res.redirect("/");
+    res.send('ok');
   }
 
   async updateQuestion(req, res) {

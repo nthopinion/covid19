@@ -1,1 +1,1 @@
-export { addQuestion, fetchQuestions, searchQuestions, setSearchTerm, setLoading, resetSearchResult } from './question'
+export { addQuestion, fetchQuestions, searchQuestions, setSearchTerm, setLoading, resetSearchResult, postQuestion, receiveUnansweredQuestions } from './question'

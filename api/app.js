@@ -44,7 +44,8 @@ questionDao
     )
     // process.exit(1)
   })
-app.get('/api/questions', (req, res, next) => questionList.showQuestions(req, res).catch(next))
+app.get('/api/questions', (req, res, next) => questionList.showQuestions(req, res, true).catch(next))
+app.get('/api/questions/unanswered', (req, res, next) => questionList.showQuestions(req, res, false).catch(next))
 app.post('/api/addQuestion', (req, res, next) => questionList.addQuestion(req, res).catch(next))
 app.post('/api/addQuestions', (req, res, next) => questionList.addQuestions(req, res).catch(next))
 app.post('/api/updateQuestion', (req, res, next) =>

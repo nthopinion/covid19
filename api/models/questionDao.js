@@ -47,7 +47,7 @@ class PostDao {
   async addItem(item) {
     debug('Adding an item to the database')
     item.date = Date.now()
-    item.completed = false
+    item.answered = !!(item.answers)
     const { resource: doc } = await this.container.items.create(item)
     return doc
   }
@@ -56,7 +56,7 @@ class PostDao {
     debug('Adding an item to the database')
     Promise.all(items.map(async (item) =>{
       item.date = Date.now()
-      item.completed = false
+      item.answered = !!(item.answers)
       const { resource: doc } = await this.container.items.create(item)
     }))
     return 'ok'
@@ -65,7 +65,7 @@ class PostDao {
   async updateItem(itemId) {
     debug('Update an item in the database')
     const doc = await this.getItem(itemId)
-    doc.completed = true
+    // doc.completed = true
 
     const { resource: replaced } = await this.container
       .item(itemId, partitionKey)

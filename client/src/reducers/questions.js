@@ -1,5 +1,12 @@
 import _ from 'lodash'
-import { ADD_QUESTION, FETCH_ALL_QUESTION, SET_LOADING, SET_SEARCHTERM, SEARCH_QUESTIONS, RESET_SEARCH_RESULT } from '../constants/ActionTypes'
+import { ADD_QUESTION,
+  FETCH_ALL_QUESTION,
+   SET_LOADING, SET_SEARCHTERM,
+   SEARCH_QUESTIONS,
+   RESET_SEARCH_RESULT,
+   ADD_QUESTION_SUCCESS,
+   ADD_QUESTION_FAILURE
+  } from '../constants/ActionTypes'
 const initialState = {
   isLoading: false,
   questions: [],
@@ -11,6 +18,12 @@ const questions = (state = initialState, action) => {
       return {
         ...state
       }
+    case ADD_QUESTION_FAILURE:
+    case ADD_QUESTION_SUCCESS:
+        return {
+          ...state,
+          ...action
+        }
     case FETCH_ALL_QUESTION:
     console.log('FETCH_ALL_QUESTION', action)
       return {

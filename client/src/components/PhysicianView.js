@@ -1,14 +1,38 @@
-import React from 'react'
-import { List } from 'semantic-ui-react'
+import React, { Component, createRef } from 'react'
+import { Form } from 'semantic-ui-react'
+import { connect } from 'react-redux'
 
-const PhysicianView = (props) => (
-  <List.Item>
-    <List.Icon name='marker' />
-    <List.Content>
-      <List.Description>
-        <span className='qAnswer'>PhysicianView</span>
-      </List.Description>
-    </List.Content>
-  </List.Item>
-)
-export default PhysicianView
+class PhysicianView extends Component {
+  state={}
+  constructor(props) {
+    super(props)
+  }
+
+  componentDidMount() {
+    const { dispatch } = this.props
+  }
+
+  handleSubmit = (e, { value }) => {
+    const { dispatch } = this.props
+    // dispatch(postQuestion(this.state.value))
+    // this.setState({ value: '' })
+  }
+  handleChange = (e, { value }) => this.setState({ value })
+
+  render() {
+
+    return (
+      <div></div>
+    )
+  }
+}
+
+
+function mapStateToProps(state) {
+  // console.log(state)
+  return {
+    ...state.questionBoard
+  }
+}
+
+export default connect(mapStateToProps)(PhysicianView)
