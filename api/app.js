@@ -46,6 +46,7 @@ questionDao
   })
 app.get('/api/questions', (req, res, next) => questionList.showQuestions(req, res).catch(next))
 app.post('/api/addQuestion', (req, res, next) => questionList.addQuestion(req, res).catch(next))
+app.post('/api/addQuestions', (req, res, next) => questionList.addQuestions(req, res).catch(next))
 app.post('/api/updateQuestion', (req, res, next) =>
   questionList.updateQuestion(req, res).catch(next)
 )

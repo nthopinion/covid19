@@ -30,6 +30,14 @@ class PostList {
     res.redirect("/");
   }
 
+
+  async addQuestions(req, res) {
+    const items = req.body;
+
+    await this.questionDao.addItems(items);
+    res.redirect("/");
+  }
+
   async updateQuestion(req, res) {
     const question = Object.keys(req.body);
     await this.questionDao.updateItem(question)

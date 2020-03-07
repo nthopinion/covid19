@@ -52,6 +52,16 @@ class PostDao {
     return doc
   }
 
+  async addItems(items) {
+    debug('Adding an item to the database')
+    Promise.all(items.map(async (item) =>{
+      item.date = Date.now()
+      item.completed = false
+      const { resource: doc } = await this.container.items.create(item)
+    }))
+    return 'ok'
+  }
+
   async updateItem(itemId) {
     debug('Update an item in the database')
     const doc = await this.getItem(itemId)
