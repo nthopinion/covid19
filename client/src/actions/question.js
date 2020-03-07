@@ -46,7 +46,7 @@ export const resetSearchResult = () => ({
 export const fetchQuestions = () => {
   console.log('fetchQuestion');
   return dispatch => {
-    return fetch(`http://localhost:8000/api/questions`)
+    return fetch(`https://notzwu-node-rg.azurewebsites.net/api/questions`)
       .then(response => response.json())
       .then(json => dispatch(receiveQuestions(json)))
   }
