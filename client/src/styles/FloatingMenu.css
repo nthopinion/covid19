@@ -1,0 +1,36 @@
+
+
+.floating-menu {
+	position: sticky;
+	bottom: 50px;
+	text-align: right;
+  padding: 0 20px;
+}
+
+
+
+.floating-menu-icon{
+  font-size: 30px !important;
+
+}
+.custom-message-head {
+  height: 100%;
+  display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.chat-bot-panel {
+    position: absolute;
+    right: 50px;
+    bottom: 50px;
+    max-width: 40vw;
+    margin-bottom: 10px;
+    text-align: left;
+
+    background: white;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}

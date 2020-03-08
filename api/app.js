@@ -7,6 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var cors = require("cors");
+const upload = require('./routes/upload');
 
 var app = express();
 const CosmosClient = require('@azure/cosmos').CosmosClient
@@ -26,6 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, '/build')));
 
 app.use('/users', usersRouter);
+app.use('/upload', upload)
 
 const cosmosClient = new CosmosClient({
   endpoint: config.endpoint,
@@ -51,6 +53,8 @@ app.post('/api/addQuestions', (req, res, next) => questionList.addQuestions(req,
 app.post('/api/updateQuestion', (req, res, next) =>
   questionList.updateQuestion(req, res).catch(next)
 )
+
+
 // Handles any requests that don't match the ones above
 app.get('*', (req,res) =>{
     res.sendFile(path.join(__dirname+'/build/index.html'));

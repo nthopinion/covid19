@@ -6,6 +6,7 @@ import QuestionBoard from '../components/QuestionBoard'
 import SearchBar from '../components/SearchBar'
 import '../styles/PatientBoard.css'
 import AddQuestionForm from '../containers/AddQuestionForm'
+import FloatingMenu from '../components/FloatingMenu'
 
 
 import {
@@ -20,6 +21,12 @@ import {
   Search
 } from 'semantic-ui-react'
 
+
+const Iframe = (props) => (
+  <div>
+    <iframe src={props.src} styles={props.styles}/>
+  </div>
+)
 class PatientBoard extends Component {
   constructor(props) {
     super(props)
@@ -86,10 +93,23 @@ contextRef = createRef()
        </Rail>
       */}
 
-       </div>
+      </div>
+
      </Ref>
+
    </Grid.Column>
+   {/*
+
+   <Grid.Column>
+   <Iframe
+   src={'https://webchat.botframework.com/embed/ntozwu-qna-wellspring-bot?s=inVtGkA7vCM.w7KrGgKpZeqVW9HhSX8KcdjJD6sNOAvOP_EIeUiC5g4'}
+   style={'min-width: 400px; width: 100%; min-height: 500px;'}></Iframe>
+
+   </Grid.Column>
+   */}
+
  </Grid>
+ <FloatingMenu/>
  </div>
     )
   }

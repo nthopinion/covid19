@@ -4,7 +4,7 @@ import { Menu, Button, Form, Message, Card, Grid, Icon, List } from 'semantic-ui
 import AuthProvider from "../AuthProvider";
 import { fetchUnansweredQuestions } from '../actions'
 import AnswerItem from '../components/AnswerItem'
-
+import FileUpload from '../components/FileUpload'
 import CardLeftPanel from '../components/CardLeftPanel'
 import '../styles/QuestionBoard.css'
 import config from '../config'
@@ -69,7 +69,7 @@ class AnswerForm extends Component {
               />
               <div>
                <Icon name='attach' />
-               click to attach files
+               {false && <FileUpload/>}
              </div>
 
               <Form.Button type='submit'>Submit</Form.Button>

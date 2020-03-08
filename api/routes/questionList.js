@@ -21,12 +21,12 @@ class PostList {
       ]
     };
     const items = await this.questionDao.find(querySpec);
-    console.log('items', items, querySpec)
+    // console.log('items', items, querySpec)
     res.send(items);
   }
 
   async addQuestion(req, res) {
-    console.log('req' + JSON.stringify(req.body))
+    // console.log('req' + JSON.stringify(req.body))
     const item = req.body;
     const itemAdd = await this.questionDao.addItem(item);
     // res.redirect("/");
