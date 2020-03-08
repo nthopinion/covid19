@@ -74,7 +74,7 @@ export default class QuestionBoard extends Component {
 
                 </a>*/}
                 <a color='twitter'
-                href={`https://twitter.com/intent/tweet?text=${question.title}%20answer:%20${question.answers && question.answers[0].substring(0,200)}...%20at%20${config.domainURL+'%23q_'+question.id}%20https://twitter.com/TheNthOpinion`}  target="_blank">
+                href={`https://twitter.com/intent/tweet?text=${question.title}%20answer:%20${question.answers && question.answers[0].split(" ").slice(0,10).join(' ')}...%20at%20${config.domainURL+'%23q_'+question.id}%20https://twitter.com/TheNthOpinion`}  target="_blank">
                 <Icon name='twitter'></Icon>
 
                 </a>
