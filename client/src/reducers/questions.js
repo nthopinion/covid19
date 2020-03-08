@@ -5,7 +5,8 @@ import { ADD_QUESTION,
    SEARCH_QUESTIONS,
    RESET_SEARCH_RESULT,
    ADD_QUESTION_SUCCESS,
-   ADD_QUESTION_FAILURE
+   ADD_QUESTION_FAILURE,
+   FETCH_ALL_UNANSWERED_QUESTION
   } from '../constants/ActionTypes'
 const initialState = {
   isLoading: false,
@@ -14,6 +15,13 @@ const initialState = {
 }
 const questions = (state = initialState, action) => {
   switch (action.type) {
+      case FETCH_ALL_UNANSWERED_QUESTION:
+        console.log('FETCH_ALL_UNANSWERED_QUESTION', action)
+        return {
+          ...state,
+          unansweredQuestions: action.questions
+        }
+
     case ADD_QUESTION:
       return {
         ...state

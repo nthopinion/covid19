@@ -16,8 +16,6 @@ class AddQuestionForm extends Component {
     const { dispatch } = this.props
   }
 
-
-
   handleSubmit = (e, { value }) => {
     const { dispatch } = this.props
     dispatch(postQuestion(this.state.value))

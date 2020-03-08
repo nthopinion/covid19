@@ -4,7 +4,7 @@ import { FETCH_ALL_UNANSWERED_QUESTION
 const initialState = {
   questions: [],
 }
-const questions = (state = initialState, action) => {
+const physicianQuestion = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_ALL_UNANSWERED_QUESTION:
       console.log('FETCH_ALL_UNANSWERED_QUESTION', action)
@@ -16,4 +16,4 @@ const questions = (state = initialState, action) => {
       return state
   }
 }
-export default questions
+export default physicianQuestion
