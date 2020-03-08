@@ -93,6 +93,22 @@ export const postQuestion = (title) => {
      .catch(error => dispatch(addQuestionFailure(error)))
   }
 }
+// 
+// export const updateQuestion = (question) => {
+//   return dispatch => {
+//     console.log('postQuestion', question);
+//     return fetch(`${config.domainURL}/api/updateQuestion`, {
+//       method: 'POST',
+//       headers: {
+//         'Accept': 'application/json',
+//         'Content-Type': 'application/json'
+//       },
+//        body: JSON.stringify({question})
+//      })
+//      .then(response => addQuestionSuccess())
+//      .catch(error => dispatch(addQuestionFailure(error)))
+//   }
+// }
 
  // const fetchQuestion => () => dispatch => {
  //    return fetch(`https://nth-opinion.s3-us-west-2.amazonaws.com/questions.json`)

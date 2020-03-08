@@ -69,7 +69,7 @@ contextRef = createRef()
          results={this.props.results}
        />
 
-       <Rail position='left'>
+      {/*<Rail size='mini' position='left'>
          <Sticky context={this.contextRef}>
            <Item.Group divided>
              {_.times(12, (i) => (
@@ -84,6 +84,7 @@ contextRef = createRef()
            </Item.Group>
          </Sticky>
        </Rail>
+      */}
 
        </div>
      </Ref>
