@@ -43,3 +43,10 @@
 .answer-image {
   margin-top: 20px;
 }
+
+.qPanelBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 50px;
+}
