@@ -32,7 +32,7 @@ class PatientBoard extends Component {
 
   handleResultSelect = (e, {result}) => {
     const { dispatch } = this.props
-    dispatch(setSearchTerm(result.title))
+    dispatch(searchQuestions(this.props.questions, result.title))
   }
   handleSearchChange = (e, { value }) => {
     const { dispatch } = this.props
@@ -43,7 +43,7 @@ class PatientBoard extends Component {
     if (this.props.searchTerm.length < 1) return dispatch(resetSearchResult())
     dispatch(searchQuestions(this.props.questions, this.props.searchTerm))
 
-  }, 300)
+  }, 100)
 }
 contextRef = createRef()
 
