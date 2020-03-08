@@ -44,9 +44,9 @@ class PostList {
   }
 
   async updateQuestion(req, res) {
-    const question = Object.keys(req.body);
+    const question = req.body;
     await this.questionDao.updateItem(question)
-    res.redirect("/");
+    res.send('ok');
   }
 }
 

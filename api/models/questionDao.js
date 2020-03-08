@@ -62,20 +62,23 @@ class PostDao {
     return 'ok'
   }
 
-  async updateItem(itemId) {
-    debug('Update an item in the database')
-    const doc = await this.getItem(itemId)
-    // doc.completed = true
+  async updateItem(item) {
+    debug('Update an item in the database', item, item.id)
+    const doc = await this.getItem(item.id)
+    debug('getting an item in the database', doc)
+
+    doc.answers = item.answers
+    item.answered = true
 
     const { resource: replaced } = await this.container
-      .item(itemId, partitionKey)
-      .replace(doc)
+      .item(item.id)
+      .replace(item)
     return replaced
   }
 
   async getItem(itemId) {
     debug('Getting an item from the database')
-    const { resource } = await this.container.item(itemId, partitionKey).read()
+    const { resource } = await this.container.item(itemId).read()
     return resource
   }
 }
