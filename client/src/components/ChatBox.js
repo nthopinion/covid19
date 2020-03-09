@@ -28,11 +28,10 @@ class ChatBox extends Component {
            </Header>
 
 
-             <div className='attached fluid segment'>
+             <div className='attached fluid segment customChat'>
              <Iframe
              src={'https://webchat.botframework.com/embed/ntozwu-qna-wellspring-bot?s=inVtGkA7vCM.w7KrGgKpZeqVW9HhSX8KcdjJD6sNOAvOP_EIeUiC5g4'}
-             style="border: 0; overflow: auto;"
-             width={'100%'} height={'600px'}></Iframe>
+             ></Iframe>
              </div>
              {/*
                <Message attached='bottom' warning>

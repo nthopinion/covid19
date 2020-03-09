@@ -28,8 +28,8 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	max-height: 50px;
 }
-
 
 @media (min-width: 320px) and (max-width: 767px) {
 	.floatingMenuButton {
@@ -75,5 +75,6 @@
     width: 300px;
 		padding-right: 20px;
 	}
+
 
 }
