@@ -21,8 +21,9 @@
   /* height: 30px; */
   font-size: 18px;
 }
-.qTag {
-  /* padding: 20px 0px; */
+.qTag .label {
+  margin-right: 5px;
+  margin-top: 5px;
 }
 
 .qLeftCard{
