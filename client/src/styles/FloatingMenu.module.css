@@ -65,7 +65,7 @@
 
 @media (min-width: 767px)  {
 	.floatingMenuButton {
-
+		float: right;
 		display: flex;
     flex-direction: column;
     align-items: flex-end;
