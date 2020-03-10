@@ -68,11 +68,24 @@ class PostDao {
     debug('getting an item in the database', doc)
 
     doc.answers = item.answers
-    item.answered = true
+    doc.answered = true
 
     const { resource: replaced } = await this.container
       .item(item.id)
-      .replace(item)
+      .replace(doc)
+    return replaced
+  }
+
+  async likeIncrease(itemId) {
+    debug('likeIncrease an item in the database', itemId)
+    const doc = await this.getItem(itemId)
+    debug('likeIncrease an item in the database', doc)
+
+    doc.like = (doc.like || 0) + 1
+
+    const { resource: replaced } = await this.container
+      .item(itemId)
+      .replace(doc)
     return replaced
   }
 
@@ -80,6 +93,14 @@ class PostDao {
     debug('Getting an item from the database')
     const { resource } = await this.container.item(itemId).read()
     return resource
+  }
+
+  async deleteItem(itemId) {
+    debug('Delete an item from the database', itemId)
+    const doc = await this.getItem(itemId)
+    const result = await this.container.item(itemId).delete()
+    console.log(result)
+    return result
   }
 }
 

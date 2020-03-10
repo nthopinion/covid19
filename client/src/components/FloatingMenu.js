@@ -13,7 +13,7 @@ class FloatingMenu extends Component {
   		}
   	}
     componentDidMount() {
-      this.interval = setTimeout(() => this.setState({ toggled: true }), 5000);
+      if (window.innerWidth > 760) this.interval = setTimeout(() => this.setState({ toggled: true }), 5000);
     }
     componentWillUnmount() {
       clearInterval(this.interval);
@@ -26,8 +26,6 @@ class FloatingMenu extends Component {
 
   		return(
         <Fragment>
-
-
 
           <div className={[styles.floatingMenuButton].join(' ')}>
           {this.state.toggled && <ChatBox/>}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { List } from 'semantic-ui-react'
 
-const SearchBar = (props) => (
+const AnswerItem = (props) => (
   <List.Item>
     <List.Icon name='marker' />
     <List.Content>
@@ -11,4 +11,4 @@ const SearchBar = (props) => (
     </List.Content>
   </List.Item>
 )
-export default SearchBar
+export default AnswerItem

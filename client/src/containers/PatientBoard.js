@@ -1,7 +1,8 @@
 import React, { Component, createRef } from 'react'
 import _ from 'lodash'
 import { connect } from 'react-redux'
-import { fetchQuestions, setLoading, searchQuestions, resetSearchResult, setSearchTerm, postQuestion } from '../actions'
+import { bindActionCreators } from 'redux'
+import { fetchQuestions, setLoading, searchQuestions, resetSearchResult, setSearchTerm, postQuestion, clickLikeQuestion } from '../actions'
 import QuestionBoard from '../components/QuestionBoard'
 import SearchBar from '../components/SearchBar'
 import '../styles/PatientBoard.css'
@@ -27,30 +28,38 @@ import {
 class PatientBoard extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      processSumited: false
-    }
+    // this.state = {
+    //   processSumited: false
+    // }
   }
 
   componentDidMount() {
     const { dispatch } = this.props
-    dispatch(fetchQuestions())
+    this.props.fetchQuestions()
   }
+  handleClickLike = (id, index) => {
+    const { dispatch } = this.props
+    this.props.clickLikeQuestion(id, index)
 
+  }
   handleResultSelect = (e, {result}) => {
     const { dispatch } = this.props
-    dispatch(searchQuestions(this.props.questions, result.title))
+    this.props.searchQuestions(this.props.questions, result.title)
+
   }
   handleSearchChange = (e, { value }) => {
     const { dispatch } = this.props
+    this.props.setLoading(false)
+    this.props.setSearchTerm(value)
 
-  dispatch(setLoading(false))
-  dispatch(setSearchTerm(value))
+
   setTimeout(() => {
     if (this.props.searchTerm.length < 1)  {
-      dispatch(resetSearchResult())
+      this.props.resetSearchResult()
+
     }
-    dispatch(searchQuestions(this.props.questions, this.props.searchTerm))
+    this.props.searchQuestions(this.props.questions, this.props.searchTerm)
+
   }, 500)
 
 
@@ -65,8 +74,9 @@ class PatientBoard extends Component {
 }
 handleSubmitNewQuestion = () => {
   const { dispatch } = this.props
-    dispatch(postQuestion(this.props.searchTerm))
-    this.setState({ prevSearchTerm: this.props.searchTerm })
+    this.props.postQuestion(this.props.searchTerm)
+
+    // this.setState({ prevSearchTerm: this.props.searchTerm })
     // dispatch(resetSearchResult());
     // dispatch(searchQuestions(this.props.questions, this.props.searchTerm))
 }
@@ -107,6 +117,7 @@ contextRef = createRef()
          </div>
          </Sticky>
        <QuestionBoard
+        handleClickLike={this.handleClickLike}
          results={this.props.results}
        />
 
@@ -150,11 +161,16 @@ contextRef = createRef()
 }
 // addSuccess: true,
 // addQuestion: q
-function mapStateToProps(state) {
-  // console.log(state)
+const mapStateToProps = (state) => {
+  console.log(state)
   return {
-    ...state.questionBoard
+    questions: state.questionBoard.questions,
+    results: state.questionBoard.results,
   }
 }
 
-export default connect(mapStateToProps)(PatientBoard)
+const mapDispatchToProps= (dispatch) => bindActionCreators({
+  fetchQuestions, setLoading, searchQuestions, resetSearchResult, setSearchTerm, postQuestion, clickLikeQuestion
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(PatientBoard)

@@ -28,17 +28,17 @@ export default class QuestionBoard extends Component {
 
             <List>
 
-              {question.answers.map( (answer, idx) => {
-                return <AnswerItem answer={answer} key={idx}/>
+              {question.answers.map( (answer, index) => {
+                return <AnswerItem answer={answer} key={index}/>
               })}
 
-              {question.images && question.images.map((image,idx) =>
-                <Image src={image} key={idx} fluid className='answer-image'/>
+              {question.images && question.images.map((image,index) =>
+                <Image src={image} key={index} fluid className='answer-image'/>
 
               )}
 
-              {question.links && question.links.map((link,idx) =>
-                <List.Item>
+              {question.links && question.links.map((link,index) =>
+                <List.Item key={index}>
                   <List.Icon name='linkify' />
                   <List.Content>
                     <a href={link.url}>{link.title} other resources</a>
@@ -47,12 +47,13 @@ export default class QuestionBoard extends Component {
               )}
               </List>
 
-                {question.youtubeLinks && question.youtubeLinks.map((y,idx) => {
+                {question.youtubeLinks && question.youtubeLinks.map((y,index) => {
                   const videoSrc = "https://www.youtube.com/embed/" +
                    (y.video )+ "?autoplay=false";
                   return y.video && (
                     <iframe className="player" type="text/html" width="100%" height="400px"
                     src={videoSrc}
+                    key={index}
                     frameborder="0"/>)
 
                 })
@@ -61,8 +62,8 @@ export default class QuestionBoard extends Component {
               <div className='qPanelBottom'>
               <div className='qTag' >
 
-                {question.tags && question.tags.map((tag, i) => {
-                  return <Label color='blue' key={i}>
+                {question.tags && question.tags.map((tag, index) => {
+                  return <Label color='blue' key={index}>
                     {tag}
                     </Label>
                 })}
@@ -73,11 +74,32 @@ export default class QuestionBoard extends Component {
                 <Icon name='facebook'></Icon>
 
                 </a>*/}
-                <a color='twitter'
-                href={`https://twitter.com/intent/tweet?text=${question.title}%20Answer:%20${question.answers && question.answers[0].split(" ").slice(0,10).join(' ')}...%20at%20${config.domainURL+'?qid='+question.id}%20https://twitter.com/TheNthOpinion`}  target="_blank">
-                <Icon name='twitter'></Icon>
+                <div>
+                <Button as='div' labelPosition='right'>
+                      <Button color='red' onClick={() => this.props.handleClickLike(question.id, i)}>
+                        <Icon name='heart' />
+                        Like
+                      </Button>
+                      <Label as='a' basic color='red' pointing='left'>
+                        {question.like || 0}
+                      </Label>
+                    </Button>
+                  <Button animated='vertical' color='twitter'>
+                  <a style={{color: 'white'}}
+                  href={`https://twitter.com/intent/tweet?text=${question.title}%20Answer:%20${question.answers && question.answers[0].split(" ").slice(0,10).join(' ')}...%20at%20${config.domainURL+'?qid='+question.id}%20https://twitter.com/TheNthOpinion`}
+                    target="_blank">
 
-                </a>
+                    <Button.Content visible>
+
+                    <Icon name='twitter' /> Tweet
+
+                    </Button.Content>
+                    </a>
+                  </Button>
+                </div>
+
+
+
 
                 </div>
               </div>

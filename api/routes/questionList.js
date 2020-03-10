@@ -48,6 +48,19 @@ class PostList {
     await this.questionDao.updateItem(question)
     res.send('ok');
   }
+  // need to use better way :id
+  async deleteQuestion(req, res) {
+    const {id} = req.body;
+    await this.questionDao.deleteItem(id)
+    res.send('ok');
+  }
+  async increaseLike(req, res) {
+    const {id} = req.body;
+    console.log('req.body', req.body)
+    await this.questionDao.likeIncrease(id)
+    res.send('ok');
+  }
+
 }
 
 module.exports = PostList;

@@ -7,7 +7,9 @@ import { ADD_QUESTION,
    ADD_QUESTION_SUCCESS,
    ADD_QUESTION_FAILURE,
    FETCH_ALL_UNANSWERED_QUESTION,
-   DISMISS_MESSAGE
+   DISMISS_MESSAGE,
+   LIKE_QUESTION_SUCCESS,
+   DELETE_QUESTION_SUCCESS
   } from '../constants/ActionTypes'
 const initialState = {
   isLoading: false,
@@ -17,7 +19,6 @@ const initialState = {
 const questions = (state = initialState, action) => {
   switch (action.type) {
       case FETCH_ALL_UNANSWERED_QUESTION:
-        console.log('FETCH_ALL_UNANSWERED_QUESTION', action)
         return {
           ...state,
           unansweredQuestions: action.questions
@@ -33,9 +34,7 @@ const questions = (state = initialState, action) => {
       messageActive: action.messageActive
     }
     case ADD_QUESTION_FAILURE:
-    console.log('ADD_QUESTION_FAILURE-----')
     case ADD_QUESTION_SUCCESS:
-      console.log('ADD_QUESTION_SUCCESS-----')
         return {
           ...state,
           newQ: action.newQ,
@@ -43,7 +42,6 @@ const questions = (state = initialState, action) => {
           messageActive: action.messageActive
         }
     case FETCH_ALL_QUESTION:
-    console.log('FETCH_ALL_QUESTION', action)
       return {
         ...state,
         questions: action.questions,
@@ -76,6 +74,24 @@ const questions = (state = initialState, action) => {
       searchTerm: "",
       result: state.questions
     }
+    case LIKE_QUESTION_SUCCESS:
+    const val = state.questions[action.qIdx]['like'] || 0
+    const questions = JSON.parse(JSON.stringify(state.questions))
+    questions[action.qIdx]['like']= val + 1;
+    return {
+      ...state,
+      questions
+    }
+    case DELETE_QUESTION_SUCCESS:
+    console.log('unansweredQuestions', state.unansweredQuestions, action.qIdx)
+    const unansweredQuestions = JSON.parse(JSON.stringify(state.unansweredQuestions))
+    unansweredQuestions[action.qIdx]['undeleted']= true
+    console.log(unansweredQuestions[action.qIdx])
+    return {
+      ...state,
+      unansweredQuestions: unansweredQuestions
+    }
+
     default:
       return state
   }

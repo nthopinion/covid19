@@ -1,8 +1,9 @@
 import React, { Component, createRef } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import { Menu, Button, Form, Message, Card, Grid, Icon } from 'semantic-ui-react'
 import AuthProvider from "../AuthProvider";
-import { fetchUnansweredQuestions } from '../actions'
+import { fetchUnansweredQuestions, deleteQuestion } from '../actions'
 import AnswerForm from '../components/AnswerForm'
 
 import CardLeftPanel from '../components/CardLeftPanel'
@@ -18,11 +19,12 @@ class PhysicianView extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props
-    dispatch(fetchUnansweredQuestions())
+    this.props.fetchUnansweredQuestions()
 
   }
 
   render() {
+    console.log('this.props.unansweredQuestions', this.props.unansweredQuestions)
     return (
       <div>
         <Menu secondary>
@@ -80,11 +82,16 @@ class PhysicianView extends Component {
 }
 
 
-function mapStateToProps(state) {
-  // console.log(state)
+const mapStateToProps = (state) => {
+  console.log(state)
   return {
     unansweredQuestions: state.questionBoard.unansweredQuestions
+
   }
 }
 
-export default connect(mapStateToProps)(AuthProvider(PhysicianView))
+const mapDispatchToProps= (dispatch) => bindActionCreators({
+fetchUnansweredQuestions, deleteQuestion
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuthProvider(PhysicianView))

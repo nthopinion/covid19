@@ -50,8 +50,15 @@ app.get('/api/questions', (req, res, next) => questionList.showQuestions(req, re
 app.get('/api/questions/unanswered', (req, res, next) => questionList.showQuestions(req, res, false).catch(next))
 app.post('/api/addQuestion', (req, res, next) => questionList.addQuestion(req, res).catch(next))
 app.post('/api/addQuestions', (req, res, next) => questionList.addQuestions(req, res).catch(next))
+//ToDo: using :id
+app.delete('/api/question', (req, res, next) => questionList.deleteQuestion(req, res).catch(next))
 app.post('/api/updateQuestion', (req, res, next) =>
   questionList.updateQuestion(req, res).catch(next)
+)
+
+
+app.post('/api/question/like', (req, res, next) =>
+  questionList.increaseLike(req, res).catch(next)
 )
 
 

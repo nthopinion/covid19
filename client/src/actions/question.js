@@ -9,10 +9,14 @@ import { FETCH_ALL_QUESTION,
   ADD_QUESTION_SUCCESS,
   ADD_QUESTION_FAILURE,
   FETCH_ALL_UNANSWERED_QUESTION,
-  DISMISS_MESSAGE
+  DISMISS_MESSAGE,
+  LIKE_QUESTION_SUCCESS,
+  DELETE_QUESTION_SUCCESS
  } from '../constants/ActionTypes'
 
 import data from '../data/questions.json'
+import udata from '../data/unanswered.json'
+
 import config from '../config'
 // export const fetchQuestion = () => ({
 //   type: FETCH_ALL_QUESTION
@@ -33,6 +37,11 @@ const dismissMessage = () => ({
   messageActive: false
 })
 
+export const deleteQuestionSuccess = (qIdx) => ({
+    type: DELETE_QUESTION_SUCCESS,
+    qIdx: qIdx,
+
+  })
 
   export const addQuestionSuccess = (q) => {
     console.log('addQuestionSuccess');
@@ -67,6 +76,8 @@ const dismissMessage = () => ({
     })
   }
 }
+
+
 
 export const fetchQuestionsFailure = error => ({
   type: FETCH_ALL_QUESTION_FAILURE,
@@ -117,6 +128,9 @@ export const fetchUnansweredQuestions = () => {
     return fetch(`${config.domainURL}/api/questions/unanswered`)
       .then(response => response.json())
       .then(json => dispatch(receiveUnansweredQuestions(json)))
+
+    // return  dispatch(receiveUnansweredQuestions(udata))
+
   }
 }
 
@@ -140,25 +154,60 @@ export const postQuestion = (title) => {
      })
   }
 }
-//
-// export const updateQuestion = (question) => {
-//   return dispatch => {
-//     console.log('postQuestion', question);
-//     return fetch(`${config.domainURL}/api/updateQuestion`, {
-//       method: 'POST',
-//       headers: {
-//         'Accept': 'application/json',
-//         'Content-Type': 'application/json'
-//       },
-//        body: JSON.stringify({question})
-//      })
-//      .then(response => addQuestionSuccess())
-//      .catch(error => dispatch(addQuestionFailure(error)))
-//   }
-// }
 
- // const fetchQuestion => () => dispatch => {
- //    return fetch(`https://nth-opinion.s3-us-west-2.amazonaws.com/questions.json`)
- //      .then(response => response.json())
- //      .then(json => dispatch(receiveQuestion(json)))
- //  }
+
+export const deleteQuestion = (qId, idx) => {
+  return dispatch => {
+    console.log('deleteQuestion', qId, idx);
+    // dispatch(addQuestionFailure({title: 'newTitle'}))
+    // return dispatch(deleteQuestionSuccess(idx))
+
+    return fetch(`${config.domainURL}/api/question`, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({id: qId})
+     })
+     .then(r => dispatch(deleteQuestionSuccess(idx)))
+     // .catch(error => {
+     //   dispatch(addQuestionFailure(error));
+     // })
+  }
+}
+
+
+export const increaseLike = (qId, idx) => {
+//   console.log('fetchQuestion');
+  return dispatch => {
+    let likeItems = localStorage.getItem('likeItems') || {}
+    likeItems[qId] = 1;
+    localStorage.setItem('likeItems', likeItems);
+  return dispatch({
+    type: LIKE_QUESTION_SUCCESS,
+    qIdx: idx
+  })
+}
+}
+
+export const clickLikeQuestion = (qId, idx) => {
+  let likeItems = localStorage.getItem('likeItems') || {};
+  if(likeItems[qId]) return;
+  return dispatch => {
+    console.log('clickLikeQuestion----', qId, idx);
+    // return dispatch(likeQuestionSuccess(idx))
+    return fetch(`${config.domainURL}/api/question/like`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+       body: JSON.stringify({id: qId})
+     })
+     .then(response => dispatch(increaseLike(qId, idx)))
+     .catch(error => {
+       // dispatch(addQuestionFailure(error));
+     })
+  }
+}
