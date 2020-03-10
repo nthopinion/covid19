@@ -20,6 +20,7 @@ class PostList {
         }
       ]
     };
+    
     const items = await this.questionDao.find(querySpec);
     // console.log('items', items, querySpec)
     res.send(items);
