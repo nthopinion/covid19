@@ -34,30 +34,27 @@ class PatientBoard extends Component {
   }
 
   componentDidMount() {
-    const { dispatch } = this.props
     this.props.fetchQuestions()
   }
   handleClickLike = (id, index) => {
-    const { dispatch } = this.props
     this.props.clickLikeQuestion(id, index)
 
   }
   handleResultSelect = (e, {result}) => {
-    const { dispatch } = this.props
-    this.props.searchQuestions(this.props.questions, result.title)
+    // this.props.searchQuestions(this.props.questions, result.title)
 
   }
   handleSearchChange = (e, { value }) => {
-    const { dispatch } = this.props
     this.props.setLoading(false)
+    console.log(value)
     this.props.setSearchTerm(value)
 
 
-  setTimeout(() => {
-    if (this.props.searchTerm.length < 1)  {
-      this.props.resetSearchResult()
 
-    }
+  setTimeout(() => {
+    // if (this.props.searchTerm && this.props.searchTerm.length < 1)  {
+    //   this.props.resetSearchResult()
+    // }
     this.props.searchQuestions(this.props.questions, this.props.searchTerm)
 
   }, 500)
@@ -159,13 +156,10 @@ contextRef = createRef()
     )
   }
 }
-// addSuccess: true,
-// addQuestion: q
 const mapStateToProps = (state) => {
   console.log(state)
   return {
-    questions: state.questionBoard.questions,
-    results: state.questionBoard.results,
+    ...state.questionBoard
   }
 }
 

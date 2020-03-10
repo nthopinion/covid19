@@ -90,11 +90,22 @@ export const receiveUnansweredQuestions = questions => ({
   type: FETCH_ALL_UNANSWERED_QUESTION,
   questions
 })
-export const searchQuestions = (questions, searchTerm) => ({
-  type: SEARCH_QUESTIONS,
-  questions,
-  searchTerm
-})
+
+
+export const searchQuestions = (questions, searchTerm) => {
+  //   console.log('fetchQuestion');
+    return dispatch => {
+      console.log('searchQuestions', searchTerm)
+
+    return dispatch({
+    type: SEARCH_QUESTIONS,
+    questions,
+    searchTerm
+  })
+  }
+}
+
+
 export const setLoading = (isLoading) => ({
   type: SET_LOADING,
   isLoading
@@ -103,6 +114,9 @@ export const setSearchTerm = (searchTerm) => ({
   type: SET_SEARCHTERM,
   searchTerm
 })
+
+
+
 export const resetSearchResult = () => ({
   type: RESET_SEARCH_RESULT
 })
