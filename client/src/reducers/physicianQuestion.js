@@ -1,8 +1,7 @@
 import _ from 'lodash'
-import { FETCH_ALL_UNANSWERED_QUESTION
-  } from '../constants/ActionTypes'
+import { FETCH_ALL_UNANSWERED_QUESTION } from '../constants/ActionTypes'
 const initialState = {
-  questions: [],
+  questions: []
 }
 const physicianQuestion = (state = initialState, action) => {
   switch (action.type) {

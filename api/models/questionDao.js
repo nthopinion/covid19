@@ -11,7 +11,7 @@ class PostDao {
    * @param {string} databaseId
    * @param {string} containerId
    */
-  constructor(cosmosClient, databaseId, containerId) {
+  constructor (cosmosClient, databaseId, containerId) {
     this.client = cosmosClient
     this.databaseId = databaseId
     this.collectionId = containerId
@@ -20,7 +20,7 @@ class PostDao {
     this.container = null
   }
 
-  async init() {
+  async init () {
     debug('Setting up the database...')
     const dbResponse = await this.client.databases.createIfNotExists({
       id: this.databaseId
@@ -35,7 +35,7 @@ class PostDao {
     debug('Setting up the container...done!')
   }
 
-  async find(querySpec) {
+  async find (querySpec) {
     debug('Querying for items from the database')
     if (!this.container) {
       throw new Error('Collection is not initialized.')
@@ -44,7 +44,7 @@ class PostDao {
     return resources
   }
 
-  async addItem(item) {
+  async addItem (item) {
     debug('Adding an item to the database')
     item.date = Date.now()
     item.answered = !!(item.answers)
@@ -52,9 +52,9 @@ class PostDao {
     return doc
   }
 
-  async addItems(items) {
+  async addItems (items) {
     debug('Adding an item to the database')
-    Promise.all(items.map(async (item) =>{
+    Promise.all(items.map(async (item) => {
       item.date = Date.now()
       item.answered = !!(item.answers)
       const { resource: doc } = await this.container.items.create(item)
@@ -62,7 +62,7 @@ class PostDao {
     return 'ok'
   }
 
-  async updateItem(item) {
+  async updateItem (item) {
     debug('Update an item in the database', item, item.id)
     const doc = await this.getItem(item.id)
     debug('getting an item in the database', doc)
@@ -76,7 +76,7 @@ class PostDao {
     return replaced
   }
 
-  async likeIncrease(itemId) {
+  async likeIncrease (itemId) {
     debug('likeIncrease an item in the database', itemId)
     const doc = await this.getItem(itemId)
     debug('likeIncrease an item in the database', doc)
@@ -89,13 +89,13 @@ class PostDao {
     return replaced
   }
 
-  async getItem(itemId) {
+  async getItem (itemId) {
     debug('Getting an item from the database')
     const { resource } = await this.container.item(itemId).read()
     return resource
   }
 
-  async deleteItem(itemId) {
+  async deleteItem (itemId) {
     debug('Delete an item from the database', itemId)
     const doc = await this.getItem(itemId)
     const result = await this.container.item(itemId).delete()

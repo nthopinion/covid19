@@ -1,5 +1,7 @@
-export { addQuestion, fetchQuestions, searchQuestions,
-  setSearchTerm, setLoading, resetSearchResult, 
+export {
+  addQuestion, fetchQuestions, searchQuestions,
+  setSearchTerm, setLoading, resetSearchResult,
   postQuestion, receiveUnansweredQuestions, fetchUnansweredQuestions,
   deleteQuestion,
-  clickLikeQuestion } from './question'
+  clickLikeQuestion
+} from './question'
