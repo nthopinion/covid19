@@ -1,0 +1,80 @@
+
+
+.floatingMenuButton {
+	position: sticky;
+	bottom: 50px;
+	text-align: right;
+	z-index: 900;
+}
+
+
+
+.floatingMenuIcon{
+	position: relative;
+	z-index: 900;
+  font-size: 30px !important;
+	margin-right: 10px !important;
+}
+
+.chatbotPanel {
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background: white;
+}
+.customMessageHead {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	max-height: 50px;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+	.floatingMenuButton {
+		bottom: 10px;
+	}
+
+	.floatingMenu {
+		/* bottom: 10; */
+	}
+
+	.chatbotPanel {
+		position: fixed;
+    top: 0;
+    width: 100vw;
+		z-index: 900;
+		min-height: 80vh;
+	}
+
+	.overlay{
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: rgba(0,0,0,0.5);
+		cursor: pointer;
+	}
+
+}
+
+
+@media (min-width: 767px)  {
+	.floatingMenuButton {
+		float: right;
+		display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+	}
+	.chatbotPanel {
+    /* right: 0; */
+    width: 300px;
+		padding-right: 20px;
+	}
+
+
+}
