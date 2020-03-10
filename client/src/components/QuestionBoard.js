@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import AnswerItem from '../components/AnswerItem'
 import CardLeftPanel from '../components/CardLeftPanel'
 
-import { Card, Grid, Segment, List, Search, Image, Label, Button, Icon } from 'semantic-ui-react'
+import { Card, Grid, Segment, List, Search, Image, Label, Button, Icon, Message } from 'semantic-ui-react'
 import '../styles/QuestionBoard.css'
 import config from '../config'
 
@@ -49,8 +49,8 @@ export default class QuestionBoard extends Component {
 
                 {question.youtubeLinks && question.youtubeLinks.map((y,idx) => {
                   const videoSrc = "https://www.youtube.com/embed/" +
-                   (y.video || 'mYFaghHyMKc')+ "?autoplay=false";
-                  return (
+                   (y.video )+ "?autoplay=false";
+                  return y.video && (
                     <iframe className="player" type="text/html" width="100%" height="400px"
                     src={videoSrc}
                     frameborder="0"/>)

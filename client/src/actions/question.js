@@ -8,9 +8,11 @@ import { FETCH_ALL_QUESTION,
   RESET_SEARCH_RESULT,
   ADD_QUESTION_SUCCESS,
   ADD_QUESTION_FAILURE,
-  FETCH_ALL_UNANSWERED_QUESTION
+  FETCH_ALL_UNANSWERED_QUESTION,
+  DISMISS_MESSAGE
  } from '../constants/ActionTypes'
 
+import data from '../data/questions.json'
 import config from '../config'
 // export const fetchQuestion = () => ({
 //   type: FETCH_ALL_QUESTION
@@ -19,16 +21,52 @@ console.log('config', config)
 export const addQuestion = () => ({
   type: ADD_QUESTION
 })
-export const addQuestionSuccess = () => ({
-  type: ADD_QUESTION_SUCCESS,
-  addSuccess: true
 
+// export const updatedQuestionSuccess = (questions) => ({
+//   type: ADD_QUESTION_SUCCESS,
+//   submitted: true
+//
+// })
+
+const dismissMessage = () => ({
+  type: DISMISS_MESSAGE,
+  messageActive: false
 })
-export const addQuestionFailure = error => ({
-  type: ADD_QUESTION_FAILURE,
-  addSuccess: false,
-  payload: { error }
-})
+
+
+  export const addQuestionSuccess = (q) => {
+    console.log('addQuestionSuccess');
+    return dispatch => {
+      setTimeout(() => {
+        dispatch(dismissMessage())
+        // dispatch(resetSearchResult())
+      }, 6000)
+
+  return dispatch({
+    type: ADD_QUESTION_SUCCESS,
+    addSuccess: true,
+    newQ: q,
+    messageActive: true
+  })
+  }
+}
+
+
+
+  export const addQuestionFailure = (error) => {
+  //   console.log('fetchQuestion');
+    return dispatch => {
+      setTimeout(() => {
+        dispatch(dismissMessage())
+      }, 6000)
+
+    return dispatch({
+      type: ADD_QUESTION_FAILURE,
+      addSuccess: false,
+      messageActive: true
+    })
+  }
+}
 
 export const fetchQuestionsFailure = error => ({
   type: FETCH_ALL_QUESTION_FAILURE,
@@ -67,6 +105,9 @@ export const fetchQuestions = () => {
     return fetch(`${config.domainURL}/api/questions`)
       .then(response => response.json())
       .then(json => dispatch(receiveQuestions(json)))
+
+      //test local file
+    // return  dispatch(receiveQuestions(data))
   }
 }
 
@@ -82,6 +123,8 @@ export const fetchUnansweredQuestions = () => {
 export const postQuestion = (title) => {
   return dispatch => {
     console.log('postQuestion', title);
+    // dispatch(addQuestionFailure({title: 'newTitle'}))
+
     return fetch(`${config.domainURL}/api/addQuestion`, {
       method: 'POST',
       headers: {
@@ -89,11 +132,15 @@ export const postQuestion = (title) => {
         'Content-Type': 'application/json'
       },
        body: JSON.stringify({title})
-     }).then(response => addQuestionSuccess())
-     .catch(error => dispatch(addQuestionFailure(error)))
+     })
+     .then(response => response.json())
+     .then(json => dispatch(addQuestionSuccess(json)))
+     .catch(error => {
+       dispatch(addQuestionFailure(error));
+     })
   }
 }
-// 
+//
 // export const updateQuestion = (question) => {
 //   return dispatch => {
 //     console.log('postQuestion', question);
