@@ -76,17 +76,20 @@ const questions = (state = initialState, action) => {
         result: state.questions
       }
     case LIKE_QUESTION_SUCCESS:
-      const val = state.questions[action.qIdx].like || 0
+      console.log('LIKE_QUESTION_SUCCESS', state.questions, action)
+      const val = state.questions[action.qIdx]['like'] || 0
       const questions = JSON.parse(JSON.stringify(state.questions))
-      questions[action.qIdx].like = val + 1
+      questions[action.qIdx]['like'] = val + 1
+      console.log(questions[action.qIdx])
       return {
         ...state,
-        questions
+        questions,
+        results :questions 
       }
     case DELETE_QUESTION_SUCCESS:
       console.log('unansweredQuestions', state.unansweredQuestions, action.qIdx)
       const unansweredQuestions = JSON.parse(JSON.stringify(state.unansweredQuestions))
-      unansweredQuestions[action.qIdx].undeleted = true
+      unansweredQuestions[action.qIdx]['undeleted'] = true
       console.log(unansweredQuestions[action.qIdx])
       return {
         ...state,

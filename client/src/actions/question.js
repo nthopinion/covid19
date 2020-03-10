@@ -187,11 +187,13 @@ export const deleteQuestion = (qId, idx) => {
 }
 
 export const increaseLike = (qId, idx) => {
-//   console.log('fetchQuestion');
   return dispatch => {
-    const likeItems = localStorage.getItem('likeItems') || {}
+    console.log('increaseLike----', qId, idx)
+
+    let likeItems = localStorage.getItem('likeItems')
+    likeItems = likeItems? JSON.parse(likeItems):{}
     likeItems[qId] = 1
-    localStorage.setItem('likeItems', likeItems)
+     localStorage.setItem('likeItems', JSON.stringify(likeItems))
     return dispatch({
       type: LIKE_QUESTION_SUCCESS,
       qIdx: idx
@@ -200,11 +202,11 @@ export const increaseLike = (qId, idx) => {
 }
 
 export const clickLikeQuestion = (qId, idx) => {
-  const likeItems = localStorage.getItem('likeItems') || {}
-  if (likeItems[qId]) return
+
+  let likeItems = localStorage.getItem('likeItems')
+  likeItems = likeItems? JSON.parse(likeItems):{}
   return dispatch => {
-    console.log('clickLikeQuestion----', qId, idx)
-    // return dispatch(likeQuestionSuccess(idx))
+    if (likeItems[qId]) return dispatch({type: 'ALREADY_LIKE'})
     return fetch(`${config.domainURL}/api/question/like`, {
       method: 'POST',
       headers: {

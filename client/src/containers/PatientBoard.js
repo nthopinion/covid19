@@ -28,9 +28,9 @@ import {
 class PatientBoard extends Component {
   constructor(props) {
     super(props)
-    // this.state = {
-    //   processSumited: false
-    // }
+    this.state = {
+      processSumited: false
+    }
   }
 
   componentDidMount() {
@@ -41,7 +41,7 @@ class PatientBoard extends Component {
 
   }
   handleResultSelect = (e, {result}) => {
-    // this.props.searchQuestions(this.props.questions, result.title)
+    this.props.searchQuestions(this.props.questions, result.title)
 
   }
   handleSearchChange = (e, { value }) => {
@@ -52,9 +52,9 @@ class PatientBoard extends Component {
 
 
   setTimeout(() => {
-    // if (this.props.searchTerm && this.props.searchTerm.length < 1)  {
-    //   this.props.resetSearchResult()
-    // }
+    if (this.props.searchTerm && this.props.searchTerm.length < 1)  {
+      this.props.resetSearchResult()
+    }
     this.props.searchQuestions(this.props.questions, this.props.searchTerm)
 
   }, 500)
@@ -63,17 +63,22 @@ class PatientBoard extends Component {
   // submit question
   if(this.props.results.length != 0) return
   // var self = this
-  setTimeout(() => {
-    if(this.props.searchTerm && (this.state.prevSearchTerm !== this.props.searchTerm) ) {
-      this.handleSubmitNewQuestion();
-    }
-  }, 2000)
+  if(this.props.searchTerm && (this.state.prevSearchTerm !== this.props.searchTerm) && this.props.searchTerm.length > 10 ) {
+    console.log('handleSubmitNewQuestion')
+    // _.throttle(this.handleSubmitNewQuestion, 1000)()
+    if(this.timeout) clearTimeout(this.timeout);
+     this.timeout = setTimeout(() => {
+       this.handleSubmitNewQuestion()
+     }, 1000);
+  }
 }
 handleSubmitNewQuestion = () => {
+  console.log('handleSubmitNewQuestion -- inner')
+
   const { dispatch } = this.props
     this.props.postQuestion(this.props.searchTerm)
 
-    // this.setState({ prevSearchTerm: this.props.searchTerm })
+    this.setState({ prevSearchTerm: this.props.searchTerm })
     // dispatch(resetSearchResult());
     // dispatch(searchQuestions(this.props.questions, this.props.searchTerm))
 }
@@ -157,7 +162,6 @@ contextRef = createRef()
   }
 }
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     ...state.questionBoard
   }

@@ -21,6 +21,12 @@
   /* height: 30px; */
   font-size: 18px;
 }
+.qTag{
+  display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    max-width: 200px;
+}
 .qTag .label {
   margin-right: 5px;
   margin-top: 5px;
