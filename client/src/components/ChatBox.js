@@ -26,7 +26,7 @@ class ChatBox extends Component {
 
           <div className='attached fluid segment customChat'>
           <Iframe
-              src='https://webchat.botframework.com/embed/ntozwu-qna-wellspring-bot?s=inVtGkA7vCM.w7KrGgKpZeqVW9HhSX8KcdjJD6sNOAvOP_EIeUiC5g4'
+              src='https://webchat.botframework.com/embed/ntozwu-qna-covid19-bot?s=9iYu3ciCpFs.EvQRhyfaSNTIhSg54GhDKbHcHIrvmZgnMrbTcK5YUCA'
             />
         </div>
           {/*
