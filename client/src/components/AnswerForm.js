@@ -1,12 +1,13 @@
-import React, { Component, createRef } from 'react'
+import React, { Component, createRef, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Menu, Button, Form, Message, Card, Grid, Icon, List } from 'semantic-ui-react'
 import AuthProvider from "../AuthProvider";
-import { fetchUnansweredQuestions } from '../actions'
+import { deleteQuestion } from '../actions'
 import AnswerItem from '../components/AnswerItem'
 import FileUpload from '../components/FileUpload'
 import CardLeftPanel from '../components/CardLeftPanel'
 import '../styles/QuestionBoard.css'
+import { bindActionCreators } from 'redux'
 import config from '../config'
 
 
@@ -34,7 +35,9 @@ class AnswerForm extends Component {
        .then(response => console.log(response))
        .catch(error => console.log(error))
     }
-
+  handleDeleteQuestion = (qId, idx) => {
+    this.props.deleteQuestion(qId, idx)
+  }
   handleSubmit = async (e, { value }, q) => {
     const key = 'q_'+q.id;
 
@@ -51,7 +54,6 @@ class AnswerForm extends Component {
   }
   handleChange = (e, { value }, q) => {
     const key = 'q_'+q.id;
-    console.log('key', key, this.state)
     this.setState({ [key]: value })
 }
   render() {
@@ -59,8 +61,10 @@ class AnswerForm extends Component {
     return (
       <Card className="qCard" key={idx} style={{width:'100%'}}>
          <CardLeftPanel questionNumber={idx} title={q.title}/>
-       {  !this.state.submitted && <Form
-         onSubmit={(e, { value }) => this.handleSubmit(e, { value }, q)}
+       {  !this.state.submitted && !(q.undeleted) &&
+         <Fragment>
+          <Form
+
 
          >
               <Form.TextArea
@@ -68,14 +72,29 @@ class AnswerForm extends Component {
               onChange={(e, { value }) => this.handleChange(e, { value }, q)}
               />
               <div>
-               <Icon name='attach' />
+               {false &&<Icon name='attach' />}
                {false && <FileUpload/>}
              </div>
-
-              <Form.Button type='submit'>Submit</Form.Button>
             </Form>
+
+                      <Card.Content extra>
+                        <div className='ui two buttons'>
+                          <Button basic color='green' onSubmit={(e, { value }) => this.handleSubmit(e, { value }, q)}>
+                            Submit
+                          </Button>
+                          <Button basic color='red' onClick={() => this.handleDeleteQuestion(q.id, idx)}>
+                            Delete
+                          </Button>
+                        </div>
+                      </Card.Content>
+                      </Fragment>
           }
 
+          {(q.undeleted) &&
+            <Message positive>
+              <Message.Header>Deleted</Message.Header>
+            </Message>
+          }
           {this.state.submitted &&
             <Message positive>
               <Message.Header>Thank you!</Message.Header>
@@ -88,18 +107,21 @@ class AnswerForm extends Component {
 
             </Message>
           }
-
       </Card>
     )
   }
 }
 
 
-function mapStateToProps(state) {
-  // console.log(state)
+const mapStateToProps = (state) => {
   return {
-    // unansweredQuestions: state.questionBoard.unansweredQuestions
+    unansweredQuestions: state.questionBoard.unansweredQuestions
+
   }
 }
 
-export default AnswerForm
+const mapDispatchToProps= (dispatch) => bindActionCreators({
+ deleteQuestion
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuthProvider(AnswerForm))

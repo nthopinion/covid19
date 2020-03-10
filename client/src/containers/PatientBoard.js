@@ -1,7 +1,8 @@
 import React, { Component, createRef } from 'react'
 import _ from 'lodash'
 import { connect } from 'react-redux'
-import { fetchQuestions, setLoading, searchQuestions, resetSearchResult, setSearchTerm, postQuestion } from '../actions'
+import { bindActionCreators } from 'redux'
+import { fetchQuestions, setLoading, searchQuestions, resetSearchResult, setSearchTerm, postQuestion, clickLikeQuestion } from '../actions'
 import QuestionBoard from '../components/QuestionBoard'
 import SearchBar from '../components/SearchBar'
 import '../styles/PatientBoard.css'
@@ -33,39 +34,50 @@ class PatientBoard extends Component {
   }
 
   componentDidMount() {
-    const { dispatch } = this.props
-    dispatch(fetchQuestions())
+    this.props.fetchQuestions()
   }
+  handleClickLike = (id, index) => {
+    this.props.clickLikeQuestion(id, index)
 
+  }
   handleResultSelect = (e, {result}) => {
-    const { dispatch } = this.props
-    dispatch(searchQuestions(this.props.questions, result.title))
+    this.props.searchQuestions(this.props.questions, result.title)
+
   }
   handleSearchChange = (e, { value }) => {
-    const { dispatch } = this.props
+    this.props.setLoading(false)
+    console.log(value)
+    this.props.setSearchTerm(value)
 
-  dispatch(setLoading(false))
-  dispatch(setSearchTerm(value))
+
+
   setTimeout(() => {
-    if (this.props.searchTerm.length < 1)  {
-      dispatch(resetSearchResult())
+    if (this.props.searchTerm && this.props.searchTerm.length < 1)  {
+      this.props.resetSearchResult()
     }
-    dispatch(searchQuestions(this.props.questions, this.props.searchTerm))
+    this.props.searchQuestions(this.props.questions, this.props.searchTerm)
+
   }, 500)
 
 
   // submit question
   if(this.props.results.length != 0) return
   // var self = this
-  setTimeout(() => {
-    if(this.props.searchTerm && (this.state.prevSearchTerm !== this.props.searchTerm) ) {
-      this.handleSubmitNewQuestion();
-    }
-  }, 2000)
+  if(this.props.searchTerm && (this.state.prevSearchTerm !== this.props.searchTerm) && this.props.searchTerm.length > 10 ) {
+    console.log('handleSubmitNewQuestion')
+    // _.throttle(this.handleSubmitNewQuestion, 1000)()
+    if(this.timeout) clearTimeout(this.timeout);
+     this.timeout = setTimeout(() => {
+       this.handleSubmitNewQuestion()
+     }, 1000);
+  }
 }
 handleSubmitNewQuestion = () => {
+  console.log('handleSubmitNewQuestion -- inner')
+
   const { dispatch } = this.props
-    dispatch(postQuestion(this.props.searchTerm))
+    this.props.postQuestion(this.props.searchTerm)
+
     this.setState({ prevSearchTerm: this.props.searchTerm })
     // dispatch(resetSearchResult());
     // dispatch(searchQuestions(this.props.questions, this.props.searchTerm))
@@ -107,6 +119,7 @@ contextRef = createRef()
          </div>
          </Sticky>
        <QuestionBoard
+        handleClickLike={this.handleClickLike}
          results={this.props.results}
        />
 
@@ -148,13 +161,14 @@ contextRef = createRef()
     )
   }
 }
-// addSuccess: true,
-// addQuestion: q
-function mapStateToProps(state) {
-  // console.log(state)
+const mapStateToProps = (state) => {
   return {
     ...state.questionBoard
   }
 }
 
-export default connect(mapStateToProps)(PatientBoard)
+const mapDispatchToProps= (dispatch) => bindActionCreators({
+  fetchQuestions, setLoading, searchQuestions, resetSearchResult, setSearchTerm, postQuestion, clickLikeQuestion
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(PatientBoard)
