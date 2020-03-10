@@ -1,7 +1,7 @@
 import React, { Component, createRef } from 'react'
 import _ from 'lodash'
 import { connect } from 'react-redux'
-import { fetchQuestions, setLoading, searchQuestions, resetSearchResult, setSearchTerm } from '../actions'
+import { fetchQuestions, setLoading, searchQuestions, resetSearchResult, setSearchTerm, postQuestion } from '../actions'
 import QuestionBoard from '../components/QuestionBoard'
 import SearchBar from '../components/SearchBar'
 import '../styles/PatientBoard.css'
@@ -18,18 +18,18 @@ import {
   Segment,
   Sticky,
   Item,
-  Search
+  Search,
+  Message
 } from 'semantic-ui-react'
 
 
-const Iframe = (props) => (
-  <div>
-    <iframe src={props.src} styles={props.styles}/>
-  </div>
-)
+
 class PatientBoard extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      processSumited: false
+    }
   }
 
   componentDidMount() {
@@ -47,10 +47,28 @@ class PatientBoard extends Component {
   dispatch(setLoading(false))
   dispatch(setSearchTerm(value))
   setTimeout(() => {
-    if (this.props.searchTerm.length < 1) return dispatch(resetSearchResult())
+    if (this.props.searchTerm.length < 1)  {
+      dispatch(resetSearchResult())
+    }
     dispatch(searchQuestions(this.props.questions, this.props.searchTerm))
+  }, 500)
 
-  }, 100)
+
+  // submit question
+  if(this.props.results.length != 0) return
+  // var self = this
+  setTimeout(() => {
+    if(this.props.searchTerm && (this.state.prevSearchTerm !== this.props.searchTerm) ) {
+      this.handleSubmitNewQuestion();
+    }
+  }, 2000)
+}
+handleSubmitNewQuestion = () => {
+  const { dispatch } = this.props
+    dispatch(postQuestion(this.props.searchTerm))
+    this.setState({ prevSearchTerm: this.props.searchTerm })
+    // dispatch(resetSearchResult());
+    // dispatch(searchQuestions(this.props.questions, this.props.searchTerm))
 }
 contextRef = createRef()
 
@@ -69,7 +87,23 @@ contextRef = createRef()
          value={this.props.searchTerm}
          handleResultSelect={this.handleResultSelect}
          handleSearchChange={this.handleSearchChange}/>
-         <AddQuestionForm/>
+         {/*<AddQuestionForm/>*/}
+         {this.props.addSuccess && this.props.messageActive &&
+           <Message positive>
+              <Message.Header>We've submitted your question</Message.Header>
+              <p>
+                Please check back later. {this.props.newQ && this.props.newQ.title}
+              </p>
+            </Message>
+          }
+          {!this.props.addSuccess && this.props.messageActive &&
+            <Message error>
+               <Message.Header>We've tried to submit your question</Message.Header>
+               <p>
+                 Sorry Something went wrong. Please try again later
+               </p>
+             </Message>
+           }
          </div>
          </Sticky>
        <QuestionBoard
@@ -114,7 +148,8 @@ contextRef = createRef()
     )
   }
 }
-
+// addSuccess: true,
+// addQuestion: q
 function mapStateToProps(state) {
   // console.log(state)
   return {

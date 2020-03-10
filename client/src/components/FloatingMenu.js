@@ -12,7 +12,12 @@ class FloatingMenu extends Component {
   			toggled: false
   		}
   	}
-
+    componentDidMount() {
+      this.interval = setTimeout(() => this.setState({ toggled: true }), 5000);
+    }
+    componentWillUnmount() {
+      clearInterval(this.interval);
+    }
   	toggleMenu() {
   		this.setState({toggled: !this.state.toggled});
   	}

@@ -6,7 +6,8 @@ import { ADD_QUESTION,
    RESET_SEARCH_RESULT,
    ADD_QUESTION_SUCCESS,
    ADD_QUESTION_FAILURE,
-   FETCH_ALL_UNANSWERED_QUESTION
+   FETCH_ALL_UNANSWERED_QUESTION,
+   DISMISS_MESSAGE
   } from '../constants/ActionTypes'
 const initialState = {
   isLoading: false,
@@ -26,11 +27,20 @@ const questions = (state = initialState, action) => {
       return {
         ...state
       }
+    case DISMISS_MESSAGE:
+    return {
+      ...state,
+      messageActive: action.messageActive
+    }
     case ADD_QUESTION_FAILURE:
+    console.log('ADD_QUESTION_FAILURE-----')
     case ADD_QUESTION_SUCCESS:
+      console.log('ADD_QUESTION_SUCCESS-----')
         return {
           ...state,
-          ...action
+          newQ: action.newQ,
+          addSuccess: action.addSuccess,
+          messageActive: action.messageActive
         }
     case FETCH_ALL_QUESTION:
     console.log('FETCH_ALL_QUESTION', action)
