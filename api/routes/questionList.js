@@ -64,6 +64,13 @@ class PostList {
     res.send('ok')
   }
 
+  async reportQuestion(req, res) {
+    const { id } = req.body
+    console.log('req.body', req.body)
+    await this.questionDao.reportQuestion(id)
+    res.send('ok')
+  }
+
   async increaseLike (req, res) {
     const { id } = req.body
     console.log('req.body', req.body)

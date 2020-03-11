@@ -3,12 +3,40 @@ import React, { Component } from 'react'
 import AnswerItem from '../components/AnswerItem'
 import CardLeftPanel from '../components/CardLeftPanel'
 
-import { Card, Grid, Segment, List, Search, Image, Label, Button, Icon, Message } from 'semantic-ui-react'
+import { Modal, Card, Grid, Segment, List, Search, Image, Label, Button, Icon, Message } from 'semantic-ui-react'
 import '../styles/QuestionBoard.css'
 import config from '../config'
 
 const colors = ['red', 'orange', 'yellow']
 export default class QuestionBoard extends Component {
+  constructor(props) {
+    super(props)
+    this.state={open: false, reportQuestion: null}
+
+  }
+  handleReportIssue (q) {
+    this.setState({open: true, reportQuestion: q})
+  }
+  async handleSubmitReportIssue () {
+    await this.reportQuestionFlag(this.state.reportQuestion)
+    this.setState({open: false, reportQuestion: null})
+  }
+
+  reportQuestionFlag = (question) => {
+      return fetch(`${config.domainURL}/api/question/report`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+         body: JSON.stringify({id: question.id})
+       })
+       .then(response => console.log(response))
+       .catch(error => console.log(error))
+    }
+
+  close = () => this.setState({ open: false })
+
   render () {
     const { results, isLoading, searchTerm } = this.props
     console.log(this.props)
@@ -72,6 +100,7 @@ export default class QuestionBoard extends Component {
 
                 </a> */}
                       <div>
+
                         <Button as='div' labelPosition='right'>
                           <Button color='red' onClick={() => this.props.handleClickLike(question.id, i)}>
                             <Icon name='heart' />
@@ -84,7 +113,7 @@ export default class QuestionBoard extends Component {
                         <Button animated='vertical' color='twitter'>
                           <a
                             style={{ color: 'white' }}
-                            href={`https://twitter.com/intent/tweet?text=${question.title}%20Answer:%20${question.answers &&question.answers.length > 0 && question.answers[0].split(' ').slice(0, 10).join(' ')}...%20at%20${config.domainURL + '?qid=' + question.id}%20https://twitter.com/TheNthOpinion`}
+                            href={`https://twitter.com/intent/tweet?text=${question.title}%20Answer:%20${question.answers &&question.answers.length > 0 && question.answers[0].split(' ').slice(0, 10).join(' ')}...%20at%20${config.domainURL + '?qid=' + question.id}%20@thenthopinion`}
                             target='_blank'
                           >
 
@@ -93,8 +122,11 @@ export default class QuestionBoard extends Component {
                               <Icon name='twitter' /> Tweet
 
                             </Button.Content>
+
                           </a>
                         </Button>
+                        <Button icon='flag' color='red' basic title='report an issue' onClick={() => this.handleReportIssue(question)} />
+
                       </div>
 
                     </div>
@@ -105,6 +137,27 @@ export default class QuestionBoard extends Component {
             })
           }
         </Card.Group>
+        <Modal
+          open={this.state.open}
+          onClose={this.close}
+        >
+          <Modal.Header>Are you sure you want to report this question?</Modal.Header>
+          <Modal.Content>
+              <p>{this.state.reportQuestion?.title}</p>
+          </Modal.Content>
+          <Modal.Actions>
+            <Button onClick={this.close} negative>
+              No
+            </Button>
+            <Button
+              onClick={() => this.handleSubmitReportIssue()}
+              positive
+              labelPosition='right'
+              icon='checkmark'
+              content='Yes'
+            />
+          </Modal.Actions>
+        </Modal>
       </div>
     )
   }

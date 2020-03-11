@@ -1,6 +1,6 @@
 import React, { Component, createRef, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { Menu, Button, Form, Message, Card, Grid, Icon, List } from 'semantic-ui-react'
+import { Menu, Button, Form, Message, Card, Grid, Icon, List, Label } from 'semantic-ui-react'
 import AuthProvider from "../AuthProvider";
 import { deleteQuestion, setAnswerForQuestion } from '../actions'
 import AnswerItem from '../components/AnswerItem'
@@ -83,10 +83,13 @@ class AnswerForm extends Component {
   render() {
     const {q, idx} = this.state
     console.log(q)
-
+    const metaData=  q.flagIssue && <Label as='a' color='red' tag>
+          Report Issues: <span> {q.flagIssue}</span>
+        </Label>
     return (
       <Card className="qCard" key={idx} style={{width:'100%'}}>
-         <CardLeftPanel questionNumber={idx} title={q.title}/>
+         <CardLeftPanel questionNumber={idx} title={q.title} metaData={metaData}/>
+
        {  !this.state.submitted && !(q.undeleted) &&
          <Fragment>
           <Form

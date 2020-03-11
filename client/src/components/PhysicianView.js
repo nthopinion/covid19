@@ -44,14 +44,14 @@ class PhysicianView extends Component {
           </Menu.Menu>
         </Menu>
         <div className='buttonGroupCustom'>
-        <Button.Group>
+        {this.props.account &&<Button.Group>
           <Button basic color='blue' onClick={() => this.handleToggleView(true)} active={this.state.showUnaswered}>
             Unanswered Questions
           </Button>
           <Button basic color='green' onClick={() => this.handleToggleView(false)} active={!this.state.showUnaswered}>
             Answered Questions
           </Button>
-        </Button.Group>
+        </Button.Group>}
         </div>
          <section className="container">
          { !this.props.account && (
