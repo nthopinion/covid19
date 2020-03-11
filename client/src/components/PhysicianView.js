@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Menu, Button, Form, Message, Card, Grid, Icon } from 'semantic-ui-react'
 import AuthProvider from "../AuthProvider";
-import { fetchUnansweredQuestions, deleteQuestion } from '../actions'
+import { fetchUnansweredQuestions, deleteQuestion, fetchQuestions } from '../actions'
 import AnswerForm from '../components/AnswerForm'
 
 import CardLeftPanel from '../components/CardLeftPanel'
@@ -12,7 +12,7 @@ import config from '../config'
 
 
 class PhysicianView extends Component {
-  state={}
+  state={showUnaswered: true}
   constructor(props) {
     super(props)
   }
@@ -20,7 +20,12 @@ class PhysicianView extends Component {
   componentDidMount() {
     const { dispatch } = this.props
     this.props.fetchUnansweredQuestions()
+    this.props.fetchQuestions()
 
+  }
+
+  handleToggleView(showUnaswered) {
+    this.setState({showUnaswered: showUnaswered})
   }
 
   render() {
@@ -38,9 +43,18 @@ class PhysicianView extends Component {
             )}
           </Menu.Menu>
         </Menu>
-
+        <div className='buttonGroupCustom'>
+        <Button.Group>
+          <Button basic color='blue' onClick={() => this.handleToggleView(true)} active={this.state.showUnaswered}>
+            Unanswered Questions
+          </Button>
+          <Button basic color='green' onClick={() => this.handleToggleView(false)} active={!this.state.showUnaswered}>
+            Answered Questions
+          </Button>
+        </Button.Group>
+        </div>
          <section className="container">
-         {!this.props.account && (
+         { !this.props.account && (
              <Message warning>
                   <Message.Header>You must register/signin before you can do that!</Message.Header>
                   <p></p>
@@ -66,12 +80,12 @@ class PhysicianView extends Component {
          <div>
          <Grid centered columns={2} stackable>
             <Grid.Column>
-         { this.props.account && this.props.unansweredQuestions &&
-           this.props.unansweredQuestions.map((q, idx) =>
+         { this.state.showUnaswered && this.props.account && this.props.unansweredQuestions &&
+           this.props.unansweredQuestions.map((q, idx) => <AnswerForm q={q} idx={idx} showUnaswered={this.state.showUnaswered}/>
+         )}
 
-           <AnswerForm q={q} idx={idx}/>
-
-
+         { !this.state.showUnaswered && this.props.account && this.props.questions &&
+           this.props.questions.map((q, idx) => <AnswerForm q={q} idx={idx} showUnaswered={this.state.showUnaswered}/>
          )}
          </Grid.Column>
        </Grid>
@@ -85,13 +99,14 @@ class PhysicianView extends Component {
 const mapStateToProps = (state) => {
   console.log(state)
   return {
-    unansweredQuestions: state.questionBoard.unansweredQuestions
+    unansweredQuestions: state.questionBoard.unansweredQuestions,
+    questions: state.questionBoard.questions
 
   }
 }
 
 const mapDispatchToProps= (dispatch) => bindActionCreators({
-fetchUnansweredQuestions, deleteQuestion
+fetchUnansweredQuestions, deleteQuestion, fetchQuestions
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthProvider(PhysicianView))

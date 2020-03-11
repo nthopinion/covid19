@@ -55,6 +55,9 @@ app.delete('/api/question', (req, res, next) => questionList.deleteQuestion(req,
 app.post('/api/updateQuestion', (req, res, next) =>
   questionList.updateQuestion(req, res).catch(next)
 )
+app.post('/api/editAnswers', (req, res, next) =>
+  questionList.editAnswers(req, res).catch(next)
+)
 
 app.post('/api/question/like', (req, res, next) =>
   questionList.increaseLike(req, res).catch(next)

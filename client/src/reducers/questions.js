@@ -10,7 +10,8 @@ import {
   FETCH_ALL_UNANSWERED_QUESTION,
   DISMISS_MESSAGE,
   LIKE_QUESTION_SUCCESS,
-  DELETE_QUESTION_SUCCESS
+  DELETE_QUESTION_SUCCESS,
+  SET_ANSWERS_BY_QUESTION
 } from '../constants/ActionTypes'
 const initialState = {
   isLoading: false,
@@ -19,6 +20,14 @@ const initialState = {
 }
 const questions = (state = initialState, action) => {
   switch (action.type) {
+    // case SET_ANSWERS_BY_QUESTION:
+    // const val = state.questions[action.idx]['answers']
+    // const questions = JSON.parse(JSON.stringify(state.questions))
+    // questions[action.qIdx]['answers'] = action.answers
+    // return {
+    //   ...state,
+    //   questions: action.questions
+    // }
     case FETCH_ALL_UNANSWERED_QUESTION:
       return {
         ...state,
@@ -84,7 +93,7 @@ const questions = (state = initialState, action) => {
       return {
         ...state,
         questions,
-        results :questions 
+        results :questions
       }
     case DELETE_QUESTION_SUCCESS:
       console.log('unansweredQuestions', state.unansweredQuestions, action.qIdx)

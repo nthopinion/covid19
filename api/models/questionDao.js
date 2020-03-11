@@ -66,16 +66,28 @@ class PostDao {
     debug('Update an item in the database', item, item.id)
     const doc = await this.getItem(item.id)
     debug('getting an item in the database', doc)
-
+    let answers = doc.answers || []
+    answers.concat((item.answers || []))
     doc.answers = item.answers
-    doc.answered = true
+    doc.answered = !!(item.answers)
 
     const { resource: replaced } = await this.container
       .item(item.id)
       .replace(doc)
     return replaced
   }
+  async editAnswers (item) {
+    debug('Update an item in the database', item, item.id)
+    const doc = await this.getItem(item.id)
+    debug('getting an item in the database', doc)
+    doc.answers = item.answers
+    doc.answered = !!(item.answers)
 
+    const { resource: replaced } = await this.container
+      .item(item.id)
+      .replace(doc)
+    return replaced
+  }
   async likeIncrease (itemId) {
     debug('likeIncrease an item in the database', itemId)
     const doc = await this.getItem(itemId)

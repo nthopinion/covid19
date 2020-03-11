@@ -12,7 +12,8 @@ import {
   FETCH_ALL_UNANSWERED_QUESTION,
   DISMISS_MESSAGE,
   LIKE_QUESTION_SUCCESS,
-  DELETE_QUESTION_SUCCESS
+  DELETE_QUESTION_SUCCESS,
+  SET_ANSWERS_BY_QUESTION
 } from '../constants/ActionTypes'
 
 import data from '../data/questions.json'
@@ -113,6 +114,14 @@ export const setLoading = (isLoading) => ({
 export const setSearchTerm = (searchTerm) => ({
   type: SET_SEARCHTERM,
   searchTerm
+})
+
+
+
+export const setAnswerForQuestion = (idx, answers) => ({
+  type: SET_ANSWERS_BY_QUESTION,
+  idx,
+  answers
 })
 
 

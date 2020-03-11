@@ -57,3 +57,26 @@
   align-items: center;
   padding-top: 50px;
 }
+.buttonGroupCustom {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 1401px) {
+.mailForm_mobile {
+  display: block;
+}
+.mailForm {
+  display: none;
+}
+}
+
+@media (min-width: 1400px)  {
+  .mailForm_mobile {display: none}
+  .mailForm {
+    max-width: 400px;
+    margin-top: 200px !important;
+    margin-left: 10px !important;
+  }
+}

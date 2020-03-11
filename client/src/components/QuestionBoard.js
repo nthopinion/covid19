@@ -84,7 +84,7 @@ export default class QuestionBoard extends Component {
                         <Button animated='vertical' color='twitter'>
                           <a
                             style={{ color: 'white' }}
-                            href={`https://twitter.com/intent/tweet?text=${question.title}%20Answer:%20${question.answers && question.answers[0].split(' ').slice(0, 10).join(' ')}...%20at%20${config.domainURL + '?qid=' + question.id}%20https://twitter.com/TheNthOpinion`}
+                            href={`https://twitter.com/intent/tweet?text=${question.title}%20Answer:%20${question.answers &&question.answers.length > 0 && question.answers[0].split(' ').slice(0, 10).join(' ')}...%20at%20${config.domainURL + '?qid=' + question.id}%20https://twitter.com/TheNthOpinion`}
                             target='_blank'
                           >
 
