@@ -48,10 +48,8 @@ questionDao
   })
 app.get('/api/questions', (req, res, next) => questionList.showQuestions(req, res, true).catch(next))
 app.get('/api/questions/unanswered', (req, res, next) => questionList.showQuestions(req, res, false).catch(next))
-app.post('/api/addQuestion', (req, res, next) => questionList.addQuestion(req, res).catch(next))
 app.post('/api/addQuestions', (req, res, next) => questionList.addQuestions(req, res).catch(next))
 // ToDo: using :id
-app.delete('/api/question', (req, res, next) => questionList.deleteQuestion(req, res).catch(next))
 app.post('/api/updateQuestion', (req, res, next) =>
   questionList.updateQuestion(req, res).catch(next)
 )
@@ -62,6 +60,13 @@ app.post('/api/editAnswers', (req, res, next) =>
 app.post('/api/question/like', (req, res, next) =>
   questionList.increaseLike(req, res).catch(next)
 )
+
+app.post('/api/question/report', (req, res, next) =>
+  questionList.reportQuestion(req, res).catch(next)
+)
+app.post('/api/addQuestion', (req, res, next) => questionList.addQuestion(req, res).catch(next))
+
+app.delete('/api/question', (req, res, next) => questionList.deleteQuestion(req, res).catch(next))
 
 // Handles any requests that don't match the ones above
 app.get('*', (req, res) => {

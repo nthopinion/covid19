@@ -88,6 +88,20 @@ class PostDao {
       .replace(doc)
     return replaced
   }
+
+  async reportQuestion (itemId) {
+    debug('likeIncrease an item in the database', itemId)
+    const doc = await this.getItem(itemId)
+    debug('likeIncrease an item in the database', doc)
+
+    doc.flagIssue = (doc.flagIssue || 0) + 1
+
+    const { resource: replaced } = await this.container
+      .item(itemId)
+      .replace(doc)
+    return replaced
+  }
+
   async likeIncrease (itemId) {
     debug('likeIncrease an item in the database', itemId)
     const doc = await this.getItem(itemId)
