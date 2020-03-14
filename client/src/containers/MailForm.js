@@ -47,7 +47,7 @@ class MailForm extends Component {
    target="_blank"
    action="https://covid19webapp.us19.list-manage.com/subscribe/post?u=6df180a9a54cb559de205f0a1&amp;id=b0e6458aa3" method="post">
 
-      <Form.Input name="EMAIL" placeholder='joe@gmai.com email for Subscription'  onChange={this.handleChange}/>
+      <Form.Input name="EMAIL" placeholder='joe@gmail.com email for Subscription'  onChange={this.handleChange}/>
 
       <Button>Submit</Button>
     </Form>
