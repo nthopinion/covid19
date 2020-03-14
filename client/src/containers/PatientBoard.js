@@ -8,7 +8,7 @@ import SearchBar from '../components/SearchBar'
 import '../styles/PatientBoard.css'
 import AddQuestionForm from '../containers/AddQuestionForm'
 import FloatingMenu from '../components/FloatingMenu'
-import MailForm from '../containers/MailForm'
+/*  import MailForm from '../containers/MailForm'*/
 
 
 
@@ -93,16 +93,16 @@ contextRef = createRef()
 <div className='containerDiv'>
 <Grid centered columns={2} stackable>
    <Grid.Column>
-   <Rail position='left'>
+{/*    <Rail position='left'>
            <Sticky context={this.contextRef}>
            <MailForm/>
            </Sticky>
-         </Rail>
+         </Rail> */}
      <Ref innerRef={this.contextRef}>
        <div>
        <Sticky context={this.contextRef}>
        <div className='sticky-top'>
-       <MailForm isMobile={true}/>
+       {/* <MailForm isMobile={true}/> */}
 
          <SearchBar
          isLoading={this.props.isLoading}

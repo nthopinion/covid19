@@ -50,7 +50,7 @@ export default class QuestionBoard extends Component {
               const idx = (i + 1) % colors.length
               return (
                 <Card fluid color={colors[idx]} className='qCard' key={i} id={'q_' + question.id}>
-                  <CardLeftPanel title={question.title} questionNumber={i} />
+                  <CardLeftPanel  title={question.title} questionNumber={i} />
 
                   <List>
 
@@ -67,7 +67,15 @@ export default class QuestionBoard extends Component {
                       <List.Item key={index}>
                         <List.Icon name='linkify' />
                         <List.Content>
-                          <a href={link.url}>{link.title} other resources</a>
+                          <a target="_blank" href={link}>{"Source" + index + ":"}</a>
+                        </List.Content>
+                      </List.Item>
+                    )}
+                    {question.sources && question.sources.map((source, index) =>
+                      <List.Item key={index}>
+                        <List.Icon name='linkify' />
+                        <List.Content>
+                          <a target="_blank"  href={source}>{"Source:" +index + ":"}</a>
                         </List.Content>
                       </List.Item>
                     )}

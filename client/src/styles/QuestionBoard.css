@@ -1,4 +1,6 @@
-
+body{
+  font-family: Arial, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif;
+}
 .container {
   /* max-width: 80%; */
   /* padding-top: 100px; */
@@ -14,12 +16,13 @@
 }
 
 .qCard {
-  padding: 40px 20px !important;
+  padding: 20px 20px !important;
 }
 
 .qTitle {
   /* height: 30px; */
   font-size: 18px;
+  font-weight: bold;
 }
 .qTag{
   display: flex;
@@ -33,7 +36,7 @@
 }
 
 .qLeftCard{
-  min-height: 80px;
+  min-height: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -44,7 +47,8 @@
 
 .qAnswer {
   font-size: 18px;
-  margin-bottom: 20px;
+  line-height: 1.5em;
+  margin-bottom: 10px;
 }
 
 .answer-image {
@@ -55,7 +59,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 50px;
+  padding-top: 10px;
 }
 .buttonGroupCustom {
   display: flex;

@@ -1,0 +1,8 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/e71f666c-c7fd-4cbe-83b2-593581a50ebb/resourceGroups/ntozwu-pd-covid19web-rg/providers/Microsoft.Web/sites/ntozwu-pd-covid19web-app",
+    "appService.deploySubpath": "",
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ]
+}
