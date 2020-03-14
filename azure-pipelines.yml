@@ -20,5 +20,15 @@ steps:
     npm install
     npm run build
     mv build/ ../api/
-    cd ..
-  displayName: 'npm install and build'
+    cd ../api/
+
+- script: |
+    zip -r result.zip . 
+  displayName: 'package results'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(Build.SourcesDirectory)/result.zip' 
+    artifactName: 'drop' 
+  displayName: 'upload artifacts'   
+  
