@@ -1,10 +1,10 @@
 # COVID19 Web App
 
-<b> Calling All Doctors & Coders: Global Hackathon to Defeat COVID-19: <b/> <i> Connecting physicians & developers globally in the wake of COVID-19 pandemic <i/>
+<b> Calling All Doctors & Coders: Global Hackathon to Defeat COVID-19: </b> <i> Connecting physicians & developers globally in the wake of COVID-19 pandemic </i>
  
-<i> Code vs COVID-19: Taking down a Pandemic using machines connected globally to extinguish a biological threat of a super virus. <i/>
+<i> Code vs COVID-19: Taking down a Pandemic using machines connected globally to extinguish a biological threat of a super virus. </i>
  
-b> SEATTLE, WA and VANCOUVER, BC, March 10, 2020 <b/> -- Nth Opinion, an artificial intelligence healthtech firm founded by physicians, is putting out a global call for coders and physicians to help them employ state of the art web technologies to massively scale doctors’ abilities and tip the fight against COVID-19 by outpacing the virus in the dissemination of information to the frontlines.
+<b> SEATTLE, WA and VANCOUVER, BC, March 10, 2020 </b> -- Nth Opinion, an artificial intelligence healthtech firm founded by physicians, is putting out a global call for coders and physicians to help them employ state of the art web technologies to massively scale doctors’ abilities and tip the fight against COVID-19 by outpacing the virus in the dissemination of information to the frontlines.
 
 The most reliable information to protect humanity comes from our frontline physicians in the field at a time when governmental bodies, institutions and public policies need the world to move quickly and break through. Physicians and medical staff desperately need to share experiences over massive distances across the globe as rapidly as the virus is spreading. As this virus spreads and new data becomes available, this is information that could be crucial to the fight where healthcare resources are limited. 
 
@@ -21,7 +21,7 @@ https://www.covid19webapp.com/
 
 Coder talents will revolutionize the current state of the physician electronic toolbox which have been less than par as well as embarrassingly and devastatingly limited. Coding abilities will help develop tools that do not currently exist and directly contribute to the fight against the pandemic that health-care workers are currently tirelessly fighting around the world.
 
-COVID-19 is spreading faster than Nth Opinion can code and their coding physicians are needed in the field with patients, and cannot complete this globally imperative project quickly enough. <b> Please help Nth Opinion finish their code. <b/>
+COVID-19 is spreading faster than Nth Opinion can code and their coding physicians are needed in the field with patients, and cannot complete this globally imperative project quickly enough. <b> Please help Nth Opinion finish their code. </b>
 
 Contribute to Hackathon by submitting issues and contributing code. Submitting issues means sending messages about errors in applications and suggesting ways to fix them. Contributing code involves sending pull requests with your corrections and improvements. If you are interested in joining the coding revolution, visit: 
 
