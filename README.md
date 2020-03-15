@@ -2,6 +2,7 @@
 
 <b> Calling All Doctors & Coders: Global Hackathon to Defeat COVID-19: </b> <i> Connecting physicians & developers globally in the wake of COVID-19 pandemic </i>
 <hr> 
+
 <i> Code vs COVID-19: Taking down a Pandemic using machines connected globally to extinguish a biological threat of a super virus. </i>
  
 <b> SEATTLE, WA and VANCOUVER, BC, March 10, 2020 </b> -- Nth Opinion, an artificial intelligence healthtech firm founded by physicians, is putting out a global call for coders and physicians to help them employ state of the art web technologies to massively scale doctors’ abilities and tip the fight against COVID-19 by outpacing the virus in the dissemination of information to the frontlines.
@@ -23,7 +24,7 @@ Coder talents will revolutionize the current state of the physician electronic t
 
 COVID-19 is spreading faster than Nth Opinion can code and their coding physicians are needed in the field with patients, and cannot complete this globally imperative project quickly enough. <b> Please help Nth Opinion finish their code. </b>
 
-Contribute to Hackathon by submitting issues and contributing code. Submitting issues means sending messages about errors in applications and suggesting ways to fix them. Contributing code involves sending pull requests with your corrections and improvements. If you are interested in joining the coding revolution, visit: 
+Contribute to Hackathon by submitting issues and contributing code. Submitting issues means sending messages about errors in applications and suggesting ways to fix them. Contributing code involves sending pull requests with your corrections and improvements. <b>If you are interested in joining the coding revolution, visit: </b>
 
 <center>https://github.com/nthopinion/covid19</center>
 
@@ -31,7 +32,7 @@ All skills are welcomed. Anyone anywhere around the world can contribute to this
  
 # Objective of Hackathon: Physicians and Health Providers
 
-Nth Opinion invites all physicians and health providers to share information with one another via the app. Doctors in North America have questions and they want to talk to those in Italy, Hong Kong, and other infected regions. Please create a physician account and help each other answer questions. Please put your Country in your answer. Our tool is decentralized and borderless so you don’t need to worry about getting approval from administrations. Our tool will inform other countries what is coming. It will let physicians tell doctors in other countries what they tried.  We need information from New York, Holland, Italy, Iran, South Korea, and China. 
+Nth Opinion invites all <b>physicians and health providers</b> to share information with one another via the app. Doctors in North America have questions and they want to talk to those in Italy, Hong Kong, and other infected regions. Please create a physician account and help each other answer questions. Please put your Country in your answer. Our tool is decentralized and borderless so you don’t need to worry about getting approval from administrations. Our tool will inform other countries what is coming. It will let physicians tell doctors in other countries what they tried.  We need information from New York, Holland, Italy, Iran, South Korea, and China. 
 
 To contribute as a physician or health provider, please email Nth Opinion to set up an account. Nth Opinion vets all applicants to ensure they are physicians and health providers. Email: signup@covid19webapp.com
 
