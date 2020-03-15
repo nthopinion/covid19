@@ -17,8 +17,10 @@ We believe that there is no greater need and better time than now to unite toget
 
 Nth Opinion requires coders to help service and educate the front line healthcare workers who are tirelessly fighting this pandemic around the world. Thanks @JN for launching our public Git. Thanks @YC for seeding the initial source code. Thanks @NTO for making this happen!  
 
-<center>https://github.com/nthopinion/covid19
-https://www.covid19webapp.com/ </center>
+<p align="center">
+https://github.com/nthopinion/covid19
+https://www.covid19webapp.com/
+</P>
 
 Coder talents will revolutionize the current state of the physician electronic toolbox which have been less than par as well as embarrassingly and devastatingly limited. Coding abilities will help develop tools that do not currently exist and directly contribute to the fight against the pandemic that health-care workers are currently tirelessly fighting around the world.
 
@@ -26,8 +28,10 @@ COVID-19 is spreading faster than Nth Opinion can code and their coding physicia
 
 Contribute to Hackathon by submitting issues and contributing code. Submitting issues means sending messages about errors in applications and suggesting ways to fix them. Contributing code involves sending pull requests with your corrections and improvements. <b>If you are interested in joining the coding revolution, visit: </b>
 
-<center>https://github.com/nthopinion/covid19</center>
-
+<p align="center">
+ https://github.com/nthopinion/covid19
+ </p>
+ 
 All skills are welcomed. Anyone anywhere around the world can contribute to this code. Even non-programmers can contribute. Documentation, translation, design, and community management are all needed. This is a time in our history that many of us have never lived through before, and we are advised that this is only the beginning. This project is poised to be an enormous part of the containment and elimination solution. 
  
 # Objective of Hackathon: Physicians and Health Providers
