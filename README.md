@@ -51,5 +51,4 @@ If you would like to report an issue with any of the questions or answers, simpl
 
 # Follow 
 Medium: http://bit.ly/covid19hackathon
-
 Twitter: [@TheNthOpinion](https://twitter.com/TheNthOpinion)
