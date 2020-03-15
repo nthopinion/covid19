@@ -50,5 +50,6 @@ Your question will be directed to a physician to answer. Your question and the c
 If you would like to report an issue with any of the questions or answers, simply select the red flag button and we will be notified.
 
 # Follow 
-Full story on Medium: https://medium.com/@nthopinionco/bringing-people-together-in-the-wake-up-of-the-covid-19-pandemic-b8f7a8c65f40
+Read the full story on Medium: https://medium.com/@nthopinionco/bringing-people-together-in-the-wake-up-of-the-covid-19-pandemic-b8f7a8c65f40
+
 https://twitter.com/TheNthOpinion
