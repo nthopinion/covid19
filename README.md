@@ -18,7 +18,6 @@ We believe that there is no greater need and better time than now to unite toget
 Nth Opinion requires coders to help service and educate the front line healthcare workers who are tirelessly fighting this pandemic around the world. Thanks @JN for launching our public Git. Thanks @YC for seeding the initial source code. Thanks @NTO for making this happen!  
 
 <p align="center">
-https://github.com/nthopinion/covid19
 https://www.covid19webapp.com/
 </P>
 
