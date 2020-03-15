@@ -1,7 +1,7 @@
 # COVID19 Web App
 
 <b> Calling All Doctors & Coders: Global Hackathon to Defeat COVID-19: </b> <i> Connecting physicians & developers globally in the wake of COVID-19 pandemic </i>
- 
+<hr> 
 <i> Code vs COVID-19: Taking down a Pandemic using machines connected globally to extinguish a biological threat of a super virus. </i>
  
 <b> SEATTLE, WA and VANCOUVER, BC, March 10, 2020 </b> -- Nth Opinion, an artificial intelligence healthtech firm founded by physicians, is putting out a global call for coders and physicians to help them employ state of the art web technologies to massively scale doctors’ abilities and tip the fight against COVID-19 by outpacing the virus in the dissemination of information to the frontlines.
@@ -16,8 +16,8 @@ We believe that there is no greater need and better time than now to unite toget
 
 Nth Opinion requires coders to help service and educate the front line healthcare workers who are tirelessly fighting this pandemic around the world. Thanks @JN for launching our public Git. Thanks @YC for seeding the initial source code. Thanks @NTO for making this happen!  
 
-https://github.com/nthopinion/covid19
-https://www.covid19webapp.com/
+<center>https://github.com/nthopinion/covid19
+https://www.covid19webapp.com/ </center>
 
 Coder talents will revolutionize the current state of the physician electronic toolbox which have been less than par as well as embarrassingly and devastatingly limited. Coding abilities will help develop tools that do not currently exist and directly contribute to the fight against the pandemic that health-care workers are currently tirelessly fighting around the world.
 
@@ -25,7 +25,7 @@ COVID-19 is spreading faster than Nth Opinion can code and their coding physicia
 
 Contribute to Hackathon by submitting issues and contributing code. Submitting issues means sending messages about errors in applications and suggesting ways to fix them. Contributing code involves sending pull requests with your corrections and improvements. If you are interested in joining the coding revolution, visit: 
 
-https://github.com/nthopinion/covid19
+<center>https://github.com/nthopinion/covid19</center>
 
 All skills are welcomed. Anyone anywhere around the world can contribute to this code. Even non-programmers can contribute. Documentation, translation, design, and community management are all needed. This is a time in our history that many of us have never lived through before, and we are advised that this is only the beginning. This project is poised to be an enormous part of the containment and elimination solution. 
  
