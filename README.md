@@ -1,4 +1,4 @@
-# COVID19 Web App
+# COVID19 Hackathon
 
 <b> Calling All Doctors & Coders: Global Hackathon to Defeat COVID-19: </b> <i> Connecting physicians & developers globally in the wake of COVID-19 pandemic </i>
 <hr> 
@@ -38,4 +38,14 @@ All skills are welcomed. Anyone anywhere around the world can contribute to this
 Nth Opinion invites all <b>physicians and health providers</b> to share information with one another via the app. Doctors in North America have questions and they want to talk to those in Italy, Hong Kong, and other infected regions. Please create a physician account and help each other answer questions. Please put your Country in your answer. Our tool is decentralized and borderless so you don’t need to worry about getting approval from administrations. Our tool will inform other countries what is coming. It will let physicians tell doctors in other countries what they tried.  We need information from New York, Holland, Italy, Iran, South Korea, and China. 
 
 To contribute as a physician or health provider, please email Nth Opinion to set up an account. Nth Opinion vets all applicants to ensure they are physicians and health providers. Email: signup@covid19webapp.com
+
+# How Our App Works: Users
+
+We’ve built a database containing different questions and answers about COVID-19, which you can easily search through.
+
+If you can’t find an answer to your question, please submit a question by typing it into the box at the top of the website.
+
+Your question will be directed to a physician to answer. Your question and the corresponding answer will then be automatically added to the database so others can access it.
+
+If you would like to report an issue with any of the questions or answers, simply select the red flag button and we will be notified.
 
