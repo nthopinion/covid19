@@ -39,7 +39,7 @@ Nth Opinion invites all <b>physicians and health providers</b> to share informat
 
 To contribute as a physician or health provider, please email Nth Opinion to set up an account. Nth Opinion vets all applicants to ensure they are physicians and health providers. Email: signup@covid19webapp.com
 
-# How Our App Works: Users
+# How The App Works: Users
 
 We’ve built a database containing different questions and answers about COVID-19, which you can easily search through.
 
