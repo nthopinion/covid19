@@ -1,8 +1,8 @@
 # COVID19 Hackathon by Nth Opinion
 
 <b> Calling All Doctors & Coders: Global Hackathon to Defeat COVID-19: </b> <i> Connecting physicians & developers globally in the wake of COVID-19 pandemic </i>
+
 <hr>
-<i> Code vs COVID-19: Taking down a Pandemic using machines connected globally to extinguish a biological threat of a super virus. </i>
 
 Our application is a web app. It has a public facing interface, and a doctor/healthcare worker facing interface. Users can search through a database of previously asked questions about COVID-19 (or add their question to the database if it hasn't already been asked), and obtain answers from medical professionals around the globe.
 
