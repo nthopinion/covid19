@@ -1,3 +1,26 @@
+# COVID19 Hackathon by Nth Opinion
+
+<b> Calling All Doctors & Coders: Global Hackathon to Defeat COVID-19: </b> <i> Connecting physicians & developers globally in the wake of COVID-19 pandemic </i>
+<hr>
+<i> Code vs COVID-19: Taking down a Pandemic using machines connected globally to extinguish a biological threat of a super virus. </i>
+
+Our application is a web app. It has a public facing interface, and a doctor/healthcare worker facing interface. Users can search through a database of previously asked questions about COVID-19 (or add their question to the database if it hasn't already been asked), and obtain answers from medical professionals around the globe.
+
+<p align="center">
+https://www.covid19webapp.com/
+</P>
+
+Our realtime database will contain the most urgent questions and answers on COVID-19 and publish it to the world. With our app in the hands of front line workers who have or are already experiencing the first wave, they can share their knowledge and help the health care workers who will be hit next.
+
+<b>NOTICE:</b> This open source project is a work in progress. The best way to get onboarded and brought up to speed is to join our slack: 
+
+[Join our Slack](https://join.slack.com/t/hackingcovid19/shared_invite/zt-cs0oy49c-bwn5uoilSme1iqFDDK7~zg)
+
+<i>Update March 15, 2020:</i> Please excuse the bugs as we are working hard to fix them on the fly! COVID-19 is spreading faster than we can code and as a result converted the project to open source overnight. We understand there are bugs and the code is not optimized. Thank you for working with us as we try to fix bugs on the fly! Don’t be shy, reach out, and get involved. 
+
+Work in progress...
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
