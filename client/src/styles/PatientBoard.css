@@ -26,5 +26,8 @@
   .customChat iframe{
     height: 400px;
   }
+}
 
+.ui.list .list>.item .description, .ui.list>.item .description {
+  word-break: break-word;
 }

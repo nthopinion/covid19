@@ -135,7 +135,10 @@ export const fetchQuestions = () => {
   return dispatch => {
     return fetch(`${config.domainURL}/api/questions`)
       .then(response => response.json())
-      .then(json => dispatch(receiveQuestions(json)))
+      .then(json => {
+        json.reverse();
+        dispatch(receiveQuestions(json))
+      });
 
     // test local file
     // return  dispatch(receiveQuestions(data))
