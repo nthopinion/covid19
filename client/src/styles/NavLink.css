@@ -1,0 +1,37 @@
+.row{
+    padding: 25px;
+    
+} 
+
+.nav {
+    float: right;
+    margin: 30px;
+
+}
+
+
+button#menu.ui.button{
+    min-width: 30px;
+    /* margin: 30px; */
+    margin: 0px;
+    /* float: left; */
+    margin-top: 10px;
+    margin-left: 10px;
+    justify-content: left;
+    display: flex;
+    background: #C4C4C4
+
+}
+
+a.ui.button {
+    font-size: 18px;
+    margin-top: 20px;
+    display: inline;
+    width: 100%;
+    justify-content: left;
+}
+
+/* .ui.inverted.menu{
+    background: ligh
+} */
+
