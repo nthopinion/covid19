@@ -1,11 +1,12 @@
 .row{
     padding: 25px;
+    
 } 
 
 .nav {
     float: right;
     margin: 30px;
-
+    
     
 }
 
@@ -15,4 +16,7 @@
     
 }
 
+a.ui.teal.button {
+    width: 100%;
+}
 
