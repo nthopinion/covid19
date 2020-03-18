@@ -8,6 +8,7 @@ import SearchBar from '../components/SearchBar'
 import '../styles/PatientBoard.css'
 import AddQuestionForm from '../containers/AddQuestionForm'
 import FloatingMenu from '../components/FloatingMenu'
+import Links from '../componnets/Links'
 
 
 import {

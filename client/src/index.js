@@ -1,8 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
-import { Grid,List, Button } from 'semantic-ui-react'
-
 import { Provider } from 'react-redux'
 import { Grid,List, Button } from 'semantic-ui-react'
 import App from './containers/App'
@@ -24,7 +22,7 @@ const store = createStore(
 render(
   <Provider store={store}>
     <Router>
-    <div className = {styles.NavLinks} id="nav">
+    <div class="ui six wide column" className = {styles.NavLinks} id="nav">
       <Grid rows={3}>
         
         <Grid.Column>
@@ -44,7 +42,7 @@ render(
         </Grid.Column> 
 
       </Grid>
-      </div>
+    </div>
       <Route exact path='/physician' component={AuthProvider(PhysicianView)} />
       <Route exact path='/physician-public' component={PhysicianView} />
       <Route exact path='/about' component={About} />
