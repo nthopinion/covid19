@@ -2,11 +2,95 @@
     padding: 25px;
 } 
 
-#nav {
+.nav {
     float: right;
     margin: 30px;
+
+    
 }
 
 .ui.button{
     font-size: 18px;
+    display: inline;
+    
+}
+
+/* @media only screen and (max-width:30em) { 
+    
+    a.ui.teal.floated.button{
+        display:block;
+        margin:0.2em auto;
+        size: small;
+        shape-outside: circle();
+      
+    }
+  }
+
+  /* @media (min-width: 320px) and (max-width: 767px) {
+	a.ui.teal.floated.button {
+		/* bottom: 10px; */
+	/* }
+
+	a.ui.teal.floated.button {
+		position: fixed;
+        top: 20;
+        /* width: 100vw;
+		z-index: 900; */
+		/* min-height: 80vh; */
+
+
+/* 
+@media (min-width: 767px)  {
+	a.ui.teal.floated.button {
+		float: right;
+		display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+	}
+	
+}  */
+
+@media (min-width: 320px) and (max-width: 767px) {
+	.floatingMenuButton {
+		bottom: 10px;
+	}
+
+	.floatingMenu {
+		/* bottom: 10; */
+	}
+
+	.chatbotPanel {
+		position: fixed;
+    top: 0;
+    width: 100vw;
+		z-index: 900;
+		min-height: 80vh;
+	}
+
+	.overlay{
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: rgba(0,0,0,0.5);
+		cursor: pointer;
+	}
+
+}
+
+@media (min-width: 767px)  {
+	.floatingMenuButton {
+		float: right;
+		display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+	}
+	.chatbotPanel {
+    border: 1px solid;
+		margin-right: 20px;
+		margin-bottom: 20px;
+	}
 }
