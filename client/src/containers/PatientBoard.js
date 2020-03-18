@@ -167,7 +167,7 @@ contextRef = createRef()
    */}
 
  </Grid>
- <FloatingMenu/>
+ {/*<FloatingMenu/> */}
  </div>
     )
   }
