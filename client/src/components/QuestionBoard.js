@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import AnswerItem from '../components/AnswerItem'
 import CardLeftPanel from '../components/CardLeftPanel'
 
-
 import { Modal, Card, Grid, Segment, List, Search, Image, Label, Button, Icon, Message } from 'semantic-ui-react'
 import '../styles/QuestionBoard.css'
 import config from '../config'
