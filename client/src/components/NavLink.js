@@ -50,7 +50,7 @@ class Menu extends Component {
                         </Grid.Row>
         
                         <Grid.Row>
-                        <Button floated="left"  color='#304FFE' href="https://about.covid19webapp.com/#lp-pom-block-1180" target="_blank"> Physicians </Button>
+                        <Button floated="left"  color='#304FFE' href="https://about.covid19webapp.com/#lp-pom-block-118" target="_blank"> Physicians </Button>
                         </Grid.Row>
                         
                         <Grid.Row>
