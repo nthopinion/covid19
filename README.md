@@ -9,11 +9,12 @@
   </a>
 -->
   <h3 align="center">COVID19 Hackathon by Nth Opinion</h3>
-
-  <p align="center">
+<p align="center">
 	<b> Calling All Doctors & Coders: Global Hackathon to Defeat COVID-19: </b> <i> Connecting physicians & developers globally in the wake of COVID-19 pandemic </i>
 	<hr>
 Our application is a web app. It has a public facing interface, and a doctor/healthcare worker facing interface. Users can search through a database of previously asked questions about COVID-19 (or add their question to the database if it hasn't already been asked), and obtain answers from medical professionals around the globe.
+</p>
+
 
 [Explore the website](https://www.covid19webapp.com/)
 
