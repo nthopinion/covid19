@@ -13,23 +13,18 @@
   <p align="center">
 	<b> Calling All Doctors & Coders: Global Hackathon to Defeat COVID-19: </b> <i> Connecting physicians & developers globally in the wake of COVID-19 pandemic </i>
 	<hr>
+Our application is a web app. It has a public facing interface, and a doctor/healthcare worker facing interface. Users can search through a database of previously asked questions about COVID-19 (or add their question to the database if it hasn't already been asked), and obtain answers from medical professionals around the globe.
 
-	Our application is a web app. It has a public facing interface, and a doctor/healthcare worker facing interface. Users can search through a database of previously asked questions about COVID-19 (or add their question to the database if it hasn't already been asked), and obtain answers from medical professionals around the globe.
-    <br />
-    <a href="https://www.covid19webapp.com/"><strong>Explore the website »</strong></a>
-    <br />
-    <br />
-    <a href="https://join.slack.com/t/hackingcovid19/shared_invite/zt-cs0oy49c-bwn5uoilSme1iqFDDK7~zg">Join our Slack</a>
-    ·
-    <a href="https://github.com/nthopinion/covid19/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc">Request Feature</a>
-    .
-    <a href="https://github.com/nthopinion/covid19/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-descx">Report Issue</a>
-    ·
-  </p>
-</p>
+[Explore the website](https://www.covid19webapp.com/)
 
+[Join our Slack](https://join.slack.com/t/hackingcovid19/shared_invite/zt-cs0oy49c-bwn5uoilSme1iqFDDK7~zg)
+
+[Request Feature](https://github.com/nthopinion/covid19/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc)
+
+[Report Issue](https://github.com/nthopinion/covid19/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-descx)
 
 <!-- TABLE OF CONTENTS -->
+
 ## Table of Contents
 
 * [About the Project](#about-the-project)
@@ -49,6 +44,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 <b> Calling All Doctors & Coders: Global Hackathon to Defeat COVID-19: </b> <i> Connecting physicians & developers globally in the wake of COVID-19 pandemic </i>
+
 <hr>
 Our application is a web app. It has a public facing interface, and a doctor/healthcare worker facing interface. Users can search through a database of previously asked questions about COVID-19 (or add their question to the database if it hasn't already been asked), and obtain answers from medical professionals around the globe.
 
@@ -91,7 +87,7 @@ npm install npm@latest -g
 ```
 
 ### Installation
- 
+
 1. Navigate to the repository where you want to install the project
 2. Clone the repo
 ```sh
