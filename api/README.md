@@ -4,6 +4,12 @@ The api for the COVID19 app.
 
 ## Setup
 
+Change directory to `api` folder
+
+```
+$ cd api
+```
+
 Install dependencies
 
 ```
