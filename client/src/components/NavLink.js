@@ -33,7 +33,7 @@ class Menu extends Component {
     return (
       
         <div>
-        <Button class="ui labeled icon button" onClick={this.showMenu}> <i class="bars icon" onClick={this.showMenu}></i>  
+        <Button id="menu" class="ui icon button" onClick={this.showMenu}> <i class="bars icon" onClick={this.showMenu}></i>  
       </Button>
       
       {
@@ -46,15 +46,15 @@ class Menu extends Component {
                         <Grid.Column>
         
                         <Grid.Row>
-                        <Button floated="left"  color='teal' href="https://nonprofit.covid19webapp.com/about/#lp-pom-text-104" target="_blank"> About </Button>
+                        <Button floated="left"  color='#304FFE' href="https://nonprofit.covid19webapp.com/about/#lp-pom-text-104" target="_blank"> About </Button>
                         </Grid.Row>
         
                         <Grid.Row>
-                        <Button floated="left"  color='teal' href=" https://nonprofit.covid19webapp.com/about/#lp-pom-text-90" target="_blank"> Are you a physcian? </Button>
+                        <Button floated="left"  color='#304FFE' href=" https://nonprofit.covid19webapp.com/about/#lp-pom-text-90" target="_blank"> Physicians </Button>
                         </Grid.Row>
                         
                         <Grid.Row>
-                        <Button floated="left"  color='teal' href=" https://nonprofit.covid19webapp.com/about/#lp-pom-text-26" target="_blank"> Are you a developer? </Button>
+                        <Button floated="left"  color='#304FFE' href=" https://nonprofit.covid19webapp.com/about/#lp-pom-text-26" target="_blank"> Developers </Button>
                         </Grid.Row>
                         
                         </Grid.Column> 
