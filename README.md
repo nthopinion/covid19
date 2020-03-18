@@ -28,7 +28,6 @@
   </p>
 </p>
 
-
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
 
@@ -43,8 +42,6 @@
 * [Roadmap](#roadmap)
 * [Contributing](#contributing)
 * [Communication channels](#communication-channels)
-
-
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
@@ -71,16 +68,14 @@ Here's a blank template to get started:
 `github_username`, `repo`, `twitter_handle`, `email`
 -->
 
-
 ### Built With
 
 * [Create React App](https://github.com/facebook/create-react-app)
 
-
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To get a local copy up and running follow these simple steps.
+The COVID19 project is a monorepo. The server code is inside the `api` foler and the client code is inside the `client` folder.
 
 ### Prerequisites
 
@@ -97,20 +92,8 @@ npm install npm@latest -g
 ```sh
 git clone git@github.com:nthopinion/covid19.git
 ```
-3. Install NPM packages
-```sh
-npm install
-```
-4. Start the app 
-```sh
-npm start
-```
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
+3. To setup the `api`, check the [README](/api) inside the `api` folder.
+4. To setup the `client`, check the [README](/client) inside the `client` folder.
 
 <!-- TEST
 TODO: Add more to the testing workflow: how to write a test, where, etc.
@@ -121,38 +104,11 @@ Launch the test runner in the interactive watch mode by running the npm command<
 ```sh
 npm test
 ```
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-
-<!-- BUILD -->
-### Build
-To build the app for production run
-```sh
-npm run build
-```
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-
-<!-- LEARN MORE -->
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
 
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [open issues](https://github.com/github_username/repo/issues) for a list of proposed features (and known issues).
-
-
+See the [open issues](https://github.com/nthopinion/covid19/issues) for a list of proposed features (and known issues).
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -165,15 +121,12 @@ Contributions in this project are vital since the situation is evolving rapidly.
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a [Pull Request](https://github.com/nthopinion/covid19/compare)
 
-
-
 <!-- LICENSE 
 TODO: Uncomment this section when the license is agreed on
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 -->
-
 
 <!-- COMMUNICATIOIN CHANNELS -->
 ## Communication channels
