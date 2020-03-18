@@ -22,7 +22,7 @@ const store = createStore(
 render(
   <Provider store={store}>
     <Router>
-    <div class="ui six wide column" className = {styles.NavLinks} id="nav">
+    <div className = {styles.NavLinks} id="nav">
       <Grid rows={3}>
         
         <Grid.Column>
