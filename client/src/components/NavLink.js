@@ -46,15 +46,15 @@ class Menu extends Component {
                         <Grid.Column>
         
                         <Grid.Row>
-                        <Button floated="left"  color='#304FFE' href="https://nonprofit.covid19webapp.com/about/#lp-pom-text-104" target="_blank"> About </Button>
+                        <Button floated="left"  color='#304FFE' href="https://about.covid19webapp.com/" target="_blank"> About </Button>
                         </Grid.Row>
         
                         <Grid.Row>
-                        <Button floated="left"  color='#304FFE' href=" https://nonprofit.covid19webapp.com/about/#lp-pom-text-90" target="_blank"> Physicians </Button>
+                        <Button floated="left"  color='#304FFE' href="https://about.covid19webapp.com/#lp-pom-block-1180" target="_blank"> Physicians </Button>
                         </Grid.Row>
                         
                         <Grid.Row>
-                        <Button floated="left"  color='#304FFE' href=" https://nonprofit.covid19webapp.com/about/#lp-pom-text-26" target="_blank"> Developers </Button>
+                        <Button floated="left"  color='#304FFE' href=" https://github.com/nthopinion/covid19/blob/master/README.md" target="_blank"> Developers </Button>
                         </Grid.Row>
                         
                         </Grid.Column> 
