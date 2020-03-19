@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
+import { ReactTinyLink } from 'react-tiny-link'
 import AnswerItem from '../components/AnswerItem'
 import CardLeftPanel from '../components/CardLeftPanel'
 
@@ -68,7 +69,7 @@ export default class QuestionBoard extends Component {
                       <List.Item key={index}>
                         <List.Icon name='linkify' />
                         <List.Content>
-                          <a target="_blank" href={link}>{"Source" + index + ":"}</a>
+                        { link && <ReactTinyLink cardSize="small" showGraphic={true} maxLine={2} minLine={1} url={link} /> }
                         </List.Content>
                       </List.Item>
                     )}
@@ -76,7 +77,7 @@ export default class QuestionBoard extends Component {
                       <List.Item key={index}>
                         <List.Icon name='linkify' />
                         <List.Content>
-                          <a target="_blank"  href={source}>{"Source:" +index + ":"}</a>
+                          { source && <ReactTinyLink cardSize="small" showGraphic={true} maxLine={2} minLine={1} url={source} /> }
                         </List.Content>
                       </List.Item>
                     )}
