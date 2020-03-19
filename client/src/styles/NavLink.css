@@ -19,15 +19,24 @@ button#menu.ui.button{
     margin-left: 10px;
     justify-content: left;
     display: flex;
-    background: #C4C4C4
+    background: #C4C4C4;
+
 
 }
+
+i.bars.icon{
+
+    align-self: center;
+
+}
+
 
 a.ui.button {
     font-size: 18px;
     margin-top: 20px;
     display: inline;
     width: 100%;
+    margin-left: 0.25em;
     justify-content: left;
 }
 
