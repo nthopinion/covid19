@@ -116,7 +116,6 @@ export const resetSearchResult = () => ({
 })
 
 export const fetchQuestions = () => {
-  console.log('fetchQuestion')
   return dispatch => {
     return fetch(`${config.domainURL}/api/questions`)
       .then(response => response.json())
@@ -128,11 +127,13 @@ export const fetchQuestions = () => {
 }
 
 export const fetchUnansweredQuestions = () => {
-  console.log('fetchUnsweredQuestions')
   return dispatch => {
     return fetch(`${config.domainURL}/api/questions/unanswered`)
       .then(response => response.json())
-      .then(json => dispatch(receiveUnansweredQuestions(json)))
+      .then(json => {
+        json.reverse();
+        dispatch(receiveUnansweredQuestions(json))
+      })
   }
 }
 

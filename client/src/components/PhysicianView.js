@@ -21,7 +21,6 @@ class PhysicianView extends Component {
     const { dispatch } = this.props
     this.props.fetchUnansweredQuestions()
     this.props.fetchQuestions()
-
   }
 
   handleToggleView(showUnaswered) {
