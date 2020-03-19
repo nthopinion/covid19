@@ -1,7 +1,5 @@
-[![Contributors][contributors-shield]][contributors-url]
-[![MIT License][license-shield]][license-url]
+[![Contributors](https://img.shields.io/github/contributors/nthopinion/covid19)](https://github.com/tendermario/covid19/graphs/contributors) [![MIT License](https://img.shields.io/github/license/nthopinion/covid19)](https://github.com/tendermario/covid19/blob/master/LICENSE)
 
-<br />
 <p align="center">
 <!-- PROJECT LOGO
   <a href="https://github.com/github_username/repo">
