@@ -101,7 +101,6 @@ const mapStateToProps = (state) => {
   return {
     unansweredQuestions: state.questionBoard.unansweredQuestions,
     questions: state.questionBoard.questions
-
   }
 }
 
