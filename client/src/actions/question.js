@@ -1,6 +1,5 @@
 import {
   FETCH_ALL_QUESTION,
-  FETCH_ALL_QUESTION_SUCCESS,
   FETCH_ALL_QUESTION_FAILURE,
   ADD_QUESTION,
   SEARCH_QUESTIONS,
@@ -16,14 +15,11 @@ import {
   SET_ANSWERS_BY_QUESTION
 } from '../constants/ActionTypes'
 
-import data from '../data/questions.json'
-import udata from '../data/unanswered.json'
-
 import config from '../config'
+import { sortQuestionsByDate } from '../utils/sort'
 // export const fetchQuestion = () => ({
 //   type: FETCH_ALL_QUESTION
 // })
-console.log('config', config)
 export const addQuestion = () => ({
   type: ADD_QUESTION
 })
@@ -46,7 +42,6 @@ export const deleteQuestionSuccess = (qIdx) => ({
 })
 
 export const addQuestionSuccess = (q) => {
-  console.log('addQuestionSuccess')
   return dispatch => {
     setTimeout(() => {
       dispatch(dismissMessage())
@@ -93,17 +88,12 @@ export const receiveUnansweredQuestions = questions => ({
 })
 
 
-export const searchQuestions = (questions, searchTerm) => {
-  //   console.log('fetchQuestion');
-    return dispatch => {
-      console.log('searchQuestions', searchTerm)
-
+export const searchQuestions = (questions, searchTerm) => dispatch => {
     return dispatch({
-    type: SEARCH_QUESTIONS,
-    questions,
-    searchTerm
+      type: SEARCH_QUESTIONS,
+      questions,
+      searchTerm
   })
-  }
 }
 
 
@@ -116,51 +106,42 @@ export const setSearchTerm = (searchTerm) => ({
   searchTerm
 })
 
-
-
 export const setAnswerForQuestion = (idx, answers) => ({
   type: SET_ANSWERS_BY_QUESTION,
   idx,
   answers
 })
 
-
-
 export const resetSearchResult = () => ({
   type: RESET_SEARCH_RESULT
 })
 
 export const fetchQuestions = () => {
-  console.log('fetchQuestion')
   return dispatch => {
     return fetch(`${config.domainURL}/api/questions`)
       .then(response => response.json())
       .then(json => {
-        json.reverse();
+        json = sortQuestionsByDate(json);
+
         dispatch(receiveQuestions(json))
       });
-
-    // test local file
-    // return  dispatch(receiveQuestions(data))
   }
 }
 
 export const fetchUnansweredQuestions = () => {
-  console.log('fetchUnsweredQuestions')
   return dispatch => {
     return fetch(`${config.domainURL}/api/questions/unanswered`)
       .then(response => response.json())
-      .then(json => dispatch(receiveUnansweredQuestions(json)))
+      .then(json => {
+        json = sortQuestionsByDate(json);
 
-    // return  dispatch(receiveUnansweredQuestions(udata))
+        dispatch(receiveUnansweredQuestions(json));
+      })
   }
 }
 
 export const postQuestion = (title) => {
   return dispatch => {
-    console.log('postQuestion', title)
-    // dispatch(addQuestionFailure({title: 'newTitle'}))
-
     return fetch(`${config.domainURL}/api/addQuestion`, {
       method: 'POST',
       headers: {
@@ -179,10 +160,6 @@ export const postQuestion = (title) => {
 
 export const deleteQuestion = (qId, idx) => {
   return dispatch => {
-    console.log('deleteQuestion', qId, idx)
-    // dispatch(addQuestionFailure({title: 'newTitle'}))
-    // return dispatch(deleteQuestionSuccess(idx))
-
     return fetch(`${config.domainURL}/api/question`, {
       method: 'DELETE',
       headers: {
@@ -192,20 +169,16 @@ export const deleteQuestion = (qId, idx) => {
       body: JSON.stringify({ id: qId })
     })
       .then(r => dispatch(deleteQuestionSuccess(idx)))
-    // .catch(error => {
-    //   dispatch(addQuestionFailure(error));
-    // })
   }
 }
 
 export const increaseLike = (qId, idx) => {
   return dispatch => {
-    console.log('increaseLike----', qId, idx)
-
     let likeItems = localStorage.getItem('likeItems')
     likeItems = likeItems? JSON.parse(likeItems):{}
     likeItems[qId] = 1
      localStorage.setItem('likeItems', JSON.stringify(likeItems))
+
     return dispatch({
       type: LIKE_QUESTION_SUCCESS,
       qIdx: idx
@@ -214,9 +187,9 @@ export const increaseLike = (qId, idx) => {
 }
 
 export const clickLikeQuestion = (qId, idx) => {
-
   let likeItems = localStorage.getItem('likeItems')
   likeItems = likeItems? JSON.parse(likeItems):{}
+
   return dispatch => {
     if (likeItems[qId]) return dispatch({type: 'ALREADY_LIKE'})
     return fetch(`${config.domainURL}/api/question/like`, {
