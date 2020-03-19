@@ -1,5 +1,5 @@
 /**
- * Functions to sort questions by date
+ * Sort questions by date.
  *
  * @param {array} questions
  */
