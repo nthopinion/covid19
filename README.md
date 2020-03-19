@@ -118,6 +118,8 @@ Contributions in this project are vital since the situation is evolving rapidly.
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a [Pull Request](https://github.com/nthopinion/covid19/compare)
 
+If you are stuck on any of the steps, we have a YouTube video you can look at: [https://youtu.be/otuDhXWWnbw](https://youtu.be/otuDhXWWnbw)
+
 <!-- LICENSE
 TODO: Uncomment this section when the license is agreed on
 ## License
