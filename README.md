@@ -118,12 +118,10 @@ Contributions in this project are vital since the situation is evolving rapidly.
 
 If you are stuck on any of the steps, we have a YouTube video you can look at: [https://youtu.be/otuDhXWWnbw](https://youtu.be/otuDhXWWnbw)
 
-<!-- LICENSE
-TODO: Uncomment this section when the license is agreed on
+<!-- LICENSE-->
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
--->
+Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
 
 <!-- COMMUNICATIOIN CHANNELS -->
 ## Communication channels
