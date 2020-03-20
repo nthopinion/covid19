@@ -16,7 +16,7 @@ import {
 } from '../constants/ActionTypes'
 
 import config from '../config'
-import { sortQuestionsByDate } from '../utils/sort'
+import { sortQuestions } from '../utils/sort'
 // export const fetchQuestion = () => ({
 //   type: FETCH_ALL_QUESTION
 // })
@@ -121,7 +121,7 @@ export const fetchQuestions = () => {
     return fetch(`${config.domainURL}/api/questions`)
       .then(response => response.json())
       .then(json => {
-        json = sortQuestionsByDate(json);
+        json = sortQuestions(json);
 
         dispatch(receiveQuestions(json))
       });
@@ -133,7 +133,7 @@ export const fetchUnansweredQuestions = () => {
     return fetch(`${config.domainURL}/api/questions/unanswered`)
       .then(response => response.json())
       .then(json => {
-        json = sortQuestionsByDate(json);
+        json = sortQuestions(json);
 
         dispatch(receiveUnansweredQuestions(json));
       })
