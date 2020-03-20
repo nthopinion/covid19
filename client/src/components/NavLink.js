@@ -60,6 +60,10 @@ class Menu extends Component {
                         <Grid.Row>
                         <Button floated="left"  color='#304FFE' href="https://video.covid19webapp.com/dxyopencourse/" target="_blank"> Video Course </Button>
                         </Grid.Row>
+
+                        <Grid.Row id="sponsors">
+                        <Button floated="left"  color='#304FFE' href="https://about.covid19webapp.com/sponsors/" target="_blank"> Our Sponsors </Button>
+                        </Grid.Row>
                         
                         </Grid.Column> 
         

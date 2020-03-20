@@ -24,11 +24,12 @@ button#menu.ui.button{
 
 }
 
-i.bars.icon{
-
-    align-self: center;
-
+.row#sponsors{
+    margin-top: 500px;
+    margin-bottom: 50px;
 }
+
+
 
 
 a.ui.button {
