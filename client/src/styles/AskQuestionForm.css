@@ -1,0 +1,20 @@
+.flex-container {
+  display: flex;
+}
+
+.ui.form textarea {
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+}
+
+.ui.modal>.header {
+  border: none;
+}
+
+.ui.form .field>label {
+  font-weight: 500;
+}
+
+div.field {
+  margin-bottom: 0;
+}
