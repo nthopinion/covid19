@@ -1,10 +1,27 @@
-
 .containerDiv {
   /* margin-top: 100px; */
 }
-.sticky-top {
+
+.sticky-container,
+.ui.sticky.fixed.top {
   background-color: white;
-  padding: 20px 0px;
+}
+
+.sticky-top {
+  padding: 20px;
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: center;
+  grid-template-columns: auto 1fr 100px;
+  grid-gap: 40px;
+  max-width: 1200px;
+  margin: 0px auto;
+}
+
+.sticky-top h1 {
+  margin: 0;
+  align-self: center;
+  color: #006eaa;
 }
 
 .customChat iframe {
@@ -16,18 +33,19 @@
     height: 80vh;
   }
   .customChat iframe {
-  	display: block;
+    display: block;
     width: 100%;
     height: 100%;
   }
 }
 
-@media (min-width: 767px)  {
-  .customChat iframe{
+@media (min-width: 767px) {
+  .customChat iframe {
     height: 400px;
   }
 }
 
-.ui.list .list>.item .description, .ui.list>.item .description {
+.ui.list .list > .item .description,
+.ui.list > .item .description {
   word-break: break-word;
 }
