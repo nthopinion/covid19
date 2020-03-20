@@ -1,3 +1,4 @@
 {
-  "domainURL": "http://localhost:8000"
+  "domainURL": "http://localhost:8000",
+  "corsProxyUrl": "https://cors-anywhere.herokuapp.com"
 }

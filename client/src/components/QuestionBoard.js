@@ -69,7 +69,7 @@ export default class QuestionBoard extends Component {
                       <List.Item key={index}>
                         <List.Icon name='linkify' />
                         <List.Content>
-                        { link && <ReactTinyLink cardSize="small" showGraphic={true} maxLine={2} minLine={1} url={link} /> }
+                        { link && <ReactTinyLink cardSize="small" showGraphic={true} maxLine={2} minLine={1} url={link} proxyUrl={config.corsProxyUrl} /> }
                         </List.Content>
                       </List.Item>
                     )}
@@ -77,7 +77,7 @@ export default class QuestionBoard extends Component {
                       <List.Item key={index}>
                         <List.Icon name='linkify' />
                         <List.Content>
-                          { source && <ReactTinyLink cardSize="small" showGraphic={true} maxLine={2} minLine={1} url={source} /> }
+                          { source && <ReactTinyLink cardSize="small" showGraphic={true} maxLine={2} minLine={1} url={source} proxyUrl={config.corsProxyUrl} /> }
                         </List.Content>
                       </List.Item>
                     )}
