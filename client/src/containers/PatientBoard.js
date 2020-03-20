@@ -2,7 +2,7 @@ import React, { Component, createRef } from "react";
 import _ from "lodash";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Grid, Ref, Sticky, Message } from "semantic-ui-react";
+import { Grid, Ref } from "semantic-ui-react";
 
 import {
   fetchQuestions,
@@ -16,9 +16,7 @@ import {
 
 import "../styles/PatientBoard.css";
 import QuestionBoard from "../components/QuestionBoard";
-import SearchBar from "../components/SearchBar";
-import Menu from "../components/NavLink";
-import logo from "../covid-19-logo.svg";
+import StickyHeader from "../components/StickyHeader";
 
 class PatientBoard extends Component {
   constructor(props) {
@@ -80,37 +78,17 @@ class PatientBoard extends Component {
   render() {
     return (
       <>
-        <Sticky context={this.contextRef} className="sticky-container">
-          <div className="sticky-top">
-            <img src={logo} alt="Logo" />
-            <SearchBar
-              isLoading={this.props.isLoading}
-              results={this.props.results}
-              value={this.props.searchTerm}
-              handleResultSelect={this.handleResultSelect}
-              handleSearchChange={this.handleSearchChange}
-            />
-            <Menu />
-            {/*<AddQuestionForm/>*/}
-            {this.props.addSuccess && this.props.messageActive && (
-              <Message positive>
-                <Message.Header>We've submitted your question</Message.Header>
-                <p>
-                  Please check back later.{" "}
-                  {this.props.newQ && this.props.newQ.title}
-                </p>
-              </Message>
-            )}
-            {!this.props.addSuccess && this.props.messageActive && (
-              <Message error>
-                <Message.Header>
-                  We've tried to submit your question
-                </Message.Header>
-                <p>Sorry Something went wrong. Please try again later</p>
-              </Message>
-            )}
-          </div>
-        </Sticky>
+        <StickyHeader
+          contextRef={this.contextRef}
+          isLoading={this.props.isLoading}
+          results={this.props.results}
+          searchTerm={this.props.searchTerm}
+          handleResultSelect={this.handleResultSelect}
+          handleSearchChange={this.handleSearchChange}
+          addSuccess={this.props.addSuccess}
+          messageActive={this.props.messageActive}
+          newQ={this.props.newQ}
+        />
         <div className="containerDiv">
           <Grid centered columns={2} stackable>
             <Grid.Column>
