@@ -1,10 +1,13 @@
 import React, { Component, createRef } from 'react'
-import { Form } from 'semantic-ui-react'
+import { Button, Form, Modal } from 'semantic-ui-react'
 import _ from 'lodash'
 import { connect } from 'react-redux'
 import { postQuestion } from '../actions'
 import '../styles/PatientBoard.css'
 
+const AskQuestionButton = (
+  <Button className='ask-button'>Ask a question</Button>
+)
 
 class AddQuestionForm extends Component {
   state={}
@@ -26,7 +29,7 @@ class AddQuestionForm extends Component {
   render() {
 
     return (
-      <Form onSubmit={this.handleSubmit}>
+/*       <Form onSubmit={this.handleSubmit}>
            <Form.TextArea
            value={this.state.value}
            onChange={this.handleChange}
@@ -35,7 +38,19 @@ class AddQuestionForm extends Component {
 
            />
            <Form.Button type='submit'>Submit</Form.Button>
-         </Form>
+         </Form> */
+         <Modal trigger={AskQuestionButton}>
+         <Modal.Header>New Question</Modal.Header>
+         <Modal.Content>
+           <Modal.Description>
+             <Form>
+               <Form.Input fluid label='Title' />
+               <Form.TextArea label='Description' />
+               <Form.Button type='submit' color='#006EAA'>Submit</Form.Button>
+             </Form>
+           </Modal.Description>
+         </Modal.Content>
+       </Modal>
     )
   }
 }

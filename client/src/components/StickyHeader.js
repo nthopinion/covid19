@@ -4,6 +4,8 @@ import { Sticky, Message } from "semantic-ui-react";
 import SearchBar from "../components/SearchBar";
 import Menu from "../components/NavLink";
 import logo from "../covid-19-logo.svg";
+import Options from '../components/Options'
+import AddQuestionForm from '../containers/AddQuestionForm'
 
 class StickyHeader extends Component {
   constructor(props) {
@@ -34,7 +36,6 @@ class StickyHeader extends Component {
             handleSearchChange={handleSearchChange}
           />
           <Menu />
-          {/*<AddQuestionForm/>*/}
           {addSuccess && messageActive && (
             <Message positive>
               <Message.Header>We've submitted your question</Message.Header>
@@ -50,6 +51,8 @@ class StickyHeader extends Component {
             </Message>
           )}
         </div>
+        <Options />
+          {/*<AddQuestionForm/>*/}
       </Sticky>
     );
   }
