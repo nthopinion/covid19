@@ -2,12 +2,3 @@ section {
   display: flex;
   justify-content: flex-end;
 }
-
-.ask-button.ui.button {
-  background-color: #006EAA;
-  color: white;
-  font-weight: 500;
-  line-height: 21px;
-  font-size: 18px;
-  padding: 0 50px;
-}
