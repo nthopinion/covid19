@@ -20,13 +20,14 @@ button#menu.ui.button{
     justify-content: left;
     display: flex;
     background: #C4C4C4;
+    margin-left: 0.25em;
 
 
 }
 
 .row#sponsors{
     margin-top: 500px;
-    margin-bottom: 50px;
+    margin-bottom: 60px;
 }
 
 
@@ -37,8 +38,8 @@ a.ui.button {
     margin-top: 20px;
     display: inline;
     width: 100%;
-    margin-left: 0.25em;
     justify-content: left;
+    white-space: nowrap;
 }
 
 /* .ui.inverted.menu{
