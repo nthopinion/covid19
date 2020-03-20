@@ -33,7 +33,7 @@ render(
 
     <Menu> </Menu>
     
-      <Route exact path='/physician' component={AuthProvider(PhysicianView)} />
+      <Route exact path='/bIiOOIIqgwEXwUU3SaD0F9nNpvPesQ61ocLc72GbvVR2lYBOETaL883ANvwEPeFPrNtMZDYO8e2VNJtzxmmOkA==' component={AuthProvider(PhysicianView)} />
       <Route exact path='/physician-public' component={PhysicianView} />
       <Route exact path='/about' component={About} />
       <Route exact path='/' component={App} />
