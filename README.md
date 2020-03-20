@@ -1,4 +1,4 @@
-[![Contributors](https://img.shields.io/github/contributors/nthopinion/covid19)](https://github.com/tendermario/covid19/graphs/contributors) [![MIT License](https://img.shields.io/github/license/nthopinion/covid19)](https://github.com/tendermario/covid19/blob/master/LICENSE)
+[![Contributors](https://img.shields.io/github/contributors/nthopinion/covid19)](https://github.com/nthopinion/covid19/graphs/contributors) [![MIT License](https://img.shields.io/github/license/nthopinion/covid19)](https://github.com/nthopinion/covid19/blob/master/LICENSE)
 
 <p align="center">
 <!-- PROJECT LOGO
@@ -25,20 +25,22 @@ Our application is a web app. It has a public facing interface, and a doctor/hea
 
 ## Table of Contents
 
-* [About the Project](#about-the-project)
-  * [Built With](#built-with)
-* [Getting Started](#getting-started)
-  * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
-* [Tests](#test)
-* [Build](#build)
-* [Learn More](#learn-more)
-* [Roadmap](#roadmap)
-* [Contributing](#contributing)
-* [Communication channels](#communication-channels)
+- [About the Project](#about-the-project)
+  - [Built With](#built-with)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Tests](#test)
+- [Build](#build)
+- [Learn More](#learn-more)
+- [Roadmap](#roadmap)
+- [Contributing](#contributing)
+- [Communication channels](#communication-channels)
 
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
+
 <b> Calling All Doctors & Coders: Global Hackathon to Defeat COVID-19: </b> <i> Connecting physicians & developers globally in the wake of COVID-19 pandemic </i>
 
 <hr>
@@ -65,9 +67,10 @@ Here's a blank template to get started:
 
 ### Built With
 
-* [Create React App](https://github.com/facebook/create-react-app)
+- [Create React App](https://github.com/facebook/create-react-app)
 
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 The COVID19 project is a monorepo. The server code is inside the `api` foler and the client code is inside the `client` folder.
@@ -75,7 +78,9 @@ The COVID19 project is a monorepo. The server code is inside the `api` foler and
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
-* npm
+
+- npm
+
 ```sh
 npm install npm@latest -g
 ```
@@ -84,28 +89,35 @@ npm install npm@latest -g
 
 1. Navigate to the repository where you want to install the project
 2. Clone the repo
+
 ```sh
 git clone git@github.com:nthopinion/covid19.git
 ```
+
 3. To setup the `api`, check the [README](/api) inside the `api` folder.
 4. To setup the `client`, check the [README](/client) inside the `client` folder.
 
 <!-- TEST
 TODO: Add more to the testing workflow: how to write a test, where, etc.
  -->
+
 ## Tests
+
 Testing is important in order to make sure you feature is meeting all the requirements.
 Launch the test runner in the interactive watch mode by running the npm command<br />
+
 ```sh
 npm test
 ```
 
 <!-- ROADMAP -->
+
 ## Roadmap
 
 See the [open issues](https://github.com/nthopinion/covid19/issues) for a list of proposed features (and known issues).
 
 <!-- CONTRIBUTING -->
+
 ## Contributing
 
 Contributions in this project are vital since the situation is evolving rapidly. Any contributions you make are **greatly appreciated**.
@@ -119,13 +131,17 @@ Contributions in this project are vital since the situation is evolving rapidly.
 If you are stuck on any of the steps, we have a YouTube video you can look at: [https://youtu.be/otuDhXWWnbw](https://youtu.be/otuDhXWWnbw)
 
 <!-- LICENSE-->
+
 ## License
 
 Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
 
 <!-- COMMUNICATIOIN CHANNELS -->
+
 ## Communication channels
+
 Come over on Slack to be part of the initiative and talk with the other contributors
- - [Slack](https://join.slack.com/t/hackingcovid19/shared_invite/zt-cs0oy49c-bwn5uoilSme1iqFDDK7~zg)
+
+- [Slack](https://join.slack.com/t/hackingcovid19/shared_invite/zt-cs0oy49c-bwn5uoilSme1iqFDDK7~zg)
 
 Project Link: [https://github.com/nthopinion/covid19/](https://github.com/nthopinion/covid19/)
