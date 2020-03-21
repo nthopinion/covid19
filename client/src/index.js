@@ -20,39 +20,21 @@ const store = createStore(rootReducer, applyMiddleware(thunk));
 render(
   <Provider store={store}>
     <Router>
-      <Route
-        exact
-        path="/bIiOOIIqgwEXwUU3SaD0F9"
-        component={AuthProvider(
-          <>
-            <Menu />
-            {PhysicianView}
-          </>
-        )}
-      />
-      <Route
-        exact
-        path="/physician-public"
-        component={
-          <>
-            <Menu />
-            {PhysicianView}
-          </>
-        }
-      />
-      <Route
-        exact
-        path="/about"
-        component={
-          <>
-            <Menu />
-            {About}
-          </>
-        }
-      />
-      <Route exact path="/" component={App} />
+
+    {/* <div class="ui top attached demo menu">
+          <a class="item">
+            <i class="sidebar icon"></i> Menu
+          </a>
+    </div> */}
+
+    <Menu> </Menu>
+    
+      <Route exact path='/bIiOOIIqgwEXwUU3SaD0F9' component={AuthProvider(PhysicianView)} />
+      <Route exact path='/physician-public' component={PhysicianView} />
+      <Route exact path='/about' component={About} />
+      <Route exact path='/' component={App} />
     </Router>
   </Provider>,
-  document.getElementById("root")
-);
-serviceWorker.unregister();
+  document.getElementById('root')
+)
+serviceWorker.unregister()
