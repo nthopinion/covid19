@@ -13,7 +13,10 @@ const SearchBar = props => (
       })}
       results={props.results}
       value={props.value}
-      placeholder={"Search"}
+      placeholder={"Have a question? Type here to search"}
+      noResultsMessage={"No results found."}
+      noResultsDescription={"Select Ask a Question to Continue"}
+      onKeyPress={props.handleKeyPress}
     />
   </div>
 );
