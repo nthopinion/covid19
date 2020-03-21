@@ -1,46 +1,90 @@
-.row{
-    padding: 25px;
-    
-} 
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+.row {
+  padding: 2.5rem;
+}
+.menu {
+  background-color: #006eaa;
+}
 
 .nav {
-    float: right;
-    margin: 30px;
-
+  float: right;
+  margin: 3rem;
 }
 
-
-button#menu.ui.button{
-    min-width: 30px;
-    /* margin: 30px; */
-    margin: 0px;
-    /* float: left; */
-    margin-top: 10px;
-    margin-left: 10px;
-    justify-content: left;
-    display: flex;
-    background: #C4C4C4;
-
-
-}
-
-i.bars.icon{
-
-    align-self: center;
-
-}
-
-
-a.ui.button {
-    font-size: 18px;
-    margin-top: 20px;
-    display: inline;
-    width: 100%;
-    margin-left: 0.25em;
-    justify-content: left;
-}
-
-/* .ui.inverted.menu{
-    background: ligh
+/* .row#sponsors {
+  margin-top: 30rem;
+  margin-bottom: 1rem;
 } */
 
+button#menu.ui.button {
+  min-width: 35rem;
+  height: 100%;
+  justify-content: left;
+  display: flex;
+  background: transparent;
+}
+
+button#menu.ui.button i.bars.icon {
+  font-size: 2rem;
+  height: 100%;
+  color: #006eaa;
+}
+
+i.bars.icon {
+  align-self: center;
+}
+
+/* a.ui.button {
+  font-size: 1.8rem;
+  margin-top: 2rem;
+  display: inline;
+  width: 100%;
+  justify-content: left;
+  white-space: nowrap;
+  margin-left: 0.25rem;
+} */
+
+/* .ui.inverted.menu{
+      background: ligh
+  } */
+.ui.inverted.segment,
+.ui.primary.inverted.segment {
+  background: #006eaa;
+}
+#nav {
+  background-color: #006eaa;
+}
+.side-nav {
+  font-size: 2.4rem;
+  list-style: none;
+  margin-top: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.side-nav__link:hover {
+  background-color: #06537d;
+}
+.side-nav__item:active::before {
+  background-color: #2619d4;
+}
+.side-nav__link:link,
+.side-nav__link:visited {
+  color: white;
+  text-decoration: none;
+  display: block;
+  z-index: 10;
+  text-transform: uppercase;
+  position: relative;
+  border-bottom: 2px solid white;
+  padding: 1rem 1rem;
+}
+.sidebar {
+  background-color: #006eaa;
+}

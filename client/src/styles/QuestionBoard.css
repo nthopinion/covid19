@@ -1,5 +1,6 @@
-body{
-  font-family: Arial, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif;
+body {
+  font-family: Arial, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans",
+    Geneva, Arial, sans-serif;
 }
 .container {
   /* max-width: 80%; */
@@ -8,7 +9,7 @@ body{
 }
 
 .searchBarDiv {
-  padding-bottom: 50px;
+  padding: 15px;
 }
 
 .searchBar .input {
@@ -24,18 +25,18 @@ body{
   font-size: 18px;
   font-weight: bold;
 }
-.qTag{
+.qTag {
   display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    max-width: 200px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  max-width: 200px;
 }
 .qTag .label {
   margin-right: 5px;
   margin-top: 5px;
 }
 
-.qLeftCard{
+.qLeftCard {
   min-height: 20px;
   display: flex;
   flex-direction: column;
@@ -69,16 +70,18 @@ body{
 }
 
 @media (max-width: 1401px) {
-.mailForm_mobile {
-  display: block;
-}
-.mailForm {
-  display: none;
-}
+  .mailForm_mobile {
+    display: block;
+  }
+  .mailForm {
+    display: none;
+  }
 }
 
-@media (min-width: 1400px)  {
-  .mailForm_mobile {display: none}
+@media (min-width: 1400px) {
+  .mailForm_mobile {
+    display: none;
+  }
   .mailForm {
     max-width: 400px;
     margin-top: 200px !important;
