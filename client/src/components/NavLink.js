@@ -48,19 +48,25 @@ class Menu extends Component {
                   <li>
                     <a
                       target="_blank"
+                      rel="noopener noreferrer"
                       href="https://about.covid19webapp.com/#lp-pom-block-118"
                     >
                       ABOUT
                     </a>
                   </li>
                   <li>
-                    <a target="_blank" href="https://about.covid19webapp.com/">
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href="https://about.covid19webapp.com/"
+                    >
                       PHYSICIANS
                     </a>
                   </li>
                   <li>
                     <a
                       target="_blank"
+                      rel="noopener noreferrer"
                       href=" https://github.com/nthopinion/covid19/blob/master/README.md"
                     >
                       DEVELOPERS
@@ -69,6 +75,7 @@ class Menu extends Component {
                   <li>
                     <a
                       target="_blank"
+                      rel="noopener noreferrer"
                       href="https://video.covid19webapp.com/dxyopencourse/"
                     >
                       VIDEO COURSE
@@ -80,6 +87,7 @@ class Menu extends Component {
                   color="#304FFE"
                   href="https://about.covid19webapp.com/sponsors/"
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   {" "}
                   Our Sponsors{" "}

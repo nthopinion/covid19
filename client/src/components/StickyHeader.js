@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Sticky, Message } from "semantic-ui-react";
 
+import logo from "../assets/images/covid-19-logo-white.svg";
+
 import SearchBar from "../components/SearchBar";
 import Menu from "../components/NavLink";
-import logo from "../assets/images/covid-19-logo-white.svg";
 
 class StickyHeader extends Component {
   constructor(props) {
@@ -49,7 +50,7 @@ class StickyHeader extends Component {
             </Message>
           )}
         </div>
-        <Options />
+
         {/*<AddQuestionForm/>*/}
       </Sticky>
     );
