@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Grid, Button } from "semantic-ui-react";
+import { Button } from "semantic-ui-react";
 
 import styles from "../styles/NavLink.css";
 
-class Menu extends Component {
+class NavMenu extends Component {
   constructor() {
     super();
 
@@ -34,7 +34,10 @@ class Menu extends Component {
       <div>
         <Button id="menu" class="ui icon button" onClick={this.showMenu}>
           {" "}
-          <i class="bars icon" onClick={this.showMenu}></i>
+          <i
+            class={`bars icon ${this.props.lightMenu ? "light" : ""}`}
+            onClick={this.showMenu}
+          ></i>
         </Button>
 
         {this.state.showMenu ? (
@@ -101,4 +104,4 @@ class Menu extends Component {
   }
 }
 
-export default Menu;
+export default NavMenu;

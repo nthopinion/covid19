@@ -34,7 +34,7 @@ class StickyHeader extends Component {
             handleResultSelect={handleResultSelect}
             handleSearchChange={handleSearchChange}
           />
-          <Menu />
+          <Menu lightMenu />
           {addSuccess && messageActive && (
             <Message positive>
               <Message.Header>We've submitted your question</Message.Header>
