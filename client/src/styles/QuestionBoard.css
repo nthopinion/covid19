@@ -16,6 +16,10 @@ body {
   width: 100%;
 }
 
+.ui.search .prompt {
+  border-radius: 5px;
+}
+
 .qCard {
   padding: 20px 20px !important;
 }
