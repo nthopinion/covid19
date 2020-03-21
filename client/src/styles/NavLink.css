@@ -14,10 +14,12 @@
 nav {
   height: 100vh;
   display: grid;
+  padding: 20px;
 }
 
 nav ul {
   padding: 0;
+  margin: 0;
   color: white;
   list-style: none;
 }
@@ -32,6 +34,7 @@ nav ul li a {
   padding: 20px 0px;
   font-size: 24px;
   font-weight: 400;
+  white-space: nowrap;
   letter-spacing: 0.3px;
 }
 
