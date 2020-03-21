@@ -6,7 +6,6 @@ import { postQuestion } from '../actions';
 import '../styles/AskQuestionForm.css';
 
 class AddQuestionForm extends Component {
-  state = {};
   constructor(props) {
     super(props);
     this.state = {
