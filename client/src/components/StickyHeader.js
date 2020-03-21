@@ -3,9 +3,7 @@ import { Sticky, Message } from "semantic-ui-react";
 
 import SearchBar from "../components/SearchBar";
 import Menu from "../components/NavLink";
-import logo from "../covid-19-logo.svg";
-import Options from '../components/Options'
-import AddQuestionForm from '../containers/AddQuestionForm'
+import logo from "../assets/images/covid-19-logo-white.svg";
 
 class StickyHeader extends Component {
   constructor(props) {
@@ -27,7 +25,7 @@ class StickyHeader extends Component {
     return (
       <Sticky context={contextRef} className="sticky-container">
         <div className="sticky-top">
-          <img src={logo} alt="Logo" />
+          <img className="logo" src={logo} alt="Logo" />
           <SearchBar
             isLoading={isLoading}
             results={results}
@@ -52,7 +50,7 @@ class StickyHeader extends Component {
           )}
         </div>
         <Options />
-          {/*<AddQuestionForm/>*/}
+        {/*<AddQuestionForm/>*/}
       </Sticky>
     );
   }
