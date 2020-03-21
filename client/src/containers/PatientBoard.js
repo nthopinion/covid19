@@ -3,6 +3,7 @@ import _ from "lodash";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Grid, Ref } from "semantic-ui-react";
+import { withTranslation } from 'react-i18next';
 
 import {
   fetchQuestions,
@@ -159,4 +160,4 @@ const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(PatientBoard);
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(PatientBoard));

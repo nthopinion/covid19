@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { Suspense } from 'react'
+
 import PatientBoard from './PatientBoard'
+import Loader from '../components/Loader'
+import LanguageSelector from "../components/LanguageSelector";
 
 const App = () => (
-  <div>
+  <Suspense fallback={Loader}>
+    {/* @TODO remove LanguageSelector, for test i18next purposes only*/}
+    <LanguageSelector />
     <PatientBoard />
-  </div>
+  </Suspense>
 )
 export default App
