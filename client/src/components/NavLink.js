@@ -33,7 +33,7 @@ class Menu extends Component {
     return (
       
         <div>
-        <Button id="menu" class="ui icon button" onClick={this.showMenu}> <i class="bars icon" onClick={this.showMenu}></i>  
+        <Button id="menu" className="ui icon button" onClick={this.showMenu}> <i className="bars icon" onClick={this.showMenu}></i>  
       </Button>
       
       {
