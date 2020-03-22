@@ -12,6 +12,7 @@ const SearchBar = props => (
         leading: true
       })}
       results={props.results}
+      noResultsDescription='Press "Ask a question" to continue.'
       value={props.value}
       placeholder="Have a question? Type here to search"
     />
