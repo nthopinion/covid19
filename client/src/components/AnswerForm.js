@@ -22,11 +22,6 @@ class AnswerForm extends Component {
 
   }
 
-  componentDidMount() {
-    const { dispatch } = this.props
-
-  }
-
   postQuestionAnswer = (question) => {
       const endpoint = this.props.showUnaswered ? 'updateQuestion': 'editAnswers';
       return fetch(`${config.domainURL}/api/${endpoint}`, {
@@ -82,7 +77,6 @@ class AnswerForm extends Component {
   }
   render() {
     const {q, idx} = this.state
-    console.log(q)
     const metaData=  q.flagIssue && <Label as='a' color='red' tag>
           Report Issues: <span> {q.flagIssue}</span>
         </Label>

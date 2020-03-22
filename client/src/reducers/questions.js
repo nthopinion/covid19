@@ -11,7 +11,8 @@ import {
   DISMISS_MESSAGE,
   LIKE_QUESTION_SUCCESS,
   DELETE_QUESTION_SUCCESS,
-  SET_ANSWERS_BY_QUESTION
+  SET_ANSWERS_BY_QUESTION,
+  NEW_QUESTION_ANSWERED
 } from '../constants/ActionTypes'
 const initialState = {
   isLoading: false,
@@ -57,6 +58,14 @@ const questions = (state = initialState, action) => {
         questions: action.questions,
         results: action.questions
       }
+    case NEW_QUESTION_ANSWERED:
+      const newQuestions = [{...action.question}, ...state.questions];
+
+      return {
+        ...state,
+        questions: newQuestions,
+        results: newQuestions
+      }
     case SEARCH_QUESTIONS:
       const re = new RegExp(_.escapeRegExp(action.searchTerm), 'i')
       const isMatch = (q) => re.test(q.title)
@@ -85,7 +94,6 @@ const questions = (state = initialState, action) => {
         result: state.questions
       }
     case LIKE_QUESTION_SUCCESS:
-      console.log('LIKE_QUESTION_SUCCESS', state.questions, action)
       const val = state.questions[action.qIdx]['like'] || 0
       const questions = JSON.parse(JSON.stringify(state.questions))
       questions[action.qIdx]['like'] = val + 1
