@@ -55,7 +55,7 @@ class PostList {
 
     const pusher = new Pusher({
       appId: config.appId,
-      key: config.key,
+      key: config.pusherKey,
       secret: config.secret,
       cluster: config.cluster,
       encrypted: true

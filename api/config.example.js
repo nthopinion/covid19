@@ -11,7 +11,7 @@ config.key = '6o3oXBpwQN6God86QTXd67FoFa35jKmMPfhbxfHyuTsogQ6C46p75EC6e31jsKnujY
 config.databaseId = 'QuestionList'
 config.containerId = 'Items'
 config.appId = ''
-config.key = ''
+config.pusherKey = ''
 config.secret = ''
 config.cluster = ''
 
