@@ -1,4 +1,8 @@
+const Pusher = require('pusher');
+
 const QuestionDao = require('../models/questionDao')
+
+const config = require('../config')
 
 class PostList {
   /**
@@ -48,6 +52,19 @@ class PostList {
   async updateQuestion (req, res) {
     const question = req.body
     await this.questionDao.updateItem(question)
+
+    const pusher = new Pusher({
+      appId: config.appId,
+      key: config.key,
+      secret: config.secret,
+      cluster: config.cluster,
+      encrypted: true
+    });
+
+    pusher.trigger('covid19', 'answer-question', {
+      question
+    });
+
     res.send('ok')
   }
 
