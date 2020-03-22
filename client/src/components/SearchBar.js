@@ -13,7 +13,7 @@ const SearchBar = props => (
       })}
       results={props.results}
       value={props.value}
-      placeholder={"Search"}
+      placeholder="Have a question? Type here to search"
     />
   </div>
 );
