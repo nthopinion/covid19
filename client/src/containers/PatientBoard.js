@@ -15,6 +15,7 @@ import {
 } from "../actions";
 
 import "../styles/PatientBoard.css";
+import Options from "../components/Options";
 import QuestionBoard from "../components/QuestionBoard";
 import StickyHeader from "../components/StickyHeader";
 
@@ -96,6 +97,7 @@ class PatientBoard extends Component {
           handleKeyPress={this.handleKeyPress}
         />
         <div className="containerDiv">
+          <Options />
           <Grid centered columns={2} stackable>
             <Grid.Column>
               {/*    <Rail position='left'>

@@ -7,6 +7,48 @@
   margin: 30px;
 }
 
+.ui.right.sidebar {
+  background: #006eaa;
+}
+
+nav {
+  height: 100vh;
+  display: grid;
+  padding: 20px;
+}
+
+nav ul {
+  padding: 0;
+  margin: 0;
+  color: white;
+  list-style: none;
+}
+
+nav ul li {
+  padding: 20px;
+  border-bottom: 1px solid white;
+}
+
+nav ul li a {
+  color: white;
+  padding: 20px 0px;
+  font-size: 24px;
+  font-weight: 400;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+}
+
+nav .ui.button {
+  height: 50px;
+  width: 90%;
+  justify-self: center;
+}
+
+nav ul li a:hover {
+  color: white;
+  opacity: 0.75;
+}
+
 .row#sponsors {
   margin-top: 500px;
   margin-bottom: 60px;
@@ -14,7 +56,8 @@
 
 button#menu.ui.button {
   min-width: 30px;
-  height: 100%;
+  padding: 0;
+  height: 50px;
   justify-content: left;
   display: flex;
   background: transparent;
@@ -22,8 +65,14 @@ button#menu.ui.button {
 
 button#menu.ui.button i.bars.icon {
   font-size: 2em;
+  margin: 0;
   height: 100%;
   color: #006eaa;
+  opacity: 1;
+}
+
+button#menu.ui.button i.bars.icon.light {
+  color: white;
 }
 
 i.bars.icon {
@@ -32,14 +81,8 @@ i.bars.icon {
 
 a.ui.button {
   font-size: 18px;
-  margin-top: 20px;
   display: inline;
-  width: 100%;
   justify-content: left;
   white-space: nowrap;
   margin-left: 0.25em;
 }
-
-/* .ui.inverted.menu{
-    background: ligh
-} */
