@@ -1,8 +1,9 @@
-import React, { Component, createRef } from "react";
-import _ from "lodash";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { Grid, Ref } from "semantic-ui-react";
+import React, { Component, createRef } from 'react';
+import _ from 'lodash';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Grid, Ref } from 'semantic-ui-react';
+
 
 import {
   fetchQuestions,
@@ -12,12 +13,13 @@ import {
   setSearchTerm,
   postQuestion,
   clickLikeQuestion
-} from "../actions";
+} from '../actions';
 
-import "../styles/PatientBoard.css";
-import Options from "../components/Options";
-import QuestionBoard from "../components/QuestionBoard";
-import StickyHeader from "../components/StickyHeader";
+import '../styles/PatientBoard.css';
+
+import Options from '../components/Options';
+import QuestionBoard from '../components/QuestionBoard';
+import StickyHeader from '../components/StickyHeader';
 
 class PatientBoard extends Component {
   constructor(props) {
@@ -38,7 +40,7 @@ class PatientBoard extends Component {
   };
   handleSearchChange = (e, { value }) => {
     this.props.setLoading(false);
-    console.log(value);
+    // console.log(this.props);
     this.props.setSearchTerm(value);
 
     setTimeout(() => {
@@ -56,7 +58,7 @@ class PatientBoard extends Component {
       this.state.prevSearchTerm !== this.props.searchTerm &&
       this.props.searchTerm.length > 10
     ) {
-      console.log("handleSubmitNewQuestion");
+      // console.log('handleSubmitNewQuestion');
       // _.throttle(this.handleSubmitNewQuestion, 1000)()
       if (this.timeout) clearTimeout(this.timeout);
       this.timeout = setTimeout(() => {
@@ -65,7 +67,7 @@ class PatientBoard extends Component {
     }
   };
   handleSubmitNewQuestion = () => {
-    console.log("handleSubmitNewQuestion -- inner");
+    // console.log('handleSubmitNewQuestion -- inner');
 
     const { dispatch } = this.props;
     this.props.postQuestion(this.props.searchTerm);
