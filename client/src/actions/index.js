@@ -3,5 +3,6 @@ export {
   setSearchTerm, setLoading, resetSearchResult,
   postQuestion, receiveUnansweredQuestions, fetchUnansweredQuestions,
   deleteQuestion,
-  clickLikeQuestion
+  clickLikeQuestion,
+  handleNewQuestionAnswered
 } from './question'

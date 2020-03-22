@@ -55,3 +55,17 @@
 .ui.list > .item .description {
   word-break: break-word;
 }
+
+.new-answers {
+  position: fixed;
+  z-index: 5;
+  text-align: center;
+  color: white;
+  background-color: #006eaa;
+  padding: 10px;
+  left: 50%;
+  top: 90px;
+  width: 150px;
+  transform: translate(-50%, 0);
+  cursor: pointer;
+}
