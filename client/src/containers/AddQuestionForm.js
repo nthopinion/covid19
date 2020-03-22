@@ -1,43 +1,45 @@
-import React, { Component, createRef } from 'react';
-import { Button, Form, Icon, Modal, ModalActions } from 'semantic-ui-react';
-import _ from 'lodash';
-import { connect } from 'react-redux';
-import { postQuestion } from '../actions';
-import '../styles/AskQuestionForm.css';
+import React, { Component, createRef } from 'react'
+import { Button, Form, Icon, Modal, ModalActions } from 'semantic-ui-react'
+import _ from 'lodash'
+import { connect } from 'react-redux'
+import { postQuestion } from '../actions'
+import '../styles/AskQuestionForm.css'
 
 class AddQuestionForm extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      showModal: false
-    };
+      showModal: false,
+    }
   }
 
   componentDidMount() {
-    const { dispatch } = this.props;
+    const { dispatch } = this.props
   }
 
   handleSubmit = (e, { value }) => {
-    const { dispatch } = this.props;
-    dispatch(postQuestion(this.state.value));
-    this.setState({ value: '' });
-  };
-  handleChange = (e, { value }) => this.setState({ value });
+    const { dispatch } = this.props
+    dispatch(postQuestion(this.state.value))
+    this.setState({ value: '' })
+  }
+
+  handleChange = (e, { value }) => this.setState({ value })
 
   closeModal = () => {
-    this.setState({ showModal: false });
-  };
+    this.setState({ showModal: false })
+  }
+
   openModal = () => {
-    this.setState({ showModal: true });
-  };
+    this.setState({ showModal: true })
+  }
 
   render() {
-    const { showModal } = this.state;
+    const { showModal } = this.state
     const AskQuestionButton = (
-      <Button onClick={this.openModal} color='blue' className='ask-button'>
+      <Button onClick={this.openModal} color="blue" className="ask-button">
         Ask a question
       </Button>
-    );
+    )
 
     return (
       <Modal
@@ -50,23 +52,23 @@ class AddQuestionForm extends Component {
           <Icon
             circular
             inverted
-            size='small'
-            color='blue'
-            name='close'
+            size="small"
+            color="blue"
+            name="close"
             onClick={this.closeModal}
           />
         </Modal.Header>
         <Modal.Content>
           <Modal.Description>
             <Form onSubmit={this.handleSubmit}>
-              <Form.Input fluid label='Title' />
+              <Form.Input fluid label="Title" />
               <Form.TextArea
-                label='Description'
+                label="Description"
                 value={this.state.value}
                 onChange={this.handleChange}
               />
-              <div className='flex-container'>
-                <Form.Button type='submit' color='blue'>
+              <div className="flex-container">
+                <Form.Button type="submit" color="blue">
                   Submit
                 </Form.Button>
               </div>
@@ -74,15 +76,15 @@ class AddQuestionForm extends Component {
           </Modal.Description>
         </Modal.Content>
       </Modal>
-    );
+    )
   }
 }
 
 function mapStateToProps(state) {
-  console.log(state);
+  console.log(state)
   return {
-    ...state.questionBoard
-  };
+    ...state.questionBoard,
+  }
 }
 
-export default connect(mapStateToProps)(AddQuestionForm);
+export default connect(mapStateToProps)(AddQuestionForm)

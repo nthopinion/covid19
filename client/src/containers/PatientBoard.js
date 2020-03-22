@@ -1,8 +1,8 @@
-import React, { Component, createRef } from "react";
-import _ from "lodash";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { Grid, Ref } from "semantic-ui-react";
+import React, { Component, createRef } from 'react'
+import _ from 'lodash'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { Grid, Ref } from 'semantic-ui-react'
 
 import {
   fetchQuestions,
@@ -11,70 +11,75 @@ import {
   resetSearchResult,
   setSearchTerm,
   postQuestion,
-  clickLikeQuestion
-} from "../actions";
+  clickLikeQuestion,
+} from '../actions'
 
-import "../styles/PatientBoard.css";
-import Options from "../components/Options";
-import QuestionBoard from "../components/QuestionBoard";
-import StickyHeader from "../components/StickyHeader";
+import '../styles/PatientBoard.css'
+import Options from '../components/Options'
+import QuestionBoard from '../components/QuestionBoard'
+import StickyHeader from '../components/StickyHeader'
 
 class PatientBoard extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      processSumited: false
-    };
+      processSumited: false,
+    }
   }
 
   componentDidMount() {
-    this.props.fetchQuestions();
+    this.props.fetchQuestions()
   }
+
   handleClickLike = (id, index) => {
-    this.props.clickLikeQuestion(id, index);
-  };
+    this.props.clickLikeQuestion(id, index)
+  }
+
   handleResultSelect = (e, { result }) => {
-    this.props.searchQuestions(this.props.questions, result.title);
-  };
+    this.props.searchQuestions(this.props.questions, result.title)
+  }
+
   handleSearchChange = (e, { value }) => {
-    this.props.setLoading(false);
-    console.log(value);
-    this.props.setSearchTerm(value);
+    this.props.setLoading(false)
+    console.log(value)
+    this.props.setSearchTerm(value)
 
     setTimeout(() => {
       if (this.props.searchTerm && this.props.searchTerm.length < 1) {
-        this.props.resetSearchResult();
+        this.props.resetSearchResult()
       }
-      this.props.searchQuestions(this.props.questions, this.props.searchTerm);
-    }, 500);
+      this.props.searchQuestions(this.props.questions, this.props.searchTerm)
+    }, 500)
 
     // submit question
-    if (this.props.results.length != 0) return;
+    if (this.props.results.length != 0) return
     // var self = this
     if (
       this.props.searchTerm &&
       this.state.prevSearchTerm !== this.props.searchTerm &&
       this.props.searchTerm.length > 10
     ) {
-      console.log("handleSubmitNewQuestion");
+      console.log('handleSubmitNewQuestion')
       // _.throttle(this.handleSubmitNewQuestion, 1000)()
-      if (this.timeout) clearTimeout(this.timeout);
+      if (this.timeout) clearTimeout(this.timeout)
       this.timeout = setTimeout(() => {
-        this.handleSubmitNewQuestion();
-      }, 1000);
+        this.handleSubmitNewQuestion()
+      }, 1000)
     }
-  };
+  }
+
   handleSubmitNewQuestion = () => {
-    console.log("handleSubmitNewQuestion -- inner");
+    console.log('handleSubmitNewQuestion -- inner')
 
-    const { dispatch } = this.props;
-    this.props.postQuestion(this.props.searchTerm);
+    const { dispatch } = this.props
+    this.props.postQuestion(this.props.searchTerm)
 
-    this.setState({ prevSearchTerm: this.props.searchTerm });
+    this.setState({ prevSearchTerm: this.props.searchTerm })
     // dispatch(resetSearchResult());
     // dispatch(searchQuestions(this.props.questions, this.props.searchTerm))
-  };
-  contextRef = createRef();
+  }
+
+  contextRef = createRef()
 
   render() {
     return (
@@ -106,7 +111,7 @@ class PatientBoard extends Component {
                     results={this.props.results}
                   />
 
-                  {/*<Rail size='mini' position='left'>
+                  {/* <Rail size='mini' position='left'>
          <Sticky context={this.contextRef}>
            <Item.Group divided>
              {_.times(12, (i) => (
@@ -135,19 +140,19 @@ class PatientBoard extends Component {
    </Grid.Column>
    */}
           </Grid>
-          {/*<FloatingMenu/> */}
+          {/* <FloatingMenu/> */}
         </div>
       </>
-    );
+    )
   }
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    ...state.questionBoard
-  };
-};
+    ...state.questionBoard,
+  }
+}
 
-const mapDispatchToProps = dispatch =>
+const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       fetchQuestions,
@@ -156,9 +161,9 @@ const mapDispatchToProps = dispatch =>
       resetSearchResult,
       setSearchTerm,
       postQuestion,
-      clickLikeQuestion
+      clickLikeQuestion,
     },
     dispatch
-  );
+  )
 
-export default connect(mapStateToProps, mapDispatchToProps)(PatientBoard);
+export default connect(mapStateToProps, mapDispatchToProps)(PatientBoard)

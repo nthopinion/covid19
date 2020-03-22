@@ -1,15 +1,16 @@
-import React, { Component } from "react";
-import { Sticky, Message } from "semantic-ui-react";
+import React, { Component } from 'react'
+import { Sticky, Message } from 'semantic-ui-react'
 
-import logo from "../assets/images/covid-19-logo-white.svg";
+import logo from '../assets/images/covid-19-logo-white.svg'
 
-import SearchBar from "../components/SearchBar";
-import Menu from "../components/NavLink";
+import SearchBar from './SearchBar'
+import Menu from './NavLink'
 
 class StickyHeader extends Component {
   constructor(props) {
-    super(props);
+    super(props)
   }
+
   render() {
     const {
       contextRef,
@@ -20,8 +21,8 @@ class StickyHeader extends Component {
       handleSearchChange,
       addSuccess,
       messageActive,
-      newQ
-    } = this.props;
+      newQ,
+    } = this.props
 
     return (
       <Sticky context={contextRef} className="sticky-container">
@@ -51,10 +52,10 @@ class StickyHeader extends Component {
           )}
         </div>
 
-        {/*<AddQuestionForm/>*/}
+        {/* <AddQuestionForm/> */}
       </Sticky>
-    );
+    )
   }
 }
 
-export default StickyHeader;
+export default StickyHeader

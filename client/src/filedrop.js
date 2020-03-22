@@ -17,9 +17,9 @@ const handleDrop = (files) => {
 export default (
   <DragAndDrop handleDrop={handleDrop}>
     <div
-      type='file'
-      name='files'
-      accept='image/*'
+      type="file"
+      name="files"
+      accept="image/*"
       multiple
       style={{ height: `${300}px`, width: `${500}px` }}
     />

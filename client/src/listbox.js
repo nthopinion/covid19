@@ -4,34 +4,44 @@ import PrimereactStyle from '@bit/primefaces.primereact.internal.stylelinks'
 import './App.scss'
 
 class Userexperiences extends React.Component {
-  constructor () {
+  constructor() {
     super()
     this.state = {
-      cities: [{ name: 'Rome', code: 'RM' }, { name: 'Istanbul', code: 'IST' }]
+      cities: [
+        { name: 'Rome', code: 'RM' },
+        { name: 'Istanbul', code: 'IST' },
+      ],
     }
   }
 
-  render () {
+  render() {
     const cities = [
-      { name: 'High dose NSAIDS i.e Ibuprofen 600 mg three every 8 hours', code: 'NY' },
+      {
+        name: 'High dose NSAIDS i.e Ibuprofen 600 mg three every 8 hours',
+        code: 'NY',
+      },
       { name: 'No intense exercise', code: 'RM' },
-      { name: 'Further labs including autoimmune markers i.e ANA, TSH, ESR, CRP', code: 'LDN' },
+      {
+        name:
+          'Further labs including autoimmune markers i.e ANA, TSH, ESR, CRP',
+        code: 'LDN',
+      },
       { name: 'Incentive inspirometry', code: 'IST' },
-      { name: 'cardiac MRI for the evaluation of Sarcoidosis', code: 'PRS' }
+      { name: 'cardiac MRI for the evaluation of Sarcoidosis', code: 'PRS' },
     ]
 
     return (
       <div>
         <PrimereactStyle />
-        <div className='userxp-container'>
-          <div className='userxp'>
+        <div className="userxp-container">
+          <div className="userxp">
             <p>Recommendations</p>
             <ListBox
               value={this.state.cities}
               options={cities}
-              onChange={e => this.setState({ cities: e.value })}
+              onChange={(e) => this.setState({ cities: e.value })}
               multiple
-              optionLabel='name'
+              optionLabel="name"
             />
           </div>
         </div>
