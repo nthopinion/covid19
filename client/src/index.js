@@ -10,7 +10,6 @@ import i18n from './i18n';
 import App from "./containers/App";
 import About from "./components/About";
 import PhysicianView from "./components/PhysicianView";
-import Menu from "./components/NavLink";
 
 import * as serviceWorker from "./serviceWorker";
 import rootReducer from "./reducers";
@@ -24,24 +23,18 @@ render(
     <I18nextProvider i18n={i18n}>
       <Provider store={store}>
         <Router>
-
-        {/* <div class="ui top attached demo menu">
-              <a class="item">
-                <i class="sidebar icon"></i> Menu
-              </a>
-        </div> */}
-
-          <Menu> </Menu>
-
-          <Route exact path='/bIiOOIIqgwEXwUU3SaD0F9' component={AuthProvider(PhysicianView)} />
-          <Route exact path='/physician-public' component={PhysicianView} />
-          <Route exact path='/about' component={About} />
-          <Route exact path='/' component={App} />
+          <Route
+            exact
+            path="/bIiOOIIqgwEXwUU3SaD0F9"
+            component={AuthProvider(PhysicianView)}
+          />
+          <Route exact path="/physician-public" component={PhysicianView} />
+          <Route exact path="/about" component={About} />
+          <Route exact path="/" component={App} />
         </Router>
       </Provider>
     </I18nextProvider>
   </div>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
-
 serviceWorker.unregister();

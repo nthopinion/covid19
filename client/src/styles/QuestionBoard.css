@@ -9,11 +9,15 @@ body {
 }
 
 .searchBarDiv {
-  padding: 15px;
+  padding: 15px 0px;
 }
 
 .searchBar .input {
   width: 100%;
+}
+
+.ui.search .prompt {
+  border-radius: 5px;
 }
 
 .qCard {
