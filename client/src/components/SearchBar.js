@@ -1,6 +1,7 @@
 import _ from "lodash";
 import React from "react";
 import { Search } from "semantic-ui-react";
+import AskQuestionForm from "../containers/AddQuestionForm";
 
 const SearchBar = props => (
   <div className="searchBarDiv">
@@ -16,6 +17,7 @@ const SearchBar = props => (
       value={props.value}
       placeholder="Have a question? Type here to search"
     />
+    <AskQuestionForm />
   </div>
 );
 export default SearchBar;

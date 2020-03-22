@@ -1,13 +1,7 @@
 import React from 'react';
 
-import AskQuestionForm from '../containers/AddQuestionForm'
 import '../styles/Options.css'
 
-
-const Options = () => (
-  <section>
-    <AskQuestionForm />
-  </section>
-)
+const Options = () => <section></section>;
 
 export default Options;
