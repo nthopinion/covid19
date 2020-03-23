@@ -16,6 +16,14 @@ Install dependencies
 $ npm install
 ```
 
+Create a config file
+
+```
+$ cp .env.example .env
+```
+
+**For Pusher Configs, Please [Signup](https://pusher.com/)**
+
 Start the app
 
 ```
