@@ -9,11 +9,25 @@ import { Modal, Card, Grid, Segment, List, Search, Image, Label, Button, Icon, M
 import '../styles/QuestionBoard.css'
 import config from '../config'
 
-const colors = ['red', 'orange', 'yellow']
+const colors = ['red', 'orange', 'yellow'];
+const sortTypes = {
+  newest: {
+    class: 'sort-newest',
+    fun: (a, b) => a.date - b.date
+  },
+  oldest: {
+    class: 'sort-oldest',
+    fun: (a, b) => b.date - a.date
+  },
+  default: {
+    class: 'sort',
+    fun: (a, b) => a
+  }
+};
 export default class QuestionBoard extends Component {
   constructor(props) {
     super(props)
-    this.state={open: false, reportQuestion: null}
+    this.state={open: false, reportQuestion: null,currentSort: 'default'}
 
   }
   handleReportIssue (q) {
@@ -23,6 +37,9 @@ export default class QuestionBoard extends Component {
     await this.reportQuestionFlag(this.state.reportQuestion)
     this.setState({open: false, reportQuestion: null})
   }
+  onSortChange = e => {
+    this.setState({ currentSort: e.target.value });
+  };
 
   reportQuestionFlag = (question) => {
       return fetch(`${config.domainURL}/api/question/report`, {
@@ -41,13 +58,24 @@ export default class QuestionBoard extends Component {
 
   render () {
     const { results, isLoading, searchTerm } = this.props
+    const { currentSort } = this.state;
+    const sortResults=[...results].sort(sortTypes[currentSort].fun);
     console.log(this.props)
     return (
       <div className='container'>
+        <div className=" mx-36 mb-4 flex items-center w-2/3">
+          <p className="my-2">Sort by</p>
+         <select name="sort" className="px-4 ml-4   font-bold focus:outline-none focus:shadow-outline  leading-tight rounded-lg border border-blue-600 border-8 hover:border-blue-700 block appearance:outline-none shadow py-2 h-auto text-blue-600 " onChange={this.onSortChange} id="">
+          <option value="default">Default</option>
+          <option value="newest">Newest</option>
+          <option value="oldest">Oldest</option>
+        </select>
+        </div>
+
 
         <Card.Group>
           {
-            results.map((question, i) => {
+             sortResults.map((question, i) => {
               if (!question.answers) return
               const idx = (i + 1) % colors.length
               return (
