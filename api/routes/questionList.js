@@ -62,7 +62,7 @@ class PostList {
       encrypted: true
     });
 
-    pusher.trigger(channel, event, {
+    pusher.trigger(channel, 'answer-question', {
       question
     });
 
