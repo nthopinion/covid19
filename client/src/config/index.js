@@ -4,8 +4,7 @@ const basedConfig = {
     "pusher": {
       "key": process.env.REACT_APP_CORS_PUSHER_KEY,
       "cluster": process.env.REACT_APP_CORS_PUSHER_CLUSTER,
-      "channel": process.env.REACT_APP_CORS_PUSHER_CHANNEL,
-      "event": process.env.REACT_APP_CORS_PUSHER_EVENT
+      "channel": process.env.REACT_APP_CORS_PUSHER_CHANNEL
     }
 };
 
