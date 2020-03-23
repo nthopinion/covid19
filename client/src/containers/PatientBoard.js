@@ -37,13 +37,13 @@ class PatientBoard extends Component {
   }
 
   subscribeToNewQuestions = () => {
-    const {key, cluster, channel, event} = config.pusher;
+    const {key, cluster, channel} = config.pusher;
     const pusher = new Pusher(key, {
       cluster,
       encrypted: true
     });
     
-    pusher.subscribe(channel).bind(event, async data => {
+    pusher.subscribe(channel).bind('answer-question', async data => {
       await this.props.handleNewQuestionAnswered(data.question);
       this.setState({ displayNewQuestion: true });
     });
