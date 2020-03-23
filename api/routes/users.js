@@ -15,23 +15,11 @@ var router = express.Router()
  *       - application/json
  *     produces:
  *       - application/json
- *     parameters:
- *       - in: query
- *         name: username
- *         schema:
- *           type: string
- *         required:
- *           - username
+
  *     responses:
  *       '200':
  *         description: Gets a list of all users
- *         schema:
- *           $ref: '#/definitions/User'
- *       '401':
- *         description: No auth token / no user found in db with that name
- *       '403':
- *         description: JWT token and username from client don't match
- */
+*/
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
