@@ -19,6 +19,7 @@ import "../styles/PatientBoard.css";
 import Options from "../components/Options";
 import QuestionBoard from "../components/QuestionBoard";
 import StickyHeader from "../components/StickyHeader";
+import config from '../config'
 
 class PatientBoard extends Component {
   constructor(props) {
@@ -36,15 +37,14 @@ class PatientBoard extends Component {
   }
 
   subscribeToNewQuestions = () => {
-    const pusher = new Pusher('2a3723a74814ff9e3d93', {
-      cluster: 'mt1',
+    const {key, cluster, channel, event} = config.pusher;
+    const pusher = new Pusher(key, {
+      cluster,
       encrypted: true
     });
-    const channel = pusher.subscribe('covid19');
     
-    channel.bind('answer-question', async data => {
+    pusher.subscribe(channel).bind(event, async data => {
       await this.props.handleNewQuestionAnswered(data.question);
-
       this.setState({ displayNewQuestion: true });
     });
   }
