@@ -9,6 +9,35 @@ var usersRouter = require('./routes/users')
 var cors = require('cors')
 const upload = require('./routes/upload')
 
+// add swagger requirement
+var swaggerUi = require('swagger-ui-express');
+var swaggerJSDoc = require('swagger-jsdoc');
+
+const swaggerDefinition = {
+  info: {
+    title: 'Covid-19 Application Swagger API',
+    version: '1.0.0',
+    description: 'Endpoints to test the Covid-19',
+  },
+  host: 'localhost:8000',
+  basePath: '/',
+  securityDefinitions: {
+    bearerAuth: {
+      type: 'apiKey',
+      name: 'Authorization',
+      scheme: 'bearer',
+      in: 'header',
+    },
+  },
+};
+
+const options = {
+  swaggerDefinition,
+  apis: ['./routes/*.js'],
+};
+
+
+
 var app = express()
 const CosmosClient = require('@azure/cosmos').CosmosClient
 const config = require('./config')
@@ -49,6 +78,7 @@ questionDao
 app.get('/api/questions', (req, res, next) => questionList.showQuestions(req, res, true).catch(next))
 app.get('/api/questions/unanswered', (req, res, next) => questionList.showQuestions(req, res, false).catch(next))
 app.post('/api/addQuestions', (req, res, next) => questionList.addQuestions(req, res).catch(next))
+
 // ToDo: using :id
 app.post('/api/updateQuestion', (req, res, next) =>
   questionList.updateQuestion(req, res).catch(next)
@@ -67,6 +97,15 @@ app.post('/api/question/report', (req, res, next) =>
 app.post('/api/addQuestion', (req, res, next) => questionList.addQuestion(req, res).catch(next))
 
 app.delete('/api/question', (req, res, next) => questionList.deleteQuestion(req, res).catch(next))
+
+const swaggerSpec = swaggerJSDoc(options);
+app.get('/swagger.json', function(req, res) {
+  res.setHeader('Content-Type', 'application/json');
+  res.send(swaggerSpec);
+});
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 
 // Handles any requests that don't match the ones above
 app.get('*', (req, res) => {
