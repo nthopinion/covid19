@@ -11,9 +11,10 @@ import {
   FETCH_ALL_UNANSWERED_QUESTION,
   DISMISS_MESSAGE,
   LIKE_QUESTION_SUCCESS,
-  DELETE_QUESTION_SUCCESS,
   SET_ANSWERS_BY_QUESTION,
-  NEW_QUESTION_ANSWERED
+  NEW_QUESTION_ANSWERED,
+  DELETE_ANSWERED_QUESTION_SUCCESS,
+  DELETE_UNANSWERED_QUESTION_SUCCESS
 } from '../constants/ActionTypes'
 
 import config from '../config'
@@ -36,11 +37,21 @@ const dismissMessage = () => ({
   messageActive: false
 })
 
-export const deleteQuestionSuccess = (qIdx) => ({
-  type: DELETE_QUESTION_SUCCESS,
-  qIdx: qIdx
+export const deleteQuestionSuccess = (qIdx, isUnanswered) => dispatch => {
+  if (isUnanswered) {
+    dispatch({
+      type: DELETE_UNANSWERED_QUESTION_SUCCESS,
+      qIdx: qIdx,
+    });
 
-})
+    return;
+  }
+
+  dispatch({
+    type: DELETE_ANSWERED_QUESTION_SUCCESS,
+    qIdx: qIdx,
+  })
+}
 
 export const addQuestionSuccess = (q) => {
   return dispatch => {
@@ -143,6 +154,13 @@ export const fetchUnansweredQuestions = () => {
       .then(json => {
         json = sortQuestions(json);
 
+        json = json.map(data => {
+          return {
+            ...data,
+            answers: [""]
+          }
+        });
+
         dispatch(receiveUnansweredQuestions(json));
       })
   }
@@ -166,7 +184,7 @@ export const postQuestion = (title) => {
   }
 }
 
-export const deleteQuestion = (qId, idx) => {
+export const deleteQuestion = (qId, idx, isUnanswered) => {
   return dispatch => {
     return fetch(`${config.domainURL}/api/question`, {
       method: 'DELETE',
@@ -176,7 +194,7 @@ export const deleteQuestion = (qId, idx) => {
       },
       body: JSON.stringify({ id: qId })
     })
-      .then(r => dispatch(deleteQuestionSuccess(idx)))
+      .then(r => dispatch(deleteQuestionSuccess(idx, isUnanswered)))
   }
 }
 

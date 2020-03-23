@@ -10,9 +10,9 @@ import {
   FETCH_ALL_UNANSWERED_QUESTION,
   DISMISS_MESSAGE,
   LIKE_QUESTION_SUCCESS,
-  DELETE_QUESTION_SUCCESS,
-  SET_ANSWERS_BY_QUESTION,
-  NEW_QUESTION_ANSWERED
+  NEW_QUESTION_ANSWERED,
+  DELETE_ANSWERED_QUESTION_SUCCESS,
+  DELETE_UNANSWERED_QUESTION_SUCCESS
 } from '../constants/ActionTypes'
 const initialState = {
   isLoading: false,
@@ -103,15 +103,32 @@ const questions = (state = initialState, action) => {
         questions,
         results :questions
       }
-    case DELETE_QUESTION_SUCCESS:
-      console.log('unansweredQuestions', state.unansweredQuestions, action.qIdx)
-      const unansweredQuestions = JSON.parse(JSON.stringify(state.unansweredQuestions))
-      unansweredQuestions[action.qIdx]['undeleted'] = true
-      console.log(unansweredQuestions[action.qIdx])
+    case DELETE_UNANSWERED_QUESTION_SUCCESS:
+      const unansweredQuestions = state.unansweredQuestions.map((question, index) => {
+        return {
+          ...question,
+          undeleted: index === action.qIdx
+        }
+      });
+
       return {
         ...state,
         unansweredQuestions: unansweredQuestions
       }
+    case DELETE_ANSWERED_QUESTION_SUCCESS:
+      const data = state.questions.map((question, index) => {
+        return {
+          ...question,
+            undeleted: index === action.qIdx
+          }
+        });
+
+        console.log("i am here");
+  
+        return {
+          ...state,
+          questions: data
+        }
 
     default:
       return state

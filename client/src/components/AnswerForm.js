@@ -15,11 +15,7 @@ class AnswerForm extends Component {
   constructor(props) {
     super(props)
     let newQ = Object.assign({}, props.q)
-    if( props.q && !props.q.answers) {
-      newQ.answers = ['']
-    }
     this.state={q: newQ, idx: props.idx}
-
   }
 
   postQuestionAnswer = (question) => {
@@ -49,7 +45,9 @@ class AnswerForm extends Component {
   }
 }
   handleDeleteQuestion = (qId, idx) => {
-    this.props.deleteQuestion(qId, idx)
+    const isUnanswered = this.props.showUnaswered;
+
+    this.props.deleteQuestion(qId, idx, isUnanswered)
   }
   handleSubmit = async (e, { value }, q) => {
     console.log('submit answer')
