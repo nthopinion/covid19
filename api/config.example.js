@@ -8,8 +8,7 @@ config.pusher = {
     key: '',
     secret: '',
     cluster: '',
-    channel: '',
-    event: ''
+    channel: ''
 }
 
 module.exports = config
