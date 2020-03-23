@@ -106,6 +106,11 @@ app.get('/swagger.json', function(req, res) {
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+app.get("/", (req, res) => {
+
+  res.redirect("/api-docs")
+
+})
 
 // Handles any requests that don't match the ones above
 app.get('*', (req, res) => {
