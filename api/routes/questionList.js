@@ -1,3 +1,5 @@
+const Pusher = require('pusher');
+
 const QuestionDao = require('../models/questionDao')
 /**
  * @swagger
@@ -130,6 +132,8 @@ const QuestionDao = require('../models/questionDao')
  *         description: JWT token and username from client don't match
  */
 
+const config = require('../config')
+
 class PostList {
   /**
    * Handles the various APIs for displaying and managing tasks
@@ -178,6 +182,19 @@ class PostList {
   async updateQuestion (req, res) {
     const question = req.body
     await this.questionDao.updateItem(question)
+
+    const pusher = new Pusher({
+      appId: config.appId,
+      key: config.pusherKey,
+      secret: config.secret,
+      cluster: config.cluster,
+      encrypted: true
+    });
+
+    pusher.trigger('covid19', 'answer-question', {
+      question
+    });
+
     res.send('ok')
   }
 

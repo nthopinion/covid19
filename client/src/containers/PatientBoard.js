@@ -1,5 +1,5 @@
 import React, { Component, createRef } from "react";
-import _ from "lodash";
+import Pusher from 'pusher-js';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Grid, Ref } from "semantic-ui-react";
@@ -11,7 +11,8 @@ import {
   resetSearchResult,
   setSearchTerm,
   postQuestion,
-  clickLikeQuestion
+  clickLikeQuestion,
+  handleNewQuestionAnswered
 } from "../actions";
 
 import "../styles/PatientBoard.css";
@@ -23,12 +24,37 @@ class PatientBoard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      processSumited: false
+      processSumited: false,
+      displayNewQuestion: false
     };
   }
 
   componentDidMount() {
     this.props.fetchQuestions();
+
+    this.subscribeToNewQuestions();
+  }
+
+  subscribeToNewQuestions = () => {
+    const pusher = new Pusher('2a3723a74814ff9e3d93', {
+      cluster: 'mt1',
+      encrypted: true
+    });
+    const channel = pusher.subscribe('covid19');
+    
+    channel.bind('answer-question', async data => {
+      await this.props.handleNewQuestionAnswered(data.question);
+
+      this.setState({ displayNewQuestion: true });
+    });
+  }
+
+  handleDisplayNewQuestion = () => {
+    this.setState({
+      displayNewQuestion: false
+    });
+
+    window.scrollTo({top: 0, behavior: 'smooth'});
   }
   handleClickLike = (id, index) => {
     this.props.clickLikeQuestion(id, index);
@@ -92,6 +118,9 @@ class PatientBoard extends Component {
         />
         <div className="containerDiv">
           <Options />
+          {this.state.displayNewQuestion && <div className="new-answers" onClick={this.handleDisplayNewQuestion}>
+            See new answers
+          </div>}
           <Grid centered columns={2} stackable>
             <Grid.Column>
               {/*    <Rail position='left'>
@@ -156,7 +185,8 @@ const mapDispatchToProps = dispatch =>
       resetSearchResult,
       setSearchTerm,
       postQuestion,
-      clickLikeQuestion
+      clickLikeQuestion,
+      handleNewQuestionAnswered,
     },
     dispatch
   );

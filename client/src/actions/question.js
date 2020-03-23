@@ -12,7 +12,8 @@ import {
   DISMISS_MESSAGE,
   LIKE_QUESTION_SUCCESS,
   DELETE_QUESTION_SUCCESS,
-  SET_ANSWERS_BY_QUESTION
+  SET_ANSWERS_BY_QUESTION,
+  NEW_QUESTION_ANSWERED
 } from '../constants/ActionTypes'
 
 import config from '../config'
@@ -115,6 +116,13 @@ export const setAnswerForQuestion = (idx, answers) => ({
 export const resetSearchResult = () => ({
   type: RESET_SEARCH_RESULT
 })
+
+export const handleNewQuestionAnswered = (question) => dispatch => {
+  dispatch({
+    type: NEW_QUESTION_ANSWERED,
+    question
+  })
+}
 
 export const fetchQuestions = () => {
   return dispatch => {
