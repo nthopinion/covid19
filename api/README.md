@@ -28,4 +28,11 @@ Start the app
 
 ```
 $ npm start
+
+
+To View Swagger documentation:
+
+[http://localhost:8000/api-docs](http://localhost:8000/api-docs) 
+
+
 ```

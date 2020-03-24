@@ -1,152 +1,153 @@
-import React, { Component } from 'react'
-import Dropzone from './Dropzone'
-import '../styles/FileUpload.css'
-import Progress from './Progress'
-import config from '../config'
+import React, { Component } from 'react';
+import Dropzone from './Dropzone';
+import '../styles/FileUpload.css';
+import Progress from './Progress';
+import config from '../config';
 
 class Upload extends Component {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
       files: [],
       uploading: false,
       uploadProgress: {},
-      successfullUploaded: false
-    }
+      successfullUploaded: false,
+    };
 
-    this.onFilesAdded = this.onFilesAdded.bind(this)
-    this.uploadFiles = this.uploadFiles.bind(this)
-    this.sendRequest = this.sendRequest.bind(this)
-    this.renderActions = this.renderActions.bind(this)
+    this.onFilesAdded = this.onFilesAdded.bind(this);
+    this.uploadFiles = this.uploadFiles.bind(this);
+    this.sendRequest = this.sendRequest.bind(this);
+    this.renderActions = this.renderActions.bind(this);
   }
 
-  onFilesAdded (files) {
-    this.setState(prevState => ({
-      files: prevState.files.concat(files)
-    }))
+  onFilesAdded(files) {
+    this.setState((prevState) => ({
+      files: prevState.files.concat(files),
+    }));
   }
 
-  async uploadFiles () {
-    this.setState({ uploadProgress: {}, uploading: true })
-    const promises = []
-    this.state.files.forEach(file => {
-      promises.push(this.sendRequest(file))
-    })
+  async uploadFiles() {
+    this.setState({ uploadProgress: {}, uploading: true });
+    const promises = [];
+    this.state.files.forEach((file) => {
+      promises.push(this.sendRequest(file));
+    });
     try {
-      await Promise.all(promises)
+      await Promise.all(promises);
 
-      this.setState({ successfullUploaded: true, uploading: false })
+      this.setState({ successfullUploaded: true, uploading: false });
     } catch (e) {
       // Not Production ready! Do some error handling here instead...
-      this.setState({ successfullUploaded: true, uploading: false })
+      this.setState({ successfullUploaded: true, uploading: false });
     }
   }
 
-  sendRequest (file) {
+  sendRequest(file) {
     return new Promise((resolve, reject) => {
-      const req = new XMLHttpRequest()
+      const req = new XMLHttpRequest();
 
-      req.upload.addEventListener('progress', event => {
+      req.upload.addEventListener('progress', (event) => {
         if (event.lengthComputable) {
-          const copy = { ...this.state.uploadProgress }
+          const copy = { ...this.state.uploadProgress };
           copy[file.name] = {
             state: 'pending',
-            percentage: (event.loaded / event.total) * 100
-          }
-          this.setState({ uploadProgress: copy })
+            percentage: (event.loaded / event.total) * 100,
+          };
+          this.setState({ uploadProgress: copy });
         }
-      })
+      });
 
-      req.upload.addEventListener('load', event => {
-        const copy = { ...this.state.uploadProgress }
-        copy[file.name] = { state: 'done', percentage: 100 }
-        this.setState({ uploadProgress: copy })
-        resolve(req.response)
-      })
+      req.upload.addEventListener('load', () => {
+        const copy = { ...this.state.uploadProgress };
+        copy[file.name] = { state: 'done', percentage: 100 };
+        this.setState({ uploadProgress: copy });
+        resolve(req.response);
+      });
 
-      req.upload.addEventListener('error', event => {
-        const copy = { ...this.state.uploadProgress }
-        copy[file.name] = { state: 'error', percentage: 0 }
-        this.setState({ uploadProgress: copy })
-        reject(req.response)
-      })
+      req.upload.addEventListener('error', () => {
+        const copy = { ...this.state.uploadProgress };
+        copy[file.name] = { state: 'error', percentage: 0 };
+        this.setState({ uploadProgress: copy });
+        reject(req.response);
+      });
 
-      const formData = new FormData()
-      formData.append('file', file, file.name)
-      console.log(file, file.name)
-      req.open('POST', `${config.domainURL}/upload`)
-      req.send(formData)
-    })
+      const formData = new FormData();
+      formData.append('file', file, file.name);
+      req.open('POST', `${config.domainURL}/upload`);
+      req.send(formData);
+    });
   }
 
-  renderProgress (file) {
-    const uploadProgress = this.state.uploadProgress[file.name]
+  renderProgress(file) {
+    const uploadProgress = this.state.uploadProgress[file.name];
     if (this.state.uploading || this.state.successfullUploaded) {
       return (
-        <div className='ProgressWrapper'>
+        <div className="ProgressWrapper">
           <Progress progress={uploadProgress ? uploadProgress.percentage : 0} />
           <img
-            className='CheckIcon'
-            alt='done'
-            src='baseline-check_circle_outline-24px.svg'
+            className="CheckIcon"
+            alt="done"
+            src="baseline-check_circle_outline-24px.svg"
             style={{
               opacity:
-                uploadProgress && uploadProgress.state === 'done' ? 0.5 : 0
+                uploadProgress && uploadProgress.state === 'done' ? 0.5 : 0,
             }}
           />
         </div>
-      )
+      );
     }
+
+    return null;
   }
 
-  renderActions () {
+  renderActions() {
     if (this.state.successfullUploaded) {
       return (
         <button
           onClick={() =>
-            this.setState({ files: [], successfullUploaded: false })}
+            this.setState({ files: [], successfullUploaded: false })
+          }
         >
           Clear
         </button>
-      )
-    } else {
-      return (
-        <button
-          disabled={this.state.files.length < 0 || this.state.uploading}
-          onClick={this.uploadFiles}
-        >
-          Upload
-        </button>
-      )
+      );
     }
+    return (
+      <button
+        disabled={this.state.files.length < 0 || this.state.uploading}
+        onClick={this.uploadFiles}
+      >
+        Upload
+      </button>
+    );
   }
 
-  render () {
+  render() {
     return (
-      <div className='Upload'>
-        <span className='Title'>Upload Files</span>
-        <div className='Content'>
-          <form enctype='multipart/form-data'>
+      <div className="Upload">
+        <span className="Title">Upload Files</span>
+        <div className="Content">
+          <form encType="multipart/form-data">
             <Dropzone
               onFilesAdded={this.onFilesAdded}
               disabled={this.state.uploading || this.state.successfullUploaded}
             />
           </form>
-          <div className='Files'>
-            {this.state.files.map(file => {
+          <div className="Files">
+            {this.state.files.map((file) => {
               return (
-                <div key={file.name} className='Row'>
-                  <span className='Filename'>{file.name}</span>
+                <div key={file.name} className="Row">
+                  <span className="Filename">{file.name}</span>
                   {this.renderProgress(file)}
                 </div>
-              )
+              );
             })}
           </div>
         </div>
-        <div className='Actions'>{this.renderActions()}</div>
+        <div className="Actions">{this.renderActions()}</div>
       </div>
-    )
+    );
   }
 }
 
-export default Upload
+export default Upload;

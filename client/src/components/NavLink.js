@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import { Button } from "semantic-ui-react";
+import React, { Component } from 'react';
+import { Button } from 'semantic-ui-react';
 
-import styles from "../styles/NavLink.css";
+import styles from '../styles/NavLink.css';
 
 class NavMenu extends Component {
   constructor() {
     super();
 
     this.state = {
-      showMenu: false
+      showMenu: false,
     };
 
     this.showMenu = this.showMenu.bind(this);
@@ -19,13 +19,13 @@ class NavMenu extends Component {
     event.preventDefault();
 
     this.setState({ showMenu: true }, () => {
-      document.addEventListener("click", this.closeMenu);
+      document.addEventListener('click', this.closeMenu);
     });
   }
 
   closeMenu() {
     this.setState({ showMenu: false }, () => {
-      document.removeEventListener("click", this.closeMenu);
+      document.removeEventListener('click', this.closeMenu);
     });
   }
 
@@ -33,18 +33,17 @@ class NavMenu extends Component {
     return (
       <div>
         <Button id="menu" class="ui icon button" onClick={this.showMenu}>
-          {" "}
+          {' '}
           <i
-            class={`bars icon ${this.props.lightMenu ? "light" : ""}`}
+            className={`bars icon ${this.props.lightMenu ? 'light' : ''}`}
             onClick={this.showMenu}
-          ></i>
+          />
         </Button>
 
         {this.state.showMenu ? (
           <div className="menu">
             <div
-              className={styles.NavLink}
-              class="ui visible right demo vertical sidebar labeled icon menu"
+              className={`ui visible right demo vertical sidebar labeled icon menu ${styles.NavLink}`}
             >
               <nav>
                 <ul>
@@ -87,13 +86,12 @@ class NavMenu extends Component {
                 </ul>
                 <Button
                   id="sponsors"
-                  color="#304FFE"
                   href="https://about.covid19webapp.com/sponsors/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {" "}
-                  Our Sponsors{" "}
+                  {' '}
+                  Our Sponsors{' '}
                 </Button>
               </nav>
             </div>

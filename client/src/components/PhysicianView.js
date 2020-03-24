@@ -1,51 +1,36 @@
-import React, { Component, createRef } from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import NavMenu from "./NavLink";
+import { Menu, Button, Message, Grid } from 'semantic-ui-react';
+import NavMenu from './NavLink';
 
-import {
-  Menu,
-  Button,
-  Form,
-  Message,
-  Card,
-  Grid,
-  Icon
-} from "semantic-ui-react";
-import AuthProvider from "../AuthProvider";
+import AuthProvider from '../AuthProvider';
 import {
   fetchUnansweredQuestions,
   deleteQuestion,
-  fetchQuestions
-} from "../actions";
-import AnswerForm from "../components/AnswerForm";
+  fetchQuestions,
+} from '../actions';
+import AnswerForm from './AnswerForm';
 
-import CardLeftPanel from "../components/CardLeftPanel";
-import "../styles/QuestionBoard.css";
-import config from "../config";
+import '../styles/QuestionBoard.css';
 
 class PhysicianView extends Component {
-  state = { showUnaswered: true };
   constructor(props) {
     super(props);
+    this.state = { showUnaswered: true };
   }
 
   componentDidMount() {
-    const { dispatch } = this.props;
     this.props.fetchUnansweredQuestions();
     this.props.fetchQuestions();
   }
 
   handleToggleView(showUnaswered) {
-    this.setState({ showUnaswered: showUnaswered });
+    this.setState({ showUnaswered });
   }
 
   render() {
-    console.log(
-      "this.props.unansweredQuestions",
-      this.props.unansweredQuestions
-    );
     return (
       <>
         <NavMenu />
@@ -54,7 +39,7 @@ class PhysicianView extends Component {
             <Menu.Menu position="right">
               {this.props.account && (
                 <Menu.Item
-                  active={true}
+                  active
                   name="logout"
                   onClick={this.props.onSignOut}
                 />
@@ -89,8 +74,8 @@ class PhysicianView extends Component {
                 <Message.Header>
                   You must register/signin before you can do that!
                 </Message.Header>
-                <p></p>
-                <Button active={true} onClick={this.props.onSignIn}>
+                <p />
+                <Button active onClick={this.props.onSignIn}>
                   Signin
                 </Button>
               </Message>
@@ -103,7 +88,7 @@ class PhysicianView extends Component {
               </Message>
             )}
           </section>
-          <section className="data"></section>
+          <section className="data" />
           <div>
             <Grid centered columns={2} stackable>
               <Grid.Column>
@@ -137,20 +122,19 @@ class PhysicianView extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  console.log(state);
+const mapStateToProps = (state) => {
   return {
     unansweredQuestions: state.questionBoard.unansweredQuestions,
-    questions: state.questionBoard.questions
+    questions: state.questionBoard.questions,
   };
 };
 
-const mapDispatchToProps = dispatch =>
+const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       fetchUnansweredQuestions,
       deleteQuestion,
-      fetchQuestions
+      fetchQuestions,
     },
     dispatch
   );

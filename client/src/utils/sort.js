@@ -4,7 +4,7 @@
  *
  * @param {array} questions
  */
-export const sortQuestions = questions => {
+export const sortQuestions = (questions) => {
   // Sort questions by likes and get the top 2.
   const mostLikedQuestions = questions
     .sort((a, b) => {

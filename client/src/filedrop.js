@@ -1,27 +1,29 @@
-import React from 'react'
-import DragAndDrop from '@bit/bronz3beard.react-component-collection.drag-and-drop'
+import React from 'react';
+// eslint-disable-next-line import/no-unresolved
+import DragAndDrop from '@bit/bronz3beard.react-component-collection.drag-and-drop';
 
 const handleDrop = (files) => {
-  const tempFileList = []
+  const tempFileList = [];
 
   for (let i = 0; i < files.length; i++) {
-    const file = files[i]
+    const file = files[i];
     if (!file.name) {
-      return
+      return;
     }
-    alert(file.name)
-    tempFileList.push(file)
+    // eslint-disable-next-line no-alert
+    alert(file.name);
+    tempFileList.push(file);
   }
-}
+};
 
 export default (
   <DragAndDrop handleDrop={handleDrop}>
     <div
-      type='file'
-      name='files'
-      accept='image/*'
+      type="file"
+      name="files"
+      accept="image/*"
       multiple
       style={{ height: `${300}px`, width: `${500}px` }}
     />
   </DragAndDrop>
-)
+);

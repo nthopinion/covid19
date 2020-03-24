@@ -34,16 +34,11 @@
     "answers": [
       "Coronaviruses are a large family of viruses which may cause illness in animals or humans.  In humans, several coronaviruses are known to cause respiratory infections ranging from the common cold to more severe diseases such as Middle East Respiratory Syndrome (MERS) and Severe Acute Respiratory Syndrome (SARS). The most recently discovered coronavirus causes coronavirus disease COVID-19."
     ],
-    "links": [
-      "https://www.who.int/news-room/q-a-detail/q-a-coronaviruses"
-    ],
+    "links": ["https://www.who.int/news-room/q-a-detail/q-a-coronaviruses"],
     "images": [
       "https://dynaimage.cdn.cnn.com/cnn/c_fill,g_auto,w_1200,h_675,ar_16:9/https%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F200131121336-01-washington-coronavirus-patient-lungs.jpg"
     ],
-    "tags": [
-      "coronavirus",
-      "MERS"
-    ],
+    "tags": ["coronavirus", "MERS"],
     "date": 1583622485557,
     "answered": true,
     "id": "10e75ad0-1fae-4198-b5cd-0bf2a4a6e1b4",
@@ -59,10 +54,7 @@
     "answers": [
       "It is not certain how long the virus that causes COVID-19 survives on surfaces, but it seems to behave like other coronaviruses. Studies suggest that coronaviruses (including preliminary information on the COVID-19 virus) may persist on surfaces for a few hours or up to several days. This may vary under different conditions (e.g. type of surface, temperature or humidity of the environment).If you think a surface may be infected, clean it with simple disinfectant to kill the virus and protect yourself and others. Clean your hands with an alcohol-based hand rub or wash them with soap and water. Avoid touching your eyes, mouth, or nose."
     ],
-    "tags": [
-      "coronavirus",
-      "MERS"
-    ],
+    "tags": ["coronavirus", "MERS"],
     "youtubeLinks": [
       {
         "video": "fhwGca6ZT-w"
@@ -83,9 +75,7 @@
     "answers": [
       "COVID-19 is the infectious disease caused by the most recently discovered coronavirus. This new virus and disease were unknown before the outbreak began in Wuhan, China, in December 2019.."
     ],
-    "tags": [
-      "COVID-19"
-    ],
+    "tags": ["COVID-19"],
     "date": 1583622485557,
     "answered": true,
     "id": "0343b45c-5e60-476d-bb63-a405d7692346",
@@ -135,10 +125,7 @@
     "answers": [
       "Combined effort from a team of research scientists from various institutes in China first published 10 genomic sequences from nine patients. It was provisionally named 2019 novel coronavirus (2019-nCoV). The ten genome sequences of 2019-nCoV were extremely similar exhibiting more than 99.98% sequence similarity. These sequences were more distinct from SARS-CoV and MERS-CoV. However, homology modelling revealed that 2019-nCoV had a similar receptor-binding domain structure to that of the SARS-CoV. The research was funded by the National Key Research and Development Program of China, National Major Project for Control and Prevention of Infectious Disease in China, Chinese Academy of Sciences, Shandong First Medical University."
     ],
-    "tags": [
-      "coronavirus",
-      "Covid19"
-    ],
+    "tags": ["coronavirus", "Covid19"],
     "date": 1583636946127,
     "answered": true,
     "id": "307fa86e-73c6-46f0-88ca-c490b99cb7cd",
@@ -154,12 +141,7 @@
     "answers": [
       "Therapy consists of supportive care while a variety of investigational approaches are being explored including antiviral medication lopinavir-ritonavir, interferon-1β, the RNA polymerase inhibitor remdesivir, chloroquine and a variety of Traditional Chinese medicine products. In the state of Washington, use of remdesivir in the first confirmed case in the United States was described in the New England Journal of Medicine."
     ],
-    "tags": [
-      "COVID19",
-      "therapy",
-      "antiviral",
-      "remdesivir"
-    ],
+    "tags": ["COVID19", "therapy", "antiviral", "remdesivir"],
     "date": 1583637826931,
     "answered": true,
     "id": "52e8c40a-ff18-4e0e-a67e-66f58677f2b8",
@@ -186,12 +168,7 @@
     "answers": [
       "The total number of deaths reported by Public Health is now 15 cases in Seattle and the King County area.  Of the 15 deaths reported, 14 are associated with Life Care Center."
     ],
-    "tags": [
-      "death",
-      "COVID-19",
-      "seattle",
-      "king county"
-    ],
+    "tags": ["death", "COVID-19", "seattle", "king county"],
     "date": 1583641238552,
     "answered": true,
     "id": "16da9bf7-ac56-47dc-ad84-a193766acc9a",
@@ -207,12 +184,7 @@
     "answers": [
       "The total number of deaths reported by Public Health is now 17 cases in Seattle and the King County area as of Saturday 3/7/20.  Of the 17 deaths reported, 14 are associated with Life Care Center."
     ],
-    "tags": [
-      "death",
-      "COVID-19",
-      "seattle",
-      "king county"
-    ],
+    "tags": ["death", "COVID-19", "seattle", "king county"],
     "date": 1583641465775,
     "answered": true,
     "id": "cd368334-c46a-4d95-bd4e-8455dab9d652",
@@ -243,11 +215,7 @@
     "answers": [
       "It is located in Vancouver, British Columbia, Canada. The clinic address is 916 W King Edward Ave. Vancouver. BC. V5Z 2E2."
     ],
-    "tags": [
-      "Wellspring",
-      "Holistic",
-      "Traditional Chinese Medicine"
-    ],
+    "tags": ["Wellspring", "Holistic", "Traditional Chinese Medicine"],
     "date": 1583645747601,
     "answered": true,
     "id": "7b587653-5c4e-4e2f-979e-ed92a37b2eac",
@@ -325,10 +293,7 @@
     "answers": [
       "Dr. Weidong Yu, TCMD, R.Ac., Bachelors of Medicine (China), MPH (Belgium), is a graduate from Shandong College of Traditional Chinese Medicine in 1983, where he studied both Traditional Chinese Medicine and western medicine for five years, to earn a Bachelor of Medicine degree. In 1991, he earned a Master's degree in Public Health from the School of Public Health, Free University of Brussels, Belgium. Dr. Yu practiced both Traditional Chinese Medicine and western medicine at Binzhou Medical College Hospital as a resident physician. He also worked as an Assistant Research Fellow at the China Academy of Traditional Chinese Medicine in Beijing, the best research institute in Chinese medicine in China. He also practiced Traditional Chinese Medicine in Belgium, the United States and Canada. He is the author of more than 30 publications in both Chinese and English medical literature, and lectures internationally. He is a licensed Acupunturist in the State of California, United States and a Registered Doctor of Traditional Chinese Medicine in the providence of British Columbia, Canada."
     ],
-    "tags": [
-      "yu",
-      "biography"
-    ],
+    "tags": ["yu", "biography"],
     "date": 1583645843290,
     "answered": true,
     "id": "65367bfa-d611-4e6f-bea5-bb86e631d1c7",
@@ -344,10 +309,7 @@
     "answers": [
       "Please go to our website to book appointments online.  https://tcmrp.com/appointment-online/."
     ],
-    "tags": [
-      "Yu",
-      "questions"
-    ],
+    "tags": ["Yu", "questions"],
     "date": 1583645843290,
     "answered": true,
     "id": "a1c35f97-3004-4321-9acb-4f26db7d151d",
@@ -362,10 +324,7 @@
     "answers": [
       "I use acupuncture and herbal medicine to help RP patients, they need come to our clinic for 10 days of treatment and bring back 3 months supply of herbal medicine. The cost for treatment is $6000 USD dollars for a 10 days program. And the home treatment program will be 600.00 USD up to 1000.00 USD per month supply. Most patients need come back every 3 to 4 months in order to further advance the improvement. Most patients may need 6 to 8 programs to get vision stabilized. We can do some price adjustment if you pay in advance for two or three times."
     ],
-    "tags": [
-      "Yu",
-      "questions"
-    ],
+    "tags": ["Yu", "questions"],
     "date": 1583645843289,
     "answered": true,
     "id": "0e05db8f-5939-44fd-9c4f-35f6fba4af04",
@@ -380,10 +339,7 @@
     "answers": [
       "For the visa issue, I think the best way is that try to come here as tourist, ask a local travel agency to help you."
     ],
-    "tags": [
-      "Yu",
-      "questions"
-    ],
+    "tags": ["Yu", "questions"],
     "date": 1583645843289,
     "answered": true,
     "id": "c60ec300-32fd-4c29-9704-a2a003e5bd14",
@@ -398,10 +354,7 @@
     "answers": [
       "There are no organisations that I know of currently.  However we recommend continuing with research and searching online for further information"
     ],
-    "tags": [
-      "Yu",
-      "question"
-    ],
+    "tags": ["Yu", "question"],
     "date": 1583645843289,
     "answered": true,
     "id": "bc548cad-33e6-4e0b-b298-e701ff58968e",
@@ -417,9 +370,7 @@
     "answers": [
       "The prevalence is about 1 in 4000 individuals. There are 1.5 million people presented affected by Retinitis Pigmentosa around the world. In western countries, Retinitis Pigmentosa is the most common cause of blindness in people under the age of 70"
     ],
-    "tags": [
-      "Retinitis Pigmentosa"
-    ],
+    "tags": ["Retinitis Pigmentosa"],
     "date": 1583645843289,
     "answered": true,
     "id": "1769b676-09cb-486c-9ca2-5d899703849a",
@@ -435,10 +386,7 @@
     "answers": [
       "Here is the direct link for eye exercise:  http://tcmrp.com/course/    Username: patient    Password: Wellspring3443 (no space)   please do it two to three times per day."
     ],
-    "tags": [
-      "Yu",
-      "questions"
-    ],
+    "tags": ["Yu", "questions"],
     "date": 1583645843289,
     "answered": true,
     "id": "cc82bff7-12ca-4a41-9911-c2b4eb812aa3",
@@ -453,9 +401,7 @@
     "answers": [
       "The Wellspring Clinic has designed the following program.  The program has two phases.  Phase 1: You will travel and stay in Vancouver for 6 to 10 days during which time you will receive 18-30 Acupunture treatments.  Phase 2: Wellspring Clinic will provide a 3 month-supply of your specific herbal recipe to take back home with you. These must be taken daily in the form of a tea.  After the 3 month course is completed, you will be advised to undergo an eye exam and visual field test by your specialist.  Then, the cycle starts again and you travel back to Vancover to start the next round treatment."
     ],
-    "tags": [
-      "Wellspring Vision Improvement Program"
-    ],
+    "tags": ["Wellspring Vision Improvement Program"],
     "date": 1583645843289,
     "answered": true,
     "id": "e8c38e06-46d2-4a68-ba77-61073d83a323",
@@ -470,10 +416,7 @@
     "answers": [
       "According to Traditional Chinese Medicine, vision of the eyes is dependent on the continuous supply of blood from the liver and Yang energy from the spleen.  The blood nourishes the eye and keeps its physical integrity. The Yang energy enables the eye to see things.  In a normal healthy individual, Nature's Yang energy rises during the day; the body's Yang energy also rises following Nature's pattern, which enables eyes to see better because of increased supply of Yang's energy. At night Nature's Yang energy goes down, and the body's Yang energy follows - leading the eyes to see things less clearly at night. Most patients with Retinitis Pigmentosa are deficient in Yang energy. When the body's Yang energy is lowered at night, people with deficient Yang energy will have more difficulty seeing things - leading to night blindness. As the Yang energy continues to decline, the patient's vision will decline resulting in loss of day time vision and eventually blindness. However there are other mechanisms for vision loss in retinitis pigmentosa including liver blood deficiency which results in a secondary decrease in the Yang energy of the spleen. The liver blood deficiency could affect the physical integrity of the eyes, resulting in visual impairment."
     ],
-    "tags": [
-      "yu",
-      "questions"
-    ],
+    "tags": ["yu", "questions"],
     "date": 1583645843290,
     "answered": true,
     "id": "faf110f1-919b-40a8-8dae-647ab9c5a530",
@@ -488,10 +431,7 @@
     "answers": [
       "Our clinic to airport just 20 minutes away, taxi cost 20 to 30 dollars. we just have one international airport in Vancouver, it is called YVR."
     ],
-    "tags": [
-      "Yu",
-      "questions"
-    ],
+    "tags": ["Yu", "questions"],
     "date": 1583645843290,
     "answered": true,
     "id": "089fd964-a5ed-4658-b291-f6b5e9284a38",
@@ -506,10 +446,7 @@
     "answers": [
       "At this condition, we do have chance to help you to improve your vision.  If you still have pretty good central vision, our program could help a lot. actually now almost every week we do have RP patients come from all over the world, as our clinic is one of the best centers in the world, which is specialized in treating RP.I have treated more than 900 cases of RP since 1999.More than 85% of our patients have positive result from the treatment. Before you come here, you can go to our website www.tcmrp.com to purchase the eye exercise at 87.00 dollars."
     ],
-    "tags": [
-      "Yu",
-      "questions"
-    ],
+    "tags": ["Yu", "questions"],
     "date": 1583645843289,
     "answered": true,
     "id": "4e1956db-38ff-45ed-bbee-084febf14fcd",
@@ -524,10 +461,7 @@
     "answers": [
       "The Wellspsring Vision Improvement Protocol (WVIP) consists of acupunture, Chinese herbal medicine, and antioxidant supplementation.  The experience of the Wellspring Clinic is favorable with some consistent improvement in patients with Retinitis Pigmentosa. As an example, one our patients presented initially with complete inability to see at night and was unable to navigate in the dark before treatment. After 3 months of treatment she regained her ability to see at night allowing her to be able to not only walk but also to drive at night. At 11 months of treatment, she could walk in her house without turning on the light."
     ],
-    "tags": [
-      "yu",
-      "questions"
-    ],
+    "tags": ["yu", "questions"],
     "date": 1583645843290,
     "answered": true,
     "id": "db9d02e5-2679-40af-9130-1050b45e399d",
@@ -542,10 +476,7 @@
     "answers": [
       "The eye is one of the most vulnerable organs of the body to oxidative damage from free radicals. Thus, it has been believed that antioxidants would benefit the eye by protection against further free radical damage.  The current regimen at the Wellspring Clinic is a daily regimen."
     ],
-    "tags": [
-      "yu",
-      "questions"
-    ],
+    "tags": ["yu", "questions"],
     "date": 1583645843290,
     "answered": true,
     "id": "5e77e531-5dc0-4292-ab44-a89b46ea3ef1",
@@ -560,10 +491,7 @@
     "answers": [
       "Coronaviruses are a group of common viruses.  They are named for the spikes on the surface of the virus oriented in the shape of a crown. Coronaviruses (CoV) primarily cause infections in birds and mammals but, in the last few decades, have demonstrated the capability to cross the species barrier and cause human infections as well. Human coronaraviruses cause respiratory illnesses. Several outbreaks have demonstrated its severity in causing human morbidity and mortality include the severe acute respiratory syndrome (SARS) in 2003 and, more recently, the Middle-East respiratory syndrome (MERS) that started in 2012 and is currently still ongoing. Coronavirus disease 2019 (COVID-19) is a new type of coronavirus that causes respiratory iullness in people.  Covid-19 was recognized in December 2019 and has rapidly developed into a threat to global health in the current ongoing outbreak. Covid-19 is structurally related to SARS. Although cases were originally reported to be associated with exposure to seafood market in Wuhan, it is now clear from current epidemiologic data that virus spreads through person-to-person transmission. Based on the epidemiology studies from the epicenter of the outbreak, the city of Wuhan in Hubei province, China, the median age of the patients was 59 years with the higher morbidity and mortality among the elderly and among those with preexisting conditions.  56% of the patients were male. The estimated rate of death is challenging to obtain but ranges from < 1% to 2%.  It can be considerably lower as the number of asymptomatic or minimally symptomatic cases is several times as high as the number of reported cases given the challenges of diagnosis particularly in the early aspects of the intial ramping-up phase of the health care response to the outbreak. The efficiency of transmission of any respiratory virus is important for containment and mitigation strategies. Original studies have estimated that each Covid-19 infected patient, on average, spreads the infections to an additional two persons. Until this number falls below 1.0, it is likely that the outbreak will continue to spread and has continued to spread to many countries around the world. Recent reports of high titres of virus in the oropharynx early in the course of disease suggests increased infectivity during the period of minimal symptoms."
     ],
-    "tags": [
-      "coronavirus",
-      "Covid19"
-    ],
+    "tags": ["coronavirus", "Covid19"],
     "date": 1583645843290,
     "answered": true,
     "id": "54ee74d9-4ae7-4e59-9c9b-3fa41bcbc3c9",
@@ -578,9 +506,7 @@
     "answers": [
       "There is currently no effective treatment for Retinitis Pigmentosa. In the past, many treatments have been empirically tried on Retinitis Pigmentosa with limited success.  These included diet modifications such as restriction food rich in phytannic acid (animal fat and dairy products) and phytol (green leafy vegetables) for Refsum disease; low protein (arginine) diet for gyrate atrophy. Nutritional supplements: vitamin A, vitamin E, B-carotene, vitamin B6, vitamin B complex, essential fatty acids, lutein, digestive enzymes, amino acids, coenzyme Q10. Ultrasound and electrical stimulation has been tried.  Surgical procedures have been tried including cervical sympathectomy, muscle transplants, injection of plancental extracts, fetal neuroretinal cell transplantation, retinal pigment epithelium transplantation. The pharmeutical therapies include steroids, vasodilators, methyl sulfoxide.  Immunotherapy has been tried.  Application of growth factors and cytokines for Retinitis Pigmentosa treatment is still in its experimental stage. Gene therapy may be the answer for the treatment. It will be years before the first clinical trials of these methods are performed on hummans. In contrast, in China, medical researchers have conducted clnical research on the effectiveness of Traditional Chinese Medicine on Retinitis Pigmentosa since the 1960. Acupuncture and chinese herbal medicine was used in this research. The research has demonstrated some very positive findings in patients with Retinitis Pigmentosa including improvements in visual acuity, and expansion of the visual field. Results from electroretinogram studies demonstrated increases of amplitude of summed OP and improvements of the 30Hz flicker index response times. An Australian research study has repeatedly demonstrated that acupunture treatment can lead to marked increase of blood velocity in the supratrochlear artery in a RP patient. Although the effectiveness of Traditional Chinese Medicine remains to be established with further clinical trials, it is a valuable treatment option to be explored or tried by Retinitis Pigmentosa patients."
     ],
-    "tags": [
-      "Retinitis Pigmentosa"
-    ],
+    "tags": ["Retinitis Pigmentosa"],
     "date": 1583645843289,
     "answered": true,
     "id": "87aefa8f-9ada-4384-af83-643e7b8985f1",
@@ -595,11 +521,7 @@
     "answers": [
       "Tianyu Zhang, Bachelors of Medicine (China), MPH (Belgium), R. AC. (B.C., Canada), L. Ac. (California, USA), graduated from Anhui College of Traditional Chinese Medicine (TCM) in 1985, where she studied both TCM and Western Medicine for five years to earn her Bachelor of Medicine. In 1992, she earned a Master Degree in Public Health from Faculte de Medecine, Univeriste Libre de Bruxelles (ULB). She is a licensed Acupuncturist in the state of California, USA and a Registered Acupuncturist in the Province of British Columbia, Canada.  She has been working with Dr. Weidong Yu in the field of Retinitis Pigmentosa since 1999."
     ],
-    "tags": [
-      "yu",
-      "Zhang",
-      "biography"
-    ],
+    "tags": ["yu", "Zhang", "biography"],
     "date": 1583645843290,
     "answered": true,
     "id": "bc561541-b29f-475a-ba2f-3c80a3c82876",
@@ -614,11 +536,7 @@
     "answers": [
       "The first confirmed case of Covid-19 infection in the United States was reported on January 20,2020.  The patient is a 35-year-old man who presented to an urgent care clinic in Snohomish County, Washington, with a 4-day history of cough and subjective fever. He had returned to Washington State on January 15 after traveling to visit family in Wuhan, China. He had not spent time at the Huanan seafood market and reported no known contact with ill persons during his travel to China. Together with the urgent care clinician, the Washington Department of Health notified the CDC Emergency Operations Center. On January 20, 2020 the CDC confirmed that the patient tested positive for the Covid-19 but real-time reverse-transcriptase-PCR assay.  In coordination with CDC, state and local health officials, emergency medical services, and hospital leadership and staff, the patient was admitted to an airborne-isolation unit at Providence Regional Medical Center for clinical observations, with health care workers following CDC recommendations for contact, droplet , and airborne precautions with eye protection. The patient's medical history only had hypertriglyceridemia and no other past medical history. The patients hospital course consisted of persistent dru cough and a 2-day history of nausea and vomiting.  From day 2 through 5 of hospitalization, the patient's vital signs remained largely stable, apart from the development of intermittent fevers accompanied by periods of tachycardia.  On day 2, the patient passed loose bowerl movements and reported abdominal discomfort.  Stool samples, nasopharyngeal and oropharyngeal specimens as well as serum were collected for rRT-PCR which all tested positive for Covid-19 except for the serum which remained negative. The treatment remained largely supportive consisting of acetaminophen and ibuprofen and 6 liters of normal saline over the first 6 days of hospitalization. Laboratories revealed a slight reduction of white blood cell count, and increase in platelets and creatine kinase. Two chest xrays were taken and the second chest xray on the night of hospital day 5 (illness day 9) showed evidence of lower lobe pneumonia in the left lung which coincided with a change in clinical status with initiation of supplemental oxygen and antibiotics for hospital acquired antibiotics. On day 6, a fourth chest Xray showed basilar streaky opacities in both lungs, a finding consistent with atypical pneumonia. Given the clinical status, clinicians persued compassionate  of an investigational antiviral therapy.  He was treated with intravenous remdesivir (a novel nucleotide analogue prodrug in development) on the evening of day 7.  He tolerated the medication without adverse events. Antibiotics were discontinued on day 7. By day 8, the patient's clinical condition improved and his supplemental oxygen was discontinued.  The full genome sequences from the patients oropharyngeal and nasopharyngeal specimens were identical to one another and were nearly identical to other available Covid-19 sequences.  "
     ],
-    "tags": [
-      "Convid19",
-      "coronavirus",
-      "united states"
-    ],
+    "tags": ["Convid19", "coronavirus", "united states"],
     "date": 1583645843290,
     "answered": true,
     "id": "e22e3218-9541-4820-9562-7575e307f317",
@@ -633,12 +551,7 @@
     "answers": [
       "In February 2020, the World Health Organization designated COVID-19 as the disease that is caused by the coronavirus disease 2019. The virus that causes COVID-19 is designated severe acute respiratory syndrome coronavirus 2, SARS-COV-2."
     ],
-    "tags": [
-      "COVID-19",
-      "coronavirus",
-      "SARS-CoV-2",
-      "2019-nCoV"
-    ],
+    "tags": ["COVID-19", "coronavirus", "SARS-CoV-2", "2019-nCoV"],
     "date": 1583645843290,
     "answered": true,
     "id": "e20df058-296d-4fad-8d69-ed2e23ff986e",
@@ -650,13 +563,8 @@
   },
   {
     "title": "Canada is too far from where I'm living (i.e. India), how else can I receive your treatment?",
-    "answers": [
-      "We do have a center in Shanghai, China."
-    ],
-    "tags": [
-      "yu",
-      "questions"
-    ],
+    "answers": ["We do have a center in Shanghai, China."],
+    "tags": ["yu", "questions"],
     "date": 1583645843290,
     "answered": true,
     "id": "3a5a377e-e991-49ed-b5bf-396e81ee3ad2",
@@ -671,10 +579,7 @@
     "answers": [
       "For the accommodation, Holiday Inn and Park Inn suite on Broadway, Vancouver are all very close to our clinic. Walking takes about 30 minutes, also，you can go to airbnb.com to find some cheap one by yourself，some of our patients find a pretty good deal through it."
     ],
-    "tags": [
-      "Yu",
-      "questions"
-    ],
+    "tags": ["Yu", "questions"],
     "date": 1583645843289,
     "answered": true,
     "id": "e5ef9def-7fff-4233-a5a6-4fd219766fdb",
@@ -689,10 +594,7 @@
     "answers": [
       "The Wellspring Clinic has formulated a proprietary herbal formula called Guang Ming for the treatment of Retinitis Pigmentosa. The Guang Ming formula contains 18 herbal ingredients.  It is modified to meet each individual patient's needs."
     ],
-    "tags": [
-      "yu",
-      "questions"
-    ],
+    "tags": ["yu", "questions"],
     "date": 1583645843290,
     "answered": true,
     "id": "af941b1f-59a7-4cbb-b76b-62e537613687",
@@ -707,10 +609,7 @@
     "answers": [
       "Sure, Please contact us at +1 604-737-7876 or email us by wellspring2828@gmail.com if you have any questions!"
     ],
-    "tags": [
-      "Yu",
-      "questions"
-    ],
+    "tags": ["Yu", "questions"],
     "date": 1583645843290,
     "answered": true,
     "id": "360602c9-c2ab-47ea-a12d-9d4e3756ef3b",
@@ -725,10 +624,7 @@
     "answers": [
       "Combined effort from a team of research scientists from various institutes in China first published 10 genomic sequences from nine patients. It was provisionally named 2019 novel coronavirus (2019-nCoV). The ten genome sequences of 2019-nCoV were extremely similar exhibiting more than 99.98% sequence similarity. These sequences were more distinct from SARS-CoV and MERS-CoV. However, homology modelling revealed that 2019-nCoV had a similar receptor-binding domain structure to that of the SARS-CoV. The research was funded by the National Key Research and Development Program of China, National Major Project for Control and Prevention of Infectious Disease in China, Chinese Academy of Sciences, Shandong First Medical University."
     ],
-    "tags": [
-      "coronavirus",
-      "Covid19"
-    ],
+    "tags": ["coronavirus", "Covid19"],
     "date": 1583645843290,
     "answered": true,
     "id": "53212c84-fa7c-472f-a482-595279de6c30",
@@ -744,11 +640,7 @@
     "answers": [
       "Dr. Li Wenliang died at the age of 34. On December 30th, 2019. DR. Li sent out a warning over the social media messaging app advising fellow med school grads to wear protective clothing to avoid infection after several patients from a local seafood market exhibited symptoms similar to SARS."
     ],
-    "tags": [
-      "Covid19",
-      "coronavirus",
-      "Li Wenliang"
-    ],
+    "tags": ["Covid19", "coronavirus", "Li Wenliang"],
     "date": 1583645843290,
     "answered": true,
     "id": "537ae74b-c08d-4719-9d54-3d90e9c47ed3",
@@ -763,10 +655,7 @@
     "answers": [
       "Acupuntures entails the use of very fine needles placed on the face, arms, and legs. Patients receive acupunture once a day, twice a day or 2-3 times a week, depending on the patients individual situation. At the Wellspring Clinic, each course of treatment consists of 15-20 acupuncture. It will take 1-3 months before we start the next course of treatments."
     ],
-    "tags": [
-      "yu",
-      "questions"
-    ],
+    "tags": ["yu", "questions"],
     "date": 1583645843290,
     "answered": true,
     "id": "5391911a-b345-47c1-a059-e49182ef8708",
@@ -781,10 +670,7 @@
     "answers": [
       "The main determinants in the modification of the formula of the Chinese herbal medicines is the patient's symptomatology and constitution."
     ],
-    "tags": [
-      "yu",
-      "questions"
-    ],
+    "tags": ["yu", "questions"],
     "date": 1583645843290,
     "answered": true,
     "id": "ae112534-5b2e-43ae-b11a-c665249413c7",
@@ -799,10 +685,7 @@
     "answers": [
       "The patients are given the Chinese herbal medicines to take home. At home, the herbal ingredients are boiled as a decoction drink and is taken 2-3 times per day.  One course of treatment typically lasts for 3 months."
     ],
-    "tags": [
-      "yu",
-      "questions"
-    ],
+    "tags": ["yu", "questions"],
     "date": 1583645843290,
     "answered": true,
     "id": "690e3498-2570-41af-b9f2-a50eee3f6a35",
@@ -817,9 +700,7 @@
     "answers": [
       "Therapy consists of supportive care while a variety of investigational approaches are being explored including antiviral medication lopinavir-ritonavir, interferon-1β, the RNA polymerase inhibitor remdesivir, chloroquine and a variety of Traditional Chinese medicine products. In the state of Washington, use of remdesivir in the first confirmed case in the United States was described in the New England Journal of Medicine."
     ],
-    "tags": [
-      ""
-    ],
+    "tags": [""],
     "date": 1583646006410,
     "answered": true,
     "id": "9f27c5a3-a470-4f85-979c-da59669fe980",
@@ -834,10 +715,7 @@
     "answers": [
       "The director of the National Institute of Allergy and Infectious Diseases, Anthony Fauci, MD, states that it is expected to take at least a year to a year and a half to have a vaccine we can use."
     ],
-    "tags": [
-      "vaccine",
-      "Covid-19"
-    ],
+    "tags": ["vaccine", "Covid-19"],
     "date": 1583646006410,
     "answered": true,
     "id": "11960bf9-1f1c-491f-a82a-45ef514b1282",
@@ -852,10 +730,7 @@
     "answers": [
       "Based on reports from the investigators from China, Dr. Li and his team of researchers report an average of 9 to 12.5 days between the onset of illness and hospitalization."
     ],
-    "tags": [
-      "Covid-19",
-      "hospitalization"
-    ],
+    "tags": ["Covid-19", "hospitalization"],
     "date": 1583646006410,
     "answered": true,
     "id": "93205615-1b05-4539-bad0-a9338b37f4c5",
@@ -870,12 +745,7 @@
     "answers": [
       "As of March 2, 2020, at 15:00 Cairo local time, there has been 66 deaths and 1501 COVID-19 cases. According the WHO and the health ministry spokesperson, 291 people have already been discharged from the hospitals after recovering from COVID-19"
     ],
-    "tags": [
-      "COVID-19",
-      "deaths",
-      "Tehran",
-      "iran"
-    ],
+    "tags": ["COVID-19", "deaths", "Tehran", "iran"],
     "date": 1583646006410,
     "answered": true,
     "id": "4a4b0bb3-c91c-4b2b-99ae-1464a7f41e86",
@@ -890,11 +760,7 @@
     "answers": [
       "Currently a vaccine does not exist for COVID-19.  However, the World Health Organization reports that a major effort is underway with multiple biopharmaceutical companies developing candidate vaccines targeting COVID-19 which are currently in the pre-clinical stage. Fortunately, they are not starting from scratch.  The 2003 Severe Acute Respiratory Syndrome (SARS) epidemic enabled advanced technologies to be developed that can be adapted to the COVID-19"
     ],
-    "tags": [
-      "SARS-CoV-2",
-      "COVID-19",
-      "vaccine"
-    ],
+    "tags": ["SARS-CoV-2", "COVID-19", "vaccine"],
     "date": 1583646006410,
     "answered": true,
     "id": "f60276e7-d9f9-4a40-90f1-ff600a0dba39",
@@ -906,16 +772,8 @@
   },
   {
     "title": "Where were the known COVID-19 deaths hospitalized?",
-    "answers": [
-      "EvergreenHealth and Harborview Medical Center."
-    ],
-    "tags": [
-      "hospitals",
-      "seattle",
-      "king county",
-      "COVID-19",
-      "deaths"
-    ],
+    "answers": ["EvergreenHealth and Harborview Medical Center."],
+    "tags": ["hospitals", "seattle", "king county", "COVID-19", "deaths"],
     "date": 1583646055538,
     "answered": true,
     "id": "e76910fc-2c35-4860-9f9c-0373b4159fce",
@@ -930,10 +788,7 @@
     "answers": [
       "Here is the direct link for eye exercise:  http://tcmrp.com/course/    Username: patient    Password: Wellspring3443 (no space)   please do it two to three times per day."
     ],
-    "tags": [
-      "Yu",
-      "questions"
-    ],
+    "tags": ["Yu", "questions"],
     "date": 1583646077792,
     "answered": true,
     "id": "88e6e289-1d14-4c8a-ac79-51720e3c989a",
@@ -948,9 +803,7 @@
     "answers": [
       "You're more likely to get an infected toe if you have diabetes. Damage to your blood vessels from high blood sugar can make it harder for your body to fight off infections. And diabetic nerve damage can prevent you from feeling minor trauma that could lead to a toe infection. If you have a weakened immune system, you’re also more likely to get toe infections. This includes people with HIV, or those who've had an organ transplant."
     ],
-    "tags": [
-      "toe"
-    ],
+    "tags": ["toe"],
     "date": 1583646118450,
     "answered": true,
     "id": "3fc405c1-5d91-499a-a898-6776b3008fe7",
@@ -967,10 +820,7 @@
       "You have an ingrown toenail (the side of your nail grows into the skin).",
       "You've picked up a fungus, which you can get if you walk barefoot in common areas like a gym shower or locker room."
     ],
-    "tags": [
-      "toe",
-      "infection"
-    ],
+    "tags": ["toe", "infection"],
     "date": 1583646118450,
     "answered": true,
     "id": "b2a27211-b0d0-49d7-b0e1-fd663431c594",
@@ -988,10 +838,7 @@
       "Foods that contain the preservatives MSG (monosodium glutamate) and nitrates",
       "Aspartame, the sweetener in NutraSweet and Equal"
     ],
-    "tags": [
-      "headache",
-      "pregnant"
-    ],
+    "tags": ["headache", "pregnant"],
     "date": 1583646118450,
     "answered": true,
     "id": "91629da8-6a03-4a6f-bef0-c81af7e4aa05",
@@ -1009,10 +856,7 @@
       "Food and beverages you had during the 24 hours before the migraine",
       "Any change in your environment, such as traveling to a new place, a change in weather, or trying new kinds of food"
     ],
-    "tags": [
-      "headache",
-      "pregnant"
-    ],
+    "tags": ["headache", "pregnant"],
     "date": 1583646118450,
     "answered": true,
     "id": "3725e074-f658-45f5-82e9-db01299a6657",
@@ -1030,10 +874,7 @@
       "If you experience a single type of headache or multiple types of headaches",
       "How often the headaches occur"
     ],
-    "tags": [
-      "headache",
-      "migraine"
-    ],
+    "tags": ["headache", "migraine"],
     "date": 1583646118450,
     "answered": true,
     "id": "964f2acf-a07f-4830-843b-4508a246b2e8",
@@ -1050,10 +891,7 @@
       "You have an ingrown toenail (the side of your nail grows into the skin).",
       "You've picked up a fungus, which you can get if you walk barefoot in common areas like a gym shower or locker room."
     ],
-    "tags": [
-      "toe",
-      "infection"
-    ],
+    "tags": ["toe", "infection"],
     "date": 1583646118450,
     "answered": true,
     "id": "d13a3d9a-1601-4f8a-bc33-00f3de87f093",
@@ -1068,9 +906,7 @@
     "answers": [
       "Besides a physical exam, your doctor will ask about symptoms and conditions, medications, and if you've recently traveled to areas with infections or have other infection risks. A malaria infection, for example, may be have a fever that typically recurs. Some areas of the U.S. are hotspots for infections such as Lyme disease and Rocky Mountain spotted fever."
     ],
-    "tags": [
-      "fever"
-    ],
+    "tags": ["fever"],
     "date": 1583646118450,
     "answered": true,
     "id": "083606a7-6df2-4f9f-95cc-e9856e4e5a31",
@@ -1085,9 +921,7 @@
     "answers": [
       "Treatments vary depending on the cause of the fever. For example, antibiotics would be used for a bacterial infection such as strep throat."
     ],
-    "tags": [
-      "fever"
-    ],
+    "tags": ["fever"],
     "date": 1583646118450,
     "answered": true,
     "id": "63ea5f8f-b304-418e-8a00-73b274155c21",
@@ -1106,9 +940,7 @@
     "_self": "dbs/lFMxAA==/colls/lFMxAI13oNw=/docs/lFMxAI13oNw9AAAAAAAAAA==/",
     "_etag": "\"3b009868-0000-0700-0000-5e6564880000\"",
     "_attachments": "attachments/",
-    "answers": [
-      "14 days"
-    ],
+    "answers": ["14 days"],
     "_ts": 1583703176
   },
   {
@@ -1140,9 +972,7 @@
     "_self": "dbs/lFMxAA==/colls/lFMxAI13oNw=/docs/lFMxAI13oNxAAAAAAAAAAA==/",
     "_etag": "\"3c00b4f9-0000-0700-0000-5e6583300000\"",
     "_attachments": "attachments/",
-    "answers": [
-      "https://www.youtube.com/watch?v=RSiW6ZvPqeg"
-    ],
+    "answers": ["https://www.youtube.com/watch?v=RSiW6ZvPqeg"],
     "_ts": 1583711024
   },
   {
@@ -1199,10 +1029,7 @@
       "You have an ingrown toenail (the side of your nail grows into the skin).",
       "You've picked up a fungus, which you can get if you walk barefoot in common areas like a gym shower or locker room."
     ],
-    "tags": [
-      "toe",
-      "infection"
-    ],
+    "tags": ["toe", "infection"],
     "date": 1583727440046,
     "answered": true,
     "id": "ead737b5-c1a7-4242-a9ba-6e29018960a2",

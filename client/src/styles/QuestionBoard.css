@@ -1,5 +1,8 @@
+body * {
+  box-sizing: border-box;
+}
 body {
-  font-family: Arial, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans",
+  font-family: Arial, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans',
     Geneva, Arial, sans-serif;
 }
 .container {
@@ -7,17 +10,35 @@ body {
   /* padding-top: 100px; */
   margin: auto;
 }
+.ui.input > input {
+  background-color: #f7fafc;
+}
 
-.searchBarDiv {
-  padding: 15px 0px;
+::-webkit-input-placeholder {
+  font-style: italic;
+}
+:-moz-placeholder {
+  font-style: italic;
+}
+::-moz-placeholder {
+  font-style: italic;
+}
+:-ms-input-placeholder {
+  font-style: italic;
+}
+
+.searchBar {
+  display: flex;
+  justify-content: center;
 }
 
 .searchBar .input {
   width: 100%;
+  max-width: 700px;
 }
 
 .ui.search .prompt {
-  border-radius: 5px;
+  border-radius: 30px;
 }
 
 .qCard {
