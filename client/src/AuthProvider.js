@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import {
   msalApp,
   requiresInteraction,
@@ -7,23 +7,23 @@ import {
   GRAPH_ENDPOINTS,
   GRAPH_SCOPES,
   GRAPH_REQUESTS,
-} from './auth-utils'
+} from './auth-utils';
 
 // If you support IE, our recommendation is that you sign-in using Redirect APIs
-const useRedirectFlow = isIE()
+const useRedirectFlow = isIE();
 // const useRedirectFlow = true;
 
 export default (C) =>
   class AuthProvider extends Component {
     constructor(props) {
-      super(props)
+      super(props);
 
       this.state = {
         account: null,
         error: null,
         emailMessages: null,
         graphProfile: null,
-      }
+      };
     }
 
     async acquireToken(request, redirect) {
@@ -33,15 +33,15 @@ export default (C) =>
         if (requiresInteraction(error.errorCode)) {
           return redirect
             ? msalApp.acquireTokenRedirect(request)
-            : msalApp.acquireTokenPopup(request)
+            : msalApp.acquireTokenPopup(request);
         }
-        console.error('Non-interactive error:', error.errorCode)
-      })
+        console.error('Non-interactive error:', error.errorCode);
+      });
     }
 
     async onSignIn(redirect) {
       if (redirect) {
-        return msalApp.loginRedirect(GRAPH_REQUESTS.LOGIN)
+        return msalApp.loginRedirect(GRAPH_REQUESTS.LOGIN);
       }
 
       const loginResponse = await msalApp
@@ -49,22 +49,22 @@ export default (C) =>
         .catch((error) => {
           this.setState({
             error: error.message,
-          })
-        })
+          });
+        });
 
       if (loginResponse) {
         this.setState({
           account: loginResponse.account,
           error: null,
-        })
+        });
 
         const tokenResponse = await this.acquireToken(
           GRAPH_REQUESTS.LOGIN
         ).catch((error) => {
           this.setState({
             error: error.message,
-          })
-        })
+          });
+        });
 
         if (tokenResponse) {
           const graphProfile = await fetchMsGraph(
@@ -73,24 +73,24 @@ export default (C) =>
           ).catch(() => {
             this.setState({
               error: 'Unable to fetch Graph profile.',
-            })
-          })
+            });
+          });
 
           if (graphProfile) {
             this.setState({
               graphProfile,
-            })
+            });
           }
 
           if (tokenResponse.scopes.indexOf(GRAPH_SCOPES.MAIL_READ) > 0) {
-            return this.readMail(tokenResponse.accessToken)
+            return this.readMail(tokenResponse.accessToken);
           }
         }
       }
     }
 
     onSignOut() {
-      msalApp.logout()
+      msalApp.logout();
     }
 
     async onRequestEmailToken() {
@@ -100,11 +100,11 @@ export default (C) =>
       ).catch((e) => {
         this.setState({
           error: 'Unable to acquire access token for reading email.',
-        })
-      })
+        });
+      });
 
       if (tokenResponse) {
-        return this.readMail(tokenResponse.accessToken)
+        return this.readMail(tokenResponse.accessToken);
       }
     }
 
@@ -115,14 +115,14 @@ export default (C) =>
       ).catch(() => {
         this.setState({
           error: 'Unable to fetch email messages.',
-        })
-      })
+        });
+      });
 
       if (emailMessages) {
         this.setState({
           emailMessages,
           error: null,
-        })
+        });
       }
     }
 
@@ -131,25 +131,25 @@ export default (C) =>
         if (error) {
           const errorMessage = error.errorMessage
             ? error.errorMessage
-            : 'Unable to acquire access token.'
+            : 'Unable to acquire access token.';
           // setState works as long as navigateToLoginRequestUrl: false
           this.setState({
             error: errorMessage,
-          })
+          });
         }
-      })
+      });
 
-      const account = msalApp.getAccount()
+      const account = msalApp.getAccount();
 
       this.setState({
         account,
-      })
+      });
 
       if (account) {
         const tokenResponse = await this.acquireToken(
           GRAPH_REQUESTS.LOGIN,
           useRedirectFlow
-        )
+        );
 
         if (tokenResponse) {
           const graphProfile = await fetchMsGraph(
@@ -158,17 +158,17 @@ export default (C) =>
           ).catch(() => {
             this.setState({
               error: 'Unable to fetch Graph profile.',
-            })
-          })
+            });
+          });
 
           if (graphProfile) {
             this.setState({
               graphProfile,
-            })
+            });
           }
 
           if (tokenResponse.scopes.indexOf(GRAPH_SCOPES.MAIL_READ) > 0) {
-            return this.readMail(tokenResponse.accessToken)
+            return this.readMail(tokenResponse.accessToken);
           }
         }
       }
@@ -186,6 +186,6 @@ export default (C) =>
           onSignOut={() => this.onSignOut()}
           onRequestEmailToken={() => this.onRequestEmailToken()}
         />
-      )
+      );
     }
-  }
+  };

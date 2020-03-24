@@ -6,6 +6,6 @@ const basedConfig = {
     cluster: process.env.REACT_APP_CORS_PUSHER_CLUSTER,
     channel: process.env.REACT_APP_CORS_PUSHER_CHANNEL,
   },
-}
+};
 
-export default basedConfig
+export default basedConfig;

@@ -1,16 +1,14 @@
-import './App.scss'
+import React, { Component } from 'react';
+import Button from '@bit/semantic-org.semantic-ui-react.button';
 
-import React, { Component } from 'react'
-import Button from '@bit/semantic-org.semantic-ui-react.button'
+import DisplayQrcode from '@bit/globalinput.web.display-qrcode';
+import DragAndDrop from '@bit/bronz3beard.react-component-collection.drag-and-drop';
 
-import DisplayQrcode from '@bit/globalinput.web.display-qrcode'
-import DragAndDrop from '@bit/bronz3beard.react-component-collection.drag-and-drop'
-
-import ToDoList from '@bit/learn-bit.react-demo-app.to-do-list'
-import AtomSpinner from '@bit/bondz.react-epic-spinners.atom-spinner'
-import Timer from './Timer'
-import Userexperiences from './listbox'
-import Example from './physician-empower'
+import ToDoList from '@bit/learn-bit.react-demo-app.to-do-list';
+import AtomSpinner from '@bit/bondz.react-epic-spinners.atom-spinner';
+import Timer from './Timer';
+import Userexperiences from './listbox';
+import Example from './physician-empower';
 
 // import './font.css';
 
@@ -19,7 +17,7 @@ const style = (
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.1/dist/semantic.min.css"
   />
-)
+);
 
 const ButtonExampleGroupIconSize = () => (
   <Button.Group basic size="small">
@@ -28,20 +26,20 @@ const ButtonExampleGroupIconSize = () => (
     <Button icon="upload" />
     <Button icon="download" />
   </Button.Group>
-)
+);
 
 const handleDrop = (files) => {
-  const tempFileList = []
+  const tempFileList = [];
 
   for (let i = 0; i < files.length; i++) {
-    const file = files[i]
+    const file = files[i];
     if (!file.name) {
-      return
+      return;
     }
-    alert(file.name)
-    tempFileList.push(file)
+    alert(file.name);
+    tempFileList.push(file);
   }
-}
+};
 
 export class App extends Component {
   render() {
@@ -81,8 +79,8 @@ export class App extends Component {
           />
         </DragAndDrop>
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;

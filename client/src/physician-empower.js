@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 // import './App.scss'
-import { AutoComplete } from '@bit/primefaces.primereact.autocomplete'
-import PrimereactStyle from '@bit/primefaces.primereact.internal.stylelinks'
+import { AutoComplete } from '@bit/primefaces.primereact.autocomplete';
+import PrimereactStyle from '@bit/primefaces.primereact.internal.stylelinks';
 
 const countryservice = [
   { name: 'pericarditis', code: 'AP' },
@@ -9,34 +9,34 @@ const countryservice = [
   { name: 'cholecystis', code: 'AP' },
   { name: 'pancreatitis', code: 'AP' },
   { name: 'Hemorrhoids', code: 'Hemi' },
-]
+];
 
 class Example extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     // this.filterCountryMultiple = this.filterCountryMultiple.bind(this)
     this.state = {
       countriesData: countryservice,
       filteredCountriesMultiple: null,
-    }
+    };
 
-    this.filterCountryMultiple = this.filterCountryMultiple.bind(this)
+    this.filterCountryMultiple = this.filterCountryMultiple.bind(this);
   }
 
   filterCountryMultiple(event) {
     setTimeout(() => {
       const results = this.state.countriesData.filter((country) => {
-        return country.name.toLowerCase().startsWith(event.query.toLowerCase())
-      })
+        return country.name.toLowerCase().startsWith(event.query.toLowerCase());
+      });
 
-      this.setState({ filteredCountriesMultiple: results })
-    }, 0)
+      this.setState({ filteredCountriesMultiple: results });
+    }, 0);
   }
 
   render() {
-    const diagnosis = this.state.countries
+    const diagnosis = this.state.countries;
 
-    console.log(this.state.filteredCountriesMultiple)
+    console.log(this.state.filteredCountriesMultiple);
 
     return (
       <div className="content-section implementation">
@@ -57,8 +57,8 @@ class Example extends React.Component {
           </div>
         </span>
       </div>
-    )
+    );
   }
 }
 
-export default Example
+export default Example;

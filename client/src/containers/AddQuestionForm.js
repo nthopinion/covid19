@@ -1,48 +1,48 @@
-import React, { Component, createRef } from 'react'
-import { Button, Form, Icon, Modal, ModalActions } from 'semantic-ui-react'
-import _ from 'lodash'
-import { connect } from 'react-redux'
-import { withTranslation } from 'react-i18next'
+import React, { Component, createRef } from 'react';
+import { Button, Form, Icon, Modal, ModalActions } from 'semantic-ui-react';
+import _ from 'lodash';
+import { connect } from 'react-redux';
+import { withTranslation } from 'react-i18next';
 
-import { postQuestion } from '../actions'
-import '../styles/AskQuestionForm.css'
+import { postQuestion } from '../actions';
+import '../styles/AskQuestionForm.css';
 
 class AddQuestionForm extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       showModal: false,
-    }
+    };
   }
 
   componentDidMount() {
-    const { dispatch } = this.props
+    const { dispatch } = this.props;
   }
 
   handleSubmit = (e, { value }) => {
-    const { dispatch } = this.props
-    dispatch(postQuestion(this.state.value))
-    this.setState({ value: '' })
-  }
+    const { dispatch } = this.props;
+    dispatch(postQuestion(this.state.value));
+    this.setState({ value: '' });
+  };
 
-  handleChange = (e, { value }) => this.setState({ value })
+  handleChange = (e, { value }) => this.setState({ value });
 
   closeModal = () => {
-    this.setState({ showModal: false })
-  }
+    this.setState({ showModal: false });
+  };
 
   openModal = () => {
-    this.setState({ showModal: true })
-  }
+    this.setState({ showModal: true });
+  };
 
   render() {
-    const { showModal } = this.state
-    const { t } = this.props
+    const { showModal } = this.state;
+    const { t } = this.props;
     const AskQuestionButton = (
       <Button onClick={this.openModal} color="blue" className="ask-button">
         {t('app:askAQuestion')}
       </Button>
-    )
+    );
 
     return (
       <Modal
@@ -79,15 +79,15 @@ class AddQuestionForm extends Component {
           </Modal.Description>
         </Modal.Content>
       </Modal>
-    )
+    );
   }
 }
 
 function mapStateToProps(state) {
-  console.log(state)
+  console.log(state);
   return {
     ...state.questionBoard,
-  }
+  };
 }
 
-export default withTranslation()(connect(mapStateToProps)(AddQuestionForm))
+export default withTranslation()(connect(mapStateToProps)(AddQuestionForm));

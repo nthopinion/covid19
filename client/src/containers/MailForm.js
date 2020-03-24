@@ -1,7 +1,7 @@
-import React, { Component, createRef } from 'react'
-import _ from 'lodash'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import React, { Component, createRef } from 'react';
+import _ from 'lodash';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import {
   Grid,
   Header,
@@ -15,7 +15,7 @@ import {
   Message,
   Form,
   Button,
-} from 'semantic-ui-react'
+} from 'semantic-ui-react';
 import {
   fetchQuestions,
   setLoading,
@@ -24,25 +24,25 @@ import {
   setSearchTerm,
   postQuestion,
   clickLikeQuestion,
-} from '../actions'
-import QuestionBoard from '../components/QuestionBoard'
-import SearchBar from '../components/SearchBar'
-import '../styles/PatientBoard.css'
-import AddQuestionForm from './AddQuestionForm'
-import FloatingMenu from '../components/FloatingMenu'
-import Links from '../componnets/Links'
+} from '../actions';
+import QuestionBoard from '../components/QuestionBoard';
+import SearchBar from '../components/SearchBar';
+import '../styles/PatientBoard.css';
+import AddQuestionForm from './AddQuestionForm';
+import FloatingMenu from '../components/FloatingMenu';
+import Links from '../componnets/Links';
 
 class MailForm extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       success: false,
-    }
+    };
   }
 
-  handleChange = (e, { name, value }) => this.setState({ [name]: value })
+  handleChange = (e, { name, value }) => this.setState({ [name]: value });
 
-  handleSubmit = () => this.setState({ email: '', name: '' })
+  handleSubmit = () => this.setState({ email: '', name: '' });
 
   render() {
     return (
@@ -64,8 +64,8 @@ class MailForm extends Component {
           <Button>Submit</Button>
         </Form>
       </Segment>
-    )
+    );
   }
 }
 
-export default MailForm
+export default MailForm;

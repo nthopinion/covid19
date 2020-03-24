@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component, Fragment } from 'react';
 import {
   List,
   Button,
@@ -7,13 +7,13 @@ import {
   Sticky,
   Header,
   Image,
-} from 'semantic-ui-react'
-import styles from '../styles/FloatingMenu.module.css'
-import Iframe from './Iframe'
+} from 'semantic-ui-react';
+import styles from '../styles/FloatingMenu.module.css';
+import Iframe from './Iframe';
 
 class ChatBox extends Component {
   constructor() {
-    super()
+    super();
   }
 
   render() {
@@ -40,8 +40,8 @@ class ChatBox extends Component {
              */}
         </div>
       </>
-    )
+    );
   }
 }
 
-export default ChatBox
+export default ChatBox;

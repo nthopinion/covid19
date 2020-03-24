@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from 'react'
-import { List } from 'semantic-ui-react'
+import React, { Component, Fragment } from 'react';
+import { List } from 'semantic-ui-react';
 
 const Iframe = (props) => (
   <>
@@ -10,5 +10,5 @@ const Iframe = (props) => (
       height={props.height}
     />
   </>
-)
-export default Iframe
+);
+export default Iframe;

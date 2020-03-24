@@ -1,6 +1,6 @@
-import _ from 'lodash'
-import React, { Component } from 'react'
-import { ReactTinyLink } from 'react-tiny-link'
+import _ from 'lodash';
+import React, { Component } from 'react';
+import { ReactTinyLink } from 'react-tiny-link';
 import {
   Modal,
   Card,
@@ -13,27 +13,27 @@ import {
   Button,
   Icon,
   Message,
-} from 'semantic-ui-react'
-import AnswerItem from './AnswerItem'
-import CardLeftPanel from './CardLeftPanel'
+} from 'semantic-ui-react';
+import AnswerItem from './AnswerItem';
+import CardLeftPanel from './CardLeftPanel';
 
-import '../styles/QuestionBoard.css'
-import config from '../config'
+import '../styles/QuestionBoard.css';
+import config from '../config';
 
-const colors = ['red', 'orange', 'yellow']
+const colors = ['red', 'orange', 'yellow'];
 export default class QuestionBoard extends Component {
   constructor(props) {
-    super(props)
-    this.state = { open: false, reportQuestion: null }
+    super(props);
+    this.state = { open: false, reportQuestion: null };
   }
 
   handleReportIssue(q) {
-    this.setState({ open: true, reportQuestion: q })
+    this.setState({ open: true, reportQuestion: q });
   }
 
   async handleSubmitReportIssue() {
-    await this.reportQuestionFlag(this.state.reportQuestion)
-    this.setState({ open: false, reportQuestion: null })
+    await this.reportQuestionFlag(this.state.reportQuestion);
+    this.setState({ open: false, reportQuestion: null });
   }
 
   reportQuestionFlag = (question) => {
@@ -46,20 +46,20 @@ export default class QuestionBoard extends Component {
       body: JSON.stringify({ id: question.id }),
     })
       .then((response) => console.log(response))
-      .catch((error) => console.log(error))
-  }
+      .catch((error) => console.log(error));
+  };
 
-  close = () => this.setState({ open: false })
+  close = () => this.setState({ open: false });
 
   render() {
-    const { results, isLoading, searchTerm } = this.props
-    console.log(this.props)
+    const { results, isLoading, searchTerm } = this.props;
+    console.log(this.props);
     return (
       <div className="container">
         <Card.Group>
           {results.map((question, i) => {
-            if (!question.answers) return
-            const idx = (i + 1) % colors.length
+            if (!question.answers) return;
+            const idx = (i + 1) % colors.length;
             return (
               <Card
                 fluid
@@ -72,7 +72,7 @@ export default class QuestionBoard extends Component {
 
                 <List>
                   {question.answers.map((answer, index) => {
-                    return <AnswerItem answer={answer} key={index} />
+                    return <AnswerItem answer={answer} key={index} />;
                   })}
 
                   {question.images &&
@@ -125,7 +125,7 @@ export default class QuestionBoard extends Component {
 
                 {question.youtubeLinks &&
                   question.youtubeLinks.map((y, index) => {
-                    const videoSrc = `https://www.youtube.com/embed/${y.video}?autoplay=false`
+                    const videoSrc = `https://www.youtube.com/embed/${y.video}?autoplay=false`;
                     return (
                       y.video && (
                         <iframe
@@ -138,7 +138,7 @@ export default class QuestionBoard extends Component {
                           frameBorder="0"
                         />
                       )
-                    )
+                    );
                   })}
                 <div className="qPanelBottom">
                   <div className="qTag">
@@ -148,7 +148,7 @@ export default class QuestionBoard extends Component {
                           <Label color="blue" key={index}>
                             {tag}
                           </Label>
-                        )
+                        );
                       })}
                   </div>
 
@@ -203,7 +203,7 @@ export default class QuestionBoard extends Component {
                   </div>
                 </div>
               </Card>
-            )
+            );
           })}
         </Card.Group>
         <Modal open={this.state.open} onClose={this.close}>
@@ -227,6 +227,6 @@ export default class QuestionBoard extends Component {
           </Modal.Actions>
         </Modal>
       </div>
-    )
+    );
   }
 }

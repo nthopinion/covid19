@@ -1,7 +1,7 @@
-import React from 'react'
-import { List } from 'semantic-ui-react'
+import React from 'react';
+import { List } from 'semantic-ui-react';
 
-import NavMenu from './NavLink'
+import NavMenu from './NavLink';
 
 const About = (props) => (
   <>
@@ -15,5 +15,5 @@ const About = (props) => (
       </List.Content>
     </List.Item>
   </>
-)
-export default About
+);
+export default About;

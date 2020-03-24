@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import { List } from 'semantic-ui-react'
+import React, { useState } from 'react';
+import { List } from 'semantic-ui-react';
 
-const PREVIEW_CHARS = 200
+const PREVIEW_CHARS = 200;
 
 const AnswerItem = (props) => {
-  const [expanded, setExpanded] = useState(false)
+  const [expanded, setExpanded] = useState(false);
 
   return (
     <List.Item>
@@ -30,6 +30,6 @@ const AnswerItem = (props) => {
         </List.Description>
       </List.Content>
     </List.Item>
-  )
-}
-export default AnswerItem
+  );
+};
+export default AnswerItem;

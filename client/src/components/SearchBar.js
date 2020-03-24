@@ -1,6 +1,6 @@
-import _ from 'lodash'
-import React from 'react'
-import { Search } from 'semantic-ui-react'
+import _ from 'lodash';
+import React from 'react';
+import { Search } from 'semantic-ui-react';
 
 const SearchBar = (props) => (
   <div className="searchBarDiv">
@@ -16,5 +16,5 @@ const SearchBar = (props) => (
       placeholder="Search"
     />
   </div>
-)
-export default SearchBar
+);
+export default SearchBar;
