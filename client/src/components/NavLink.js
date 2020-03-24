@@ -87,7 +87,6 @@ class NavMenu extends Component {
                 </ul>
                 <Button
                   id="sponsors"
-                  color="#304FFE"
                   href="https://about.covid19webapp.com/sponsors/"
                   target="_blank"
                   rel="noopener noreferrer"

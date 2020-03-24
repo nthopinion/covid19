@@ -1,5 +1,5 @@
 import React, { Component, createRef } from "react";
-import Pusher from 'pusher-js';
+import Pusher from "pusher-js";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Grid, Ref } from "semantic-ui-react";
@@ -36,26 +36,26 @@ class PatientBoard extends Component {
   }
 
   subscribeToNewQuestions = () => {
-    const pusher = new Pusher('2a3723a74814ff9e3d93', {
-      cluster: 'mt1',
+    const pusher = new Pusher("2a3723a74814ff9e3d93", {
+      cluster: "mt1",
       encrypted: true
     });
-    const channel = pusher.subscribe('covid19');
-    
-    channel.bind('answer-question', async data => {
+    const channel = pusher.subscribe("covid19");
+
+    channel.bind("answer-question", async data => {
       await this.props.handleNewQuestionAnswered(data.question);
 
       this.setState({ displayNewQuestion: true });
     });
-  }
+  };
 
   handleDisplayNewQuestion = () => {
     this.setState({
       displayNewQuestion: false
     });
 
-    window.scrollTo({top: 0, behavior: 'smooth'});
-  }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   handleClickLike = (id, index) => {
     this.props.clickLikeQuestion(id, index);
   };
@@ -117,17 +117,17 @@ class PatientBoard extends Component {
           newQ={this.props.newQ}
         />
         <div className="containerDiv">
-          <Options />
-          {this.state.displayNewQuestion && <div className="new-answers" onClick={this.handleDisplayNewQuestion}>
-            See new answers
-          </div>}
+          {this.state.displayNewQuestion && (
+            <div
+              className="new-answers"
+              onClick={this.handleDisplayNewQuestion}
+            >
+              See new answers
+            </div>
+          )}
           <Grid centered columns={2} stackable>
             <Grid.Column>
-              {/*    <Rail position='left'>
-           <Sticky context={this.contextRef}>
-           <MailForm/>
-           </Sticky>
-         </Rail> */}
+              <Options />
               <Ref innerRef={this.contextRef}>
                 <div>
                   <QuestionBoard
@@ -186,7 +186,7 @@ const mapDispatchToProps = dispatch =>
       setSearchTerm,
       postQuestion,
       clickLikeQuestion,
-      handleNewQuestionAnswered,
+      handleNewQuestionAnswered
     },
     dispatch
   );
