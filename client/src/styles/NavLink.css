@@ -71,10 +71,6 @@ button#menu.ui.button i.bars.icon {
   opacity: 1;
 }
 
-button#menu.ui.button i.bars.icon.light {
-  color: white;
-}
-
 i.bars.icon {
   align-self: center;
 }

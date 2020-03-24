@@ -4,10 +4,13 @@
 }
 
 .ask-button.ui.button {
-  font-weight: 500;
-  line-height: 21px;
+  font-weight: 400;
+  height: auto;
   font-size: 18px;
-  padding: 0 50px;
+  border-radius: 30px;
+  background-color: #006eaa;
+  opacity: 1;
+  box-shadow: 4px 4px 50px rgba(176, 176, 176, 0.25);
 }
 
 .ui.form textarea {
@@ -15,14 +18,14 @@
   padding-bottom: 30px;
 }
 
-.ui.modal>.header {
+.ui.modal > .header {
   border: none;
   display: flex;
   justify-content: space-between;
-  padding: 0.75rem 1rem!important;
+  padding: 0.75rem 1rem !important;
 }
 
-.ui.form .field>label {
+.ui.form .field > label {
   font-weight: 500;
   font-size: 16px;
 }

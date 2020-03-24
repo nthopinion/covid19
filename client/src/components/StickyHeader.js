@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Sticky, Message } from 'semantic-ui-react'
 
-import logo from '../assets/images/covid-19-logo-white.svg'
+import logo from "../assets/images/covid-19-logo.svg";
 
 import SearchBar from './SearchBar'
 import Menu from './NavLink'

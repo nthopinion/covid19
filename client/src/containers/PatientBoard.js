@@ -134,11 +134,7 @@ class PatientBoard extends Component {
           )}
           <Grid centered columns={2} stackable>
             <Grid.Column>
-              {/*    <Rail position='left'>
-           <Sticky context={this.contextRef}>
-           <MailForm/>
-           </Sticky>
-         </Rail> */}
+              <Options />
               <Ref innerRef={this.contextRef}>
                 <div>
                   <QuestionBoard
@@ -197,7 +193,7 @@ const mapDispatchToProps = (dispatch) =>
       setSearchTerm,
       postQuestion,
       clickLikeQuestion,
-      handleNewQuestionAnswered,
+      handleNewQuestionAnswered
     },
     dispatch
   )
