@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
 import { ReactTinyLink } from 'react-tiny-link';
-import {
-  Modal,
-  Card,
-  List,
-  Image,
-  Label,
-  Button,
-  Icon,
-} from 'semantic-ui-react';
+import { Modal, Card, List, Image, Label, Button } from 'semantic-ui-react';
 import AnswerItem from './AnswerItem';
 import CardLeftPanel from './CardLeftPanel';
 
 import '../styles/QuestionBoard.css';
 import config from '../config';
+import LikeButton from './LikeButton';
+import FlagButton from './FlagButton';
+import ShareButton from './ShareButton';
 
 const colors = ['red', 'orange', 'yellow'];
 export default class QuestionBoard extends Component {
@@ -155,43 +150,35 @@ export default class QuestionBoard extends Component {
 
                 </a> */}
                     <div>
-                      <Button as="div" labelPosition="right">
-                        <Button
-                          color="red"
-                          onClick={() =>
-                            this.props.handleClickLike(question.id, i)
-                          }
-                        >
-                          <Icon name="heart" />
-                          Like
-                        </Button>
-                        <Label as="a" basic color="red" pointing="left">
-                          {question.like || 0}
-                        </Label>
-                      </Button>
-                      <Button animated="vertical" color="twitter">
-                        <a
-                          style={{ color: 'white' }}
-                          href={`https://twitter.com/intent/tweet?text=${
-                            question.title
-                          }%20Answer:%20${
-                            question.answers &&
-                            question.answers.length > 0 &&
-                            question.answers[0]
-                              .split(' ')
-                              .slice(0, 10)
-                              .join(' ')
-                          }...%20at%20${`${config.domainURL}?qid=${question.id}`}%20@thenthopinion`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Button.Content visible>
-                            <Icon name="twitter" /> Tweet
-                          </Button.Content>
-                        </a>
-                      </Button>
-                      <Button
-                        icon="flag"
+                      <LikeButton
+                        onClick={() =>
+                          this.props.handleClickLike(question.id, i)
+                        }
+                        likes={question.like || 0}
+                      />
+                      <ShareButton />
+                      {/* <Button animated="vertical" color="twitter"> */}
+                      {/*  <a */}
+                      {/*    style={{ color: 'white' }} */}
+                      {/*    href={`https://twitter.com/intent/tweet?text=${ */}
+                      {/*      question.title */}
+                      {/*    }%20Answer:%20${ */}
+                      {/*      question.answers && */}
+                      {/*      question.answers.length > 0 && */}
+                      {/*      question.answers[0] */}
+                      {/*        .split(' ') */}
+                      {/*        .slice(0, 10) */}
+                      {/*        .join(' ') */}
+                      {/*    }...%20at%20${`${config.domainURL}?qid=${question.id}`}%20@thenthopinion`} */}
+                      {/*    target="_blank" */}
+                      {/*    rel="noopener noreferrer" */}
+                      {/*  > */}
+                      {/*    <Button.Content visible> */}
+                      {/*      <Icon name="twitter" /> Tweet */}
+                      {/*    </Button.Content> */}
+                      {/*  </a> */}
+                      {/* </Button> */}
+                      <FlagButton
                         color="red"
                         basic
                         title="report an issue"
