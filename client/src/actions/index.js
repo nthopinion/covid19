@@ -10,4 +10,5 @@ export {
   fetchUnansweredQuestions,
   deleteQuestion,
   clickLikeQuestion,
+  handleNewQuestionAnswered,
 } from './question'

@@ -24,14 +24,7 @@ class AnswerForm extends Component {
   constructor(props) {
     super(props)
     const newQ = { ...props.q }
-    if (props.q && !props.q.answers) {
-      newQ.answers = ['']
-    }
     this.state = { q: newQ, idx: props.idx }
-  }
-
-  componentDidMount() {
-    const { dispatch } = this.props
   }
 
   postQuestionAnswer = (question) => {
@@ -62,7 +55,9 @@ class AnswerForm extends Component {
   }
 
   handleDeleteQuestion = (qId, idx) => {
-    this.props.deleteQuestion(qId, idx)
+    const isUnanswered = this.props.showUnaswered
+
+    this.props.deleteQuestion(qId, idx, isUnanswered)
   }
 
   handleSubmit = async (e, { value }, q) => {
@@ -99,7 +94,6 @@ class AnswerForm extends Component {
 
   render() {
     const { q, idx } = this.state
-    console.log(q)
     const metaData = q.flagIssue && (
       <Label as="a" color="red" tag>
         Report Issues: <span> {q.flagIssue}</span>

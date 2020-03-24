@@ -2,6 +2,8 @@ import React, { Component, createRef } from 'react'
 import { Button, Form, Icon, Modal, ModalActions } from 'semantic-ui-react'
 import _ from 'lodash'
 import { connect } from 'react-redux'
+import { withTranslation } from 'react-i18next'
+
 import { postQuestion } from '../actions'
 import '../styles/AskQuestionForm.css'
 
@@ -35,9 +37,10 @@ class AddQuestionForm extends Component {
 
   render() {
     const { showModal } = this.state
+    const { t } = this.props
     const AskQuestionButton = (
       <Button onClick={this.openModal} color="blue" className="ask-button">
-        Ask a question
+        {t('app:askAQuestion')}
       </Button>
     )
 
@@ -87,4 +90,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(AddQuestionForm)
+export default withTranslation()(connect(mapStateToProps)(AddQuestionForm))

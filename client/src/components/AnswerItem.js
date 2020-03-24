@@ -4,30 +4,29 @@ import { List } from 'semantic-ui-react'
 const PREVIEW_CHARS = 200
 
 const AnswerItem = (props) => {
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(false)
 
   return (
     <List.Item>
-      <List.Icon name='marker' />
+      <List.Icon name="marker" />
       <List.Content>
         <List.Description>
-          { expanded
-          ?
+          {expanded ? (
             <>
-              <span className='qAnswer'>{props.answer}</span>
-              <br/>
+              <span className="qAnswer">{props.answer}</span>
+              <br />
               <a onClick={() => setExpanded(false)}>Show less</a>
             </>
-          :
+          ) : (
             <>
-              <span className='qAnswer'>
+              <span className="qAnswer">
                 {props.answer.substring(0, PREVIEW_CHARS)}
                 {props.answer.length > PREVIEW_CHARS ? '...' : ''}
               </span>
-              <br/>
+              <br />
               <a onClick={() => setExpanded(true)}>Show more</a>
             </>
-          }
+          )}
         </List.Description>
       </List.Content>
     </List.Item>

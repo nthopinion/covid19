@@ -1,8 +1,9 @@
 import React, { Component, createRef } from 'react'
-import _ from 'lodash'
+import Pusher from 'pusher-js'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Grid, Ref } from 'semantic-ui-react'
+import { withTranslation } from 'react-i18next'
 
 import {
   fetchQuestions,
@@ -12,23 +13,49 @@ import {
   setSearchTerm,
   postQuestion,
   clickLikeQuestion,
+  handleNewQuestionAnswered,
 } from '../actions'
 
 import '../styles/PatientBoard.css'
 import Options from '../components/Options'
 import QuestionBoard from '../components/QuestionBoard'
 import StickyHeader from '../components/StickyHeader'
+import config from '../config'
 
 class PatientBoard extends Component {
   constructor(props) {
     super(props)
     this.state = {
       processSumited: false,
+      displayNewQuestion: false,
     }
   }
 
   componentDidMount() {
     this.props.fetchQuestions()
+
+    this.subscribeToNewQuestions()
+  }
+
+  subscribeToNewQuestions = () => {
+    const { key, cluster, channel } = config.pusher
+    const pusher = new Pusher(key, {
+      cluster,
+      encrypted: true,
+    })
+
+    pusher.subscribe(channel).bind('answer-question', async (data) => {
+      await this.props.handleNewQuestionAnswered(data.question)
+      this.setState({ displayNewQuestion: true })
+    })
+  }
+
+  handleDisplayNewQuestion = () => {
+    this.setState({
+      displayNewQuestion: false,
+    })
+
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   handleClickLike = (id, index) => {
@@ -97,6 +124,14 @@ class PatientBoard extends Component {
         />
         <div className="containerDiv">
           <Options />
+          {this.state.displayNewQuestion && (
+            <div
+              className="new-answers"
+              onClick={this.handleDisplayNewQuestion}
+            >
+              See new answers
+            </div>
+          )}
           <Grid centered columns={2} stackable>
             <Grid.Column>
               {/*    <Rail position='left'>
@@ -162,8 +197,11 @@ const mapDispatchToProps = (dispatch) =>
       setSearchTerm,
       postQuestion,
       clickLikeQuestion,
+      handleNewQuestionAnswered,
     },
     dispatch
   )
 
-export default connect(mapStateToProps, mapDispatchToProps)(PatientBoard)
+export default withTranslation()(
+  connect(mapStateToProps, mapDispatchToProps)(PatientBoard)
+)
