@@ -32,7 +32,7 @@ class NavMenu extends Component {
   render() {
     return (
       <div>
-        <Button id="menu" class="ui icon button" onClick={this.showMenu}>
+        <Button id="menu" className="ui icon button" onClick={this.showMenu}>
           {' '}
           <i
             className={`bars icon ${this.props.lightMenu ? 'light' : ''}`}

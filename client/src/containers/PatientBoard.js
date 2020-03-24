@@ -20,6 +20,7 @@ import '../styles/PatientBoard.css';
 import Options from '../components/Options';
 import QuestionBoard from '../components/QuestionBoard';
 import StickyHeader from '../components/StickyHeader';
+import TranslationsSuspense from '../components/TranslationsSuspense';
 import config from '../config';
 
 class PatientBoard extends Component {
@@ -104,7 +105,7 @@ class PatientBoard extends Component {
 
   render() {
     return (
-      <>
+      <TranslationsSuspense>
         <StickyHeader
           contextRef={this.contextRef}
           isLoading={this.props.isLoading}
@@ -166,7 +167,7 @@ class PatientBoard extends Component {
           </Grid>
           {/* <FloatingMenu/> */}
         </div>
-      </>
+      </TranslationsSuspense>
     );
   }
 }
