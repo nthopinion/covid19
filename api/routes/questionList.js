@@ -1,6 +1,136 @@
 const Pusher = require('pusher');
 
 const QuestionDao = require('../models/questionDao')
+/**
+ * @swagger
+ * definitions:
+ *   Question:
+ *     type: object
+ *     properties:
+ *       id:
+ *         type: string
+ *       date:
+ *         type: string
+ *       title:
+ *         type: integer
+ *       answers:
+ *         type: array
+ *         items:
+ *           type: string
+ *       sources:
+ *         type: string
+ *       links:
+ *         type: string
+ *         format: password
+ *       tags:
+ *         type: string
+ *       answered:
+ *         type: boolean
+ */
+
+
+ /**
+ * @swagger
+ * definitions:
+ *   QuestionList:
+ *     type: array
+ *     items:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: string
+ *         date:
+ *           type: string
+ *         title:
+ *           type: integer
+ *         answers:
+ *           type: array
+ *           items:
+ *             type: string
+ *         sources:
+ *           type: string
+ *         links:
+ *           type: string
+ *           format: password
+ *         tags:
+ *           type: string
+ *         answered:
+ *           type: boolean
+ */
+ /**
+ * @swagger
+ * /api/questions:
+ *   get:
+ *     tags:
+ *       - Questions
+ *     name: Gets  questions
+ *     summary: Gets questions
+ *     security:
+ *       - bearerAuth: []
+ *     consumes:
+ *       - application/json
+ *     produces:
+ *       - application/json
+
+ *     responses:
+ *       '200':
+ *         description: Gets a list of all questions
+ *         schema:
+ *           $ref: '#/definitions/QuestionList'
+*/
+
+ /**
+ * @swagger
+ * /api/questions/unanswered:
+ *   get:
+ *     tags:
+ *       - Questions
+ *     name: Gets unanswered questions
+ *     summary: Gets nanswered questions
+ *     security:
+ *       - bearerAuth: []
+ *     consumes:
+ *       - application/json
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       '200':
+ *         description: Gets a list of all unanswered questions
+ *         schema:
+ *           $ref: '#/definitions/QuestionList'
+*/
+
+ /**
+ * @swagger
+ * /api/addQuestions:
+ *   post:
+ *     tags:
+ *       - Questions
+ *     name: Add a new Question
+ *     summary: Adds new question
+ *     security:
+ *       - bearerAuth: []
+ *     consumes:
+ *       - application/json
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - in: query
+ *         name: title
+ *         schema:
+ *           type: string
+ *         required:
+ *           - title
+ *     responses:
+ *       '201':
+ *         description: Creates a new question
+ *         schema:
+ *           $ref: '#/definitions/Question'
+ *       '401':
+ *         description: No auth token / no user found in db with that name
+ *       '403':
+ *         description: JWT token and username from client don't match
+ */
 
 const config = require('../config')
 
