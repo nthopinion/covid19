@@ -52,16 +52,17 @@ class PostList {
   async updateQuestion (req, res) {
     const question = req.body
     await this.questionDao.updateItem(question)
-
+    const {appId, key, secret, cluster, channel, event} = config.pusher;
+  
     const pusher = new Pusher({
-      appId: config.appId,
-      key: config.pusherKey,
-      secret: config.secret,
-      cluster: config.cluster,
+      appId,
+      key,
+      secret,
+      cluster,
       encrypted: true
     });
 
-    pusher.trigger('covid19', 'answer-question', {
+    pusher.trigger(channel, 'answer-question', {
       question
     });
 
