@@ -1,9 +1,11 @@
 import React from 'react'
+
 import PatientBoard from './PatientBoard'
+import TranslationsSuspense from '../components/TranslationsSuspense';
 
 const App = () => (
-  <div>
+  <TranslationsSuspense>
     <PatientBoard />
-  </div>
-)
+  </TranslationsSuspense>
+);
 export default App
