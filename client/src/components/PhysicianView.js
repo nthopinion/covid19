@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
 import { Menu, Button, Message, Grid } from 'semantic-ui-react';
-import NavMenu from './NavLink';
 
+import '../styles/QuestionBoard.css';
 import AuthProvider from '../AuthProvider';
 import {
   fetchUnansweredQuestions,
   deleteQuestion,
   fetchQuestions,
 } from '../actions';
-import AnswerForm from './AnswerForm';
 
-import '../styles/QuestionBoard.css';
+import PhysicianLogin from '../components/PhysicianLogin';
+import AnswerForm from './AnswerForm';
+import NavMenu from './NavLink';
 
 class PhysicianView extends Component {
   constructor(props) {
@@ -31,7 +31,9 @@ class PhysicianView extends Component {
   }
 
   render() {
-    return (
+    return !this.props.account ? (
+      <PhysicianLogin onSignIn={this.props.onSignIn} />
+    ) : (
       <>
         <NavMenu />
         <div>
@@ -69,18 +71,6 @@ class PhysicianView extends Component {
             )}
           </div>
           <section className="container">
-            {!this.props.account && (
-              <Message warning>
-                <Message.Header>
-                  You must register/signin before you can do that!
-                </Message.Header>
-                <p />
-                <Button active onClick={this.props.onSignIn}>
-                  Signin
-                </Button>
-              </Message>
-            )}
-
             {this.props.error && (
               <Message negative>
                 <Message.Header>Sorry Something went wrong!</Message.Header>
@@ -122,14 +112,14 @@ class PhysicianView extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     unansweredQuestions: state.questionBoard.unansweredQuestions,
     questions: state.questionBoard.questions,
   };
 };
 
-const mapDispatchToProps = (dispatch) =>
+const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       fetchUnansweredQuestions,
