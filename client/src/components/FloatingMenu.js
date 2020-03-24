@@ -1,15 +1,6 @@
-import React, { Component, Fragment } from 'react';
-import {
-  List,
-  Button,
-  Icon,
-  Message,
-  Sticky,
-  Header,
-  Image,
-} from 'semantic-ui-react';
+import React, { Component } from 'react';
+import { Icon } from 'semantic-ui-react';
 import styles from '../styles/FloatingMenu.module.css';
-import Iframe from './Iframe';
 import ChatBox from './ChatBox';
 
 class FloatingMenu extends Component {
@@ -30,9 +21,9 @@ class FloatingMenu extends Component {
     clearInterval(this.interval);
   }
 
-  toggleMenu() {
+  toggleMenu = () => {
     this.setState({ toggled: !this.state.toggled });
-  }
+  };
 
   render() {
     return (
@@ -46,7 +37,7 @@ class FloatingMenu extends Component {
             inverted
             color="teal"
             name="rocketchat"
-            onClick={this.toggleMenu.bind(this)}
+            onClick={this.toggleMenu}
           />
         </div>
       </>

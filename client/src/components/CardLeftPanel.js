@@ -1,5 +1,4 @@
 import React from 'react';
-import { Label } from 'semantic-ui-react';
 
 const CardLeftPanel = (props) => (
   <div className="vertical-grid qLeftCard">

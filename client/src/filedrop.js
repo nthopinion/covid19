@@ -1,4 +1,5 @@
 import React from 'react';
+// eslint-disable-next-line import/no-unresolved
 import DragAndDrop from '@bit/bronz3beard.react-component-collection.drag-and-drop';
 
 const handleDrop = (files) => {
@@ -9,6 +10,7 @@ const handleDrop = (files) => {
     if (!file.name) {
       return;
     }
+    // eslint-disable-next-line no-alert
     alert(file.name);
     tempFileList.push(file);
   }

@@ -1,4 +1,5 @@
 import React from 'react';
+// eslint-disable-next-line import/no-unresolved
 import Button from '@bit/semantic-org.semantic-ui-react.button';
 
 const style = (

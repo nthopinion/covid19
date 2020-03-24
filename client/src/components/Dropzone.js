@@ -34,7 +34,7 @@ class Dropzone extends Component {
     this.setState({ hightlight: true });
   }
 
-  onDragLeave(event) {
+  onDragLeave() {
     this.setState({ hightlight: false });
   }
 
@@ -49,8 +49,10 @@ class Dropzone extends Component {
     this.setState({ hightlight: false });
   }
 
+  // eslint-disable-next-line class-methods-use-this
   fileListToArray(list) {
     const array = [];
+
     for (let i = 0; i < list.length; i++) {
       array.push(list.item(i));
     }

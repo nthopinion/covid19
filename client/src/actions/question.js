@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import {
   FETCH_ALL_QUESTION,
   FETCH_ALL_QUESTION_FAILURE,
@@ -69,8 +70,7 @@ export const addQuestionSuccess = (q) => {
   };
 };
 
-export const addQuestionFailure = (error) => {
-  //   console.log('fetchQuestion');
+export const addQuestionFailure = () => {
   return (dispatch) => {
     setTimeout(() => {
       dispatch(dismissMessage());
@@ -191,7 +191,7 @@ export const deleteQuestion = (qId, idx, isUnanswered) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ id: qId }),
-    }).then((r) => dispatch(deleteQuestionSuccess(idx, isUnanswered)));
+    }).then(() => dispatch(deleteQuestionSuccess(idx, isUnanswered)));
   };
 };
 
@@ -223,8 +223,8 @@ export const clickLikeQuestion = (qId, idx) => {
       },
       body: JSON.stringify({ id: qId }),
     })
-      .then((response) => dispatch(increaseLike(qId, idx)))
-      .catch((error) => {
+      .then(() => dispatch(increaseLike(qId, idx)))
+      .catch(() => {
         // dispatch(addQuestionFailure(error));
       });
   };

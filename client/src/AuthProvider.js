@@ -26,6 +26,7 @@ export default (C) =>
       };
     }
 
+    // eslint-disable-next-line class-methods-use-this
     async acquireToken(request, redirect) {
       return msalApp.acquireTokenSilent(request).catch((error) => {
         // Call acquireTokenPopup (popup window) in case of acquireTokenSilent failure
@@ -35,7 +36,6 @@ export default (C) =>
             ? msalApp.acquireTokenRedirect(request)
             : msalApp.acquireTokenPopup(request);
         }
-        console.error('Non-interactive error:', error.errorCode);
       });
     }
 
@@ -89,6 +89,7 @@ export default (C) =>
       }
     }
 
+    // eslint-disable-next-line class-methods-use-this
     onSignOut() {
       msalApp.logout();
     }
@@ -97,7 +98,7 @@ export default (C) =>
       const tokenResponse = await this.acquireToken(
         GRAPH_REQUESTS.EMAIL,
         useRedirectFlow
-      ).catch((e) => {
+      ).catch(() => {
         this.setState({
           error: 'Unable to acquire access token for reading email.',
         });
@@ -177,6 +178,7 @@ export default (C) =>
     render() {
       return (
         <C
+          // eslint-disable-next-line react/jsx-props-no-spreading
           {...this.props}
           account={this.state.account}
           emailMessages={this.state.emailMessages}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// eslint-disable-next-line import/no-unresolved
 import DisplayQrcode from '@bit/globalinput.web.display-qrcode';
 
 export class Timer extends Component {

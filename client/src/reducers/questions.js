@@ -97,13 +97,13 @@ const questions = (state = initialState, action) => {
       };
     case LIKE_QUESTION_SUCCESS:
       const val = state.questions[action.qIdx].like || 0;
-      const questions = JSON.parse(JSON.stringify(state.questions));
-      questions[action.qIdx].like = val + 1;
-      console.log(questions[action.qIdx]);
+      const newData = JSON.parse(JSON.stringify(state.questions));
+
+      newData[action.qIdx].like = val + 1;
       return {
         ...state,
-        questions,
-        results: questions,
+        questions: newData,
+        results: newData,
       };
     case DELETE_UNANSWERED_QUESTION_SUCCESS:
       const unansweredQuestions = state.unansweredQuestions.map(
@@ -126,8 +126,6 @@ const questions = (state = initialState, action) => {
           undeleted: index === action.qIdx,
         };
       });
-
-      console.log('i am here');
 
       return {
         ...state,

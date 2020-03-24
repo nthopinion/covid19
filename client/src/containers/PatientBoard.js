@@ -67,7 +67,6 @@ class PatientBoard extends Component {
 
   handleSearchChange = (e, { value }) => {
     this.props.setLoading(false);
-    console.log(value);
     this.props.setSearchTerm(value);
 
     setTimeout(() => {
@@ -78,14 +77,13 @@ class PatientBoard extends Component {
     }, 500);
 
     // submit question
-    if (this.props.results.length != 0) return;
+    if (this.props.results.length !== 0) return;
     // var self = this
     if (
       this.props.searchTerm &&
       this.state.prevSearchTerm !== this.props.searchTerm &&
       this.props.searchTerm.length > 10
     ) {
-      console.log('handleSubmitNewQuestion');
       // _.throttle(this.handleSubmitNewQuestion, 1000)()
       if (this.timeout) clearTimeout(this.timeout);
       this.timeout = setTimeout(() => {

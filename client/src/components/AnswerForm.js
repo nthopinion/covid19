@@ -1,23 +1,21 @@
-import React, { Component, createRef, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  Menu,
   Button,
   Form,
   Message,
   Card,
-  Grid,
   Icon,
   List,
   Label,
 } from 'semantic-ui-react';
+import { bindActionCreators } from 'redux';
 import AuthProvider from '../AuthProvider';
-import { deleteQuestion, setAnswerForQuestion } from '../actions';
+import { deleteQuestion } from '../actions';
 import AnswerItem from './AnswerItem';
 import FileUpload from './FileUpload';
 import CardLeftPanel from './CardLeftPanel';
 import '../styles/QuestionBoard.css';
-import { bindActionCreators } from 'redux';
 import config from '../config';
 
 class AnswerForm extends Component {
@@ -39,10 +37,11 @@ class AnswerForm extends Component {
       },
       body: JSON.stringify({ ...question }),
     })
-      .then((response) => console.log(response))
+      .then((response) => response)
       .catch((error) => console.log(error));
   };
 
+  // eslint-disable-next-line react/no-deprecated
   componentWillReceiveProps(nextProps) {
     if (nextProps.q !== this.props.q) {
       // Perform some operation
@@ -62,16 +61,12 @@ class AnswerForm extends Component {
     this.props.deleteQuestion(qId, idx, isUnanswered);
   };
 
-  handleSubmit = async (e, { value }, q) => {
-    console.log('submit answer');
-    // const key = 'q_'+q.id;
-
+  handleSubmit = async (e, value, q) => {
     const updatedQuestion = { ...q };
     updatedQuestion.answers = updatedQuestion.answers.filter(
       (a) => a && a.length > 0
     );
 
-    console.log('updatedQuestion', updatedQuestion);
     await this.postQuestionAnswer(updatedQuestion);
     this.setState({
       submitted: true,
@@ -161,8 +156,8 @@ class AnswerForm extends Component {
             <Message.Header>Thank you!</Message.Header>
             <List>
               {this.state[`newAnswers${q.id}`] &&
-                this.state[`newAnswers${q.id}`].map((answer, idx) => {
-                  return <AnswerItem answer={answer} key={idx} />;
+                this.state[`newAnswers${q.id}`].map((answer, index) => {
+                  return <AnswerItem answer={answer} key={index} />;
                 })}
             </List>
           </Message>
@@ -172,7 +167,7 @@ class AnswerForm extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = () => {
   return {
     // unansweredQuestions: state.questionBoard.unansweredQuestions
   };

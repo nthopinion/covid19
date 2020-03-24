@@ -1,6 +1,5 @@
-import React, { Component, createRef } from 'react';
-import { Button, Form, Icon, Modal, ModalActions } from 'semantic-ui-react';
-import _ from 'lodash';
+import React, { Component } from 'react';
+import { Button, Form, Icon, Modal } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 
@@ -15,11 +14,7 @@ class AddQuestionForm extends Component {
     };
   }
 
-  componentDidMount() {
-    const { dispatch } = this.props;
-  }
-
-  handleSubmit = (e, { value }) => {
+  handleSubmit = () => {
     const { dispatch } = this.props;
     dispatch(postQuestion(this.state.value));
     this.setState({ value: '' });
@@ -84,7 +79,6 @@ class AddQuestionForm extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     ...state.questionBoard,
   };

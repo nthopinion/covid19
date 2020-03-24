@@ -1,6 +1,7 @@
 import React from 'react';
-// import './App.scss'
+// eslint-disable-next-line import/no-unresolved
 import { AutoComplete } from '@bit/primefaces.primereact.autocomplete';
+// eslint-disable-next-line import/no-unresolved
 import PrimereactStyle from '@bit/primefaces.primereact.internal.stylelinks';
 
 const countryservice = [
@@ -14,7 +15,6 @@ const countryservice = [
 class Example extends React.Component {
   constructor(props) {
     super(props);
-    // this.filterCountryMultiple = this.filterCountryMultiple.bind(this)
     this.state = {
       countriesData: countryservice,
       filteredCountriesMultiple: null,
@@ -34,10 +34,6 @@ class Example extends React.Component {
   }
 
   render() {
-    const diagnosis = this.state.countries;
-
-    console.log(this.state.filteredCountriesMultiple);
-
     return (
       <div className="content-section implementation">
         <PrimereactStyle />

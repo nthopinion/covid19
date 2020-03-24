@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import { ListBox } from '@bit/primefaces.primereact.listbox';
 import PrimereactStyle from '@bit/primefaces.primereact.internal.stylelinks';

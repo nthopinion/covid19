@@ -43,8 +43,7 @@ class NavMenu extends Component {
         {this.state.showMenu ? (
           <div className="menu">
             <div
-              className={styles.NavLink}
-              className="ui visible right demo vertical sidebar labeled icon menu"
+              className={`ui visible right demo vertical sidebar labeled icon menu ${styles.NavLink}`}
             >
               <nav>
                 <ul>

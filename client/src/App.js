@@ -1,16 +1,12 @@
+/* eslint-disable import/no-unresolved */
 import React, { Component } from 'react';
 import Button from '@bit/semantic-org.semantic-ui-react.button';
 
-import DisplayQrcode from '@bit/globalinput.web.display-qrcode';
 import DragAndDrop from '@bit/bronz3beard.react-component-collection.drag-and-drop';
 
 import ToDoList from '@bit/learn-bit.react-demo-app.to-do-list';
 import AtomSpinner from '@bit/bondz.react-epic-spinners.atom-spinner';
 import Timer from './Timer';
-import Userexperiences from './listbox';
-import Example from './physician-empower';
-
-// import './font.css';
 
 const style = (
   <link
@@ -36,6 +32,7 @@ const handleDrop = (files) => {
     if (!file.name) {
       return;
     }
+    // eslint-disable-next-line no-alert
     alert(file.name);
     tempFileList.push(file);
   }

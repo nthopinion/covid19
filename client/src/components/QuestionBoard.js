@@ -1,18 +1,13 @@
-import _ from 'lodash';
 import React, { Component } from 'react';
 import { ReactTinyLink } from 'react-tiny-link';
 import {
   Modal,
   Card,
-  Grid,
-  Segment,
   List,
-  Search,
   Image,
   Label,
   Button,
   Icon,
-  Message,
 } from 'semantic-ui-react';
 import AnswerItem from './AnswerItem';
 import CardLeftPanel from './CardLeftPanel';
@@ -45,21 +40,22 @@ export default class QuestionBoard extends Component {
       },
       body: JSON.stringify({ id: question.id }),
     })
-      .then((response) => console.log(response))
+      .then((response) => response)
       .catch((error) => console.log(error));
   };
 
   close = () => this.setState({ open: false });
 
   render() {
-    const { results, isLoading, searchTerm } = this.props;
-    console.log(this.props);
+    const { results } = this.props;
+
     return (
       <div className="container">
         <Card.Group>
           {results.map((question, i) => {
             if (!question.answers) return;
             const idx = (i + 1) % colors.length;
+
             return (
               <Card
                 fluid
@@ -129,6 +125,7 @@ export default class QuestionBoard extends Component {
                     return (
                       y.video && (
                         <iframe
+                          title={`https://www.youtube.com/embed/${y.video}?autoplay=false${index}`}
                           className="player"
                           type="text/html"
                           width="100%"
@@ -186,6 +183,7 @@ export default class QuestionBoard extends Component {
                               .join(' ')
                           }...%20at%20${`${config.domainURL}?qid=${question.id}`}%20@thenthopinion`}
                           target="_blank"
+                          rel="noopener noreferrer"
                         >
                           <Button.Content visible>
                             <Icon name="twitter" /> Tweet

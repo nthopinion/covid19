@@ -57,14 +57,14 @@ class Upload extends Component {
         }
       });
 
-      req.upload.addEventListener('load', (event) => {
+      req.upload.addEventListener('load', () => {
         const copy = { ...this.state.uploadProgress };
         copy[file.name] = { state: 'done', percentage: 100 };
         this.setState({ uploadProgress: copy });
         resolve(req.response);
       });
 
-      req.upload.addEventListener('error', (event) => {
+      req.upload.addEventListener('error', () => {
         const copy = { ...this.state.uploadProgress };
         copy[file.name] = { state: 'error', percentage: 0 };
         this.setState({ uploadProgress: copy });
@@ -73,7 +73,6 @@ class Upload extends Component {
 
       const formData = new FormData();
       formData.append('file', file, file.name);
-      console.log(file, file.name);
       req.open('POST', `${config.domainURL}/upload`);
       req.send(formData);
     });
@@ -97,6 +96,8 @@ class Upload extends Component {
         </div>
       );
     }
+
+    return null;
   }
 
   renderActions() {

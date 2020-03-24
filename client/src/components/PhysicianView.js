@@ -1,16 +1,8 @@
-import React, { Component, createRef } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import {
-  Menu,
-  Button,
-  Form,
-  Message,
-  Card,
-  Grid,
-  Icon,
-} from 'semantic-ui-react';
+import { Menu, Button, Message, Grid } from 'semantic-ui-react';
 import NavMenu from './NavLink';
 
 import AuthProvider from '../AuthProvider';
@@ -21,19 +13,15 @@ import {
 } from '../actions';
 import AnswerForm from './AnswerForm';
 
-import CardLeftPanel from './CardLeftPanel';
 import '../styles/QuestionBoard.css';
-import config from '../config';
 
 class PhysicianView extends Component {
-  state = { showUnaswered: true };
-
   constructor(props) {
     super(props);
+    this.state = { showUnaswered: true };
   }
 
   componentDidMount() {
-    const { dispatch } = this.props;
     this.props.fetchUnansweredQuestions();
     this.props.fetchQuestions();
   }
@@ -43,10 +31,6 @@ class PhysicianView extends Component {
   }
 
   render() {
-    console.log(
-      'this.props.unansweredQuestions',
-      this.props.unansweredQuestions
-    );
     return (
       <>
         <NavMenu />
@@ -139,7 +123,6 @@ class PhysicianView extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     unansweredQuestions: state.questionBoard.unansweredQuestions,
     questions: state.questionBoard.questions,

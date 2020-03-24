@@ -7,10 +7,6 @@ import SearchBar from './SearchBar';
 import Menu from './NavLink';
 
 class StickyHeader extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const {
       contextRef,
