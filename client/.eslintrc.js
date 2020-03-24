@@ -15,5 +15,7 @@ module.exports = {
     "semi": 0,
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "prettier/prettier": "error",
+    "react/prop-types": "off",
+    "react/destructuring-assignment": "off"
   }
 }
