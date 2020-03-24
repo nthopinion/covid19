@@ -2,7 +2,8 @@ import _ from 'lodash'
 import {
   ADD_QUESTION,
   FETCH_ALL_QUESTION,
-  SET_LOADING, SET_SEARCHTERM,
+  SET_LOADING,
+  SET_SEARCHTERM,
   SEARCH_QUESTIONS,
   RESET_SEARCH_RESULT,
   ADD_QUESTION_SUCCESS,
@@ -12,12 +13,13 @@ import {
   LIKE_QUESTION_SUCCESS,
   NEW_QUESTION_ANSWERED,
   DELETE_ANSWERED_QUESTION_SUCCESS,
-  DELETE_UNANSWERED_QUESTION_SUCCESS
+  DELETE_UNANSWERED_QUESTION_SUCCESS,
 } from '../constants/ActionTypes'
+
 const initialState = {
   isLoading: false,
   questions: [],
-  results: []
+  results: [],
 }
 const questions = (state = initialState, action) => {
   switch (action.type) {
@@ -32,17 +34,17 @@ const questions = (state = initialState, action) => {
     case FETCH_ALL_UNANSWERED_QUESTION:
       return {
         ...state,
-        unansweredQuestions: action.questions
+        unansweredQuestions: action.questions,
       }
 
     case ADD_QUESTION:
       return {
-        ...state
+        ...state,
       }
     case DISMISS_MESSAGE:
       return {
         ...state,
-        messageActive: action.messageActive
+        messageActive: action.messageActive,
       }
     case ADD_QUESTION_FAILURE:
     case ADD_QUESTION_SUCCESS:
@@ -50,21 +52,21 @@ const questions = (state = initialState, action) => {
         ...state,
         newQ: action.newQ,
         addSuccess: action.addSuccess,
-        messageActive: action.messageActive
+        messageActive: action.messageActive,
       }
     case FETCH_ALL_QUESTION:
       return {
         ...state,
         questions: action.questions,
-        results: action.questions
+        results: action.questions,
       }
     case NEW_QUESTION_ANSWERED:
-      const newQuestions = [{...action.question}, ...state.questions];
+      const newQuestions = [{ ...action.question }, ...state.questions]
 
       return {
         ...state,
         questions: newQuestions,
-        results: newQuestions
+        results: newQuestions,
       }
     case SEARCH_QUESTIONS:
       const re = new RegExp(_.escapeRegExp(action.searchTerm), 'i')
@@ -75,59 +77,61 @@ const questions = (state = initialState, action) => {
         questions: action.questions,
         searchTerm: action.searchTerm,
         results: _.filter(action.questions, isMatch),
-        isLoading: false
+        isLoading: false,
       }
     case SET_LOADING:
       return {
         ...state,
-        isLoading: action.isLoading
+        isLoading: action.isLoading,
       }
     case SET_SEARCHTERM:
       return {
         ...state,
-        searchTerm: action.searchTerm
+        searchTerm: action.searchTerm,
       }
     case RESET_SEARCH_RESULT:
       return {
         ...state,
         searchTerm: '',
-        result: state.questions
+        result: state.questions,
       }
     case LIKE_QUESTION_SUCCESS:
-      const val = state.questions[action.qIdx]['like'] || 0
+      const val = state.questions[action.qIdx].like || 0
       const questions = JSON.parse(JSON.stringify(state.questions))
-      questions[action.qIdx]['like'] = val + 1
+      questions[action.qIdx].like = val + 1
       console.log(questions[action.qIdx])
       return {
         ...state,
         questions,
-        results :questions
+        results: questions,
       }
     case DELETE_UNANSWERED_QUESTION_SUCCESS:
-      const unansweredQuestions = state.unansweredQuestions.map((question, index) => {
-        return {
-          ...question,
-          undeleted: index === action.qIdx
+      const unansweredQuestions = state.unansweredQuestions.map(
+        (question, index) => {
+          return {
+            ...question,
+            undeleted: index === action.qIdx,
+          }
         }
-      });
+      )
 
       return {
         ...state,
-        unansweredQuestions: unansweredQuestions
+        unansweredQuestions,
       }
     case DELETE_ANSWERED_QUESTION_SUCCESS:
       const data = state.questions.map((question, index) => {
         return {
           ...question,
-          undeleted: index === action.qIdx
+          undeleted: index === action.qIdx,
         }
-      });
+      })
 
-      console.log("i am here");
+      console.log('i am here')
 
       return {
         ...state,
-        questions: data
+        questions: data,
       }
 
     default:
