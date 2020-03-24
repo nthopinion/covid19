@@ -1,7 +1,8 @@
 import _ from 'lodash'
 import { FETCH_ALL_UNANSWERED_QUESTION } from '../constants/ActionTypes'
+
 const initialState = {
-  questions: []
+  questions: [],
 }
 const physicianQuestion = (state = initialState, action) => {
   switch (action.type) {
@@ -9,7 +10,7 @@ const physicianQuestion = (state = initialState, action) => {
       console.log('FETCH_ALL_UNANSWERED_QUESTION', action)
       return {
         ...state,
-        questions: action.questions
+        questions: action.questions,
       }
     default:
       return state
