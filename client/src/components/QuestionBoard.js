@@ -149,7 +149,13 @@ export default class QuestionBoard extends Component {
                 <Icon name='facebook'></Icon>
 
                 </a> */}
-                    <div>
+                    <div className="buttonGroupCustom">
+                      <FlagButton
+                        color="red"
+                        basic
+                        title="report an issue"
+                        onClick={() => this.handleReportIssue(question)}
+                      />
                       <LikeButton
                         onClick={() =>
                           this.props.handleClickLike(question.id, i)
@@ -178,12 +184,6 @@ export default class QuestionBoard extends Component {
                       {/*    </Button.Content> */}
                       {/*  </a> */}
                       {/* </Button> */}
-                      <FlagButton
-                        color="red"
-                        basic
-                        title="report an issue"
-                        onClick={() => this.handleReportIssue(question)}
-                      />
                     </div>
                   </div>
                 </div>
