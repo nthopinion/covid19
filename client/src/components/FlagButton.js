@@ -6,7 +6,7 @@ class FlagButton extends Component {
   render() {
     return (
       <div
-        style={{ position: 'relative', float: 'right' }}
+        style={{ position: 'relative', float: 'right', cursor: 'pointer' }}
         onClick={this.props.onClick}
       >
         <Icon name="flag" />

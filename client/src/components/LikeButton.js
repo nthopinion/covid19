@@ -6,7 +6,7 @@ class LikeButton extends Component {
   render() {
     return (
       <div
-        style={{ position: 'relative', float: 'left' }}
+        style={{ position: 'relative', float: 'left', cursor: 'pointer' }}
         onClick={this.props.onClick}
         id={this.props.itemId}
       >
