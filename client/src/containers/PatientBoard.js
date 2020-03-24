@@ -96,9 +96,6 @@ class PatientBoard extends Component {
   }
 
   handleSubmitNewQuestion = () => {
-    console.log('handleSubmitNewQuestion -- inner')
-
-    const { dispatch } = this.props
     this.props.postQuestion(this.props.searchTerm)
 
     this.setState({ prevSearchTerm: this.props.searchTerm })
@@ -123,7 +120,6 @@ class PatientBoard extends Component {
           newQ={this.props.newQ}
         />
         <div className="containerDiv">
-          <Options />
           {this.state.displayNewQuestion && (
             <div
               className="new-answers"
@@ -193,7 +189,7 @@ const mapDispatchToProps = (dispatch) =>
       setSearchTerm,
       postQuestion,
       clickLikeQuestion,
-      handleNewQuestionAnswered
+      handleNewQuestionAnswered,
     },
     dispatch
   )
