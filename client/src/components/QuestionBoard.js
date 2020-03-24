@@ -121,11 +121,12 @@ export default class QuestionBoard extends Component {
 
                 {question.youtubeLinks &&
                   question.youtubeLinks.map((y, index) => {
-                    const videoSrc = `https://www.youtube.com/embed/${y.video}?autoplay=false`;
+                    const videoSrc = `https://www.youtube.com/embed/${y}?autoplay=false`;
+
                     return (
-                      y.video && (
+                      y && (
                         <iframe
-                          title={`https://www.youtube.com/embed/${y.video}?autoplay=false${index}`}
+                          title={videoSrc}
                           className="player"
                           type="text/html"
                           width="100%"
