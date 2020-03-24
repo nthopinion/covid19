@@ -2,7 +2,7 @@ body * {
   box-sizing: border-box;
 }
 body {
-  font-family: Arial, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans",
+  font-family: Arial, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans',
     Geneva, Arial, sans-serif;
 }
 .container {

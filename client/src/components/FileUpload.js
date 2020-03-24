@@ -1,86 +1,85 @@
-import React, { Component } from 'react'
-import Dropzone from './Dropzone'
-import '../styles/FileUpload.css'
-import Progress from './Progress'
-import config from '../config'
+import React, { Component } from 'react';
+import Dropzone from './Dropzone';
+import '../styles/FileUpload.css';
+import Progress from './Progress';
+import config from '../config';
 
 class Upload extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       files: [],
       uploading: false,
       uploadProgress: {},
       successfullUploaded: false,
-    }
+    };
 
-    this.onFilesAdded = this.onFilesAdded.bind(this)
-    this.uploadFiles = this.uploadFiles.bind(this)
-    this.sendRequest = this.sendRequest.bind(this)
-    this.renderActions = this.renderActions.bind(this)
+    this.onFilesAdded = this.onFilesAdded.bind(this);
+    this.uploadFiles = this.uploadFiles.bind(this);
+    this.sendRequest = this.sendRequest.bind(this);
+    this.renderActions = this.renderActions.bind(this);
   }
 
   onFilesAdded(files) {
     this.setState((prevState) => ({
       files: prevState.files.concat(files),
-    }))
+    }));
   }
 
   async uploadFiles() {
-    this.setState({ uploadProgress: {}, uploading: true })
-    const promises = []
+    this.setState({ uploadProgress: {}, uploading: true });
+    const promises = [];
     this.state.files.forEach((file) => {
-      promises.push(this.sendRequest(file))
-    })
+      promises.push(this.sendRequest(file));
+    });
     try {
-      await Promise.all(promises)
+      await Promise.all(promises);
 
-      this.setState({ successfullUploaded: true, uploading: false })
+      this.setState({ successfullUploaded: true, uploading: false });
     } catch (e) {
       // Not Production ready! Do some error handling here instead...
-      this.setState({ successfullUploaded: true, uploading: false })
+      this.setState({ successfullUploaded: true, uploading: false });
     }
   }
 
   sendRequest(file) {
     return new Promise((resolve, reject) => {
-      const req = new XMLHttpRequest()
+      const req = new XMLHttpRequest();
 
       req.upload.addEventListener('progress', (event) => {
         if (event.lengthComputable) {
-          const copy = { ...this.state.uploadProgress }
+          const copy = { ...this.state.uploadProgress };
           copy[file.name] = {
             state: 'pending',
             percentage: (event.loaded / event.total) * 100,
-          }
-          this.setState({ uploadProgress: copy })
+          };
+          this.setState({ uploadProgress: copy });
         }
-      })
+      });
 
-      req.upload.addEventListener('load', (event) => {
-        const copy = { ...this.state.uploadProgress }
-        copy[file.name] = { state: 'done', percentage: 100 }
-        this.setState({ uploadProgress: copy })
-        resolve(req.response)
-      })
+      req.upload.addEventListener('load', () => {
+        const copy = { ...this.state.uploadProgress };
+        copy[file.name] = { state: 'done', percentage: 100 };
+        this.setState({ uploadProgress: copy });
+        resolve(req.response);
+      });
 
-      req.upload.addEventListener('error', (event) => {
-        const copy = { ...this.state.uploadProgress }
-        copy[file.name] = { state: 'error', percentage: 0 }
-        this.setState({ uploadProgress: copy })
-        reject(req.response)
-      })
+      req.upload.addEventListener('error', () => {
+        const copy = { ...this.state.uploadProgress };
+        copy[file.name] = { state: 'error', percentage: 0 };
+        this.setState({ uploadProgress: copy });
+        reject(req.response);
+      });
 
-      const formData = new FormData()
-      formData.append('file', file, file.name)
-      console.log(file, file.name)
-      req.open('POST', `${config.domainURL}/upload`)
-      req.send(formData)
-    })
+      const formData = new FormData();
+      formData.append('file', file, file.name);
+      req.open('POST', `${config.domainURL}/upload`);
+      req.send(formData);
+    });
   }
 
   renderProgress(file) {
-    const uploadProgress = this.state.uploadProgress[file.name]
+    const uploadProgress = this.state.uploadProgress[file.name];
     if (this.state.uploading || this.state.successfullUploaded) {
       return (
         <div className="ProgressWrapper">
@@ -95,8 +94,10 @@ class Upload extends Component {
             }}
           />
         </div>
-      )
+      );
     }
+
+    return null;
   }
 
   renderActions() {
@@ -109,7 +110,7 @@ class Upload extends Component {
         >
           Clear
         </button>
-      )
+      );
     }
     return (
       <button
@@ -118,7 +119,7 @@ class Upload extends Component {
       >
         Upload
       </button>
-    )
+    );
   }
 
   render() {
@@ -139,14 +140,14 @@ class Upload extends Component {
                   <span className="Filename">{file.name}</span>
                   {this.renderProgress(file)}
                 </div>
-              )
+              );
             })}
           </div>
         </div>
         <div className="Actions">{this.renderActions()}</div>
       </div>
-    )
+    );
   }
 }
 
-export default Upload
+export default Upload;

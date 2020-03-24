@@ -1,26 +1,27 @@
-import React, { Component } from 'react'
-import DisplayQrcode from '@bit/globalinput.web.display-qrcode'
+import React, { Component } from 'react';
+// eslint-disable-next-line import/no-unresolved
+import DisplayQrcode from '@bit/globalinput.web.display-qrcode';
 
 export class Timer extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       NTO: 0,
-    }
+    };
   }
 
   tick() {
     this.setState((state) => ({
       NTO: state.NTO + 1,
-    }))
+    }));
   }
 
   componentDidMount() {
-    this.interval = setInterval(() => this.tick(), 2000)
+    this.interval = setInterval(() => this.tick(), 2000);
   }
 
   componentWillUnmount() {
-    clearInterval(this.interval)
+    clearInterval(this.interval);
   }
 
   render() {
@@ -32,8 +33,8 @@ export class Timer extends Component {
           label={`Scan to receive: ${this.state.NTO} NTO`}
         />
       </div>
-    )
+    );
   }
 }
 
-export default Timer
+export default Timer;

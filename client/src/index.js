@@ -1,21 +1,21 @@
-import React from 'react'
-import { render } from 'react-dom'
-import { createStore, applyMiddleware } from 'redux'
-import { Provider } from 'react-redux'
-import thunk from 'redux-thunk'
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
-import { I18nextProvider } from 'react-i18next'
-import i18n from './i18n'
+import React from 'react';
+import { render } from 'react-dom';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { I18nextProvider } from 'react-i18next';
+import i18n from './i18n';
 
-import App from './containers/App'
-import About from './components/About'
-import PhysicianView from './components/PhysicianView'
+import App from './containers/App';
+import About from './components/About';
+import PhysicianView from './components/PhysicianView';
 
-import * as serviceWorker from './serviceWorker'
-import rootReducer from './reducers'
-import AuthProvider from './AuthProvider'
+import * as serviceWorker from './serviceWorker';
+import rootReducer from './reducers';
+import AuthProvider from './AuthProvider';
 
-const store = createStore(rootReducer, applyMiddleware(thunk))
+const store = createStore(rootReducer, applyMiddleware(thunk));
 // const ProtectedPhysicianView = withAdalLoginApi(PhysicianView, () => <div>loading</div>, (error) => <div>error</div>);
 
 render(
@@ -36,5 +36,5 @@ render(
     </I18nextProvider>
   </div>,
   document.getElementById('root')
-)
-serviceWorker.unregister()
+);
+serviceWorker.unregister();

@@ -11,4 +11,4 @@ export {
   deleteQuestion,
   clickLikeQuestion,
   handleNewQuestionAnswered,
-} from './question'
+} from './question';

@@ -1,17 +1,18 @@
-import React from 'react'
-import { ListBox } from '@bit/primefaces.primereact.listbox'
-import PrimereactStyle from '@bit/primefaces.primereact.internal.stylelinks'
-import './App.scss'
+/* eslint-disable import/no-unresolved */
+import React from 'react';
+import { ListBox } from '@bit/primefaces.primereact.listbox';
+import PrimereactStyle from '@bit/primefaces.primereact.internal.stylelinks';
+import './App.scss';
 
 class Userexperiences extends React.Component {
   constructor() {
-    super()
+    super();
     this.state = {
       cities: [
         { name: 'Rome', code: 'RM' },
         { name: 'Istanbul', code: 'IST' },
       ],
-    }
+    };
   }
 
   render() {
@@ -28,7 +29,7 @@ class Userexperiences extends React.Component {
       },
       { name: 'Incentive inspirometry', code: 'IST' },
       { name: 'cardiac MRI for the evaluation of Sarcoidosis', code: 'PRS' },
-    ]
+    ];
 
     return (
       <div>
@@ -46,8 +47,8 @@ class Userexperiences extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default Userexperiences
+export default Userexperiences;

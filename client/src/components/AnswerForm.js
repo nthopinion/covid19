@@ -1,34 +1,34 @@
-import React, { Component, createRef, Fragment } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
-  Menu,
   Button,
   Form,
   Message,
   Card,
-  Grid,
   Icon,
   List,
   Label,
-} from 'semantic-ui-react'
-import AuthProvider from '../AuthProvider'
-import { deleteQuestion, setAnswerForQuestion } from '../actions'
-import AnswerItem from './AnswerItem'
-import FileUpload from './FileUpload'
-import CardLeftPanel from './CardLeftPanel'
-import '../styles/QuestionBoard.css'
-import { bindActionCreators } from 'redux'
-import config from '../config'
+} from 'semantic-ui-react';
+import { bindActionCreators } from 'redux';
+import AuthProvider from '../AuthProvider';
+import { deleteQuestion } from '../actions';
+import AnswerItem from './AnswerItem';
+import FileUpload from './FileUpload';
+import CardLeftPanel from './CardLeftPanel';
+import '../styles/QuestionBoard.css';
+import config from '../config';
 
 class AnswerForm extends Component {
   constructor(props) {
-    super(props)
-    const newQ = { ...props.q }
-    this.state = { q: newQ, idx: props.idx }
+    super(props);
+    const newQ = { ...props.q };
+    this.state = { q: newQ, idx: props.idx };
   }
 
   postQuestionAnswer = (question) => {
-    const endpoint = this.props.showUnaswered ? 'updateQuestion' : 'editAnswers'
+    const endpoint = this.props.showUnaswered
+      ? 'updateQuestion'
+      : 'editAnswers';
     return fetch(`${config.domainURL}/api/${endpoint}`, {
       method: 'POST',
       headers: {
@@ -37,68 +37,65 @@ class AnswerForm extends Component {
       },
       body: JSON.stringify({ ...question }),
     })
-      .then((response) => console.log(response))
-      .catch((error) => console.log(error))
-  }
+      .then((response) => response)
+      .catch((error) => console.log(error));
+  };
 
+  // eslint-disable-next-line react/no-deprecated
   componentWillReceiveProps(nextProps) {
     if (nextProps.q !== this.props.q) {
       // Perform some operation
-      this.setState({ q: nextProps.q })
+      this.setState({ q: nextProps.q });
       // this.classMethod();
     }
     if (nextProps.idx !== this.props.idx) {
       // Perform some operation
-      this.setState({ idx: nextProps.idx })
+      this.setState({ idx: nextProps.idx });
       // this.classMethod();
     }
   }
 
   handleDeleteQuestion = (qId, idx) => {
-    const isUnanswered = this.props.showUnaswered
+    const isUnanswered = this.props.showUnaswered;
 
-    this.props.deleteQuestion(qId, idx, isUnanswered)
-  }
+    this.props.deleteQuestion(qId, idx, isUnanswered);
+  };
 
-  handleSubmit = async (e, { value }, q) => {
-    console.log('submit answer')
-    // const key = 'q_'+q.id;
-
-    const updatedQuestion = { ...q }
+  handleSubmit = async (e, value, q) => {
+    const updatedQuestion = { ...q };
     updatedQuestion.answers = updatedQuestion.answers.filter(
       (a) => a && a.length > 0
-    )
+    );
 
-    console.log('updatedQuestion', updatedQuestion)
-    await this.postQuestionAnswer(updatedQuestion)
+    await this.postQuestionAnswer(updatedQuestion);
     this.setState({
       submitted: true,
       [`newAnswers${q.id}`]: updatedQuestion.answers,
-    })
-  }
+    });
+  };
 
   handleChange = (e, { value }, q) => {
-    const key = `q_${q.id}`
-    this.setState({ [key]: value })
-  }
+    const key = `q_${q.id}`;
+    this.setState({ [key]: value });
+  };
 
   handleUpdatedAnswerChange = (e, { value }, q, ansIdx) => {
-    const qu = { ...q }
-    qu.answers[ansIdx] = value
+    const qu = { ...q };
+    qu.answers[ansIdx] = value;
     // const key = 'q_'+q.id;
-    this.setState({ q: qu })
+    this.setState({ q: qu });
     // this.props.setAnswerForQuestion()
     // await this.postQuestionAnswer(updatedQuestion)
     // this.setState({ submitted: true, newAnswer: q})
-  }
+  };
 
   render() {
-    const { q, idx } = this.state
+    const { q, idx } = this.state;
     const metaData = q.flagIssue && (
       <Label as="a" color="red" tag>
         Report Issues: <span> {q.flagIssue}</span>
       </Label>
-    )
+    );
     return (
       <Card className="qCard" key={idx} style={{ width: '100%' }}>
         <CardLeftPanel
@@ -120,7 +117,7 @@ class AnswerForm extends Component {
                         this.handleUpdatedAnswerChange(e, { value }, q, ansIdx)
                       }
                     />
-                  )
+                  );
                 })}
               <div>
                 {false && <Icon name="attach" />}
@@ -159,22 +156,22 @@ class AnswerForm extends Component {
             <Message.Header>Thank you!</Message.Header>
             <List>
               {this.state[`newAnswers${q.id}`] &&
-                this.state[`newAnswers${q.id}`].map((answer, idx) => {
-                  return <AnswerItem answer={answer} key={idx} />
+                this.state[`newAnswers${q.id}`].map((answer, index) => {
+                  return <AnswerItem answer={answer} key={index} />;
                 })}
             </List>
           </Message>
         )}
       </Card>
-    )
+    );
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = () => {
   return {
     // unansweredQuestions: state.questionBoard.unansweredQuestions
-  }
-}
+  };
+};
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -182,9 +179,9 @@ const mapDispatchToProps = (dispatch) =>
       deleteQuestion,
     },
     dispatch
-  )
+  );
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AuthProvider(AnswerForm))
+)(AuthProvider(AnswerForm));

@@ -1,38 +1,29 @@
-import React, { Component, Fragment } from 'react'
-import {
-  List,
-  Button,
-  Icon,
-  Message,
-  Sticky,
-  Header,
-  Image,
-} from 'semantic-ui-react'
-import styles from '../styles/FloatingMenu.module.css'
-import Iframe from './Iframe'
-import ChatBox from './ChatBox'
+import React, { Component } from 'react';
+import { Icon } from 'semantic-ui-react';
+import styles from '../styles/FloatingMenu.module.css';
+import ChatBox from './ChatBox';
 
 class FloatingMenu extends Component {
   constructor() {
-    super()
+    super();
 
     this.state = {
       toggled: false,
-    }
+    };
   }
 
   componentDidMount() {
     if (window.innerWidth > 760)
-      this.interval = setTimeout(() => this.setState({ toggled: true }), 5000)
+      this.interval = setTimeout(() => this.setState({ toggled: true }), 5000);
   }
 
   componentWillUnmount() {
-    clearInterval(this.interval)
+    clearInterval(this.interval);
   }
 
-  toggleMenu() {
-    this.setState({ toggled: !this.state.toggled })
-  }
+  toggleMenu = () => {
+    this.setState({ toggled: !this.state.toggled });
+  };
 
   render() {
     return (
@@ -46,12 +37,12 @@ class FloatingMenu extends Component {
             inverted
             color="teal"
             name="rocketchat"
-            onClick={this.toggleMenu.bind(this)}
+            onClick={this.toggleMenu}
           />
         </div>
       </>
-    )
+    );
   }
 }
 
-export default FloatingMenu
+export default FloatingMenu;

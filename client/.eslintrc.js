@@ -1,19 +1,31 @@
 module.exports = {
   root: true,
   extends: [
-    "react-app",
-    "airbnb",
-    "plugin:jsx-a11y/recommended",
-    "prettier",
-    "prettier/react",
+    'react-app',
+    'airbnb',
+    'plugin:jsx-a11y/recommended',
+    'prettier',
+    'prettier/react',
   ],
-  plugins: [
-    "jsx-a11y",
-    "prettier",
-  ],
+  plugins: ['jsx-a11y', 'prettier'],
   rules: {
-    "semi": 0,
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "prettier/prettier": "error",
-  }
-}
+    semi: 0,
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+    'prettier/prettier': 'error',
+    'react/prop-types': 'off',
+    'react/destructuring-assignment': 'off',
+    'import/prefer-default-export': 'off',
+    'no-plusplus': 'off',
+    'react/prefer-stateless-function': 'off',
+    'import/no-named-as-default': 'off',
+    'react/sort-comp': 'off',
+    'react/no-access-state-in-setstate': 'off',
+    'react/button-has-type': 'off',
+    'consistent-return': 'off',
+    'no-case-declarations': 'off',
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'react/no-unescaped-entities': 'off',
+    'react/no-array-index-key': 'off',
+    'jsx-a11y/no-static-element-interactions': 'off'
+  },
+};

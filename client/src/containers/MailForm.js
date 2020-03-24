@@ -1,48 +1,21 @@
-import React, { Component, createRef } from 'react'
-import _ from 'lodash'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import {
-  Grid,
-  Header,
-  Image,
-  Rail,
-  Ref,
-  Segment,
-  Sticky,
-  Item,
-  Search,
-  Message,
-  Form,
-  Button,
-} from 'semantic-ui-react'
-import {
-  fetchQuestions,
-  setLoading,
-  searchQuestions,
-  resetSearchResult,
-  setSearchTerm,
-  postQuestion,
-  clickLikeQuestion,
-} from '../actions'
-import QuestionBoard from '../components/QuestionBoard'
-import SearchBar from '../components/SearchBar'
-import '../styles/PatientBoard.css'
-import AddQuestionForm from './AddQuestionForm'
-import FloatingMenu from '../components/FloatingMenu'
-import Links from '../componnets/Links'
+import React, { Component } from 'react';
+import { Segment, Form, Button } from 'semantic-ui-react';
+
+import '../styles/PatientBoard.css';
 
 class MailForm extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
+      // eslint-disable-next-line react/no-unused-state
       success: false,
-    }
+    };
   }
 
-  handleChange = (e, { name, value }) => this.setState({ [name]: value })
+  handleChange = (e, { name, value }) => this.setState({ [name]: value });
 
-  handleSubmit = () => this.setState({ email: '', name: '' })
+  // eslint-disable-next-line react/no-unused-state
+  handleSubmit = () => this.setState({ email: '', name: '' });
 
   render() {
     return (
@@ -64,8 +37,8 @@ class MailForm extends Component {
           <Button>Submit</Button>
         </Form>
       </Segment>
-    )
+    );
   }
 }
 
-export default MailForm
+export default MailForm;
