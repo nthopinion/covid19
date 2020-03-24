@@ -70,6 +70,8 @@ class PostDao {
     answers.concat((item.answers || []))
     doc.answers = item.answers
     doc.answered = !!(item.answers)
+    doc.sources = item.sources
+    doc.youtubeLinks = item.youtubeLinks
 
     const { resource: replaced } = await this.container
       .item(item.id)

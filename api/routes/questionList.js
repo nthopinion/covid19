@@ -1,6 +1,8 @@
 const Pusher = require('pusher');
+const getUrls = require('get-urls');
 
 const QuestionDao = require('../models/questionDao')
+
 /**
  * @swagger
  * definitions:
@@ -180,9 +182,32 @@ class PostList {
   }
 
   async updateQuestion (req, res) {
-    const question = req.body
+    let question = req.body
+    const youtubeRegex = /http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?/
+
+    let sources = [];
+    let youtubeLinks = [];
+    const answer = question.answers && question.answers.length && question.answers[0];
+
+    const urls = getUrls(answer);
+
+    urls.forEach(url => {
+      if (url.match(youtubeRegex)) {
+        youtubeLinks.push(url);
+      } else {
+        sources.push(url);
+      }
+    });
+
+    question = {
+      ...question,
+      sources,
+      youtubeLinks
+    };
+
     await this.questionDao.updateItem(question)
-    const {appId, key, secret, cluster, channel, event} = config.pusher;
+
+    const {appId, key, secret, cluster, channel} = config.pusher;
   
     const pusher = new Pusher({
       appId,
