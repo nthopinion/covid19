@@ -6,64 +6,63 @@ import {
   isIE,
   GRAPH_ENDPOINTS,
   GRAPH_SCOPES,
-  GRAPH_REQUESTS
+  GRAPH_REQUESTS,
 } from './auth-utils'
 
 // If you support IE, our recommendation is that you sign-in using Redirect APIs
 const useRedirectFlow = isIE()
 // const useRedirectFlow = true;
 
-export default C =>
+export default (C) =>
   class AuthProvider extends Component {
-    constructor (props) {
+    constructor(props) {
       super(props)
 
       this.state = {
         account: null,
         error: null,
         emailMessages: null,
-        graphProfile: null
+        graphProfile: null,
       }
     }
 
-    async acquireToken (request, redirect) {
-      return msalApp.acquireTokenSilent(request).catch(error => {
+    async acquireToken(request, redirect) {
+      return msalApp.acquireTokenSilent(request).catch((error) => {
         // Call acquireTokenPopup (popup window) in case of acquireTokenSilent failure
         // due to consent or interaction required ONLY
         if (requiresInteraction(error.errorCode)) {
           return redirect
             ? msalApp.acquireTokenRedirect(request)
             : msalApp.acquireTokenPopup(request)
-        } else {
-          console.error('Non-interactive error:', error.errorCode)
         }
+        console.error('Non-interactive error:', error.errorCode)
       })
     }
 
-    async onSignIn (redirect) {
+    async onSignIn(redirect) {
       if (redirect) {
         return msalApp.loginRedirect(GRAPH_REQUESTS.LOGIN)
       }
 
       const loginResponse = await msalApp
         .loginPopup(GRAPH_REQUESTS.LOGIN)
-        .catch(error => {
+        .catch((error) => {
           this.setState({
-            error: error.message
+            error: error.message,
           })
         })
 
       if (loginResponse) {
         this.setState({
           account: loginResponse.account,
-          error: null
+          error: null,
         })
 
         const tokenResponse = await this.acquireToken(
           GRAPH_REQUESTS.LOGIN
-        ).catch(error => {
+        ).catch((error) => {
           this.setState({
-            error: error.message
+            error: error.message,
           })
         })
 
@@ -73,13 +72,13 @@ export default C =>
             tokenResponse.accessToken
           ).catch(() => {
             this.setState({
-              error: 'Unable to fetch Graph profile.'
+              error: 'Unable to fetch Graph profile.',
             })
           })
 
           if (graphProfile) {
             this.setState({
-              graphProfile
+              graphProfile,
             })
           }
 
@@ -90,17 +89,17 @@ export default C =>
       }
     }
 
-    onSignOut () {
+    onSignOut() {
       msalApp.logout()
     }
 
-    async onRequestEmailToken () {
+    async onRequestEmailToken() {
       const tokenResponse = await this.acquireToken(
         GRAPH_REQUESTS.EMAIL,
         useRedirectFlow
-      ).catch(e => {
+      ).catch((e) => {
         this.setState({
-          error: 'Unable to acquire access token for reading email.'
+          error: 'Unable to acquire access token for reading email.',
         })
       })
 
@@ -109,31 +108,33 @@ export default C =>
       }
     }
 
-    async readMail (accessToken) {
+    async readMail(accessToken) {
       const emailMessages = await fetchMsGraph(
         GRAPH_ENDPOINTS.MAIL,
         accessToken
       ).catch(() => {
         this.setState({
-          error: 'Unable to fetch email messages.'
+          error: 'Unable to fetch email messages.',
         })
       })
 
       if (emailMessages) {
         this.setState({
           emailMessages,
-          error: null
+          error: null,
         })
       }
     }
 
-    async componentDidMount () {
-      msalApp.handleRedirectCallback(error => {
+    async componentDidMount() {
+      msalApp.handleRedirectCallback((error) => {
         if (error) {
-          const errorMessage = error.errorMessage ? error.errorMessage : 'Unable to acquire access token.'
+          const errorMessage = error.errorMessage
+            ? error.errorMessage
+            : 'Unable to acquire access token.'
           // setState works as long as navigateToLoginRequestUrl: false
           this.setState({
-            error: errorMessage
+            error: errorMessage,
           })
         }
       })
@@ -141,7 +142,7 @@ export default C =>
       const account = msalApp.getAccount()
 
       this.setState({
-        account
+        account,
       })
 
       if (account) {
@@ -156,13 +157,13 @@ export default C =>
             tokenResponse.accessToken
           ).catch(() => {
             this.setState({
-              error: 'Unable to fetch Graph profile.'
+              error: 'Unable to fetch Graph profile.',
             })
           })
 
           if (graphProfile) {
             this.setState({
-              graphProfile
+              graphProfile,
             })
           }
 
@@ -173,7 +174,7 @@ export default C =>
       }
     }
 
-    render () {
+    render() {
       return (
         <C
           {...this.props}

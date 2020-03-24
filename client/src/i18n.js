@@ -1,7 +1,7 @@
-import i18n from 'i18next';
-import backend from 'i18next-xhr-backend';
-import languageDetector from 'i18next-browser-languagedetector';
-import { initReactI18next } from 'react-i18next';
+import i18n from 'i18next'
+import backend from 'i18next-xhr-backend'
+import languageDetector from 'i18next-browser-languagedetector'
+import { initReactI18next } from 'react-i18next'
 
 i18n
   .use(backend)
@@ -27,8 +27,8 @@ i18n
     },
 
     react: {
-      useSuspense: false
-    }
-  });
+      useSuspense: false,
+    },
+  })
 
-export default i18n;
+export default i18n

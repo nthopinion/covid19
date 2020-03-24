@@ -2,17 +2,17 @@ import React, { Component } from 'react'
 import '../styles/Progress.css'
 
 class Progress extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {}
   }
 
-  render () {
+  render() {
     return (
-      <div className='ProgressBar'>
+      <div className="ProgressBar">
         <div
-          className='Progress'
-          style={{ width: this.props.progress + '%' }}
+          className="Progress"
+          style={{ width: `${this.props.progress}%` }}
         />
       </div>
     )

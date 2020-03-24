@@ -8,25 +8,24 @@ const countryservice = [
   { name: 'congestive heart failure', code: 'AP' },
   { name: 'cholecystis', code: 'AP' },
   { name: 'pancreatitis', code: 'AP' },
-  { name: 'Hemorrhoids', code: 'Hemi' }
-
+  { name: 'Hemorrhoids', code: 'Hemi' },
 ]
 
 class Example extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     // this.filterCountryMultiple = this.filterCountryMultiple.bind(this)
     this.state = {
       countriesData: countryservice,
-      filteredCountriesMultiple: null
+      filteredCountriesMultiple: null,
     }
 
     this.filterCountryMultiple = this.filterCountryMultiple.bind(this)
   }
 
-  filterCountryMultiple (event) {
+  filterCountryMultiple(event) {
     setTimeout(() => {
-      const results = this.state.countriesData.filter(country => {
+      const results = this.state.countriesData.filter((country) => {
         return country.name.toLowerCase().startsWith(event.query.toLowerCase())
       })
 
@@ -34,26 +33,26 @@ class Example extends React.Component {
     }, 0)
   }
 
-  render () {
+  render() {
     const diagnosis = this.state.countries
 
     console.log(this.state.filteredCountriesMultiple)
 
     return (
-      <div className='content-section implementation'>
+      <div className="content-section implementation">
         <PrimereactStyle />
-        <h3 className='style-appname'>Design Your AI and Scale</h3>
-        <span className='p-fluid'>
-          <div className='style-physicianbar'>
+        <h3 className="style-appname">Design Your AI and Scale</h3>
+        <span className="p-fluid">
+          <div className="style-physicianbar">
             <AutoComplete
               value={this.state.countries}
               suggestions={this.state.filteredCountriesMultiple}
               completeMethod={this.filterCountryMultiple}
               minLength={1}
-              placeholder='i.e. pericarditis'
-              field='name'
+              placeholder="i.e. pericarditis"
+              field="name"
               multiple
-              onChange={e => this.setState({ countries: e.value })}
+              onChange={(e) => this.setState({ countries: e.value })}
             />
           </div>
         </span>
