@@ -13,13 +13,14 @@
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",
     "express": "~4.16.1",
+    "get-urls": "^9.2.0",
     "http-errors": "~1.6.3",
     "into-stream": "^5.1.1",
     "jade": "~1.11.0",
     "morgan": "~1.9.1",
     "multer": "^1.4.2",
-    "swagger-ui-express": "^4.1.4",
+    "pusher": "^3.0.0",
     "swagger-jsdoc": "^3.2.9",
-    "pusher": "^3.0.0"
+    "swagger-ui-express": "^4.1.4"
   }
 }

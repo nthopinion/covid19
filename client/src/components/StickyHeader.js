@@ -15,6 +15,7 @@ class StickyHeader extends Component {
       searchTerm,
       handleResultSelect,
       handleSearchChange,
+      handleKeyPress,
       addSuccess,
       messageActive,
       newQ,
@@ -30,6 +31,7 @@ class StickyHeader extends Component {
             value={searchTerm}
             handleResultSelect={handleResultSelect}
             handleSearchChange={handleSearchChange}
+            handleKeyPress={handleKeyPress}
           />
           <Menu lightMenu />
           {addSuccess && messageActive && (
