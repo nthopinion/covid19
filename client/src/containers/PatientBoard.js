@@ -100,6 +100,12 @@ class PatientBoard extends Component {
     // dispatch(searchQuestions(this.props.questions, this.props.searchTerm))
   };
 
+  handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      this.props.resetSearchResult();
+    }
+  };
+
   contextRef = createRef();
 
   render() {
@@ -115,6 +121,7 @@ class PatientBoard extends Component {
           addSuccess={this.props.addSuccess}
           messageActive={this.props.messageActive}
           newQ={this.props.newQ}
+          handleKeyPress={this.handleKeyPress}
         />
         <div className="containerDiv">
           {this.state.displayNewQuestion && (
