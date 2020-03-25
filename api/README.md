@@ -4,6 +4,12 @@ The api for the COVID19 app.
 
 ## Setup
 
+Change directory to `api` folder
+
+```
+$ cd api
+```
+
 Install dependencies
 
 ```
@@ -22,4 +28,11 @@ Start the app
 
 ```
 $ npm start
+
+
+To View Swagger documentation:
+
+[http://localhost:8000/api-docs](http://localhost:8000/api-docs) 
+
+
 ```

@@ -1,0 +1,72 @@
+.loginScreen {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.loginScreen section {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginSection {
+  background-color: #f7fafc;
+  padding: 55px;
+}
+
+.loginSection div {
+  display: block;
+}
+
+.loginSection h1 {
+  color: #006eaa;
+  font-size: 70px;
+}
+
+.loginSection p {
+  margin: 40px 0px;
+  font-size: 18px;
+}
+
+.heroSection {
+  background: linear-gradient(rgba(71, 105, 123, 0.7), rgba(71, 105, 123, 0.7)),
+    url(../assets/images/login-bg.jpg);
+  background-size: cover;
+}
+
+.loginSection .ui.button {
+  font-size: 18px;
+  font-weight: 400;
+  height: auto;
+  color: white;
+  background: #006eaa;
+}
+.heroSection img {
+  width: 500px;
+}
+
+@media (max-width: 820px) {
+  .loginSection {
+    order: 2;
+  }
+
+  .loginScreen .loginSection {
+    align-items: start;
+  }
+
+  .heroSection {
+    order: 1;
+  }
+  .heroSection img {
+    width: 300px;
+  }
+  .loginScreen {
+    grid-template-columns: none;
+    grid-template-rows: 1fr 3fr;
+  }
+}

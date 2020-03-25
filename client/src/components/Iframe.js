@@ -1,9 +1,12 @@
-import React, { Component, Fragment } from 'react'
-import { List } from 'semantic-ui-react'
+import React from 'react';
 
 const Iframe = (props) => (
-  <>
-    <iframe src={props.src} styles={props.style} width={props.width} height={props.height} />
-  </>
-)
-export default Iframe
+  <iframe
+    title={props.title}
+    src={props.src}
+    styles={props.style}
+    width={props.width}
+    height={props.height}
+  />
+);
+export default Iframe;

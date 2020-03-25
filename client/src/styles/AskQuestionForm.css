@@ -1,0 +1,35 @@
+.flex-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ask-button.ui.button {
+  font-weight: 400;
+  height: auto;
+  font-size: 18px;
+  border-radius: 30px;
+  background-color: #006eaa;
+  opacity: 1;
+  box-shadow: 4px 4px 50px rgba(176, 176, 176, 0.25);
+}
+
+.ui.form textarea {
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+}
+
+.ui.modal > .header {
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 1rem !important;
+}
+
+.ui.form .field > label {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+div.field {
+  margin-bottom: 0;
+}
