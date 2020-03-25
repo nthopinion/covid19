@@ -4,8 +4,9 @@ import PatientBoard from './PatientBoard';
 import TranslationsSuspense from '../components/TranslationsSuspense';
 
 const App = () => (
-  <TranslationsSuspense>
-    <PatientBoard />
-  </TranslationsSuspense>
+  <PatientBoard />
+  // <TranslationsSuspense>
+  //   <PatientBoard />
+  // </TranslationsSuspense>
 );
 export default App;
