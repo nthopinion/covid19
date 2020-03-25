@@ -51,7 +51,7 @@ class NavMenu extends Component {
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
-                      href="https://about.covid19webapp.com/#lp-pom-block-118"
+                      href="https://about.askco19.com/#lp-pom-block-118"
                     >
                       ABOUT
                     </a>
@@ -60,7 +60,7 @@ class NavMenu extends Component {
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
-                      href="https://about.covid19webapp.com/"
+                      href="https://about.askco19.com/"
                     >
                       PHYSICIANS
                     </a>
@@ -78,21 +78,36 @@ class NavMenu extends Component {
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
-                      href="https://video.covid19webapp.com/dxyopencourse/"
+                      href="https://video.askco19.com/dxyopencourse/"
                     >
                       VIDEO COURSE
                     </a>
                   </li>
                 </ul>
-                <Button
-                  id="sponsors"
-                  href="https://about.covid19webapp.com/sponsors/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {' '}
-                  Our Sponsors{' '}
-                </Button>
+                <div>
+                  <div>
+                    <Button
+                      id="sponsors"
+                      href="https://about.askco19.com/sponsors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {' '}
+                      Our Sponsors{' '}
+                    </Button>
+                  </div>
+                  <div>
+                    <Button
+                      id="contributors"
+                      href="https://about.askco19.com/contributors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {' '}
+                      Our Contributors{' '}
+                    </Button>
+                  </div>
+                </div>
               </nav>
             </div>
           </div>

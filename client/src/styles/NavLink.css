@@ -77,8 +77,9 @@ i.bars.icon {
 
 a.ui.button {
   font-size: 18px;
-  display: inline;
+  display: block;
   justify-content: left;
   white-space: nowrap;
   margin-left: 0.25em;
+  margin-bottom: 15px;
 }
