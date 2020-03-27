@@ -83,6 +83,15 @@ class NavMenu extends Component {
                       VIDEO COURSE
                     </a>
                   </li>
+                  <li>
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href="https://docs.google.com/document/d/1m0Ir9rET6Yg947MpSwmVjQDnU3slkS5ZjEF-DVry8GU/"
+                    >
+                      DISCLAIMER
+                    </a>
+                  </li>
                 </ul>
                 <div>
                   <div>
