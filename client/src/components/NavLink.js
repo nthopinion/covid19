@@ -87,7 +87,7 @@ class NavMenu extends Component {
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
-                      href="https://docs.google.com/document/d/1m0Ir9rET6Yg947MpSwmVjQDnU3slkS5ZjEF-DVry8GU/"
+                      href="https://nquestionblob.blob.core.windows.net/images/Full%20Disclaimer%20_%20Legal%20Information%20and%20Disclosures_%20Nth%20Opinion.pdf"
                     >
                       DISCLAIMER
                     </a>
