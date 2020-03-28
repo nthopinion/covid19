@@ -34,10 +34,7 @@ class NavMenu extends Component {
       <div>
         <Button id="menu" className="ui icon button" onClick={this.showMenu}>
           {' '}
-          <i
-            className={`bars icon ${this.props.lightMenu ? 'light' : ''}`}
-            onClick={this.showMenu}
-          />
+          <i className="bars icon" onClick={this.showMenu} />
         </Button>
 
         {this.state.showMenu ? (
