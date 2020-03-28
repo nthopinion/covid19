@@ -83,3 +83,13 @@ a.ui.button {
   margin-left: 0.25em;
   margin-bottom: 15px;
 }
+
+#logInlogOut {
+  color: white;
+  font-size: 20px;
+  font-weight: 400;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+  background: transparent;
+  height: 50px;
+}
