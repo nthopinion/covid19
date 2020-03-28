@@ -12,8 +12,8 @@ i18n
       loadPath: '/locales/{{lng}}/{{ns}}.json',
     },
     // string or array of namespaces to load
-    ns: ['app', 'about', 'physicianView'],
-    defaultNS: 'app',
+    ns: ['navLink', 'patientBoard', 'about', 'physicianView'],
+    defaultNS: 'patientBoard',
     // array of allowed languages
     // @toDo add other languages
     whitelist: ['en', 'de'],
