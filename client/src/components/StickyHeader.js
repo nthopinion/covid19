@@ -19,6 +19,8 @@ class StickyHeader extends Component {
       addSuccess,
       messageActive,
       newQ,
+      account,
+      onSignOut,
     } = this.props;
 
     return (
@@ -33,7 +35,7 @@ class StickyHeader extends Component {
             handleSearchChange={handleSearchChange}
             handleKeyPress={handleKeyPress}
           />
-          <Menu lightMenu />
+          <Menu account={account} onSignOut={onSignOut} />
           {addSuccess && messageActive && (
             <Message positive>
               <Message.Header>We've submitted your question</Message.Header>
