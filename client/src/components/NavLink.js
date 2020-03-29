@@ -91,19 +91,16 @@ class NavMenu extends Component {
                   </li>
                   {this.props.account ? (
                     <Button
-                      target="_blank"
-                      rel="noopener noreferrer"
                       onClick={this.props.onSignOut}
-                      id="logInlogOut"
+                      className="logInlogOut"
                     >
                       Log out
                     </Button>
                   ) : (
                     <Button
                       target="_blank"
-                      rel="noopener noreferrer"
                       href="/bIiOOIIqgwEXwUU3SaD0F9"
-                      id="logInlogOut"
+                      className="logInlogOut"
                     >
                       Log in
                     </Button>
