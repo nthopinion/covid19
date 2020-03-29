@@ -84,7 +84,7 @@ a.ui.button {
   margin-bottom: 15px;
 }
 
-a.ui.button.logInlogOut {
+button.ui.button.logInlogOut {
   color: white;
   font-size: 20px;
   font-weight: 400;

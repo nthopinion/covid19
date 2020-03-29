@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react';
-
+import { withRouter } from 'react-router-dom';
 import styles from '../styles/NavLink.css';
 
 class NavMenu extends Component {
@@ -89,22 +89,26 @@ class NavMenu extends Component {
                       DISCLAIMER
                     </a>
                   </li>
-                  {this.props.account ? (
-                    <Button
-                      onClick={this.props.onSignOut}
-                      className="logInlogOut"
-                    >
-                      Log out
-                    </Button>
-                  ) : (
-                    <Button
-                      target="_blank"
-                      href="/bIiOOIIqgwEXwUU3SaD0F9"
-                      className="logInlogOut"
-                    >
-                      Log in
-                    </Button>
-                  )}
+                  <div>
+                    {this.props.account ? (
+                      <Button
+                        onClick={this.props.onSignOut}
+                        className="logInlogOut"
+                      >
+                        Log out
+                      </Button>
+                    ) : (
+                      <Button
+                        target="_blank"
+                        onClick={() =>
+                          this.props.history.push('/bIiOOIIqgwEXwUU3SaD0F9')
+                        }
+                        className="logInlogOut"
+                      >
+                        Log in
+                      </Button>
+                    )}
+                  </div>
                 </ul>
                 <div>
                   <div>
@@ -139,4 +143,4 @@ class NavMenu extends Component {
   }
 }
 
-export default NavMenu;
+export default withRouter(NavMenu);
