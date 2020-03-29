@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react';
 import { withTranslation } from 'react-i18next';
-
+import { withRouter } from 'react-router-dom';
 import styles from '../styles/NavLink.css';
 
 class NavMenu extends Component {
@@ -36,10 +36,7 @@ class NavMenu extends Component {
       <div>
         <Button id="menu" className="ui icon button" onClick={this.showMenu}>
           {' '}
-          <i
-            className={`bars icon ${this.props.lightMenu ? 'light' : ''}`}
-            onClick={this.showMenu}
-          />
+          <i className="bars icon" onClick={this.showMenu} />
         </Button>
 
         {this.state.showMenu ? (
@@ -94,6 +91,26 @@ class NavMenu extends Component {
                       {t('navLink:disclaimer')}
                     </a>
                   </li>
+                  <div>
+                    {this.props.account ? (
+                      <Button
+                        onClick={this.props.onSignOut}
+                        className="logInlogOut"
+                      >
+                        {t('navLink:logOut')}
+                      </Button>
+                    ) : (
+                      <Button
+                        target="_blank"
+                        onClick={() =>
+                          this.props.history.push('/bIiOOIIqgwEXwUU3SaD0F9')
+                        }
+                        className="logInlogOut"
+                      >
+                        {t('navLink:logIn')}
+                      </Button>
+                    )}
+                  </div>
                 </ul>
                 <div>
                   <div>
@@ -128,4 +145,4 @@ class NavMenu extends Component {
   }
 }
 
-export default withTranslation()(NavMenu);
+export default withTranslation()(withRouter(NavMenu));

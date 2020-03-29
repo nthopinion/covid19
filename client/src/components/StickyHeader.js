@@ -22,6 +22,8 @@ class StickyHeader extends Component {
       messageActive,
       newQ,
       t,
+      account,
+      onSignOut,
     } = this.props;
 
     return (
@@ -39,7 +41,7 @@ class StickyHeader extends Component {
               handleKeyPress={handleKeyPress}
             />
           </div>
-          <Menu lightMenu />
+          <Menu account={account} onSignOut={onSignOut} />
           {addSuccess && messageActive && (
             <Message positive>
               <Message.Header>
