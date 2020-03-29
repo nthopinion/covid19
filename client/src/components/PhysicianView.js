@@ -11,7 +11,7 @@ import {
   fetchQuestions,
 } from '../actions';
 
-import PhysicianLogin from '../components/PhysicianLogin';
+import PhysicianLogin from './PhysicianLogin';
 import AnswerForm from './AnswerForm';
 import NavMenu from './NavLink';
 
@@ -35,7 +35,10 @@ class PhysicianView extends Component {
       <PhysicianLogin onSignIn={this.props.onSignIn} />
     ) : (
       <>
-        <NavMenu />
+        <NavMenu
+          account={this.props.account}
+          onSignOut={this.props.onSignOut}
+        />
         <div>
           <Menu secondary>
             <Menu.Menu position="right">
@@ -112,14 +115,14 @@ class PhysicianView extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     unansweredQuestions: state.questionBoard.unansweredQuestions,
     questions: state.questionBoard.questions,
   };
 };
 
-const mapDispatchToProps = dispatch =>
+const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       fetchUnansweredQuestions,
