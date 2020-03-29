@@ -2,15 +2,14 @@ import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import { Dropdown } from 'semantic-ui-react';
 
-import { options as languagesOptions } from '../constants/languages';
+import { whitelist, languages } from '../constants/languages';
 import '../styles/LanguageSelector.css';
 
 class LanguageSelector extends Component {
   render() {
     const { i18n } = this.props;
-    const language = (
-      languagesOptions.find((l) => l.key === i18n.language) || {}
-    ).text;
+    const language = languages[i18n.language];
+
     const switchLanguage = (value) => () => {
       i18n.changeLanguage(value);
     };
@@ -19,12 +18,12 @@ class LanguageSelector extends Component {
       <div className="language-selector">
         <Dropdown text={language}>
           <Dropdown.Menu>
-            {languagesOptions.map((lang) => (
+            {whitelist.map((key) => (
               <Dropdown.Item
-                selected={lang.text === language}
-                key={lang.key}
-                text={lang.text}
-                onClick={switchLanguage(lang.value)}
+                selected={key === i18n.language}
+                key={key}
+                text={languages[key]}
+                onClick={switchLanguage(key)}
               />
             ))}
           </Dropdown.Menu>
@@ -33,4 +32,5 @@ class LanguageSelector extends Component {
     ) : null;
   }
 }
+
 export default withTranslation()(LanguageSelector);

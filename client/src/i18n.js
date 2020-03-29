@@ -2,6 +2,7 @@ import i18n from 'i18next';
 import backend from 'i18next-xhr-backend';
 import languageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
+import { whitelist } from './constants/languages';
 
 i18n
   .use(backend)
@@ -16,7 +17,7 @@ i18n
     defaultNS: 'patientBoard',
     // array of allowed languages
     // @toDo add other languages
-    whitelist: ['en', 'de'],
+    whitelist,
     // language to use if translations in user language are not available.
     fallbackLng: 'en',
     // if debug: true logs info level to console output. Helps finding issues with loading not working.
