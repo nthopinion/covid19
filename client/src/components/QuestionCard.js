@@ -52,7 +52,11 @@ export default class QuestionCard extends Component {
                   ''
                 )}
               </div>
-              <div className="question-tags" />
+              <div className="question-tag-container">
+                {testData.tags.map((tag) => (
+                  <div className="question-tag">{tag}</div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
