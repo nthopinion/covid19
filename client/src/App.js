@@ -29,7 +29,7 @@ export class App extends Component {
               />
               <Route exact path="/physician-public" component={PhysicianView} />
               <Route exact path="/about" component={About} />
-              <Route exact path="/" component={PatientBoard} />
+              <Route exact path="/" component={AuthProvider(PatientBoard)} />
             </Router>
           </Provider>
         </I18nextProvider>

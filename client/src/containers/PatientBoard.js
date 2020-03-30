@@ -123,6 +123,8 @@ class PatientBoard extends Component {
           messageActive={this.props.messageActive}
           newQ={this.props.newQ}
           handleKeyPress={this.handleKeyPress}
+          account={this.props.account}
+          onSignOut={this.props.onSignOut}
         />
         <div className="containerDiv">
           {this.state.displayNewQuestion && (
