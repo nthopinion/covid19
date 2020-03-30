@@ -1,0 +1,52 @@
+.question-card {
+  width: 800px;
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+
+.question-ask-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.question-ask {
+  display: flex;
+}
+
+.asker-icon {
+  height: 45px;
+  width: 45px;
+  background-color: blueviolet;
+  border-radius: 50%;
+}
+
+.question-ask-info {
+  display: flex;
+  flex-direction: column;
+  /* font-family: Roboto; */
+  /* font-style: normal; */
+}
+
+.question-ask-info .question {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28px;
+
+  color: #006eaa;
+}
+
+.ask-info-container {
+  font-size: 12px;
+  line-height: 14px;
+  /* identical to box height */
+
+  color: #333333;
+  display: flex;
+  width: 500px;
+}
+
+.ask-info {
+  display: flex;
+  padding: 4px;
+}
