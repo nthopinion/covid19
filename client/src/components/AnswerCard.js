@@ -4,26 +4,26 @@ import TimeLocation from './TimeLocation';
 import '../styles/AnswerCard.css';
 
 export default function AnswerCard(props) {
+  const { answer, last } = props;
+
   const {
     text,
     // links,
     // sources,
     time,
     user,
-  } = props.answer || {};
+  } = answer || {};
 
   return (
     <div className="answer">
       <div className="answer-header">
-        <div className="asker-icon" />
+        <div className="qa-icon">A.</div>
         <div className="answer-info">
-          <div className="answer-doctor">
-            {(user || {}).name || 'Anonymous'}
-          </div>
+          <div className="answer-doctor">{(user || {}).name || 'AskCo19'}</div>
           <TimeLocation time={time} location={user && user.location} />
         </div>
       </div>
-      <div className="answer-body">
+      <div className={`answer-body${last ? ' last-answer' : ''}`}>
         <div className="answer-text">{text}</div>
       </div>
     </div>

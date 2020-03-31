@@ -22,5 +22,9 @@
 .answer-body {
   margin-left: 22px;
   padding-left: 36px;
-  border-left: 1px solid;
+  border-left: 1px solid #e3e3e4;
+}
+
+.answer-body.last-answer {
+  border-left: none;
 }

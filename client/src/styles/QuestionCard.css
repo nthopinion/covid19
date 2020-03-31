@@ -26,11 +26,18 @@
   padding: 10px;
 }
 
-.asker-icon {
+.qa-icon {
   height: 45px;
   width: 45px;
-  background-color: blueviolet;
-  border-radius: 50%;
+  /* border-radius: 50%; */
+  /* font-family: Raleway; */
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28px;
+  padding: 10px;
+
+  color: #006eaa;
 }
 
 .question-ask-info {

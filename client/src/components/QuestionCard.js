@@ -10,7 +10,7 @@ const testData = {
     location: 'Seattle',
   },
   title: 'Should I wear a face mask to protect myself against coronavirus?',
-  time: 1585581957000,
+  time: 1585236357000,
   tags: ['tag1', 'tag2'],
   answers: [
     {
@@ -25,7 +25,7 @@ const testData = {
       },
     },
     {
-      time: 1585236357000,
+      time: 1585675565500,
       text:
         'Nunc vitae velit est. Cras pretium tincidunt libero in vehicula. In a lectus commodo, molestie felis ut, laoreet magna. Quisque non justo ut lectus efficitur sagittis quis sed nunc. Nunc ac faucibus est. Quisque eleifend molestie tristique. Cras dictum, leo in tincidunt elementum, ligula quam rutrum dolor, eu dignissim dolor ante sit amet magna. In vestibulum nisi sem, at suscipit arcu congue vitae. Curabitur dapibus dui convallis urna vestibulum congue.',
       links: [],
@@ -43,11 +43,12 @@ export default class QuestionCard extends Component {
   // }
 
   render() {
+    const numAnswers = testData.answers.length;
     return (
       <div className="question-card">
         <div className="question-ask-container">
           <div className="question-ask">
-            <div className="asker-icon" />
+            <div className="qa-icon">Q.</div>
             <div className="question-ask-info">
               <div className="question">{testData.title}</div>
               <div className="ask-info-container">
@@ -69,7 +70,7 @@ export default class QuestionCard extends Component {
         </div>
         <div className="question-answer-container">
           {testData.answers.map((answer, i) => (
-            <AnswerCard answer={answer} key={i} />
+            <AnswerCard answer={answer} key={i} last={i + 1 === numAnswers} />
           ))}
         </div>
       </div>
