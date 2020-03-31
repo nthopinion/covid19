@@ -15,7 +15,6 @@ import CardLeftPanel from './CardLeftPanel';
 import '../styles/QuestionBoard.css';
 import config from '../config';
 
-const colors = ['red', 'orange', 'yellow'];
 export default class QuestionBoard extends Component {
   constructor(props) {
     super(props);
@@ -53,17 +52,11 @@ export default class QuestionBoard extends Component {
       <div className="container">
         <Card.Group>
           {results.map((question, i) => {
+            console.log({ question });
             if (!question.answers) return;
-            const idx = (i + 1) % colors.length;
 
             return (
-              <Card
-                fluid
-                color={colors[idx]}
-                className="qCard"
-                key={i}
-                id={`q_${question.id}`}
-              >
+              <Card fluid className="qCard" key={i} id={`q_${question.id}`}>
                 <CardLeftPanel title={question.title} questionNumber={i} />
 
                 <List>

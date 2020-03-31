@@ -42,12 +42,23 @@ body {
 }
 
 .qCard {
-  padding: 20px 20px !important;
+  padding: 40px !important;
+  border: none;
 }
-
-.qTitle {
+.ui.card,
+.ui.cards > .card {
+  box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.075);
+  border-bottom-color: transparent;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  margin: 10px 0px;
+}
+.qTitle,
+.answeredByName {
   /* height: 30px; */
   font-size: 18px;
+  line-height: 1.6;
   font-weight: bold;
 }
 .qTag {
@@ -67,10 +78,31 @@ body {
   flex-direction: column;
   justify-content: space-between;
 }
-.qTitle > span {
-  font-weight: 700;
+
+.qLeftCard .line {
+  width: 80%;
+  height: 1px;
+  background: rgba(0, 110, 170, 0.1);
+  margin: 30px auto;
+}
+.qTitle > span,
+.answeredByName > span {
+  font-weight: 300;
+  font-size: 20px;
+  color: #006eaa;
+  margin-right: 20px;
 }
 
+.answerTitle {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+.answeredByIcon {
+  height: 32px;
+  width: 32px;
+}
 .qAnswer {
   font-size: 18px;
   line-height: 1.5em;
