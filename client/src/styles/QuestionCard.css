@@ -17,6 +17,10 @@
   padding: 10px;
 }
 
+.question-ask-container:after {
+  border-bottom: 1px solid black;
+}
+
 .question-ask {
   display: flex;
   padding: 10px;
@@ -51,12 +55,12 @@
   color: #006eaa;
 }
 
-.ask-info-container {
+.time-location-container {
   display: flex;
   width: 500px;
 }
 
-.ask-info {
+.time-location {
   display: flex;
   padding: 4px;
 }
@@ -64,8 +68,8 @@
 .question-tag-container {
   display: flex;
   flex-direction: row;
-  width: 400px;
-  height: 50px;
+  /* width: 400px;
+  height: 50px; */
 }
 
 .question-tag {
@@ -77,4 +81,8 @@
   background: #e3e3e4;
   border-radius: 5px;
   text-align: center;
+}
+
+.question-answer-container {
+  padding: 20px;
 }

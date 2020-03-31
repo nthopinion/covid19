@@ -1,0 +1,26 @@
+.answer {
+  padding: 2px 0;
+}
+
+.answer-header {
+  display: flex;
+}
+
+.answer-info {
+  display: flex;
+  padding: 12px 10px;
+}
+
+.answer-doctor {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+
+  color: #000000;
+}
+
+.answer-body {
+  margin-left: 22px;
+  padding-left: 36px;
+  border-left: 1px solid;
+}
