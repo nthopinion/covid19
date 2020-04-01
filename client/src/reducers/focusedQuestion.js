@@ -2,15 +2,11 @@
 
 import { SET_QUESTION, CLEAR_QUESTION } from '../constants/ActionTypes';
 
-const initialState = {
-  question: {},
-};
+const initialState = {};
 const focusedQuestion = (state = initialState, action) => {
   switch (action.type) {
     case SET_QUESTION:
-      return {
-        question: action.question,
-      };
+      return action.question;
     case CLEAR_QUESTION:
       return initialState;
     default:

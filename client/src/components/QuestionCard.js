@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import AuthProvider from '../AuthProvider';
 
-import '../styles/QuestionCard.css';
+import { clearQuestion } from '../actions';
+
 import AnswerCard from './AnswerCard';
 import TimeLocation from './TimeLocation';
+
+import '../styles/QuestionCard.css';
 
 const testData = {
   asker: {
@@ -36,13 +42,27 @@ const testData = {
 
 // 1585236357
 
-export default class QuestionCard extends Component {
+class QuestionCard extends Component {
   // constructor() {
   //   super ()
 
+  componentDidMount() {
+    const { question } = this.props;
+    console.log(question);
+    if (!question || !question.id) {
+      console.log('huh');
+      this.props.history.push('/bIiOOIIqgwEXwUU3SaD0F9');
+    }
+  }
+
   // }
+  componentWillUnmount() {
+    this.props.clearQuestion();
+  }
 
   render() {
+    console.log('questionnnnn', this.props.question);
+    const { question } = this.props;
     const numAnswers = testData.answers.length;
     return (
       <div className="question-card">
@@ -50,16 +70,16 @@ export default class QuestionCard extends Component {
           <div className="question-ask">
             <div className="qa-icon">Q.</div>
             <div className="question-ask-info">
-              <div className="question">{testData.title}</div>
+              <div className="question">{question.title}</div>
               <div className="ask-info-container">
                 <TimeLocation
-                  name={testData.asker.name || 'Anonymous'}
-                  time={testData.time}
-                  location={testData.asker.location}
+                  // name={'Anonymous'}
+                  time={question.date}
+                  // location={testData.asker.location}
                 />
               </div>
               <div className="question-tag-container">
-                {testData.tags.map((tag, i) => (
+                {(question.tags || []).map((tag, i) => (
                   <div key={i} className="question-tag">
                     {tag}
                   </div>
@@ -69,11 +89,36 @@ export default class QuestionCard extends Component {
           </div>
         </div>
         <div className="question-answer-container">
-          {testData.answers.map((answer, i) => (
-            <AnswerCard answer={answer} key={i} last={i + 1 === numAnswers} />
+          {(question.answers || []).map((answer, i) => (
+            <AnswerCard
+              answer={answer}
+              key={i}
+              last={i + 1 === numAnswers}
+              links={i === 0 ? question.links : null}
+              sources={i === 0 ? question.sources : null}
+            />
           ))}
         </div>
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    question: state.focusedQuestion,
+  };
+};
+
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      clearQuestion,
+    },
+    dispatch
+  );
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AuthProvider(QuestionCard));

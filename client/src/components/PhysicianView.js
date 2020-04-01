@@ -31,8 +31,6 @@ class PhysicianView extends Component {
   }
 
   render() {
-    // console.log(this.props.unansweredQuestions);
-    console.log(this.props);
     return !this.props.account ? (
       <PhysicianLogin onSignIn={this.props.onSignIn} />
     ) : (
