@@ -12,3 +12,5 @@ export {
   clickLikeQuestion,
   handleNewQuestionAnswered,
 } from './question';
+
+export { setQuestion, clearQuestion } from './focusedQuestion';

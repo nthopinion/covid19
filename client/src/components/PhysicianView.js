@@ -31,8 +31,8 @@ class PhysicianView extends Component {
   }
 
   render() {
-    console.log(this.props.unansweredQuestions);
-    console.log(this.props.questions);
+    // console.log(this.props.unansweredQuestions);
+    console.log(this.props);
     return !this.props.account ? (
       <PhysicianLogin onSignIn={this.props.onSignIn} />
     ) : (
@@ -92,6 +92,7 @@ class PhysicianView extends Component {
                   this.props.unansweredQuestions &&
                   this.props.unansweredQuestions.map((q, idx) => (
                     <AnswerForm
+                      history={this.props.history}
                       q={q}
                       idx={idx}
                       showUnaswered={this.state.showUnaswered}
@@ -103,6 +104,7 @@ class PhysicianView extends Component {
                   this.props.questions &&
                   this.props.questions.map((q, idx) => (
                     <AnswerForm
+                      history={this.props.history}
                       q={q}
                       idx={idx}
                       showUnaswered={this.state.showUnaswered}
