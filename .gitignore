@@ -25,6 +25,3 @@ yarn-error.log*
 #ide
 .idea/
 *.log
-
-#config file
-api/config.js
