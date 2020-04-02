@@ -13,4 +13,8 @@ export {
   handleNewQuestionAnswered,
 } from './question';
 
-export { setQuestion, clearQuestion } from './focusedQuestion';
+export {
+  setQuestion,
+  clearQuestion,
+  updateFocusedQuestionAnswers,
+} from './focusedQuestion';

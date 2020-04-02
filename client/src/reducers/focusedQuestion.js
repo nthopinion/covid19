@@ -1,6 +1,10 @@
 // import { FETCH_ALL_UNANSWERED_QUESTION } from '../constants/ActionTypes';
 
-import { SET_QUESTION, CLEAR_QUESTION } from '../constants/ActionTypes';
+import {
+  SET_QUESTION,
+  CLEAR_QUESTION,
+  UPDATE_FOCUSED_QUESTION_ANSWER,
+} from '../constants/ActionTypes';
 
 const initialState = {};
 const focusedQuestion = (state = initialState, action) => {
@@ -9,6 +13,10 @@ const focusedQuestion = (state = initialState, action) => {
       return action.question;
     case CLEAR_QUESTION:
       return initialState;
+    case UPDATE_FOCUSED_QUESTION_ANSWER:
+      const question = { ...state };
+      question.answers = action.newAnswers;
+      return question;
     default:
       return state;
   }

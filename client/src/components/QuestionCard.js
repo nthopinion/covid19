@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import AuthProvider from '../AuthProvider';
 
-import { clearQuestion } from '../actions';
+import { clearQuestion, updateFocusedQuestionAnswers } from '../actions';
+import config from '../config';
 
 import AnswerCard from './AnswerCard';
+import AnswerSubmission from './AnswerSubmission';
 import TimeLocation from './TimeLocation';
 
 import '../styles/QuestionCard.css';
@@ -25,6 +27,26 @@ class QuestionCard extends Component {
   componentWillUnmount() {
     this.props.clearQuestion();
   }
+
+  updateAnswer = async (answer) => {
+    const question = { ...this.props.question };
+    question.answers = [answer];
+
+    const endpoint = 'updateQuestion';
+    await fetch(`${config.domainURL}/api/${endpoint}`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ ...question }),
+    }).catch((err) => console.error(err));
+
+    // update the focused question
+    this.props.updateAnswers(question.answers);
+
+    // update the questions list
+  };
 
   render() {
     const { question } = this.props;
@@ -54,16 +76,20 @@ class QuestionCard extends Component {
           </div>
         </div>
         <div className="question-answer-container">
-          {(question.answers || []).map((answer, i) => (
-            <AnswerCard
-              answer={answer}
-              key={i}
-              last={i + 1 === numAnswers}
-              links={i === 0 ? question.links : null}
-              sources={i === 0 ? question.sources : null}
-              youtubeLinks={i === 0 ? question.youtubeLinks : null}
-            />
-          ))}
+          {(question.answers || [''])[0].length ? (
+            (question.answers || []).map((answer, i) => (
+              <AnswerCard
+                answer={answer}
+                key={i}
+                last={i + 1 === numAnswers}
+                links={i === 0 ? question.links : null}
+                sources={i === 0 ? question.sources : null}
+                youtubeLinks={i === 0 ? question.youtubeLinks : null}
+              />
+            ))
+          ) : (
+            <AnswerSubmission updateAnswer={this.updateAnswer} />
+          )}
         </div>
       </div>
     );
@@ -80,6 +106,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       clearQuestion,
+      updateAnswers: updateFocusedQuestionAnswers,
     },
     dispatch
   );
