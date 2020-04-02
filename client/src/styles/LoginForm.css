@@ -1,0 +1,44 @@
+fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+input,
+label,
+select,
+button,
+textarea {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  background: none;
+}
+
+form {
+  display: grid;
+}
+input {
+  padding: 1em;
+  width: 100%;
+  margin: 1em 0em;
+  background: white;
+  border: 1px solid #999;
+  border-radius: 5px;
+}
+
+.loginFields {
+  display: grid;
+  grid-auto-flow: row;
+}
+
+.loginOptions {
+  display: grid;
+  grid-auto-flow: column;
+}
+
+.loginOptions input {
+  width: auto;
+  margin-right: 10px;
+}

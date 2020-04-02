@@ -2,7 +2,7 @@
   height: 100vh;
   width: 100vw;
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 2fr 3fr;
 }
 
 .loginScreen section {
@@ -16,11 +16,14 @@
 
 .loginSection {
   background-color: #f7fafc;
-  padding: 55px;
+  padding: 25px;
+  width: 100%;
 }
 
 .loginSection div {
-  display: block;
+  display: grid;
+  justify-content: center;
+  grid-gap: 40px;
 }
 
 .loginSection h1 {
