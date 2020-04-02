@@ -66,7 +66,7 @@ class AnswerForm extends Component {
 
     setThisQuestion(question);
 
-    history.push('/jakeTest');
+    history.push('/questionView');
     // console.log(this.props)
   };
 
