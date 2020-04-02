@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'semantic-ui-react';
 
 import { ReactTinyLink } from 'react-tiny-link';
 import TimeLocation from './TimeLocation';
@@ -17,6 +18,8 @@ export default function AnswerCard(props) {
   //   user,
   // } = answer || {};
 
+  // long arrow alternate left
+
   return (
     <div className="answer">
       <div className="answer-header">
@@ -28,19 +31,33 @@ export default function AnswerCard(props) {
       </div>
       <div className={`answer-body${last ? ' last-answer' : ''}`}>
         <div className="answer-text">{answer}</div>
-        {sources && sources.length && (
+        {sources && sources.length ? (
           <div className="answer-source-container">
             {sources.map((source, i) => (
               <AnswerSource key={i} source={source} />
             ))}
           </div>
+        ) : (
+          ''
         )}
-        {youtubeLinks && youtubeLinks.length && (
+        {youtubeLinks && youtubeLinks.length ? (
           <div className="answer-youtube-container">
             {youtubeLinks.map((youtubeLink, i) => (
               <AnswerYoutubeLink youtubeLink={youtubeLink} key={i} />
             ))}
           </div>
+        ) : (
+          ''
+        )}
+
+        {last ? (
+          <div className="exit-row">
+            <Button className="icon exit-button" onClick={props.back}>
+              <i className="icon arrow left" />
+            </Button>
+          </div>
+        ) : (
+          ''
         )}
       </div>
     </div>

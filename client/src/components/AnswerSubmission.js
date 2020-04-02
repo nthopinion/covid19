@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form } from 'semantic-ui-react';
+import { Form, Button } from 'semantic-ui-react';
 
 import '../styles/AnswerSubmission.css';
 
@@ -17,9 +17,18 @@ export default function AnswerSubmission(props) {
           value={answer}
           onChange={(e) => setAnswer(e.target.value)}
         />
-        <Form.Field className="answer-submit-container" control="button">
-          Submit
-        </Form.Field>
+        <div className="answer-submit-container">
+          <Button
+            className="icon exit-button"
+            onClick={(e) => {
+              e.preventDefault();
+              props.back();
+            }}
+          >
+            <i className="icon arrow left" />
+          </Button>
+          <Form.Field control="button">Submit</Form.Field>
+        </div>
       </Form>
     </div>
   );

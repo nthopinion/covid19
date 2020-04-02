@@ -48,3 +48,17 @@
 .answer-youtube {
   max-width: 700px;
 }
+
+.exit-row {
+  padding: 10px 0;
+}
+
+.ui.icon.button.exit-button {
+  border-radius: 20px;
+  width: 45px;
+  min-width: 0px;
+  padding: 5px;
+  height: 30px;
+  background: white;
+  border: 1px solid gray;
+}

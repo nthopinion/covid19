@@ -6,10 +6,10 @@
 
 .answer-submit-container {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
-.answer-submit-container > button {
+.answer-submit-container button {
   background: #006eaa;
   color: #ffffff;
   border-radius: 20px;

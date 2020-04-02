@@ -28,6 +28,10 @@ class QuestionCard extends Component {
     this.props.clearQuestion();
   }
 
+  backToPhysicianView = () => {
+    this.props.history.push('/bIiOOIIqgwEXwUU3SaD0F9');
+  };
+
   updateAnswer = async (answer) => {
     const question = { ...this.props.question };
     question.answers = [answer];
@@ -83,12 +87,16 @@ class QuestionCard extends Component {
                 key={i}
                 last={i + 1 === numAnswers}
                 links={i === 0 ? question.links : null}
+                back={this.backToPhysicianView}
                 sources={i === 0 ? question.sources : null}
                 youtubeLinks={i === 0 ? question.youtubeLinks : null}
               />
             ))
           ) : (
-            <AnswerSubmission updateAnswer={this.updateAnswer} />
+            <AnswerSubmission
+              updateAnswer={this.updateAnswer}
+              back={this.backToPhysicianView}
+            />
           )}
         </div>
       </div>
