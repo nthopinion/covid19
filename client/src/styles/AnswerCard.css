@@ -28,3 +28,23 @@
 .answer-body.last-answer {
   border-left: none;
 }
+
+.answer-source-container {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.answer-source {
+  display: flex;
+}
+
+.answer-youtube-container {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.answer-youtube {
+  max-width: 700px;
+}

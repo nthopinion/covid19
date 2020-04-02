@@ -1,12 +1,14 @@
 import React from 'react';
+
+import { ReactTinyLink } from 'react-tiny-link';
 import TimeLocation from './TimeLocation';
+import config from '../config';
 
 import '../styles/AnswerCard.css';
 
 export default function AnswerCard(props) {
-  const { answer, last } = props;
+  const { answer, last, sources, youtubeLinks } = props;
   const user = null;
-
   // const {
   //   text,
   //   links,
@@ -26,7 +28,59 @@ export default function AnswerCard(props) {
       </div>
       <div className={`answer-body${last ? ' last-answer' : ''}`}>
         <div className="answer-text">{answer}</div>
+        {sources && sources.length && (
+          <div className="answer-source-container">
+            {sources.map((source, i) => (
+              <AnswerSource key={i} source={source} />
+            ))}
+          </div>
+        )}
+        {youtubeLinks && youtubeLinks.length && (
+          <div className="answer-youtube-container">
+            {youtubeLinks.map((youtubeLink, i) => (
+              <AnswerYoutubeLink youtubeLink={youtubeLink} key={i} />
+            ))}
+          </div>
+        )}
       </div>
+    </div>
+  );
+}
+
+function AnswerSource(props) {
+  const link = props.source;
+
+  return (
+    <div className="answer-source">
+      <i className="linkify icon" />
+      <ReactTinyLink
+        cardSize="small"
+        showGraphic
+        maxLine={2}
+        minLine={1}
+        url={link}
+        proxyUrl={config.corsProxyUrl}
+      />
+    </div>
+  );
+}
+
+function AnswerYoutubeLink(props) {
+  const { youtubeLink } = props;
+
+  const videoSrc = `https://www.youtube.com/embed/${youtubeLink}?autoplay=false`;
+
+  return (
+    <div className="answer-youtube">
+      <iframe
+        title={videoSrc}
+        className="player"
+        type="text/html"
+        width="100%"
+        height="400px"
+        src={videoSrc}
+        frameBorder="0"
+      />
     </div>
   );
 }

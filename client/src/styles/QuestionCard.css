@@ -2,8 +2,8 @@
   position: absolute;
   /* width: calc(100% - 100px);
   left: 50px; */
-  width: 1100px;
-  left: calc(50% - 1100px / 2);
+  width: 1000px;
+  left: calc(50% - 1000px / 2);
   border-radius: 5px;
   background-color: #ffffff;
 
@@ -80,7 +80,7 @@
 }
 
 .question-tag {
-  width: 44px;
+  min-width: 44px;
   height: 18px;
   padding: 2px;
   margin: 4px;
