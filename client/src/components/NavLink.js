@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react';
+import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
 import styles from '../styles/NavLink.css';
 
@@ -30,6 +31,7 @@ class NavMenu extends Component {
   }
 
   render() {
+    const { t } = this.props;
     return (
       <div>
         <Button id="menu" className="ui icon button" onClick={this.showMenu}>
@@ -50,7 +52,7 @@ class NavMenu extends Component {
                       rel="noopener noreferrer"
                       href="https://about.askco19.com/#lp-pom-block-118"
                     >
-                      ABOUT
+                      {t('navLink:about')}
                     </a>
                   </li>
                   <li>
@@ -59,7 +61,7 @@ class NavMenu extends Component {
                       rel="noopener noreferrer"
                       href="https://about.askco19.com/"
                     >
-                      PHYSICIANS
+                      {t('navLink:physicians')}
                     </a>
                   </li>
                   <li>
@@ -68,7 +70,7 @@ class NavMenu extends Component {
                       rel="noopener noreferrer"
                       href=" https://github.com/nthopinion/covid19/blob/master/README.md"
                     >
-                      DEVELOPERS
+                      {t('navLink:developers')}
                     </a>
                   </li>
                   <li>
@@ -77,7 +79,7 @@ class NavMenu extends Component {
                       rel="noopener noreferrer"
                       href="https://video.askco19.com/dxyopencourse/"
                     >
-                      VIDEO COURSE
+                      {t('navLink:videoCourse')}
                     </a>
                   </li>
                   <li>
@@ -86,7 +88,7 @@ class NavMenu extends Component {
                       rel="noopener noreferrer"
                       href="https://nquestionblob.blob.core.windows.net/images/Full%20Disclaimer%20_%20Legal%20Information%20and%20Disclosures_%20Nth%20Opinion.pdf"
                     >
-                      DISCLAIMER
+                      {t('navLink:disclaimer')}
                     </a>
                   </li>
                   <div>
@@ -95,7 +97,7 @@ class NavMenu extends Component {
                         onClick={this.props.onSignOut}
                         className="logInlogOut"
                       >
-                        Log out
+                        {t('navLink:logOut')}
                       </Button>
                     ) : (
                       <Button
@@ -105,7 +107,7 @@ class NavMenu extends Component {
                         }
                         className="logInlogOut"
                       >
-                        Log in
+                        {t('navLink:logIn')}
                       </Button>
                     )}
                   </div>
@@ -119,7 +121,7 @@ class NavMenu extends Component {
                       rel="noopener noreferrer"
                     >
                       {' '}
-                      Our Sponsors{' '}
+                      {t('navLink:ourSponsors')}{' '}
                     </Button>
                   </div>
                   <div>
@@ -130,7 +132,7 @@ class NavMenu extends Component {
                       rel="noopener noreferrer"
                     >
                       {' '}
-                      Our Contributors{' '}
+                      {t('navLink:ourContributors')}{' '}
                     </Button>
                   </div>
                 </div>
@@ -143,4 +145,4 @@ class NavMenu extends Component {
   }
 }
 
-export default withRouter(NavMenu);
+export default withTranslation()(withRouter(NavMenu));
