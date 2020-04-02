@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Sticky, Message } from 'semantic-ui-react';
 
-import logo from '../assets/images/covid-19-logo.svg';
+import logo from '../assets/images/ask-covid-19-logo.svg';
 
 import SearchBar from './SearchBar';
 import Menu from './NavLink';
@@ -26,7 +26,12 @@ class StickyHeader extends Component {
     return (
       <Sticky context={contextRef} className="sticky-container">
         <div className="sticky-top">
-          <img className="logo" src={logo} alt="Logo" />
+          <img
+            className="logo"
+            src={logo}
+            style={{ paddingLeft: 20 }}
+            alt="Logo"
+          />
           <SearchBar
             isLoading={isLoading}
             results={results}
