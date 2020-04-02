@@ -1,0 +1,17 @@
+{
+  "addQuestion": {
+    "askAQuestion": "[DE] Ask a question",
+    "description": "[DE] Description"
+  },
+  "stickyHeader": {
+    "questionSubmitted": "[DE] We've submitted your question",
+    "checkBackLater": "[DE] Please check back later.",
+    "triedToSubmit": "[DE] We've tried to submit your question",
+    "somethingWentWrong": "[DE] Sorry Something went wrong. Please try again later"
+  },
+  "searchBar": {
+    "haveAQuestion": "[DE] Have a question? Type here to search",
+    "noResultsFound": "[DE] No results found.",
+    "selectAskAQuestion": "[DE] Select Ask a Question to Continue"
+  }
+}
