@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Sticky, Message } from 'semantic-ui-react';
 import { withTranslation } from 'react-i18next';
 
-import logo from '../assets/images/covid-19-logo.svg';
+import logo from '../assets/images/ask-covid-19-logo.svg';
 
 import LanguageSelector from './LanguageSelector';
 import SearchBar from './SearchBar';
@@ -29,6 +29,7 @@ class StickyHeader extends Component {
     return (
       <Sticky context={contextRef} className="sticky-container">
         <div className="sticky-top">
+    
           <img className="logo" src={logo} alt="Logo" />
           <div>
             <LanguageSelector />
@@ -41,6 +42,7 @@ class StickyHeader extends Component {
               handleKeyPress={handleKeyPress}
             />
           </div>
+
           <Menu account={account} onSignOut={onSignOut} />
           {addSuccess && messageActive && (
             <Message positive>
