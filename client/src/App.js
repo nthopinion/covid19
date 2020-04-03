@@ -12,6 +12,7 @@ import PhysicianView from './components/PhysicianView';
 
 import rootReducer from './reducers';
 import AuthProvider from './AuthProvider';
+import PhysicianSignup from './components/PhysicianSignup';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
@@ -26,6 +27,11 @@ export class App extends Component {
                 exact
                 path="/bIiOOIIqgwEXwUU3SaD0F9"
                 component={AuthProvider(PhysicianView)}
+              />
+              <Route
+                exact
+                path="/signup"
+                component={AuthProvider(PhysicianSignup)}
               />
               <Route exact path="/physician-public" component={PhysicianView} />
               <Route exact path="/about" component={About} />

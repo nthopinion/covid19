@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react';
 
 import logo from '../assets/images/co19-login-logo.svg';
+import googleLogo from '../assets/images/google-logo.svg';
 import '../styles/PhysicianLogin.css';
 import { LoginForm } from './LoginForm';
 
@@ -13,9 +14,12 @@ class PhysicianLogin extends Component {
           <div>
             <h1>Log In</h1>
             <Button active onClick={this.props.onSignIn}>
-              Sign In / Register
+              <img src={googleLogo} alt="Google Logo" />
+              Sign in with Google
             </Button>
-            <span>or</span>
+            <div className="divider">
+              <span>or</span>
+            </div>
             <LoginForm />
           </div>
         </section>

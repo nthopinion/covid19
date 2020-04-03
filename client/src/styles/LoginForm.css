@@ -18,6 +18,7 @@ textarea {
 
 form {
   display: grid;
+  grid-gap: 20px;
 }
 input {
   padding: 1em;
@@ -28,11 +29,6 @@ input {
   border-radius: 5px;
 }
 
-.loginFields {
-  display: grid;
-  grid-auto-flow: row;
-}
-
 .loginOptions {
   display: grid;
   grid-auto-flow: column;
@@ -41,4 +37,18 @@ input {
 .loginOptions input {
   width: auto;
   margin-right: 10px;
+}
+
+.loginSection form button.ui.button {
+  font-size: 18px;
+  font-weight: 400;
+  height: auto;
+  color: white;
+  background: #006eaa;
+  width: 50%;
+  justify-self: end;
+}
+
+form a {
+  align-self: center;
 }
