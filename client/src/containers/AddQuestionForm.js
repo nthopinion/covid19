@@ -14,10 +14,10 @@ class AddQuestionForm extends Component {
     };
   }
 
-  handleSubmit = () => {
+  handleSubmit = async () => {
     const { dispatch } = this.props;
-    dispatch(postQuestion(this.state.value));
-    this.setState({ value: '' });
+    await dispatch(postQuestion(this.state.value));
+    this.setState({ value: '', showModal: false });
   };
 
   handleChange = (e, { value }) => this.setState({ value });
