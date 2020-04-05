@@ -65,7 +65,8 @@ const cosmosClient = new CosmosClient({
 const questionDao = new QuestionDao(
   cosmosClient,
   config.databaseId,
-  config.containerId
+  config.questionContainerId,
+  config.answerContainerId
 );
 const questionList = new QuestionList(questionDao);
 questionDao
@@ -93,17 +94,27 @@ app.post("/api/addQuestions", (req, res, next) =>
 app.post("/api/updateQuestion", (req, res, next) =>
   questionList.updateQuestion(req, res).catch(next)
 );
-app.post("/api/editAnswers", (req, res, next) =>
-  questionList.editAnswers(req, res).catch(next)
+
+app.post("/api/addAnswer", (req, res, next) =>
+  questionList.addAnswer(req, res).catch(next)
+);
+
+app.post("/api/editAnswer", (req, res, next) =>
+  questionList.editAnswer(req, res).catch(next)
+);
+
+app.post("/api/answer/like", (req, res, next) =>
+  questionList.increaseAnswerLike(req, res).catch(next)
 );
 
 app.post("/api/question/like", (req, res, next) =>
-  questionList.increaseLike(req, res).catch(next)
+  questionList.increaseQuestionLike(req, res).catch(next)
 );
 
 app.post("/api/question/report", (req, res, next) =>
   questionList.reportQuestion(req, res).catch(next)
 );
+
 app.post("/api/addQuestion", (req, res, next) =>
   questionList.addQuestion(req, res).catch(next)
 );

@@ -160,7 +160,7 @@ class PostList {
       ]
     };
 
-    const items = await this.questionDao.find(querySpec);
+    const items = await this.questionDao.find(querySpec, 'questions');
     // console.log('items', items, querySpec)
     res.send(items)
   }
@@ -168,7 +168,7 @@ class PostList {
   async addQuestion (req, res) {
     // console.log('req' + JSON.stringify(req.body))
     const item = req.body
-    const itemAdd = await this.questionDao.addItem(item)
+    const itemAdd = await this.questionDao.addItem(item, 'questions')
     // res.redirect("/");
     res.send(itemAdd)
   }
@@ -181,31 +181,10 @@ class PostList {
     res.send('ok')
   }
 
-  async updateQuestion (req, res) {
+  async editQuestion (req, res) {
     let question = req.body
-    const youtubeRegex = /http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?/
-
-    let sources = [];
-    let youtubeLinks = [];
-    const answer = question.answers && question.answers.length && question.answers[0];
-
-    const urls = getUrls(answer);
-
-    urls.forEach(url => {
-      if (url.match(youtubeRegex)) {
-        youtubeLinks.push(url);
-      } else {
-        sources.push(url);
-      }
-    });
-
-    question = {
-      ...question,
-      sources,
-      youtubeLinks
-    };
-
-    await this.questionDao.updateItem(question)
+    
+    await this.questionDao.updateItem(question, 'questions')
 
     const {appId, key, secret, cluster, channel} = config.pusher;
   
@@ -224,9 +203,36 @@ class PostList {
     res.send('ok')
   }
 
-  async editAnswers (req, res) {
-    const question = req.body
-    await this.questionDao.editAnswers(question)
+  async addAnswer (req, res) {
+    const youtubeRegex = /http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?/
+
+    let sources = [];
+    let youtubeLinks = [];
+    let answer = req.body.text
+
+    const urls = getUrls(answer);
+
+    urls.forEach(url => {
+      if (url.match(youtubeRegex)) {
+        youtubeLinks.push(url);
+      } else {
+        sources.push(url);
+      }
+    });
+
+    answer = {
+      ...req.body,
+      sources,
+      youtubeLinks
+    };
+
+    await this.questionDao.addAnswer(answer)
+    res.send('ok')
+  }
+
+  async editAnswer (req, res) {
+    const answer = req.body
+    await this.questionDao.editAnswer(answer)
     res.send('ok')
   }
 
@@ -244,12 +250,20 @@ class PostList {
     res.send('ok')
   }
 
-  async increaseLike (req, res) {
+  async increaseQuestionLike (req, res) {
     const { id } = req.body
     console.log('req.body', req.body)
-    await this.questionDao.likeIncrease(id)
+    await this.questionDao.likeIncrease(id, 'questions')
     res.send('ok')
   }
+
+  async increaseAnswerLike (req, res) {
+    const { id } = req.body
+    console.log('req.body', req.body)
+    await this.questionDao.likeIncrease(id, 'answers')
+    res.send('ok')
+  }
+
 }
 
 module.exports = PostList

@@ -9,15 +9,19 @@ class PostDao {
    * Manages reading, adding, and updating Tasks in Cosmos DB
    * @param {CosmosClient} cosmosClient
    * @param {string} databaseId
-   * @param {string} containerId
+   * @param {string} questionContainerId
+   * @param {string} answerContainerId
    */
-  constructor (cosmosClient, databaseId, containerId) {
+  constructor (cosmosClient, databaseId, questionContainerId, answerContainerId) {
     this.client = cosmosClient
     this.databaseId = databaseId
-    this.collectionId = containerId
+    this.collections = {
+      questionContainerId: questionContainerId,
+      answerContainerId: answerContainerId
+    }
 
     this.database = null
-    this.container = null
+    this.containers = {}
   }
 
   async init () {
@@ -28,66 +32,80 @@ class PostDao {
     this.database = dbResponse.database
     debug('Setting up the database...done!')
     debug('Setting up the container...')
-    const coResponse = await this.database.containers.createIfNotExists({
-      id: this.collectionId
+    const qResponse = await this.database.containers.createIfNotExists({
+      id: this.collections.questionContainerId
     })
-    this.container = coResponse.container
+    this.containers.questions = qResponse.container
+    const aResponse = await this.database.containers.createIfNotExists({
+      id: this.collections.answerContainerId
+    })
+    this.containers.answers = aResponse.container
     debug('Setting up the container...done!')
   }
 
-  async find (querySpec) {
+  async find (querySpec, containerName) {
     debug('Querying for items from the database')
-    if (!this.container) {
+    const container = this.containers[containerName]
+    if (!container) {
       throw new Error('Collection is not initialized.')
     }
-    const { resources } = await this.container.items.query(querySpec).fetchAll()
+    const { resources } = await container.items.query(querySpec).fetchAll()
     return resources
   }
 
-  async addItem (item) {
+  async addItem (item, containerName) {
     debug('Adding an item to the database')
+    const container = this.containers[containerName]
     item.date = Date.now()
-    item.answered = !!(item.answers)
-    const { resource: doc } = await this.container.items.create(item)
+    console.log(JSON.stringify(item))
+    const { resource: doc } = await container.items.create(item)
     return doc
   }
 
-  async addItems (items) {
+  async addItems (items, containerName) {
     debug('Adding an item to the database')
+    const container = this.containers[containerName]
     Promise.all(items.map(async (item) => {
       item.date = Date.now()
       item.answered = !!(item.answers)
-      const { resource: doc } = await this.container.items.create(item)
+      const { resource: doc } = await container.items.create(item)
     }))
     return 'ok'
   }
 
-  async updateItem (item) {
+  async updateItem (item, containerName) {
     debug('Update an item in the database', item, item.id)
+    const container = this.containers[containerName]
     const doc = await this.getItem(item.id)
     debug('getting an item in the database', doc)
-    let answers = doc.answers || []
-    answers.concat((item.answers || []))
-    doc.answers = item.answers
-    doc.answered = !!(item.answers)
-    doc.sources = item.sources
-    doc.youtubeLinks = item.youtubeLinks
 
-    const { resource: replaced } = await this.container
+    const { resource: replaced } = await container
       .item(item.id)
       .replace(doc)
     return replaced
   }
-  async editAnswers (item) {
-    debug('Update an item in the database', item, item.id)
-    const doc = await this.getItem(item.id)
-    debug('getting an item in the database', doc)
-    doc.answers = item.answers
-    doc.answered = !!(item.answers)
 
-    const { resource: replaced } = await this.container
+  async addAnswer (item) {
+    debug('Update an item in the database with new answer', item, item.id)
+    const result = await this.addItem(item, 'answers')
+    debug('result', result)
+    const question = await this.getItem(item.questionId, 'questions')
+    console.log(JSON.stringify(question))
+    if (!question.answered) {
+      question.answered = !!(item)
+    }
+    question.answers.push(item.id)
+    const { resource: replaced } = await this.containers.questions
       .item(item.id)
-      .replace(doc)
+      .replace(question)
+    return {question: replaced, answer: result}
+  }
+
+  async editAnswer (item) {
+    debug('Update an item in the database', item, item.id)
+    const { resource: replaced } = await this.containers.answers
+      .item(item.id)
+      .replace(item)
     return replaced
   }
 
@@ -98,35 +116,39 @@ class PostDao {
 
     doc.flagIssue = (doc.flagIssue || 0) + 1
 
-    const { resource: replaced } = await this.container
+    const { resource: replaced } = await this.containers.questions
       .item(itemId)
       .replace(doc)
     return replaced
   }
 
-  async likeIncrease (itemId) {
+  async likeIncrease (itemId, containerName) {
     debug('likeIncrease an item in the database', itemId)
+    const container = this.containers[containerName]
     const doc = await this.getItem(itemId)
     debug('likeIncrease an item in the database', doc)
 
     doc.like = (doc.like || 0) + 1
 
-    const { resource: replaced } = await this.container
+    const { resource: replaced } = await container
       .item(itemId)
       .replace(doc)
     return replaced
   }
 
-  async getItem (itemId) {
+  async getItem (itemId, containerName) {
     debug('Getting an item from the database')
-    const { resource } = await this.container.item(itemId).read()
-    return resource
+    const container = this.containers[containerName]
+    const { item } = await container.item(itemId).read()
+    console.log(JSON.stringify(item))
+    return item
   }
 
-  async deleteItem (itemId) {
+  async deleteItem (itemId, containerName) {
     debug('Delete an item from the database', itemId)
+    const container = this.containers[containerName]
     const doc = await this.getItem(itemId)
-    const result = await this.container.item(itemId).delete()
+    const result = await container.item(itemId).delete()
     console.log(result)
     return result
   }
