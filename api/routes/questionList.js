@@ -208,9 +208,9 @@ class PostList {
 
     let sources = [];
     let youtubeLinks = [];
-    let answer = req.body.text
+    let answer = req.body;
 
-    const urls = getUrls(answer);
+    const urls = getUrls(answer.text);
 
     urls.forEach(url => {
       if (url.match(youtubeRegex)) {
@@ -221,11 +221,11 @@ class PostList {
     });
 
     answer = {
-      ...req.body,
+      ...answer,
       sources,
       youtubeLinks
     };
-
+    console.log(JSON.stringify(answer))
     await this.questionDao.addAnswer(answer)
     res.send('ok')
   }

@@ -50,6 +50,7 @@ class PostDao {
       throw new Error('Collection is not initialized.')
     }
     const { resources } = await container.items.query(querySpec).fetchAll()
+    console.log(resources)
     return resources
   }
 
@@ -87,17 +88,17 @@ class PostDao {
 
   async addAnswer (item) {
     debug('Update an item in the database with new answer', item, item.id)
-    const result = await this.addItem(item, 'answers')
-    debug('result', result)
-    const question = await this.getItem(item.questionId, 'questions')
-    console.log(JSON.stringify(question))
+    const querySpec = `select * from c where c.id = '${item.questionId}'`
+    const [ question ] = await this.find(querySpec, 'questions')
     if (!question.answered) {
       question.answered = !!(item)
     }
     question.answers.push(item.id)
     const { resource: replaced } = await this.containers.questions
-      .item(item.id)
+      .item(question.id)
       .replace(question)
+    const result = await this.addItem(item, 'answers')
+    debug('result', result)
     return {question: replaced, answer: result}
   }
 
@@ -136,12 +137,13 @@ class PostDao {
     return replaced
   }
 
+  // this doesn't work for me when trying to retrieve questions by id with the new container setup.
   async getItem (itemId, containerName) {
     debug('Getting an item from the database')
     const container = this.containers[containerName]
-    const { item } = await container.item(itemId).read()
-    console.log(JSON.stringify(item))
-    return item
+    const resp = await container.item(itemId).read()
+    console.log(resp)
+    return resp
   }
 
   async deleteItem (itemId, containerName) {
