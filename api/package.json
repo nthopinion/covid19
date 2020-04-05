@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "nodemon ./bin/www"
   },
   "dependencies": {
     "@azure/cosmos": "3.5.2",
@@ -22,5 +22,8 @@
     "pusher": "^3.0.0",
     "swagger-jsdoc": "^3.2.9",
     "swagger-ui-express": "^4.1.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   }
 }
