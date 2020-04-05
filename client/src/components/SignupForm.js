@@ -1,11 +1,18 @@
 import React, { useState, useRef } from 'react';
 import { Button } from 'semantic-ui-react';
 
+import '../styles/SignupForm.css';
+
 export const SignupForm = () => {
   const [formValues, setFormValues] = useState({
     email: '',
     password: '',
     confirmPassword: '',
+    npiidentifier: '',
+    role: '',
+    profilelink: '',
+    profilestatus: '',
+    anonymous: false,
   });
 
   const confirmPassword = useRef('confirm');
@@ -13,19 +20,20 @@ export const SignupForm = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     confirmPassword.current.setCustomValidity('');
-    setFormValues({ ...formValues, [name]: value });
+    const newValue = name === 'anonymous' ? e.target.checked : value;
+    setFormValues({ ...formValues, [name]: newValue });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formValues);
     if (formValues.password !== formValues.confirmPassword) {
       confirmPassword.current.setCustomValidity("Passwords Don't Match");
       confirmPassword.current.focus();
       e.currentTarget.reportValidity();
     } else {
       confirmPassword.current.setCustomValidity('');
-      console.log(formValues);
+      // Success Path
+      // console.log(formValues);
     }
   };
 
@@ -46,6 +54,7 @@ export const SignupForm = () => {
           name="password"
           id="password"
           placeholder="Password (6+ characters)"
+          minLength="6"
           required
           value={formValues.password}
           onChange={handleInputChange}
@@ -60,6 +69,51 @@ export const SignupForm = () => {
           value={formValues.confirmPassword}
           onChange={handleInputChange}
         />
+        <input
+          value={formValues.npiidentifier}
+          onChange={handleInputChange}
+          type="text"
+          name="npiidentifier"
+          id="npiidentifier"
+          placeholder="NPI Identifier (optional)"
+        />
+        <input
+          value={formValues.role}
+          onChange={handleInputChange}
+          type="text"
+          name="role"
+          id="role"
+          placeholder="Role"
+          required
+        />
+        <input
+          value={formValues.profilelink}
+          onChange={handleInputChange}
+          type="text"
+          name="profilelink"
+          id="profilelink"
+          placeholder="Profile Link"
+          required
+        />
+        <input
+          value={formValues.profilestatus}
+          onChange={handleInputChange}
+          type="text"
+          name="profilestatus"
+          id="profilestatus"
+          placeholder="Profile Status"
+          required
+        />
+        <label htmlFor="anonymous">
+          <input
+            type="checkbox"
+            name="anonymous"
+            id="anonymous"
+            defaultChecked={formValues.anonymous}
+            onChange={handleInputChange}
+          />
+          Keep my profile anonymous.
+        </label>
       </fieldset>
       <Button type="submit">Register</Button>
       <p>
