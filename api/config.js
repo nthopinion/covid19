@@ -1,17 +1,16 @@
-var config = {}
-config.endpoint = process.env["DBENDPOINT"]
-config.key = process.env["DBKEY"]
+var config = {};
+config.endpoint = process.env["DBENDPOINT"];
+config.key = process.env["DBKEY"];
 
-config.databaseId = 'QuestionList'
-config.containerId = 'Items'
-
-
+config.databaseId = process.env["DBID"];
+config.containerId = process.env["CONTAINERID"];
 
 config.pusher = {
-    appId: '968198',
-    key: '99fd6f011f6f5a0d1565',
-    secret: '68a401ea7bf8764f36a9',
-    cluster: 'us3',
-    channel: 'my-channel'
-}
-module.exports = config
+  appId: process.env["PUSHER_ID"],
+  key: process.env["PUSHER_KEY"],
+  secret: process.env["PUSHER_SECRET"],
+  cluster: process.env["PUSHER_CLUSTER"],
+  channel: process.env["PUSHER_CHANNEL"]
+};
+
+module.exports = config;

@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { List } from 'semantic-ui-react';
 
+import avatar from '../assets/images/askco-avatar.svg';
+
 const PREVIEW_CHARS = 200;
 
 const AnswerItem = (props) => {
@@ -9,8 +11,18 @@ const AnswerItem = (props) => {
 
   return (
     <List.Item>
-      <List.Icon name="marker" />
       <List.Content>
+        <div className="answerTitle">
+          <div className="answeredByName">
+            <span>A.</span>
+            {props.answeredBy || 'AskCo19'}
+          </div>
+          <img
+            src={props.answerByAvatarUrl || avatar}
+            className="answeredByIcon"
+            alt="answer avatar"
+          />
+        </div>
         <List.Description>
           {props.answer.length > PREVIEW_CHARS ? (
             <>

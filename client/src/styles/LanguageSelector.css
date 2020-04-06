@@ -1,0 +1,5 @@
+.language-selector {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 3px;
+}
