@@ -33,8 +33,8 @@ class QuestionCard extends Component {
   };
 
   updateAnswer = async (answer) => {
-    const question = { ...this.props.question };
-    question.answers = [answer];
+    const question = { ...this.props.question, answers: [answer] };
+    // question.answers = [answer];
 
     const endpoint = 'updateQuestion';
     await fetch(`${config.domainURL}/api/${endpoint}`, {

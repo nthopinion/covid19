@@ -14,8 +14,10 @@ const focusedQuestion = (state = initialState, action) => {
     case CLEAR_QUESTION:
       return initialState;
     case UPDATE_FOCUSED_QUESTION_ANSWER:
-      const question = { ...state };
-      question.answers = action.newAnswers;
+      const question = {
+        ...state,
+        answers: action.newAnswers,
+      };
       return question;
     default:
       return state;

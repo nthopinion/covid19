@@ -8,13 +8,11 @@ const MONTH = DAY * 30;
 const YEAR = MONTH * 12;
 
 // for testing purposes
-window.DAY = DAY;
-window.WEEK = WEEK;
-window.MONTH = MONTH;
-window.YEAR = YEAR;
 
 /*
 accepts an epoch/utc time val and returns the correctly formatted time
+EXAMPLE: 1586191700921
+this is equivalent to 'Mon Apr 06 2020 11:48:40 GMT-0500 (Central Daylight Time)'
 */
 const formatTime = (time) => {
   const date = new Date(time);
@@ -22,7 +20,13 @@ const formatTime = (time) => {
   const curTime = Date.now();
   const curDate = new Date(curTime);
 
+  // console.log(date.toString())
+  // console.log(time)
+  // console.log(curDate.toString())
+  // console.log(curTime)
+
   const timeElapsed = curTime - time;
+  // console.log(Math.round(timeElapsed / (1000*60*60), 2))
 
   // time stamp is from this day
   if (
@@ -66,7 +70,6 @@ const formatTime = (time) => {
   }
   return `${Math.floor(timeElapsed / YEAR)} years ago`;
 };
-window.formatTime = formatTime;
 
 export default function TimeLocation(props) {
   const { name, time, location } = props;
