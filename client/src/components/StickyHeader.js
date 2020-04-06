@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Sticky, Message } from 'semantic-ui-react';
+import { withTranslation } from 'react-i18next';
 
-import logo from '../assets/images/covid-19-logo.svg';
+import logo from '../assets/images/ask-covid-19-logo.svg';
 
+import LanguageSelector from './LanguageSelector';
 import SearchBar from './SearchBar';
 import Menu from './NavLink';
 
@@ -15,35 +17,50 @@ class StickyHeader extends Component {
       searchTerm,
       handleResultSelect,
       handleSearchChange,
+      handleKeyPress,
       addSuccess,
       messageActive,
       newQ,
+      t,
+      account,
+      onSignOut,
     } = this.props;
 
     return (
       <Sticky context={contextRef} className="sticky-container">
         <div className="sticky-top">
+    
           <img className="logo" src={logo} alt="Logo" />
-          <SearchBar
-            isLoading={isLoading}
-            results={results}
-            value={searchTerm}
-            handleResultSelect={handleResultSelect}
-            handleSearchChange={handleSearchChange}
-          />
-          <Menu lightMenu />
+          <div>
+            <LanguageSelector />
+            <SearchBar
+              isLoading={isLoading}
+              results={results}
+              value={searchTerm}
+              handleResultSelect={handleResultSelect}
+              handleSearchChange={handleSearchChange}
+              handleKeyPress={handleKeyPress}
+            />
+          </div>
+
+          <Menu account={account} onSignOut={onSignOut} />
           {addSuccess && messageActive && (
             <Message positive>
-              <Message.Header>We've submitted your question</Message.Header>
-              <p>Please check back later. {newQ && newQ.title}</p>
+              <Message.Header>
+                {t('patientBoard:stickyHeader.questionSubmitted')}
+              </Message.Header>
+              <p>
+                {t('patientBoard:stickyHeader.checkBackLater')}{' '}
+                {newQ && newQ.title}
+              </p>
             </Message>
           )}
           {!addSuccess && messageActive && (
             <Message error>
               <Message.Header>
-                We've tried to submit your question
+                {t('patientBoard:stickyHeader.triedToSubmit')}
               </Message.Header>
-              <p>Sorry Something went wrong. Please try again later</p>
+              <p>{t('patientBoard:stickyHeader.somethingWentWrong')}</p>
             </Message>
           )}
         </div>
@@ -54,4 +71,4 @@ class StickyHeader extends Component {
   }
 }
 
-export default StickyHeader;
+export default withTranslation()(StickyHeader);

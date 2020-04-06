@@ -1,0 +1,17 @@
+{
+  "addQuestion": {
+    "askAQuestion": "Ask a question",
+    "description": "Description"
+  },
+  "stickyHeader": {
+    "questionSubmitted": "We've submitted your question",
+    "checkBackLater": "Please check back later.",
+    "triedToSubmit": "We've tried to submit your question",
+    "somethingWentWrong": "Sorry Something went wrong. Please try again later"
+  },
+  "searchBar": {
+    "haveAQuestion": "Have a question? Type here to search",
+    "noResultsFound": "No results found.",
+    "selectAskAQuestion": "Select Ask a Question to Continue"
+  }
+}

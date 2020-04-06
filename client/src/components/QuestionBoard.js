@@ -10,7 +10,6 @@ import LikeButton from './LikeButton';
 import FlagButton from './FlagButton';
 import ShareButton from './ShareButton';
 
-const colors = ['red', 'orange', 'yellow'];
 export default class QuestionBoard extends Component {
   constructor(props) {
     super(props);
@@ -48,17 +47,11 @@ export default class QuestionBoard extends Component {
       <div className="container">
         <Card.Group>
           {results.map((question, i) => {
+            console.log({ question });
             if (!question.answers) return;
-            const idx = (i + 1) % colors.length;
 
             return (
-              <Card
-                fluid
-                color={colors[idx]}
-                className="qCard"
-                key={i}
-                id={`q_${question.id}`}
-              >
+              <Card fluid className="qCard" key={i} id={`q_${question.id}`}>
                 <CardLeftPanel title={question.title} questionNumber={i} />
 
                 <List>
@@ -116,11 +109,12 @@ export default class QuestionBoard extends Component {
 
                 {question.youtubeLinks &&
                   question.youtubeLinks.map((y, index) => {
-                    const videoSrc = `https://www.youtube.com/embed/${y.video}?autoplay=false`;
+                    const videoSrc = `https://www.youtube.com/embed/${y}?autoplay=false`;
+
                     return (
-                      y.video && (
+                      y && (
                         <iframe
-                          title={`https://www.youtube.com/embed/${y.video}?autoplay=false${index}`}
+                          title={videoSrc}
                           className="player"
                           type="text/html"
                           width="100%"

@@ -1,80 +1,38 @@
-/* eslint-disable import/no-unresolved */
 import React, { Component } from 'react';
-import Button from '@bit/semantic-org.semantic-ui-react.button';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { I18nextProvider } from 'react-i18next';
+import i18n from './i18n';
 
-import DragAndDrop from '@bit/bronz3beard.react-component-collection.drag-and-drop';
+import PatientBoard from './containers/PatientBoard';
+import About from './components/About';
+import PhysicianView from './components/PhysicianView';
 
-import ToDoList from '@bit/learn-bit.react-demo-app.to-do-list';
-import AtomSpinner from '@bit/bondz.react-epic-spinners.atom-spinner';
-import Timer from './Timer';
+import rootReducer from './reducers';
+import AuthProvider from './AuthProvider';
 
-const style = (
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.1/dist/semantic.min.css"
-  />
-);
-
-const ButtonExampleGroupIconSize = () => (
-  <Button.Group basic size="small">
-    <Button icon="file" />
-    <Button icon="save" />
-    <Button icon="upload" />
-    <Button icon="download" />
-  </Button.Group>
-);
-
-const handleDrop = (files) => {
-  const tempFileList = [];
-
-  for (let i = 0; i < files.length; i++) {
-    const file = files[i];
-    if (!file.name) {
-      return;
-    }
-    // eslint-disable-next-line no-alert
-    alert(file.name);
-    tempFileList.push(file);
-  }
-};
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 export class App extends Component {
   render() {
     return (
-      <div>
-        <p className="Company-name">
-          <div className="Atoms">
-            <AtomSpinner color="#000000" size="100" />
-          </div>
-          Nᵀᴴ OPINION
-        </p>
-        <div className="question">
-          What is best anticoagulant for atrial fibrillation?
-        </div>
-        <div className="Checkbox-container">
-          <div className="Test" style={{ width: '150vw' }}>
-            <ToDoList />
-            <Timer />
-          </div>
-        </div>
-
-        {/* <Userexperiences></Userexperiences>      */}
-        <div className="toolbar">
-          {style}
-          <ButtonExampleGroupIconSize />
-        </div>
-        <div className="QR-container">
-          <div className="QR-format" />
-        </div>
-        <DragAndDrop handleDrop={handleDrop}>
-          <div
-            type="file"
-            name="files"
-            accept="image/*"
-            multiple
-            style={{ height: `${300}px`, width: `${500}px` }}
-          />
-        </DragAndDrop>
+      <div className="App">
+        <I18nextProvider i18n={i18n}>
+          <Provider store={store}>
+            <Router>
+              <Route
+                exact
+                path="/bIiOOIIqgwEXwUU3SaD0F9"
+                component={AuthProvider(PhysicianView)}
+              />
+              <Route exact path="/physician-public" component={PhysicianView} />
+              <Route exact path="/about" component={About} />
+              <Route exact path="/" component={AuthProvider(PatientBoard)} />
+            </Router>
+          </Provider>
+        </I18nextProvider>
       </div>
     );
   }

@@ -20,6 +20,7 @@ import '../styles/PatientBoard.css';
 import Options from '../components/Options';
 import QuestionBoard from '../components/QuestionBoard';
 import StickyHeader from '../components/StickyHeader';
+import TranslationsSuspense from '../components/TranslationsSuspense';
 import config from '../config';
 
 class PatientBoard extends Component {
@@ -100,11 +101,17 @@ class PatientBoard extends Component {
     // dispatch(searchQuestions(this.props.questions, this.props.searchTerm))
   };
 
+  handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      this.props.resetSearchResult();
+    }
+  };
+
   contextRef = createRef();
 
   render() {
     return (
-      <>
+      <TranslationsSuspense>
         <StickyHeader
           contextRef={this.contextRef}
           isLoading={this.props.isLoading}
@@ -115,6 +122,9 @@ class PatientBoard extends Component {
           addSuccess={this.props.addSuccess}
           messageActive={this.props.messageActive}
           newQ={this.props.newQ}
+          handleKeyPress={this.handleKeyPress}
+          account={this.props.account}
+          onSignOut={this.props.onSignOut}
         />
         <div className="containerDiv">
           {this.state.displayNewQuestion && (
@@ -166,7 +176,7 @@ class PatientBoard extends Component {
           </Grid>
           {/* <FloatingMenu/> */}
         </div>
-      </>
+      </TranslationsSuspense>
     );
   }
 }

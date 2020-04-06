@@ -77,8 +77,19 @@ i.bars.icon {
 
 a.ui.button {
   font-size: 18px;
-  display: inline;
+  display: block;
   justify-content: left;
   white-space: nowrap;
   margin-left: 0.25em;
+  margin-bottom: 15px;
+}
+
+button.ui.button.logInlogOut {
+  color: white;
+  font-size: 20px;
+  font-weight: 400;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+  background: transparent;
+  height: 50px;
 }

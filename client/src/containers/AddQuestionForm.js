@@ -35,7 +35,7 @@ class AddQuestionForm extends Component {
     const { t } = this.props;
     const AskQuestionButton = (
       <Button onClick={this.openModal} color="blue" className="ask-button">
-        {t('app:askAQuestion')}
+        {t('patientBoard:addQuestion.askAQuestion')}
       </Button>
     );
 
@@ -61,7 +61,7 @@ class AddQuestionForm extends Component {
             <Form onSubmit={this.handleSubmit}>
               <Form.Input fluid label="Title" />
               <Form.TextArea
-                label="Description"
+                label={t('patientBoard:addQuestion.description')}
                 value={this.state.value}
                 onChange={this.handleChange}
               />
