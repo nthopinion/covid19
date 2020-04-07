@@ -11,6 +11,9 @@
   "questionBoard": {
     "answersFromFrontline": "Answers from the frontlines:"
   },
+  "answers": {
+    "seeNew": "See new answers"
+  },
   "searchBar": {
     "haveAQuestion": "Have a question? Type here to search",
     "noResultsFound": "No results found.",

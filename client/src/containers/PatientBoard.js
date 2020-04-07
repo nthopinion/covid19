@@ -132,7 +132,7 @@ class PatientBoard extends Component {
               className="new-answers"
               onClick={this.handleDisplayNewQuestion}
             >
-              See new answers
+              {this.props.t('patientBoard:answers.seeNew')}
             </div>
           )}
           <Grid centered columns={2} stackable>
