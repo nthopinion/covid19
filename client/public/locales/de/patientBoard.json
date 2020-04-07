@@ -1,7 +1,6 @@
 {
   "addQuestion": {
-    "askAQuestion": "[DE] Ask a question",
-    "question": "[DE] Question"
+    "askAQuestion": "[DE] Ask a question"
   },
   "stickyHeader": {
     "questionSubmitted": "[DE] We've submitted your question",

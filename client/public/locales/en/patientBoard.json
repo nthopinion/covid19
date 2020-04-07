@@ -1,7 +1,6 @@
 {
   "addQuestion": {
-    "askAQuestion": "Ask a question",
-    "question": "Question"
+    "askAQuestion": "Ask a question"
   },
   "stickyHeader": {
     "questionSubmitted": "We've submitted your question",

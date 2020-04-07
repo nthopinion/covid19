@@ -60,7 +60,6 @@ class AddQuestionForm extends Component {
           <Modal.Description>
             <Form onSubmit={this.handleSubmit}>
               <Form.TextArea
-                label={t('patientBoard:addQuestion.question')}
                 value={this.state.value}
                 onChange={this.handleChange}
               />
