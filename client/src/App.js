@@ -13,6 +13,8 @@ import PhysicianView from './components/PhysicianView';
 import rootReducer from './reducers';
 import AuthProvider from './AuthProvider';
 
+import './styles/App.css';
+
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 export class App extends Component {

@@ -17,10 +17,12 @@ import {
 } from '../actions';
 
 import '../styles/PatientBoard.css';
+
 import Options from '../components/Options';
 import QuestionBoard from '../components/QuestionBoard';
 import StickyHeader from '../components/StickyHeader';
 import TranslationsSuspense from '../components/TranslationsSuspense';
+
 import config from '../config';
 
 class PatientBoard extends Component {
@@ -127,6 +129,14 @@ class PatientBoard extends Component {
           onSignOut={this.props.onSignOut}
         />
         <div className="containerDiv">
+          <div className="banner">
+            <div className="banner-text">
+              {this.props.t('patientBoard:banner.text')}
+            </div>
+            <div className="banner-subtext">
+              {this.props.t('patientBoard:banner.subText')}
+            </div>
+          </div>
           {this.state.displayNewQuestion && (
             <div
               className="new-answers"

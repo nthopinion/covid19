@@ -3,3 +3,30 @@
   flex-direction: column;
   justify-content: space-between; */
 }
+
+.banner {
+  width: 50%;
+  margin: 0 auto;
+  height: 175px;
+  background: #006eaa;
+}
+
+.banner .banner-text {
+  color: white;
+  width: 85%;
+  float: right;
+  font-size: 33px;
+  line-height: 40px;
+  text-align: right;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.banner .banner-subtext {
+  color: white;
+  font-size: 15px;
+  float: right;
+  text-align: right;
+  width: 85%;
+  padding: 10px;
+}

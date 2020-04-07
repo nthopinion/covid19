@@ -14,6 +14,10 @@
   "answers": {
     "seeNew": "[DE] See new answers"
   },
+  "banner": {
+    "text": "[DE] Real-time information on COVID-19 from verified frontline doctors",
+    "subText": "[DE] We are a free, non-profit open source project originally founded by Nth Opinion"
+  },
   "searchBar": {
     "haveAQuestion": "[DE] Have a question? Type here to search",
     "noResultsFound": "[DE] No results found.",
