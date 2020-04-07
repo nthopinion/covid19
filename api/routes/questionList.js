@@ -142,7 +142,16 @@ class PostList {
    * @param {QuestionDao} questionDao
    */
   constructor (questionDao) {
+    const {appId, key, secret, cluster, channel} = config.pusher
     this.questionDao = questionDao
+    this.pusher = new Pusher({
+      appId,
+      key,
+      secret,
+      cluster,
+      channel,
+      encrypted: True
+    })
   }
 
   async showQuestions (req, res, answered) {
@@ -169,6 +178,9 @@ class PostList {
     // console.log('req' + JSON.stringify(req.body))
     const item = req.body
     const itemAdd = await this.questionDao.addItem(item, 'questions')
+    this.pusher.trigger(channel, 'answer-question', {
+      question
+    });
     // res.redirect("/");
     res.send(itemAdd)
   }
@@ -185,25 +197,15 @@ class PostList {
     let question = req.body
     
     await this.questionDao.updateItem(question, 'questions')
-
-    const {appId, key, secret, cluster, channel} = config.pusher;
-  
-    const pusher = new Pusher({
-      appId,
-      key,
-      secret,
-      cluster,
-      encrypted: true
-    });
-
-    pusher.trigger(channel, 'answer-question', {
-      question
-    });
-
+    if (!question.answered) {
+      this.pusher.trigger(channel, 'answer-question', {
+        question
+      });
+    }
     res.send('ok')
   }
 
-  async addAnswer (req, res) {
+  parseAnswer (req) {
     const youtubeRegex = /http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?/
 
     let sources = [];
@@ -220,18 +222,21 @@ class PostList {
       }
     });
 
-    answer = {
+    return {
       ...answer,
       sources,
       youtubeLinks
     };
-    console.log(JSON.stringify(answer))
+  }
+
+  async addAnswer (req, res) {
+    const answer = this.parseAnswer(req)
     await this.questionDao.addAnswer(answer)
     res.send('ok')
   }
 
   async editAnswer (req, res) {
-    const answer = req.body
+    const answer = this.parseAnswer(req)
     await this.questionDao.editAnswer(answer)
     res.send('ok')
   }
