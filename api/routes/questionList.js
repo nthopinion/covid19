@@ -150,7 +150,7 @@ class PostList {
       secret,
       cluster,
       channel,
-      encrypted: True
+      useTLS: true
     })
   }
 
@@ -177,6 +177,8 @@ class PostList {
   async addQuestion (req, res) {
     // console.log('req' + JSON.stringify(req.body))
     const item = req.body
+    item.answers = []
+    item.answered = false
     const itemAdd = await this.questionDao.addItem(item, 'questions')
     this.pusher.trigger(channel, 'answer-question', {
       question
