@@ -129,7 +129,7 @@ class PatientBoard extends Component {
           onSignOut={this.props.onSignOut}
         />
         <div className="containerDiv">
-          <div className="banner">
+          <div className="banner clearfix">
             <div className="banner-text">
               {this.props.t('patientBoard:banner.text')}
             </div>
