@@ -37,6 +37,7 @@
   text-align: right;
   margin-top: 20px;
   padding: 10px;
+  font-family: Poppins;
 }
 
 .banner .banner-subtext {
@@ -46,4 +47,5 @@
   text-align: right;
   width: 85%;
   padding: 10px;
+  font-family: Raleway;
 }
