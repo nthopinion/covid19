@@ -52,7 +52,6 @@ export default class QuestionBoard extends Component {
       <div className="container">
         <Card.Group>
           {results.map((question, i) => {
-            console.log({ question });
             if (!question.answers) return;
 
             return (
