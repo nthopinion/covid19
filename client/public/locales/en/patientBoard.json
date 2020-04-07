@@ -8,6 +8,9 @@
     "triedToSubmit": "We've tried to submit your question",
     "somethingWentWrong": "Sorry Something went wrong. Please try again later"
   },
+  "questionBoard": {
+    "answersFromFrontline": "Answers from the frontlines:"
+  },
   "searchBar": {
     "haveAQuestion": "Have a question? Type here to search",
     "noResultsFound": "No results found.",

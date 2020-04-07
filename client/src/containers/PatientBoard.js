@@ -138,6 +138,11 @@ class PatientBoard extends Component {
           <Grid centered columns={2} stackable>
             <Grid.Column>
               <Options />
+              <div className="board-title">
+                {this.props.t(
+                  'patientBoard:questionBoard.answersFromFrontline'
+                )}
+              </div>
               <Ref innerRef={this.contextRef}>
                 <div>
                   <QuestionBoard

@@ -8,6 +8,9 @@
     "triedToSubmit": "[DE] We've tried to submit your question",
     "somethingWentWrong": "[DE] Sorry Something went wrong. Please try again later"
   },
+  "questionBoard": {
+    "answersFromFrontline": "[DE] Answers from the frontlines:"
+  },
   "searchBar": {
     "haveAQuestion": "[DE] Have a question? Type here to search",
     "noResultsFound": "[DE] No results found.",
