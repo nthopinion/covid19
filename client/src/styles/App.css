@@ -3,3 +3,49 @@
   flex-direction: column;
   justify-content: space-between; */
 }
+
+.clearfix {
+  clear: both;
+}
+
+.clearfix:after {
+  clear: both;
+  content: '';
+  display: table;
+}
+
+.banner {
+  width: 50%;
+  margin: 0 auto;
+  background: #006eaa;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+  .banner {
+    width: 98%;
+  }
+}
+
+.banner .banner-text {
+  color: white;
+  width: 85%;
+  float: right;
+  font-size: 33px;
+  line-height: 40px;
+  text-align: right;
+  margin-top: 20px;
+  padding: 10px;
+  font-family: Poppins;
+}
+
+.banner .banner-subtext {
+  color: white;
+  font-size: 15px;
+  float: right;
+  text-align: right;
+  width: 85%;
+  padding: 10px;
+  font-family: Raleway;
+}

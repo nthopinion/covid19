@@ -78,3 +78,11 @@ body {
   transform: translate(-50%, 0);
   cursor: pointer;
 }
+
+.board-title {
+  text-align: center;
+  color: #006eaa;
+  padding: 20px 0px;
+  font-size: 24px;
+  font-weight: bold;
+}
