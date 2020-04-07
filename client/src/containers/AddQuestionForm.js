@@ -59,9 +59,8 @@ class AddQuestionForm extends Component {
         <Modal.Content>
           <Modal.Description>
             <Form onSubmit={this.handleSubmit}>
-              <Form.Input fluid label="Title" />
               <Form.TextArea
-                label={t('patientBoard:addQuestion.description')}
+                label={t('patientBoard:addQuestion.question')}
                 value={this.state.value}
                 onChange={this.handleChange}
               />
