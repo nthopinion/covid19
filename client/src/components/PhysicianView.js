@@ -14,6 +14,7 @@ import {
 import PhysicianLogin from './PhysicianLogin';
 import AnswerForm from './AnswerForm';
 import NavMenu from './NavLink';
+import Footer from './Footer';
 
 class PhysicianView extends Component {
   constructor(props) {
@@ -39,7 +40,7 @@ class PhysicianView extends Component {
           account={this.props.account}
           onSignOut={this.props.onSignOut}
         />
-        <div>
+        <div className="physician-view-container">
           <Menu secondary>
             <Menu.Menu position="right">
               {this.props.account && (
@@ -109,6 +110,7 @@ class PhysicianView extends Component {
               </Grid.Column>
             </Grid>
           </div>
+          <Footer />
         </div>
       </>
     );

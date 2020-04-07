@@ -126,6 +126,12 @@ body {
   margin-bottom: 20px;
 }
 
+.physician-view-container {
+  min-height: 94vh;
+  position: relative;
+  padding-bottom: 205px;
+}
+
 @media (max-width: 1401px) {
   .mailForm_mobile {
     display: block;
