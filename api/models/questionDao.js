@@ -123,11 +123,11 @@ class PostDao {
     return replaced
   }
 
-  async likeIncrease (itemId, containerName) {
-    debug('likeIncrease an item in the database', itemId)
+  async updateLike (itemId, containerName) {
+    debug('updateLike an item in the database', itemId)
     const container = this.containers[containerName]
     const doc = await this.getItem(itemId)
-    debug('likeIncrease an item in the database', doc)
+    debug('updateLike an item in the database', doc)
 
     doc.like = (doc.like || 0) + 1
 

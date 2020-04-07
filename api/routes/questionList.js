@@ -250,17 +250,17 @@ class PostList {
     res.send('ok')
   }
 
-  async increaseQuestionLike (req, res) {
+  async updateQuestionLike (req, res) {
     const { id } = req.body
     console.log('req.body', req.body)
-    await this.questionDao.likeIncrease(id, 'questions')
+    await this.questionDao.updateLike(id, 'questions')
     res.send('ok')
   }
 
-  async increaseAnswerLike (req, res) {
+  async updateAnswerLike (req, res) {
     const { id } = req.body
     console.log('req.body', req.body)
-    await this.questionDao.likeIncrease(id, 'answers')
+    await this.questionDao.updateLike(id, 'answers')
     res.send('ok')
   }
 
