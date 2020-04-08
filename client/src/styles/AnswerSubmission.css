@@ -1,0 +1,20 @@
+.answer-submission {
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+}
+
+.answer-submit-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.answer-submit-container button {
+  background: #006eaa;
+  color: #ffffff;
+  border-radius: 20px;
+}
+
+.answer-submission .ui.form textarea {
+  margin-bottom: 0px;
+}
