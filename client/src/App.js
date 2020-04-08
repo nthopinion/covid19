@@ -12,6 +12,7 @@ import PhysicianView from './components/PhysicianView';
 
 import rootReducer from './reducers';
 import AuthProvider from './AuthProvider';
+import QuestionCard from './components/QuestionCard';
 
 import './styles/App.css';
 
@@ -31,6 +32,7 @@ export class App extends Component {
               />
               <Route exact path="/physician-public" component={PhysicianView} />
               <Route exact path="/about" component={About} />
+              <Route exact path="/questionView" component={QuestionCard} />
               <Route exact path="/" component={AuthProvider(PatientBoard)} />
             </Router>
           </Provider>

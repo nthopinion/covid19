@@ -11,7 +11,7 @@ import {
 } from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
 import AuthProvider from '../AuthProvider';
-import { deleteQuestion } from '../actions';
+import { deleteQuestion, setQuestion } from '../actions';
 import AnswerItem from './AnswerItem';
 import FileUpload from './FileUpload';
 import CardLeftPanel from './CardLeftPanel';
@@ -59,6 +59,15 @@ class AnswerForm extends Component {
     const isUnanswered = this.props.showUnaswered;
 
     this.props.deleteQuestion(qId, idx, isUnanswered);
+  };
+
+  handleExpandQuestion = (question) => {
+    const { history, setThisQuestion } = this.props;
+
+    setThisQuestion(question);
+
+    history.push('/questionView');
+    // console.log(this.props)
   };
 
   handleSubmit = async (e, value, q) => {
@@ -126,7 +135,7 @@ class AnswerForm extends Component {
             </Form>
 
             <Card.Content extra>
-              <div className="ui two buttons">
+              <div className="ui three buttons">
                 <Button
                   basic
                   color="green"
@@ -140,6 +149,13 @@ class AnswerForm extends Component {
                   onClick={() => this.handleDeleteQuestion(q.id, idx)}
                 >
                   Delete
+                </Button>
+                <Button
+                  basic
+                  color="blue"
+                  onClick={() => this.handleExpandQuestion(q)}
+                >
+                  Expand
                 </Button>
               </div>
             </Card.Content>
@@ -177,6 +193,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       deleteQuestion,
+      setThisQuestion: setQuestion,
     },
     dispatch
   );
