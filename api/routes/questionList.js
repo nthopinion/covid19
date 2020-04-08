@@ -142,7 +142,16 @@ class PostList {
    * @param {QuestionDao} questionDao
    */
   constructor (questionDao) {
+    const {appId, key, secret, cluster, channel} = config.pusher
     this.questionDao = questionDao
+    this.pusher = new Pusher({
+      appId,
+      key,
+      secret,
+      cluster,
+      channel,
+      useTLS: true
+    })
   }
 
   async showQuestions (req, res, answered) {
@@ -160,7 +169,7 @@ class PostList {
       ]
     };
 
-    const items = await this.questionDao.find(querySpec);
+    const items = await this.questionDao.find(querySpec, 'questions');
     // console.log('items', items, querySpec)
     res.send(items)
   }
@@ -168,7 +177,12 @@ class PostList {
   async addQuestion (req, res) {
     // console.log('req' + JSON.stringify(req.body))
     const item = req.body
-    const itemAdd = await this.questionDao.addItem(item)
+    item.answers = []
+    item.answered = false
+    const itemAdd = await this.questionDao.addItem(item, 'questions')
+    this.pusher.trigger(channel, 'answer-question', {
+      question
+    });
     // res.redirect("/");
     res.send(itemAdd)
   }
@@ -181,15 +195,26 @@ class PostList {
     res.send('ok')
   }
 
-  async updateQuestion (req, res) {
+  async editQuestion (req, res) {
     let question = req.body
+    
+    await this.questionDao.updateItem(question, 'questions')
+    if (!question.answered) {
+      this.pusher.trigger(channel, 'answer-question', {
+        question
+      });
+    }
+    res.send('ok')
+  }
+
+  parseAnswer (req) {
     const youtubeRegex = /http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?/
 
     let sources = [];
     let youtubeLinks = [];
-    const answer = question.answers && question.answers.length && question.answers[0];
+    let answer = req.body;
 
-    const urls = getUrls(answer);
+    const urls = getUrls(answer.text);
 
     urls.forEach(url => {
       if (url.match(youtubeRegex)) {
@@ -199,34 +224,22 @@ class PostList {
       }
     });
 
-    question = {
-      ...question,
+    return {
+      ...answer,
       sources,
       youtubeLinks
     };
+  }
 
-    await this.questionDao.updateItem(question)
-
-    const {appId, key, secret, cluster, channel} = config.pusher;
-  
-    const pusher = new Pusher({
-      appId,
-      key,
-      secret,
-      cluster,
-      encrypted: true
-    });
-
-    pusher.trigger(channel, 'answer-question', {
-      question
-    });
-
+  async addAnswer (req, res) {
+    const answer = this.parseAnswer(req)
+    await this.questionDao.addAnswer(answer)
     res.send('ok')
   }
 
-  async editAnswers (req, res) {
-    const question = req.body
-    await this.questionDao.editAnswers(question)
+  async editAnswer (req, res) {
+    const answer = this.parseAnswer(req)
+    await this.questionDao.editAnswer(answer)
     res.send('ok')
   }
 
@@ -244,12 +257,20 @@ class PostList {
     res.send('ok')
   }
 
-  async increaseLike (req, res) {
+  async updateQuestionLike (req, res) {
     const { id } = req.body
     console.log('req.body', req.body)
-    await this.questionDao.likeIncrease(id)
+    await this.questionDao.updateLike(id, 'questions')
     res.send('ok')
   }
+
+  async updateAnswerLike (req, res) {
+    const { id } = req.body
+    console.log('req.body', req.body)
+    await this.questionDao.updateLike(id, 'answers')
+    res.send('ok')
+  }
+
 }
 
 module.exports = PostList
