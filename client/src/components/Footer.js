@@ -9,7 +9,7 @@ const Footer = () => {
 
   return (
     <div className="footer">
-      <p>Powered by Nth Nation. </p>
+      <p>Powered by Nth Opinion. </p>
       <p>AskCo19.com does not provide medical advice,</p>
       <p>
         diagnosis or treatment. See{' '}
