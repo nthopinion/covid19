@@ -3,7 +3,9 @@ body {
 }
 
 .containerDiv {
-  padding: 20px 0px;
+  min-height: 90vh;
+  position: relative;
+  padding: 20px 0px 205px 0px;
 }
 
 .sticky-container,

@@ -1,6 +1,7 @@
 import React from 'react';
 import { List } from 'semantic-ui-react';
 
+import Footer from './Footer';
 import NavMenu from './NavLink';
 
 const About = () => (
@@ -14,6 +15,7 @@ const About = () => (
         </List.Description>
       </List.Content>
     </List.Item>
+    <Footer />
   </>
 );
 export default About;

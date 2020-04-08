@@ -24,6 +24,7 @@ import StickyHeader from '../components/StickyHeader';
 import TranslationsSuspense from '../components/TranslationsSuspense';
 
 import config from '../config';
+import Footer from '../components/Footer';
 
 class PatientBoard extends Component {
   constructor(props) {
@@ -190,6 +191,7 @@ class PatientBoard extends Component {
    */}
           </Grid>
           {/* <FloatingMenu/> */}
+          <Footer />
         </div>
       </TranslationsSuspense>
     );
