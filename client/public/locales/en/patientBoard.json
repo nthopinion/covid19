@@ -1,13 +1,22 @@
 {
   "addQuestion": {
-    "askAQuestion": "Ask a question",
-    "description": "Description"
+    "askAQuestion": "Ask a Medical Professional"
   },
   "stickyHeader": {
     "questionSubmitted": "We've submitted your question",
     "checkBackLater": "Please check back later.",
     "triedToSubmit": "We've tried to submit your question",
     "somethingWentWrong": "Sorry Something went wrong. Please try again later"
+  },
+  "questionBoard": {
+    "answersFromFrontline": "Answers from the frontlines:"
+  },
+  "answers": {
+    "seeNew": "See new answers"
+  },
+  "banner": {
+    "text": "Real-time information on COVID-19 from verified frontline doctors",
+    "subText": "We are a free, non-profit open source project originally founded by Nth Opinion"
   },
   "searchBar": {
     "haveAQuestion": "Have a question? Type here to search",
