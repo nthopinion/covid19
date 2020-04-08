@@ -1,4 +1,7 @@
 // @ts-check
+
+import { v4 as uuidv4 } from 'uuid';
+
 const CosmosClient = require('@azure/cosmos').CosmosClient
 const debug = require('debug')('questionList:questionDao')
 
@@ -59,6 +62,9 @@ class PostDao {
     const container = this.containers[containerName]
     item.date = Date.now()
     console.log(JSON.stringify(item))
+    if (item.id === undefined || item.id === "") {
+      item.id = uuidv4();
+    }
     const { resource: doc } = await container.items.create(item)
     return doc
   }
