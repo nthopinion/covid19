@@ -87,10 +87,11 @@ body {
 }
 .qTitle > span,
 .answeredByName > span {
+  display: inline-flex;
+  width: 50px;
   font-weight: 300;
   font-size: 20px;
   color: #006eaa;
-  margin-right: 20px;
 }
 
 .answerTitle {
@@ -124,6 +125,13 @@ body {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
+}
+.qPanelBottom-buttons-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+.qPanelBottom-buttons-wrapper .button {
+  margin-bottom: 3px;
 }
 
 @media (max-width: 1401px) {

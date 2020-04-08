@@ -147,7 +147,7 @@ export default class QuestionBoard extends Component {
                 <Icon name='facebook'></Icon>
 
                 </a> */}
-                    <div>
+                    <div className="qPanelBottom-buttons-wrapper">
                       <Button as="div" labelPosition="right">
                         <Button
                           color="red"
