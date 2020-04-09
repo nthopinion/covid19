@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Grid, Ref } from 'semantic-ui-react';
 import { withTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 import {
   fetchQuestions,
@@ -150,11 +151,31 @@ class PatientBoard extends Component {
           <Grid centered columns={2} stackable>
             <Grid.Column>
               <Options />
-              <div className="board-title">
-                {this.props.t(
-                  'patientBoard:questionBoard.answersFromFrontline'
-                )}
+              <div className="header-wrapper">
+                {
+                  // Visibility is set to hidden for this component.
+                  // Please remove visibility:hidden from css while implementing filtering
+                }
+                <div className="filter-wrapper">
+                  <div className="button-wrapper">
+                    <button>filer all</button>
+                    <button>popular</button>
+                  </div>
+                </div>
+                <div className="header-container">
+                  <div className="board-title">
+                    {this.props.t(
+                      'patientBoard:questionBoard.answersFromFrontline'
+                    )}
+                  </div>
+                  <div className="board-link">
+                    <Link to="/bIiOOIIqgwEXwUU3SaD0F9">
+                      Are you a physician?
+                    </Link>
+                  </div>
+                </div>
               </div>
+
               <Ref innerRef={this.contextRef}>
                 <div>
                   <QuestionBoard
