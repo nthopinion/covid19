@@ -32,10 +32,10 @@ class AddQuestionForm extends Component {
 
   render() {
     const { showModal } = this.state;
-    const { t } = this.props;
+    const { t, buttonLabel } = this.props;
     const AskQuestionButton = (
       <Button onClick={this.openModal} color="blue" className="ask-button">
-        {t('patientBoard:addQuestion.askAQuestion')}
+        {buttonLabel || t('patientBoard:addQuestion.askAQuestion')}
       </Button>
     );
 
