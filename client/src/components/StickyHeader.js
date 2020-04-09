@@ -3,6 +3,7 @@ import { Sticky, Message } from 'semantic-ui-react';
 import { withTranslation } from 'react-i18next';
 
 import logo from '../assets/images/ask-covid-19-logo.svg';
+import { normalizeResults } from '../helpers/normalizeResults';
 
 import LanguageSelector from './LanguageSelector';
 import SearchBar from './SearchBar';
@@ -29,13 +30,12 @@ class StickyHeader extends Component {
     return (
       <Sticky context={contextRef} className="sticky-container">
         <div className="sticky-top">
-    
           <img className="logo" src={logo} alt="Logo" />
           <div>
             <LanguageSelector />
             <SearchBar
               isLoading={isLoading}
-              results={results}
+              results={normalizeResults(results)}
               value={searchTerm}
               handleResultSelect={handleResultSelect}
               handleSearchChange={handleSearchChange}
