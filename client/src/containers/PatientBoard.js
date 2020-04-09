@@ -168,7 +168,9 @@ class PatientBoard extends Component {
                     )}
                   </div>
                   <div className="board-link">
-                    <Link to="/physician-public">Are you a physician</Link>
+                    <Link to="/bIiOOIIqgwEXwUU3SaD0F9">
+                      Are you a physician
+                    </Link>
                   </div>
                 </div>
               </div>
