@@ -41,6 +41,13 @@ body {
   border: none;
 }
 
+.health-care {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 15%;
+}
+
 @media (min-width: 320px) and (max-width: 767px) {
   .sticky-top {
     grid-gap: 10px;
@@ -81,7 +88,7 @@ body {
   cursor: pointer;
 }
 
-.header-wrapper {
+.patient-header-wrapper {
   margin-bottom: 24px;
   display: flex;
   justify-content: space-between;
@@ -150,4 +157,31 @@ body {
 
   color: #333333;
   cursor: pointer;
+}
+
+.header-with-link-wrapper {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+  .header-with-link-wrapper {
+    width: 98%;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-with-link-wrapper {
+    width: 100%;
+  }
+
+  .health-care {
+    display: none;
+  }
+
+  .patient-header-wrapper {
+    display: none;
+  }  
 }
