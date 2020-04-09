@@ -24,6 +24,7 @@ import StickyHeader from '../components/StickyHeader';
 import TranslationsSuspense from '../components/TranslationsSuspense';
 
 import config from '../config';
+import { normalizeResults } from '../helpers/normalizeResults';
 import Footer from '../components/Footer';
 
 class PatientBoard extends Component {
@@ -62,7 +63,7 @@ class PatientBoard extends Component {
   };
 
   handleClickLike = (id, index) => {
-    this.props.clickLikeQuestion(id, index);
+    return () => this.props.clickLikeQuestion(id, index);
   };
 
   handleResultSelect = (e, { result }) => {
@@ -118,7 +119,7 @@ class PatientBoard extends Component {
         <StickyHeader
           contextRef={this.contextRef}
           isLoading={this.props.isLoading}
-          results={this.props.results}
+          results={normalizeResults(this.props.results)}
           searchTerm={this.props.searchTerm}
           handleResultSelect={this.handleResultSelect}
           handleSearchChange={this.handleSearchChange}
