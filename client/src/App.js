@@ -13,6 +13,9 @@ import PhysicianSignup from './components/PhysicianSignup';
 
 import rootReducer from './reducers';
 import AuthProvider from './AuthProvider';
+import QuestionCard from './components/QuestionCard';
+
+import './styles/App.css';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
@@ -31,6 +34,7 @@ export class App extends Component {
               <Route exact path="/signup" component={PhysicianSignup} />
               <Route exact path="/physician-public" component={PhysicianView} />
               <Route exact path="/about" component={About} />
+              <Route exact path="/questionView" component={QuestionCard} />
               <Route exact path="/" component={AuthProvider(PatientBoard)} />
             </Router>
           </Provider>
