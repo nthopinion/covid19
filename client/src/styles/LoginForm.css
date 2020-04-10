@@ -1,0 +1,54 @@
+fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+input,
+label,
+select,
+button,
+textarea {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  background: none;
+}
+
+form {
+  display: grid;
+  grid-gap: 20px;
+}
+input {
+  padding: 1em;
+  width: 100%;
+  margin: 1em 0em;
+  background: white;
+  border: 1px solid #999;
+  border-radius: 5px;
+}
+
+.loginOptions {
+  display: grid;
+  grid-auto-flow: column;
+}
+
+.loginOptions input {
+  width: auto;
+  margin-right: 10px;
+}
+
+.loginSection form button.ui.button {
+  font-size: 18px;
+  font-weight: 400;
+  height: auto;
+  color: white;
+  background: #006eaa;
+  width: 50%;
+  justify-self: end;
+}
+
+form a {
+  align-self: center;
+}

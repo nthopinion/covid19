@@ -2,7 +2,7 @@
   height: 100vh;
   width: 100vw;
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 2fr 3fr;
 }
 
 .loginScreen section {
@@ -16,11 +16,16 @@
 
 .loginSection {
   background-color: #f7fafc;
-  padding: 55px;
+  padding: 50px;
+  width: 100%;
+  grid-template-columns: 1fr;
 }
 
 .loginSection div {
-  display: block;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 1fr;
+  grid-gap: 40px;
 }
 
 .loginSection h1 {
@@ -39,12 +44,40 @@
   background-size: cover;
 }
 
+.divider {
+  text-align: center;
+  position: relative;
+}
+.divider span::before,
+.divider span::after {
+  content: '';
+  display: grid;
+  position: absolute;
+  height: 1px;
+  width: 40%;
+  background-color: #999;
+}
+.divider span::before {
+  left: 0;
+  top: 10px;
+}
+.divider span::after {
+  top: 10px;
+  right: 0;
+}
 .loginSection .ui.button {
   font-size: 18px;
   font-weight: 400;
   height: auto;
-  color: white;
-  background: #006eaa;
+  color: #555;
+  background: white;
+  display: inline-flex;
+  justify-content: center;
+}
+.loginSection .ui.button img {
+  height: 20px;
+  width: 20px;
+  margin-right: 20px;
 }
 .heroSection img {
   width: 500px;

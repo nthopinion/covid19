@@ -9,6 +9,7 @@ import i18n from './i18n';
 import PatientBoard from './containers/PatientBoard';
 import About from './components/About';
 import PhysicianView from './components/PhysicianView';
+import PhysicianSignup from './components/PhysicianSignup';
 
 import rootReducer from './reducers';
 import AuthProvider from './AuthProvider';
@@ -30,6 +31,7 @@ export class App extends Component {
                 path="/bIiOOIIqgwEXwUU3SaD0F9"
                 component={AuthProvider(PhysicianView)}
               />
+              <Route exact path="/signup" component={PhysicianSignup} />
               <Route exact path="/physician-public" component={PhysicianView} />
               <Route exact path="/about" component={About} />
               <Route exact path="/questionView" component={QuestionCard} />

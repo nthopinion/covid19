@@ -1,0 +1,9 @@
+label {
+  display: inline-flex;
+  align-items: center;
+}
+
+label input {
+  width: auto;
+  margin-right: 20px;
+}
