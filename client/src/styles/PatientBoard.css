@@ -3,7 +3,9 @@ body {
 }
 
 .containerDiv {
-  padding: 20px 0px;
+  min-height: 90vh;
+  position: relative;
+  padding: 20px 0px 205px 0px;
 }
 
 .sticky-container,
@@ -77,4 +79,12 @@ body {
   width: 150px;
   transform: translate(-50%, 0);
   cursor: pointer;
+}
+
+.board-title {
+  text-align: center;
+  color: #006eaa;
+  padding: 20px 0px;
+  font-size: 24px;
+  font-weight: bold;
 }
