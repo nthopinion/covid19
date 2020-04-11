@@ -33,12 +33,7 @@ class LikeButton extends React.Component {
   render() {
     return (
       <div
-        style={{
-          display: 'inline-block',
-          position: 'relative',
-          cursor: 'pointer',
-          paddingRight: '10px',
-        }}
+        className="like-button-group"
         onClick={() => {
           this.props.onClick();
           this.changeColor();
@@ -49,7 +44,7 @@ class LikeButton extends React.Component {
           ref={(e) => {
             this.itemToChangeColor = e;
           }}
-          className={this.state.changeColor ? ' animate-like-color' : ''}
+          className={this.state.changeColor ? 'animate-like-color' : ''}
           viewBox="0 0 15 13"
           width="15"
           xmlns="http://www.w3.org/2000/svg"
@@ -61,11 +56,13 @@ class LikeButton extends React.Component {
           </g>
         </svg>
         <div
-          style={{ display: 'inline-block' }}
+          style={{ marginLeft: '0.5em' }}
           ref={(e) => {
             this.itemToChangeColor = e;
           }}
-          className={this.state.changeColor ? ' animate-like-color' : ''}
+          className={
+            this.state.changeColor ? 'animate-like-color' : 'num-likes'
+          }
         >
           {this.props.likes}
         </div>
