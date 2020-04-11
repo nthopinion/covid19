@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/LikeButton.css';
+import '../styles/Button.css';
 
 class LikeButton extends React.Component {
   constructor(props) {
@@ -34,6 +34,7 @@ class LikeButton extends React.Component {
     return (
       <div
         style={{
+          display: 'inline-block',
           position: 'relative',
           cursor: 'pointer',
           paddingRight: '10px',
@@ -48,7 +49,7 @@ class LikeButton extends React.Component {
           ref={(e) => {
             this.itemToChangeColor = e;
           }}
-          className={this.state.changeColor ? ' animate-color' : ''}
+          className={this.state.changeColor ? ' animate-like-color' : ''}
           viewBox="0 0 15 13"
           width="15"
           xmlns="http://www.w3.org/2000/svg"
@@ -59,7 +60,15 @@ class LikeButton extends React.Component {
             </g>
           </g>
         </svg>
-        {this.props.likes}
+        <div
+          style={{ display: 'inline-block' }}
+          ref={(e) => {
+            this.itemToChangeColor = e;
+          }}
+          className={this.state.changeColor ? ' animate-like-color' : ''}
+        >
+          {this.props.likes}
+        </div>
       </div>
     );
   }

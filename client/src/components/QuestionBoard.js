@@ -7,7 +7,7 @@ import CardLeftPanel from './CardLeftPanel';
 import '../styles/QuestionBoard.css';
 import config from '../config';
 import LikeButton from './LikeButton';
-// import FlagButton from './FlagButton';
+import FlagButton from './FlagButton';
 // import ShareButton from './ShareButton';
 
 export default class QuestionBoard extends Component {
@@ -148,12 +148,12 @@ export default class QuestionBoard extends Component {
 
                 </a> */}
                     <div className="buttonGroupCustom">
-                      {/* <FlagButton */}
-                      {/*  color="red" */}
-                      {/*  basic */}
-                      {/*  title="report an issue" */}
-                      {/*  onClick={this.handleReportIssue(question)} */}
-                      {/* /> */}
+                      <FlagButton
+                        color="red"
+                        basic
+                        title="report an issue"
+                        onClick={this.handleReportIssue(question)}
+                      />
                       <LikeButton
                         onClick={this.props.handleClickLike(question.id, i)}
                         likes={question.like || 0}
