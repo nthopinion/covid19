@@ -170,8 +170,37 @@ class PostList {
     };
 
     const items = await this.questionDao.find(querySpec, 'questions');
-    // console.log('items', items, querySpec)
+    if (answered = true)
+    {
+      //items.forEach(item =>{
+      for (const item of items){  
+        //item.answers = Array.from(await this.loadAnswers(item.id));
+        item.answers = await this.loadAnswers(item.id);
+        //console.log('showQuestions Section', item)
+      }
+      // console.log('items', item, querySpec)
+    }
     res.send(items)
+  }
+
+  async loadAnswers (questionId)
+  {
+    //item.answers = []
+    const querySpec = {
+      query: "SELECT * from c WHERE c.questionId = @questionId",
+      // ORDER BY date DESC
+      //  WHERE c.answered = @answered and EXISTS (SELECT VALUE t from t in c.tags WHERE (t != 'Wellspring' and t != 'Holistic' and t != 'yu' and t != 'Yu' and t != 'Retinitis Pigmentosa' and t != 'Traditional Chinese Medicine' and t != 'Wellspring Vision Improvement Program' and t != 'biography' and t != 'questions' and t != 'Li Wenliang' and t != 'Zhang' and t != 'question' and t != 'address'))",
+      parameters: [
+        {
+          name: '@questionId',
+          value: questionId
+        }
+      ]
+    };
+    const answers = await this.questionDao.find(querySpec, 'answers');
+    return answers;
+    //item.answers = Array.from(answers);
+    //console.log('loadAnswers Section', item);
   }
 
   async addQuestion (req, res) {
