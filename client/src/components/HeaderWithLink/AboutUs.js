@@ -14,7 +14,7 @@ const AboutUs = (props) => {
       target="_blank"
     >
       <div className="faq-wrapper">
-        <p>{props.t('patientBoard:banner.faq')}</p>
+        <p>{props.t('patientBoard:banner.aboutUs')}</p>
       </div>
       <div className="image-container">
         <ul>
