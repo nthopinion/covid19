@@ -1,12 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+
+import config from '../../config/index';
 
 import '../../styles/AboutUs.css';
 
 const AboutUs = (props) => {
   return (
-    <Link className="about-us-wrapper" to="/about">
+    <a
+      className="about-us-wrapper"
+      href={config.aboutURL}
+      rel="noopener noreferrer"
+      target="_blank"
+    >
       <div className="faq-wrapper">
         <p>{props.t('patientBoard:banner.faq')}</p>
       </div>
@@ -26,7 +32,7 @@ const AboutUs = (props) => {
       <div className="about-us-content">
         <p>{props.t('patientBoard:banner.aboutUs')}</p>
       </div>
-    </Link>
+    </a>
   );
 };
 
