@@ -1,9 +1,10 @@
 // @ts-check
 
-import { v4 as uuidv4 } from 'uuid';
+//import { v4 as uuidv4 } from 'uuid';
 
 const CosmosClient = require('@azure/cosmos').CosmosClient
 const debug = require('debug')('questionList:questionDao')
+const uuid = require("uuid");
 
 // For simplicity we'll set a constant partition key
 const partitionKey = '0'
@@ -53,7 +54,7 @@ class PostDao {
       throw new Error('Collection is not initialized.')
     }
     const { resources } = await container.items.query(querySpec).fetchAll()
-    console.log(resources)
+    //console.log(resources)
     return resources
   }
 
