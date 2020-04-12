@@ -133,8 +133,9 @@ export const handleNewQuestionAnswered = (question) => (dispatch) => {
   });
 };
 
-export const fetchQuestions = () => {
+export const fetchQuestions = (lng) => {
   return (dispatch) => {
+    console.log(lng);
     return fetch(`${config.domainURL}/api/questions`)
       .then((response) => response.json())
       .then((json) => {

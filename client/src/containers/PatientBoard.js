@@ -32,13 +32,19 @@ class PatientBoard extends Component {
     super(props);
     this.state = {
       displayNewQuestion: false,
+      lng: undefined,
     };
   }
 
   componentDidMount() {
-    this.props.fetchQuestions();
-
     this.subscribeToNewQuestions();
+  }
+
+  componentDidUpdate(prevProps) {
+    const lng = prevProps.i18n.language;
+    if (this.state.lng !== lng) {
+      this.props.fetchQuestions(lng);
+    }
   }
 
   subscribeToNewQuestions = () => {
@@ -114,6 +120,12 @@ class PatientBoard extends Component {
   contextRef = createRef();
 
   render() {
+    this.setState((state, props) => {
+      if (state.lng !== props.i18n.language) {
+        return { lng: props.i18n.language };
+      }
+    });
+
     return (
       <TranslationsSuspense>
         <StickyHeader

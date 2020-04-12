@@ -3,6 +3,7 @@ import backend from 'i18next-xhr-backend';
 import languageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
 import { whitelist } from './constants/languages';
+import config from './config';
 
 i18n
   .use(backend)
@@ -10,7 +11,7 @@ i18n
   .use(initReactI18next)
   .init({
     backend: {
-      loadPath: '/locales/{{lng}}/{{ns}}.json',
+      loadPath: `${config.domainURL}/locales/{{lng}}/{{ns}}`,
     },
     // string or array of namespaces to load
     ns: ['navLink', 'patientBoard', 'about', 'physicianView'],
