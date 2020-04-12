@@ -3,11 +3,35 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var cors = require("cors");
 const upload = require("./routes/upload");
+
+var deAbout = require('./public/locales/de/about');
+var deNavLink = require('./public/locales/de/navLink');
+var dePatientBoard = require('./public/locales/de/patientBoard');
+var dePhysicianView = require('./public/locales/de/physicianView');
+
+var enAbout = require('./public/locales/en/about');
+var enNavLink = require('./public/locales/en/navLink');
+var enPatientBoard = require('./public/locales/en/patientBoard');
+var enPhysicianView = require('./public/locales/en/physicianView');
+
+const locales = {
+  de: {
+    about: deAbout,
+    navLink: deNavLink,
+    patientBoard: dePatientBoard,
+    physicianView: dePhysicianView
+  },
+  en: {
+    about: enAbout,
+    navLink: enNavLink,
+    patientBoard: enPatientBoard,
+    physicianView: enPhysicianView
+  }
+};
 
 // add swagger requirement
 var swaggerUi = require("swagger-ui-express");
@@ -82,6 +106,11 @@ questionDao
 app.get("/api/questions", (req, res, next) =>
   questionList.showQuestions(req, res, true).catch(next)
 );
+
+app.get("/locales/:lng/:ns", (req, res, next) =>
+  res.send(locales[req.params.lng][req.params.ns]).catch(next)
+);
+
 app.get("/api/questions/unanswered", (req, res, next) =>
   questionList.showQuestions(req, res, false).catch(next)
 );
