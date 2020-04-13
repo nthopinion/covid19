@@ -54,7 +54,7 @@ class PostDao {
       throw new Error('Collection is not initialized.')
     }
     const { resources } = await container.items.query(querySpec).fetchAll()
-    //console.log(resources)
+    
     return resources
   }
 
@@ -64,7 +64,7 @@ class PostDao {
     item.date = Date.now()
     console.log(JSON.stringify(item))
     if (item.id === undefined || item.id === "") {
-      item.id = uuidv4();
+      item.id = uuid.v4();
     }
     const { resource: doc } = await container.items.create(item)
     return doc
