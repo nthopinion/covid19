@@ -109,6 +109,17 @@ const AnswerItem = (props) => {
             );
           })}
 
+        <div className="answer-metadata">
+          <div>Answered By: {props.answer.firstAnsweredBy.name}</div>
+          <div>
+            Posted:{' '}
+            {new Date(props.answer.firstAnsweredOn).toLocaleDateString()}
+          </div>
+          <div>
+            Edited: {new Date(props.answer.lastAnsweredOn).toLocaleDateString()}
+          </div>
+        </div>
+
         <div className="qPanelBottom">
           <div className="qTag">
             {props.tags &&
