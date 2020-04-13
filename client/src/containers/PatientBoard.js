@@ -165,13 +165,13 @@ class PatientBoard extends Component {
                 {
                   // Visibility is set to hidden for this component.
                   // Please remove visibility:hidden from css while implementing filtering
+                  //  <div className="filter-wrapper">
+                  //   <div className="button-wrapper">
+                  //     <button>filer all</button>
+                  //     <button>popular</button>
+                  //   </div>
+                  // </div>
                 }
-                <div className="filter-wrapper">
-                  <div className="button-wrapper">
-                    <button>filer all</button>
-                    <button>popular</button>
-                  </div>
-                </div>
                 <div className="header-container">
                   <div className="board-title">
                     {this.props.t(

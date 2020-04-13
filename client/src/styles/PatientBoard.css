@@ -97,7 +97,7 @@ body {
 .header-container {
   display: flex;
   flex-direction: column;
-  flex-grow: 0.7;
+  flex-grow: 1;
 }
 
 .filter-wrapper {
@@ -128,11 +128,10 @@ body {
 
 .board-title {
   padding: 20px 0px;
-  font-weight: bold;
-  font-family: Raleway;
+  align-self: center;
   font-style: normal;
-  font-size: 40px;
-  line-height: 60px;
+  font-size: 24px;
+  font-weight: bold;
   /* identical to box height, or 150% */
   color: #006eaa;
 }
@@ -183,5 +182,5 @@ body {
 
   .patient-header-wrapper {
     display: none;
-  }  
+  }
 }
