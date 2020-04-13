@@ -15,6 +15,7 @@
 }
 
 .banner {
+  position: relative;
   width: 50%;
   margin: 0 auto;
   background: #006eaa;
@@ -30,7 +31,7 @@
 
 .banner .banner-text {
   color: white;
-  width: 85%;
+  width: 70%;
   float: right;
   font-size: 33px;
   line-height: 40px;
@@ -38,6 +39,8 @@
   margin-top: 20px;
   padding: 10px;
   font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
 }
 
 .banner .banner-subtext {
@@ -48,4 +51,35 @@
   width: 85%;
   padding: 10px;
   font-family: Raleway;
+}
+
+@media (max-width: 480px) {
+  .containerDiv {
+    padding-top: 0px;
+  }
+  .banner {
+    padding: 30px 15px 30px 25px;
+    margin: 0px;
+    width: 100%;
+    background: #e3e3e4;
+  }
+
+  .banner .banner-text {
+    width: 100%;
+    text-align: left;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+    float: none;
+    padding: 0px;
+    margin-top: 0px;
+
+    color: #006eaa;
+  }
+
+  .banner-subtext {
+    display: none;
+  }
 }
