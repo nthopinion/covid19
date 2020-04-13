@@ -41,6 +41,13 @@ body {
   border: none;
 }
 
+.health-care {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 15%;
+}
+
 @media (min-width: 320px) and (max-width: 767px) {
   .sticky-top {
     grid-gap: 10px;
@@ -81,10 +88,99 @@ body {
   cursor: pointer;
 }
 
-.board-title {
+.patient-header-wrapper {
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.filter-wrapper {
+  /* Please remove this while implementing filtering */
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.button-wrapper button {
+  background: #ffffff;
+  margin: 5px;
+  /* drop-shawdow */
+
+  box-shadow: 4px 4px 20px rgba(0, 110, 170, 0.05);
+  border-radius: 12px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+  align-items: center;
   text-align: center;
-  color: #006eaa;
+
+  color: #333333;
+}
+
+.board-title {
   padding: 20px 0px;
+  align-self: center;
+  font-style: normal;
   font-size: 24px;
   font-weight: bold;
+  /* identical to box height, or 150% */
+  color: #006eaa;
+}
+
+.board-link {
+  align-self: flex-end;
+}
+
+.board-link a,
+.board-link a:hover,
+.board-link a:visited {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+  /* identical to box height */
+
+  align-items: center;
+  text-align: center;
+  text-decoration-line: underline;
+
+  color: #333333;
+  cursor: pointer;
+}
+
+.header-with-link-wrapper {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+  .header-with-link-wrapper {
+    width: 98%;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-with-link-wrapper {
+    width: 100%;
+  }
+
+  .health-care {
+    display: none;
+  }
+
+  .patient-header-wrapper {
+    display: none;
+  }
 }
