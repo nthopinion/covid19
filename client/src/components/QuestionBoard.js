@@ -56,7 +56,13 @@ export default class QuestionBoard extends Component {
 
                 <List>
                   {question.answers.map((answer, index) => {
-                    return <AnswerItem answer={answer} key={index} />;
+                    return (
+                      <AnswerItem
+                        answer={answer}
+                        key={index}
+                        question={question}
+                      />
+                    );
                   })}
                 </List>
               </Card>

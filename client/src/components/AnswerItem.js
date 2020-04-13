@@ -150,11 +150,11 @@ const AnswerItem = (props) => {
                 <a
                   style={{ color: 'white' }}
                   href={`https://twitter.com/intent/tweet?text=${
-                    props.title
+                    props.question.title
                   }%20Answer:%20${
                     props.answer &&
                     props.answer.text.length > 0 &&
-                    props.answer.text.slice(0, 10)
+                    props.answer.text.slice(0, 50)
                   }...%20at%20${`${config.domainURL}?qid=${props.answer.id}`}%20@thenthopinion`}
                   target="_blank"
                   rel="noopener noreferrer"
