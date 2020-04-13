@@ -14,6 +14,7 @@ export default class QuestionBoard extends Component {
   constructor(props) {
     super(props);
     this.state = { open: false, reportQuestion: null };
+    this.handleSubmitReportIssue = this.handleSubmitReportIssue.bind(this);
   }
 
   handleReportIssue(q) {
