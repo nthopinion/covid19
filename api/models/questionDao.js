@@ -134,7 +134,6 @@ class PostDao {
     debug('updateLike an item in the database', itemId)
     const container = this.containers[containerName]
     const doc = await this.getItem(itemId, containerName)
-
     debug('updateLike an item in the database', doc)
 
     doc.like = (doc.like || 0) + 1
@@ -145,14 +144,32 @@ class PostDao {
     return replaced
   }
 
+  async getItem (itemId, containerName) 
+  {
+    debug('Getting an item from the database')
+    const querySpec = {
+      query: "SELECT * from c WHERE c.id = @id",
+      parameters: [
+        {
+          name: '@id',
+          value: itemId
+        }
+      ]
+    };
+    const results = await this.find(querySpec, containerName);
+    const item =  results[0];
+    return item
+  }
+
   // this doesn't work for me when trying to retrieve questions by id with the new container setup.
-  async getItem (itemId, containerName) {
+ /* async getItem (itemId, containerName) {
     debug('Getting an item from the database')
     const container = this.containers[containerName]
-    const resp = await container.item(itemId).read()
+    //const resp = await container.item(itemId).read()
+    const resp = await container.item(itemId, "_questionId").read();
     console.log(resp)
     return resp
-  }
+  }*/
 
   async deleteItem (itemId, containerName) {
     debug('Delete an item from the database', itemId)
