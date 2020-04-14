@@ -104,7 +104,7 @@ app.post("/api/editAnswer", (req, res, next) =>
 );
 
 app.post("/api/answer/like", (req, res, next) =>
-  questionList.increaseAnswerLike(req, res).catch(next)
+  questionList.updateAnswerLike(req, res).catch(next)
 );
 
 app.post("/api/question/like", (req, res, next) =>
