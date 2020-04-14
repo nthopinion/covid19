@@ -54,7 +54,7 @@ class PostDao {
       throw new Error('Collection is not initialized.')
     }
     const { resources } = await container.items.query(querySpec).fetchAll()
-    //console.log(resources)
+    
     return resources
   }
 
@@ -64,7 +64,7 @@ class PostDao {
     item.date = Date.now()
     console.log(JSON.stringify(item))
     if (item.id === undefined || item.id === "") {
-      item.id = uuidv4();
+      item.id = uuid.v4();
     }
     const { resource: doc } = await container.items.create(item)
     return doc
@@ -84,7 +84,7 @@ class PostDao {
   async updateItem (item, containerName) {
     debug('Update an item in the database', item, item.id)
     const container = this.containers[containerName]
-    const doc = await this.getItem(item.id)
+    const doc = await this.getItem(item.id, containerName)
     debug('getting an item in the database', doc)
 
     const { resource: replaced } = await container
@@ -119,7 +119,7 @@ class PostDao {
 
   async reportQuestion (itemId) {
     debug('likeIncrease an item in the database', itemId)
-    const doc = await this.getItem(itemId)
+    const doc = await this.getItem(itemId, 'questions')
     debug('likeIncrease an item in the database', doc)
 
     doc.flagIssue = (doc.flagIssue || 0) + 1
@@ -174,7 +174,7 @@ class PostDao {
   async deleteItem (itemId, containerName) {
     debug('Delete an item from the database', itemId)
     const container = this.containers[containerName]
-    const doc = await this.getItem(itemId)
+    const doc = await this.getItem(itemId, containerName)
     const result = await container.item(itemId).delete()
     console.log(result)
     return result

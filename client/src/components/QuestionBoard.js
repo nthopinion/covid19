@@ -1,14 +1,5 @@
 import React, { Component } from 'react';
-import { ReactTinyLink } from 'react-tiny-link';
-import {
-  Modal,
-  Card,
-  List,
-  Image,
-  Label,
-  Button,
-  Icon,
-} from 'semantic-ui-react';
+import { Modal, Card, List, Button } from 'semantic-ui-react';
 import AnswerItem from './AnswerItem';
 import CardLeftPanel from './CardLeftPanel';
 
@@ -42,7 +33,7 @@ export default class QuestionBoard extends Component {
       .then((response) => response)
       .catch((error) => {
         // eslint-disable-next-line
-        console.log(error)
+        console.log(error);
       });
   };
 
@@ -65,137 +56,15 @@ export default class QuestionBoard extends Component {
 
                 <List>
                   {question.answers.map((answer, index) => {
-                    return <AnswerItem answer={answer} key={index} />;
-                  })}
-
-                  {question.images &&
-                    question.images.map((image, index) => (
-                      <Image
-                        src={image}
-                        key={index}
-                        fluid
-                        className="answer-image"
-                      />
-                    ))}
-
-                  {question.links &&
-                    question.links.map((link, index) => (
-                      <List.Item key={index}>
-                        <List.Icon name="linkify" />
-                        <List.Content>
-                          {link && (
-                            <ReactTinyLink
-                              cardSize="small"
-                              showGraphic
-                              maxLine={2}
-                              minLine={1}
-                              url={link}
-                              proxyUrl={config.corsProxyUrl}
-                            />
-                          )}
-                        </List.Content>
-                      </List.Item>
-                    ))}
-                  {question.sources &&
-                    question.sources.map((source, index) => (
-                      <List.Item key={index}>
-                        <List.Icon name="linkify" />
-                        <List.Content>
-                          {source && (
-                            <ReactTinyLink
-                              cardSize="small"
-                              showGraphic
-                              maxLine={2}
-                              minLine={1}
-                              url={source}
-                              proxyUrl={config.corsProxyUrl}
-                            />
-                          )}
-                        </List.Content>
-                      </List.Item>
-                    ))}
-                </List>
-
-                {question.youtubeLinks &&
-                  question.youtubeLinks.map((y, index) => {
-                    const videoSrc = `https://www.youtube.com/embed/${y}?autoplay=false`;
-
                     return (
-                      y && (
-                        <iframe
-                          title={videoSrc}
-                          className="player"
-                          type="text/html"
-                          width="100%"
-                          height="400px"
-                          src={videoSrc}
-                          key={index}
-                          frameBorder="0"
-                        />
-                      )
+                      <AnswerItem
+                        answer={answer}
+                        key={index}
+                        question={question}
+                      />
                     );
                   })}
-                <div className="qPanelBottom">
-                  <div className="qTag">
-                    {question.tags &&
-                      question.tags.map((tag, index) => {
-                        return (
-                          <Label color="blue" key={index}>
-                            {tag}
-                          </Label>
-                        );
-                      })}
-                  </div>
-
-                  <div>
-                    {/* <a color='facebook' href="https://twitter.com/intent/tweet?text=My%20aura%20is%20blue.%20Discover%20your%20aura%20at%20http://www.carolynmcneillie.com/colours%20pic.twitter.com/E3SdsiIqPr%20@carolynalive" target="_blank">
-                <Icon name='facebook'></Icon>
-
-                </a> */}
-                    <div className="qPanelBottom-buttons-wrapper">
-                      <Button as="div" labelPosition="right">
-                        <Button
-                          color="red"
-                          onClick={this.props.handleClickLike(question.id, i)}
-                        >
-                          <Icon name="heart" />
-                          Like
-                        </Button>
-                        <Label as="a" basic color="red" pointing="left">
-                          {question.like || 0}
-                        </Label>
-                      </Button>
-                      <Button animated="vertical" color="twitter">
-                        <a
-                          style={{ color: 'white' }}
-                          href={`https://twitter.com/intent/tweet?text=${
-                            question.title
-                          }%20Answer:%20${
-                            question.answers &&
-                            question.answers.length > 0 &&
-                            question.answers[0]
-                              .split(' ')
-                              .slice(0, 10)
-                              .join(' ')
-                          }...%20at%20${`${config.domainURL}?qid=${question.id}`}%20@thenthopinion`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Button.Content visible>
-                            <Icon name="twitter" /> Tweet
-                          </Button.Content>
-                        </a>
-                      </Button>
-                      <Button
-                        icon="flag"
-                        color="red"
-                        basic
-                        title="report an issue"
-                        onClick={this.handleReportIssue(question)}
-                      />
-                    </div>
-                  </div>
-                </div>
+                </List>
               </Card>
             );
           })}

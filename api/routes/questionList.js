@@ -155,8 +155,6 @@ class PostList {
   }
 
   async showQuestions (req, res, answered) {
-    console.log('showQuestions')
-
     const querySpec = {
       query: "SELECT * from c WHERE c.answered = @answered",
       // ORDER BY date DESC
@@ -169,38 +167,63 @@ class PostList {
       ]
     };
 
-    const items = await this.questionDao.find(querySpec, 'questions');
+    let items = await this.questionDao.find(querySpec, 'questions');
+    
     if (answered = true)
     {
-      //items.forEach(item =>{
-      for (const item of items){  
-        //item.answers = Array.from(await this.loadAnswers(item.id));
-        item.answers = await this.loadAnswers(item.id);
-        //console.log('showQuestions Section', item)
-      }
-      // console.log('items', item, querySpec)
+      let questionIds = items.map(item => (item.id));
+
+      const answers = await this.loadAnswers(questionIds);
+
+      let answerObject = {};
+
+      answers.forEach(answer => {
+        if (answerObject[answer.questionId]) {
+          answerObject = {
+            ...answerObject,
+            [answer.questionId]: [...answerObject[answer.questionId], answer]
+          }
+        } else {
+          answerObject = {
+            ...answerObject,
+            [answer.questionId]: [answer]
+          }
+        }
+      });
+
+      items = items.map(item => ({
+        ...item,
+        answers: answerObject[item.id] || []
+      }));
     }
+  
     res.send(items)
   }
 
-  async loadAnswers (questionId)
+  async loadAnswers (questionIds)
   {
-    //item.answers = []
+    // TODO: Use a better approach for setting parameters in the query
+    let questionIdsString = "";
+
+    questionIds.forEach((id, index) => {
+      questionIdsString += `${index === 0 ? "" : ", "}"${id}"`
+    })
+
     const querySpec = {
-      query: "SELECT * from c WHERE c.questionId = @questionId",
+      query: `SELECT * from c WHERE c.questionId in (${questionIdsString})`,
       // ORDER BY date DESC
       //  WHERE c.answered = @answered and EXISTS (SELECT VALUE t from t in c.tags WHERE (t != 'Wellspring' and t != 'Holistic' and t != 'yu' and t != 'Yu' and t != 'Retinitis Pigmentosa' and t != 'Traditional Chinese Medicine' and t != 'Wellspring Vision Improvement Program' and t != 'biography' and t != 'questions' and t != 'Li Wenliang' and t != 'Zhang' and t != 'question' and t != 'address'))",
       parameters: [
         {
-          name: '@questionId',
-          value: questionId
+          name: '@questionIdsString',
+          value: questionIdsString
         }
       ]
     };
+
     const answers = await this.questionDao.find(querySpec, 'answers');
+
     return answers;
-    //item.answers = Array.from(answers);
-    //console.log('loadAnswers Section', item);
   }
 
   async addQuestion (req, res) {
