@@ -1,10 +1,9 @@
 // @ts-check
 
-//import { v4 as uuidv4 } from 'uuid';
 
 const CosmosClient = require('@azure/cosmos').CosmosClient
 const debug = require('debug')('questionList:questionDao')
-const uuid = require("uuid");
+var uuid = require("express");
 
 // For simplicity we'll set a constant partition key
 const partitionKey = '0'
@@ -63,10 +62,13 @@ class PostDao {
     const container = this.containers[containerName]
     item.date = Date.now()
     console.log(JSON.stringify(item))
-    if (item.id === undefined || item.id === "") {
-      item.id = uuid.v4();
-    }
-    const { resource: doc } = await container.items.create(item)
+    const uuid = require("uuid");
+    item.id = uuid.v4();
+/*     if (item.id === undefined || item.id === "") {
+      item.id = uuid4();
+    } */
+    const { resource: doc } = await container.items.create(item, item.id)
+
     return doc
   }
 
@@ -100,12 +102,12 @@ class PostDao {
     if (!question.answered) {
       question.answered = !!(item)
     }
-    question.answers.push(item.id)
+    const result = await this.addItem(item, 'answers')
+    debug('result', result)
+    question.answers.push(result.id)
     const { resource: replaced } = await this.containers.questions
       .item(question.id)
       .replace(question)
-    const result = await this.addItem(item, 'answers')
-    debug('result', result)
     return {question: replaced, answer: result}
   }
 
@@ -162,14 +164,14 @@ class PostDao {
   }
 
   // this doesn't work for me when trying to retrieve questions by id with the new container setup.
- /* async getItem (itemId, containerName) {
+/*  async getItem (itemId, partitionId, containerName) {
     debug('Getting an item from the database')
     const container = this.containers[containerName]
     //const resp = await container.item(itemId).read()
-    const resp = await container.item(itemId, "_questionId").read();
+    const resp = await container.item(itemId, partitionId).read();
     console.log(resp)
     return resp
-  }*/
+  } */
 
   async deleteItem (itemId, containerName) {
     debug('Delete an item from the database', itemId)
