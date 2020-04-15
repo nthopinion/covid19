@@ -252,6 +252,11 @@ class PostList {
         sources.push(url);
       }
     });
+    if (answer.sources !== undefined){
+      answer.sources.forEach(url =>{
+        sources.push(url);
+      });
+    }
 
     return {
       ...answer,
@@ -287,15 +292,15 @@ class PostList {
   }
 
   async updateQuestionLike (req, res) {
-    const { id } = req.body
     console.log('req.body', req.body)
+    const { id } = req.body
     await this.questionDao.updateLike(id, 'questions')
     res.send('ok')
   }
 
   async updateAnswerLike (req, res) {
-    const { id } = req.body
     console.log('req.body', req.body)
+    const { id } = req.body
     await this.questionDao.updateLike(id, 'answers')
     res.send('ok')
   }
