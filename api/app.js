@@ -107,19 +107,27 @@ app.post("/api/answer/like", (req, res, next) =>
   questionList.updateAnswerLike(req, res).catch(next)
 );
 
+app.post("/api/answer/report", (req, res, next) =>
+  questionList.reportAnswer(req, res).catch(next)
+);
+
+app.post("/api/deleteAnswer", (req, res, next) =>
+  questionList.deleteAnswer(req, res).catch(next)
+);
+
 app.post("/api/question/like", (req, res, next) =>
   questionList.updateQuestionLike(req, res).catch(next)
 );
 
-app.post("/api/question/report", (req, res, next) =>
+/* app.post("/api/question/report", (req, res, next) =>
   questionList.reportQuestion(req, res).catch(next)
-);
+); */
 
 app.post("/api/addQuestion", (req, res, next) =>
   questionList.addQuestion(req, res).catch(next)
 );
 
-app.delete("/api/question", (req, res, next) =>
+app.delete("/api/deleteQuestion", (req, res, next) =>
   questionList.deleteQuestion(req, res).catch(next)
 );
 

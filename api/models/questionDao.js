@@ -83,10 +83,14 @@ class PostDao {
     return 'ok'
   }
 
-  async updateItem (item, containerName) {
+  async updateQuestion (item, containerName) {
     debug('Update an item in the database', item, item.id)
     const container = this.containers[containerName]
     const doc = await this.getItem(item.id, containerName)
+    doc.title = item.title;
+    if (item.like !== undefined){
+      doc.like = item.like;
+    }
     debug('getting an item in the database', doc)
 
     const { resource: replaced } = await container
@@ -102,6 +106,9 @@ class PostDao {
     if (!question.answered) {
       question.answered = !!(item)
     }
+    item.like = 0;
+    item.flag = 0;
+    item.deleted = false;
     const result = await this.addItem(item, 'answers')
     debug('result', result)
     question.answers.push(result.id)
@@ -119,7 +126,7 @@ class PostDao {
     return replaced
   }
 
-  async reportQuestion (itemId) {
+/*   async reportQuestion (itemId) {
     debug('likeIncrease an item in the database', itemId)
     const doc = await this.getItem(itemId, 'questions')
     debug('likeIncrease an item in the database', doc)
@@ -130,7 +137,7 @@ class PostDao {
       .item(itemId)
       .replace(doc)
     return replaced
-  }
+  } */
 
   async updateLike (itemId, containerName) {
     debug('updateLike an item in the database', itemId)
@@ -146,6 +153,33 @@ class PostDao {
     return replaced
   }
 
+  async reportAnswer (itemId, containerName) {
+    debug('reportAnswer an item in the database', itemId)
+    const container = this.containers[containerName]
+    const doc = await this.getItem(itemId, containerName)
+    debug('reportAnswer an item in the database', doc)
+
+    doc.flag = (doc.flag || 0) + 1
+
+    const { resource: replaced } = await container
+      .item(itemId)
+      .replace(doc)
+    return replaced
+  }
+ 
+  async deleteAnswer (itemId, containerName) {
+    debug('deleteAnswer an item in the database', itemId)
+    const container = this.containers[containerName]
+    const doc = await this.getItem(itemId, containerName)
+    debug('deleteAnswer an item in the database', doc)
+
+    doc.deleted = true;
+    const { resource: replaced } = await container
+      .item(itemId)
+      .replace(doc)
+    return replaced
+  }
+ 
   async getItem (itemId, containerName) 
   {
     debug('Getting an item from the database')
@@ -177,9 +211,32 @@ class PostDao {
     debug('Delete an item from the database', itemId)
     const container = this.containers[containerName]
     const doc = await this.getItem(itemId, containerName)
-    const result = await container.item(itemId).delete()
+    const answers = await this.deleteAnswersfortheQuestion(itemId, "answers")
+    const result = await container.item(itemId, itemId).delete()
     console.log(result)
     return result
+  }
+
+  async deleteAnswersfortheQuestion (questionId, containerName) {
+    debug('Getting answers from the database')
+    const querySpec = {
+      query: "SELECT * from c WHERE c.questionId= @questionId",
+      parameters: [
+        {
+          name: '@questionId',
+          value: questionId
+        }
+      ]
+    };
+    const results = await this.find(querySpec, containerName);
+    const container = this.containers[containerName];
+    //results.array.forEach(answer => {
+    for (const answer of results){  
+      debug('Delete an item from the database', answer.id)
+      const result = await container.item(answer.id, questionId).delete()
+      console.log(result)
+    }
+    return results
   }
 }
 

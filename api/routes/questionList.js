@@ -210,7 +210,7 @@ class PostList {
     })
 
     const querySpec = {
-      query: `SELECT * from c WHERE c.questionId in (${questionIdsString})`,
+      query: `SELECT * from c WHERE c.questionId in (${questionIdsString}) and c.deleted = false`,
       // ORDER BY date DESC
       //  WHERE c.answered = @answered and EXISTS (SELECT VALUE t from t in c.tags WHERE (t != 'Wellspring' and t != 'Holistic' and t != 'yu' and t != 'Yu' and t != 'Retinitis Pigmentosa' and t != 'Traditional Chinese Medicine' and t != 'Wellspring Vision Improvement Program' and t != 'biography' and t != 'questions' and t != 'Li Wenliang' and t != 'Zhang' and t != 'question' and t != 'address'))",
       parameters: [
@@ -231,10 +231,11 @@ class PostList {
     const item = req.body
     item.answers = []
     item.answered = false
-    const itemAdd = await this.questionDao.addItem(item, 'questions')
-    this.pusher.trigger(channel, 'answer-question', {
+    item.like = 0
+     const itemAdd = await this.questionDao.addItem(item, 'questions')
+/*    this.pusher.trigger(channel, 'answer-question', {
       question
-    });
+    }); */
     // res.redirect("/");
     res.send(itemAdd)
   }
@@ -250,12 +251,12 @@ class PostList {
   async editQuestion (req, res) {
     let question = req.body
     
-    await this.questionDao.updateItem(question, 'questions')
-    if (!question.answered) {
+    await this.questionDao.updateQuestion(question, 'questions')
+/*     if (!question.answered) {
       this.pusher.trigger(channel, 'answer-question', {
         question
       });
-    }
+    } */
     res.send('ok')
   }
 
@@ -290,12 +291,34 @@ class PostList {
 
   async addAnswer (req, res) {
     const answer = this.parseAnswer(req)
+    var firstAnsweredBy = {}, lastAnsweredBy = {};
+    firstAnsweredBy.name = "Nth Opinion"
+    firstAnsweredBy.loginId = "e060f24a-bd81-4d65-877f-857f31f2cf31"
+    lastAnsweredBy.name = "Nth Opinion"
+    lastAnsweredBy.loginId = "e060f24a-bd81-4d65-877f-857f31f2cf31"
+    answer["firstAnsweredBy"] = firstAnsweredBy;
+    answer["lastAnsweredBy"] = lastAnsweredBy;
+    answer.firstAnsweredOn = Date.now();
+    answer.lastAnsweredOn = Date.now();
     await this.questionDao.addAnswer(answer)
     res.send('ok')
   }
 
   async editAnswer (req, res) {
     const answer = this.parseAnswer(req)
+    if (answer.lastAnsweredBy === undefined)
+    {
+      var lastAnsweredBy = {};
+      lastAnsweredBy.name = "Nth Opinion"
+      lastAnsweredBy.loginId = "e060f24a-bd81-4d65-877f-857f31f2cf31"
+      answer["lastAnsweredBy"] = lastAnsweredBy;
+    }
+    else
+    {
+      answer.lastAnsweredBy.name = "Nth Opinion"
+      answer.lastAnsweredBy.loginId = "e060f24a-bd81-4d65-877f-857f31f2cf31"
+    }
+    answer.lastAnsweredOn = Date.now();
     await this.questionDao.editAnswer(answer)
     res.send('ok')
   }
@@ -303,16 +326,16 @@ class PostList {
   // need to use better way :id
   async deleteQuestion (req, res) {
     const { id } = req.body
-    await this.questionDao.deleteItem(id)
+    await this.questionDao.deleteItem(id,'questions')
     res.send('ok')
   }
 
-  async reportQuestion(req, res) {
+/*   async reportQuestion(req, res) {
     const { id } = req.body
     console.log('req.body', req.body)
     await this.questionDao.reportQuestion(id)
     res.send('ok')
-  }
+  } */
 
   async updateQuestionLike (req, res) {
     console.log('req.body', req.body)
@@ -325,6 +348,20 @@ class PostList {
     console.log('req.body', req.body)
     const { id } = req.body
     await this.questionDao.updateLike(id, 'answers')
+    res.send('ok')
+  }
+
+  async reportAnswer (req, res) {
+    console.log('req.body', req.body)
+    const { id } = req.body
+    await this.questionDao.reportAnswer(id, 'answers')
+    res.send('ok')
+  }
+
+  async deleteAnswer (req, res) {
+    console.log('req.body', req.body)
+    const { id } = req.body
+    await this.questionDao.deleteAnswer(id, 'answers')
     res.send('ok')
   }
 
