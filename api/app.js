@@ -17,7 +17,7 @@ const swaggerDefinition = {
   info: {
     title: "Covid-19 Application Swagger API",
     version: "1.0.0",
-    description: "Endpoints to test the Covid-19"
+    description: "Endpoints to test the Covid-19",
   },
   host: "localhost:8000",
   basePath: "/",
@@ -26,14 +26,14 @@ const swaggerDefinition = {
       type: "apiKey",
       name: "Authorization",
       scheme: "bearer",
-      in: "header"
-    }
-  }
+      in: "header",
+    },
+  },
 };
 
 const options = {
   swaggerDefinition,
-  apis: ["./routes/*.js"]
+  apis: ["./routes/*.js"],
 };
 
 require("dotenv").config();
@@ -60,7 +60,7 @@ app.use("/upload", upload);
 
 const cosmosClient = new CosmosClient({
   endpoint: config.endpoint,
-  key: config.key
+  key: config.key,
 });
 const questionDao = new QuestionDao(
   cosmosClient,
@@ -70,10 +70,10 @@ const questionDao = new QuestionDao(
 );
 const questionList = new QuestionList(questionDao);
 questionDao
-  .init(err => {
+  .init((err) => {
     console.error(err);
   })
-  .catch(err => {
+  .catch((err) => {
     console.error(err);
     console.error(
       "Shutting down because there was an error settinig up the database."
@@ -92,7 +92,7 @@ app.post("/api/addQuestions", (req, res, next) =>
 
 // ToDo: using :id
 app.post("/api/updateQuestion", (req, res, next) =>
-  questionList.updateQuestion(req, res).catch(next)
+  questionList.editQuestion(req, res).catch(next)
 );
 
 app.post("/api/addAnswer", (req, res, next) =>
@@ -124,7 +124,7 @@ app.delete("/api/question", (req, res, next) =>
 );
 
 const swaggerSpec = swaggerJSDoc(options);
-app.get("/swagger.json", function(req, res) {
+app.get("/swagger.json", function (req, res) {
   res.setHeader("Content-Type", "application/json");
   res.send(swaggerSpec);
 });
@@ -140,12 +140,12 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname + "/build/index.html"));
 });
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
