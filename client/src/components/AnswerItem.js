@@ -18,7 +18,6 @@ const AnswerItem = (props) => {
         <div className="answerTitle">
           <div className="answeredByName">
             <span>A.</span>
-            {props.answeredBy || 'AskCo19'}
           </div>
           <img
             src={props.answerByAvatarUrl || avatar}
@@ -110,7 +109,10 @@ const AnswerItem = (props) => {
           })}
 
         <div className="answer-metadata">
-          <div>Answered By: {props.answer.firstAnsweredBy.name}</div>
+          <div>
+            Answered By:{' '}
+            {props.answer.firstAnsweredBy && props.answer.firstAnsweredBy.name}
+          </div>
           <div>
             Posted:{' '}
             {new Date(props.answer.firstAnsweredOn).toLocaleDateString()}
@@ -137,13 +139,15 @@ const AnswerItem = (props) => {
               <Button as="div" labelPosition="right">
                 <Button
                   color="red"
-                  onClick={() => props.handleClickLike(props.id)}
+                  onClick={() => {
+                    props.handleAnswerLike(props.question.id, props.answer.id);
+                  }}
                 >
                   <Icon name="heart" />
                   Like
                 </Button>
                 <Label as="a" basic color="red" pointing="left">
-                  {props.like || 0}
+                  {props.answer.like || 0}
                 </Label>
               </Button>
               <Button animated="vertical" color="twitter">

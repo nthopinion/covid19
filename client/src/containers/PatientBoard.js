@@ -13,6 +13,7 @@ import {
   setSearchTerm,
   postQuestion,
   clickLikeQuestion,
+  handleAnswerLike,
   handleNewQuestionAnswered,
 } from '../actions';
 
@@ -62,8 +63,8 @@ class PatientBoard extends Component {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  handleClickLike = (id, index) => {
-    return () => this.props.clickLikeQuestion(id, index);
+  handleAnswerLike = (questionId, answerId) => {
+    this.props.handleAnswerLike(questionId, answerId);
   };
 
   handleResultSelect = (e, { result }) => {
@@ -159,6 +160,7 @@ class PatientBoard extends Component {
                 <div>
                   <QuestionBoard
                     handleClickLike={this.handleClickLike}
+                    handleAnswerLike={this.props.handleAnswerLike}
                     results={this.props.results}
                   />
 
@@ -214,6 +216,7 @@ const mapDispatchToProps = (dispatch) =>
       setSearchTerm,
       postQuestion,
       clickLikeQuestion,
+      handleAnswerLike,
       handleNewQuestionAnswered,
     },
     dispatch
