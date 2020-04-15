@@ -9,31 +9,30 @@ import config from '../config';
 export default class QuestionBoard extends Component {
   constructor(props) {
     super(props);
-    this.state = { open: false, reportQuestion: null };
+    this.state = { open: false, reportAnswer: null };
   }
 
-  handleReportIssue(q) {
-    return () => this.setState({ open: true, reportQuestion: q });
-  }
+  handleReportIssue = (answer) => {
+    this.setState({ open: true, reportAnswer: answer });
+  };
 
-  async handleSubmitReportIssue() {
-    await this.reportQuestionFlag(this.state.reportQuestion);
-    this.setState({ open: false, reportQuestion: null });
-  }
+  handleSubmitReportIssue = async () => {
+    await this.reportAnswerFlag(this.state.reportAnswer);
+    this.setState({ open: false, reportAnswer: null });
+  };
 
-  reportQuestionFlag = (question) => {
-    return fetch(`${config.domainURL}/api/question/report`, {
+  reportAnswerFlag = (answer) => {
+    return fetch(`${config.domainURL}/api/answer/report`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ id: question.id }),
+      body: JSON.stringify({ id: answer.id }),
     })
       .then((response) => response)
-      .catch((error) => {
-        // eslint-disable-next-line
-        console.log(error);
+      .catch(() => {
+        // TODO: Handle error here.
       });
   };
 
@@ -61,6 +60,7 @@ export default class QuestionBoard extends Component {
                         answer={answer}
                         key={index}
                         question={question}
+                        handleReportIssue={this.handleReportIssue}
                         handleClickLike={this.props.handleClickLike}
                         handleAnswerLike={this.props.handleAnswerLike}
                       />
@@ -73,10 +73,10 @@ export default class QuestionBoard extends Component {
         </Card.Group>
         <Modal open={this.state.open} onClose={this.close}>
           <Modal.Header>
-            Are you sure you want to report this question?
+            Are you sure you want to report this answer?
           </Modal.Header>
           <Modal.Content>
-            <p>{this.state.reportQuestion?.title}</p>
+            <p>{this.state.reportAnswer && this.state.reportAnswer.title}</p>
           </Modal.Content>
           <Modal.Actions>
             <Button onClick={this.close} negative>
