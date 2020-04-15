@@ -5,7 +5,7 @@ class FlagButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      changeColor: false,
+      selected: 0,
     };
   }
 
@@ -22,12 +22,12 @@ class FlagButton extends React.Component {
     );
   }
 
-  colorChangeDone() {
-    this.setState({ changeColor: false });
-  }
-
-  changeColor() {
-    this.setState({ changeColor: true });
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.selected > prevState.selected) {
+      return {
+        selected: nextProps.selected,
+      };
+    }
   }
 
   render() {
@@ -39,17 +39,14 @@ class FlagButton extends React.Component {
           paddingRight: '10px',
         }}
         onClick={() => {
-          // TODO make color only stay red when flag submitted on pop up prompt
           this.props.onClick();
-          this.changeColor();
         }}
-        id={this.props.itemId}
       >
         <svg
           ref={(e) => {
             this.itemToChangeColor = e;
           }}
-          className={this.state.changeColor ? ' animate-flag-color' : ''}
+          className={this.state.selected ? ' animate-flag-color' : ''}
           viewBox="0 0 15 13"
           width="15"
           xmlns="http://www.w3.org/2000/svg"

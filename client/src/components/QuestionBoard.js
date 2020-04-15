@@ -13,7 +13,7 @@ import FlagButton from './FlagButton';
 export default class QuestionBoard extends Component {
   constructor(props) {
     super(props);
-    this.state = { open: false, reportQuestion: null };
+    this.state = { open: false, reportQuestion: null, selected: null };
     this.handleSubmitReportIssue = this.handleSubmitReportIssue.bind(this);
   }
 
@@ -23,6 +23,7 @@ export default class QuestionBoard extends Component {
 
   async handleSubmitReportIssue() {
     await this.reportQuestionFlag(this.state.reportQuestion);
+    this.setState({ selected: this.state.reportQuestion.id });
     this.setState({ open: false, reportQuestion: null });
   }
 
@@ -150,6 +151,7 @@ export default class QuestionBoard extends Component {
                 </a> */}
                     <div className="buttonGroupCustom">
                       <FlagButton
+                        selected={question.id === this.state.selected ? 1 : 0}
                         color="red"
                         basic
                         title="report an issue"
