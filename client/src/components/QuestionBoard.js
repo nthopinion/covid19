@@ -61,6 +61,8 @@ export default class QuestionBoard extends Component {
                         answer={answer}
                         key={index}
                         question={question}
+                        handleClickLike={this.props.handleClickLike}
+                        handleAnswerLike={this.props.handleAnswerLike}
                       />
                     );
                   })}
