@@ -19,10 +19,11 @@ export default class QuestionBoard extends Component {
   constructor(props) {
     super(props);
     this.state = { open: false, reportQuestion: null };
+    this.handleSubmitReportIssue = this.handleSubmitReportIssue.bind(this);
   }
 
   handleReportIssue(q) {
-    this.setState({ open: true, reportQuestion: q });
+    return () => this.setState({ open: true, reportQuestion: q });
   }
 
   async handleSubmitReportIssue() {
@@ -40,7 +41,10 @@ export default class QuestionBoard extends Component {
       body: JSON.stringify({ id: question.id }),
     })
       .then((response) => response)
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        // eslint-disable-next-line
+        console.log(error)
+      });
   };
 
   close = () => this.setState({ open: false });
@@ -52,8 +56,9 @@ export default class QuestionBoard extends Component {
       <div className="container">
         <Card.Group>
           {results.map((question, i) => {
-            console.log({ question });
-            if (!question.answers) return;
+            if (!question.answers) {
+              return null;
+            }
 
             return (
               <Card fluid className="qCard" key={i} id={`q_${question.id}`}>
@@ -148,13 +153,11 @@ export default class QuestionBoard extends Component {
                 <Icon name='facebook'></Icon>
 
                 </a> */}
-                    <div>
+                    <div className="qPanelBottom-buttons-wrapper">
                       <Button as="div" labelPosition="right">
                         <Button
                           color="red"
-                          onClick={() =>
-                            this.props.handleClickLike(question.id, i)
-                          }
+                          onClick={this.props.handleClickLike(question.id, i)}
                         >
                           <Icon name="heart" />
                           Like
@@ -189,7 +192,7 @@ export default class QuestionBoard extends Component {
                         color="red"
                         basic
                         title="report an issue"
-                        onClick={() => this.handleReportIssue(question)}
+                        onClick={this.handleReportIssue(question)}
                       />
                     </div>
                   </div>
@@ -210,8 +213,8 @@ export default class QuestionBoard extends Component {
               No
             </Button>
             <Button
-              onClick={() => this.handleSubmitReportIssue()}
               positive
+              onClick={this.handleSubmitReportIssue}
               labelPosition="right"
               icon="checkmark"
               content="Yes"

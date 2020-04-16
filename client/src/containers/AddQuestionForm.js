@@ -14,10 +14,10 @@ class AddQuestionForm extends Component {
     };
   }
 
-  handleSubmit = () => {
+  handleSubmit = async () => {
     const { dispatch } = this.props;
-    dispatch(postQuestion(this.state.value));
-    this.setState({ value: '' });
+    await dispatch(postQuestion(this.state.value));
+    this.setState({ value: '', showModal: false });
   };
 
   handleChange = (e, { value }) => this.setState({ value });
@@ -32,10 +32,10 @@ class AddQuestionForm extends Component {
 
   render() {
     const { showModal } = this.state;
-    const { t } = this.props;
+    const { t, buttonLabel } = this.props;
     const AskQuestionButton = (
       <Button onClick={this.openModal} color="blue" className="ask-button">
-        {t('patientBoard:addQuestion.askAQuestion')}
+        {buttonLabel || t('patientBoard:addQuestion.askAQuestion')}
       </Button>
     );
 
@@ -59,9 +59,7 @@ class AddQuestionForm extends Component {
         <Modal.Content>
           <Modal.Description>
             <Form onSubmit={this.handleSubmit}>
-              <Form.Input fluid label="Title" />
               <Form.TextArea
-                label={t('patientBoard:addQuestion.description')}
                 value={this.state.value}
                 onChange={this.handleChange}
               />

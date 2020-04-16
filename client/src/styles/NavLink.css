@@ -1,3 +1,10 @@
+.menu-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
 .row {
   padding: 25px;
 }
@@ -8,6 +15,7 @@
 }
 
 .ui.right.sidebar {
+  position: relative;
   background: #006eaa;
 }
 

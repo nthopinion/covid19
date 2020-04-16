@@ -1,0 +1,28 @@
+﻿[
+  {
+    "id": "9ed58555-f19b-4d01-b703-54ad74aa06bc",
+    "questionId": "b2dc8ce8-45d5-46fd-99d9-13a588023227",
+    "text": "No, COVID-19 is genetically distinct from SARS.  COVID-19 was termed by the World Health Organization for the disease caused by the coronavirus responsible for the disease outbreak in Wuhan, China in December 2019.",
+    "sources": [],
+    "attachments": [],
+    "tags": [],
+    "firstAnsweredOn": 1586039456,
+    "firstAnsweredBy": {
+      "name": "Nth Opinion",
+      "loginId": "e060f24a-bd81-4d65-877f-857f31f2cf31"
+    },
+    "lastAnsweredOn": 1586039456,
+    "lastAnsweredBy": {
+      "name": "Nth Opinion",
+      "loginId": "e060f24a-bd81-4d65-877f-857f31f2cf31"
+    },
+    "deleted": false,
+    "like": 0,
+    "flag": 0,
+    "_rid": "FHYMAOi1n5EBAAAAAAAAAA==",
+    "_self": "dbs/FHYMAA==/colls/FHYMAOi1n5E=/docs/FHYMAOi1n5EBAAAAAAAAAA==/",
+    "_etag": "\"13017604-0000-0700-0000-5e8d05810000\"",
+    "_attachments": "attachments/",
+    "_ts": 1586300289
+  }
+]

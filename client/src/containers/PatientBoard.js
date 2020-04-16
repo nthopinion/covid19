@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Grid, Ref } from 'semantic-ui-react';
 import { withTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 import {
   fetchQuestions,
@@ -16,12 +17,16 @@ import {
   handleNewQuestionAnswered,
 } from '../actions';
 
-import '../styles/PatientBoard.css';
-import Options from '../components/Options';
-import QuestionBoard from '../components/QuestionBoard';
-import StickyHeader from '../components/StickyHeader';
-import TranslationsSuspense from '../components/TranslationsSuspense';
 import config from '../config';
+import '../styles/PatientBoard.css';
+
+import Footer from '../components/Footer';
+import StickyHeader from '../components/StickyHeader';
+import QuestionBoard from '../components/QuestionBoard';
+import HeaderWithLink from '../components/HeaderWithLink';
+import TranslationsSuspense from '../components/TranslationsSuspense';
+
+import { normalizeResults } from '../helpers/normalizeResults';
 
 class PatientBoard extends Component {
   constructor(props) {
@@ -59,7 +64,7 @@ class PatientBoard extends Component {
   };
 
   handleClickLike = (id, index) => {
-    this.props.clickLikeQuestion(id, index);
+    return () => this.props.clickLikeQuestion(id, index);
   };
 
   handleResultSelect = (e, { result }) => {
@@ -115,7 +120,7 @@ class PatientBoard extends Component {
         <StickyHeader
           contextRef={this.contextRef}
           isLoading={this.props.isLoading}
-          results={this.props.results}
+          results={normalizeResults(this.props.results)}
           searchTerm={this.props.searchTerm}
           handleResultSelect={this.handleResultSelect}
           handleSearchChange={this.handleSearchChange}
@@ -127,17 +132,60 @@ class PatientBoard extends Component {
           onSignOut={this.props.onSignOut}
         />
         <div className="containerDiv">
+          <div className="banner clearfix">
+            <img
+              src="health-care.svg"
+              className="health-care"
+              alt="health-care"
+            />
+            <div className="banner-text">
+              {this.props.t('patientBoard:banner.text')}
+            </div>
+            <div className="banner-subtext">
+              {this.props.t('patientBoard:banner.subText')}
+            </div>
+          </div>
+          <div className="header-with-link-wrapper">
+            <HeaderWithLink
+              buttonLabel={this.props.t('patientBoard:addQuestion.askADoctor')}
+            />
+          </div>
+
           {this.state.displayNewQuestion && (
             <div
               className="new-answers"
               onClick={this.handleDisplayNewQuestion}
             >
-              See new answers
+              {this.props.t('patientBoard:answers.seeNew')}
             </div>
           )}
           <Grid centered columns={2} stackable>
             <Grid.Column>
-              <Options />
+              <div className="patient-header-wrapper">
+                {
+                  // Visibility is set to hidden for this component.
+                  // Please remove visibility:hidden from css while implementing filtering
+                  //  <div className="filter-wrapper">
+                  //   <div className="button-wrapper">
+                  //     <button>filer all</button>
+                  //     <button>popular</button>
+                  //   </div>
+                  // </div>
+                }
+                <div className="header-container">
+                  <div className="board-title">
+                    {this.props.t(
+                      'patientBoard:questionBoard.answersFromFrontline'
+                    )}
+                  </div>
+                  <div className="board-link">
+                    <Link to="/bIiOOIIqgwEXwUU3SaD0F9">
+                      Are you a physician?
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
               <Ref innerRef={this.contextRef}>
                 <div>
                   <QuestionBoard
@@ -175,6 +223,7 @@ class PatientBoard extends Component {
    */}
           </Grid>
           {/* <FloatingMenu/> */}
+          <Footer />
         </div>
       </TranslationsSuspense>
     );
