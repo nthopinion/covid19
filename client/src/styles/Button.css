@@ -39,6 +39,10 @@
   color: #e44141;
 }
 
+.ReactCollapse--collapse {
+  transition: height 500ms;
+}
+
 /*.animate-share-color {*/
 
 /*}*/
