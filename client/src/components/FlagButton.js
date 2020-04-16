@@ -39,7 +39,7 @@ class FlagButton extends React.Component {
           ref={(e) => {
             this.itemToChangeColor = e;
           }}
-          className={this.state.selected ? ' animate-flag-color' : ''}
+          className={this.state.selected ? 'flag-button-clicked' : ''}
           viewBox="0 0 15 13"
           width="15"
           xmlns="http://www.w3.org/2000/svg"
