@@ -9,13 +9,17 @@ import {
   List,
   Label,
 } from 'semantic-ui-react';
+
 import { bindActionCreators } from 'redux';
-import AuthProvider from '../AuthProvider';
 import { deleteQuestion, setQuestion } from '../actions';
+
+import AuthProvider from '../AuthProvider';
 import AnswerItem from './AnswerItem';
 import FileUpload from './FileUpload';
 import CardLeftPanel from './CardLeftPanel';
+
 import '../styles/QuestionBoard.css';
+
 import config from '../config';
 
 class AnswerForm extends Component {
@@ -105,6 +109,7 @@ class AnswerForm extends Component {
         Report Issues: <span> {q.flagIssue}</span>
       </Label>
     );
+
     return (
       <Card className="qCard" key={idx} style={{ width: '100%' }}>
         <CardLeftPanel
@@ -117,15 +122,33 @@ class AnswerForm extends Component {
           <>
             <Form>
               {q.answers &&
-                q.answers.map((ans, ansIdx) => {
+                q.answers.map((answer, index) => {
                   return (
-                    <Form.TextArea
-                      value={q.answers[ansIdx]}
-                      placeholder="Tell us more about it..."
-                      onChange={(e, { value }) =>
-                        this.handleUpdatedAnswerChange(e, { value }, q, ansIdx)
-                      }
-                    />
+                    <>
+                      {this.props.showUnaswered ? (
+                        <Form.TextArea
+                          value={q.answers[index].text}
+                          placeholder="Tell us more about it..."
+                          onChange={(e, { value }) =>
+                            this.handleUpdatedAnswerChange(
+                              e,
+                              { value },
+                              q,
+                              index
+                            )
+                          }
+                        />
+                      ) : (
+                        <AnswerItem
+                          answer={answer}
+                          key={index}
+                          question={q}
+                          handleReportIssue={this.handleReportIssue}
+                          handleClickLike={this.props.handleClickLike}
+                          handleAnswerLike={this.props.handleAnswerLike}
+                        />
+                      )}
+                    </>
                   );
                 })}
               <div>
