@@ -1,0 +1,73 @@
+.about-us-wrapper {
+  display: flex;
+  background: #6babce;
+  flex-direction: column;
+  flex-basis: 30%;
+  padding: 40px 0px 70px 0px;
+}
+
+.about-us-wrapper:hover {
+  background: #497993;
+}
+
+.image-container {
+  text-align: center;
+  align-content: center;
+}
+
+.faq-wrapper {
+  display: none;
+}
+
+.about-us-wrapper ul {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.about-us-wrapper ul li {
+  margin: 0px 2px;
+  text-decoration: none;
+  display: inline;
+}
+
+.about-us-wrapper {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 33px;
+  line-height: 40px;
+  /* identical to box height, or 120% */
+
+  text-align: center;
+
+  color: #ffffff;
+}
+
+@media (max-width: 480px) {
+  .about-us-wrapper {
+    padding: 36px 24px 24px 36px;
+    flex-direction: row;
+    justify-content: space-between;
+    background: #e3e3e4;
+    color: #006eaa;
+  }
+
+  .faq-wrapper {
+    display: flex;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .about-us-content {
+    display: none;
+  }
+
+  .about-us-wrapper:hover {
+    background: #497993;
+    color: #ffffff !important;
+  }
+}

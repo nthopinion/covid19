@@ -1,0 +1,25 @@
+.footer-wrapper {
+  position: absolute;
+  bottom: 35px;
+  width: 100%;
+}
+
+.footer-wrapper p {
+  margin: 0;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  /* or 143% */
+
+  text-align: center;
+  color: #000000;
+}
+
+.footer-wrapper a,
+.footer-wrapper a:hover {
+  font-weight: bold;
+  color: Black;
+  border-bottom: 1px solid black;
+}

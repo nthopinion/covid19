@@ -1,0 +1,17 @@
+﻿[
+  {
+    "id": "b2dc8ce8-45d5-46fd-99d9-13a588023227",
+    "date": 1983183253063,
+    "title": "Is COVID-19 the same as SARS?",
+    "answers": [
+      "9ed58555-f19b-4d01-b703-54ad74aa06bc"
+    ],
+    "answered": true,
+    "like": 21,
+    "_rid": "FHYMAI6YEWkBAAAAAAAAAA==",
+    "_self": "dbs/FHYMAA==/colls/FHYMAI6YEWk=/docs/FHYMAI6YEWkBAAAAAAAAAA==/",
+    "_etag": "\"1301c001-0000-0700-0000-5e8d056d0000\"",
+    "_attachments": "attachments/",
+    "_ts": 1586300269
+  }
+]

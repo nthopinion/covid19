@@ -1,13 +1,26 @@
 {
   "addQuestion": {
-    "askAQuestion": "[DE] Ask a question",
-    "description": "[DE] Description"
+    "askAQuestion": "[DE] Ask a Medical Professional",
+    "askADoctor": "[DE] Ask A Doctor"
   },
   "stickyHeader": {
     "questionSubmitted": "[DE] We've submitted your question",
     "checkBackLater": "[DE] Please check back later.",
     "triedToSubmit": "[DE] We've tried to submit your question",
     "somethingWentWrong": "[DE] Sorry Something went wrong. Please try again later"
+  },
+  "questionBoard": {
+    "answersFromFrontline": "[DE] Answers from the frontlines:"
+  },
+  "answers": {
+    "seeNew": "[DE] See new answers"
+  },
+  "banner": {
+    "text": "[DE] Real-time information on COVID-19 from verified frontline doctors",
+    "subText": "[DE] We are a free, non-profit open source project originally founded by Nth Opinion",
+    "cannotAnswer": "[DE] Can't find an answer?",
+    "aboutUs": "[DE] About Us",
+    "faq": "[DE] FAQs"
   },
   "searchBar": {
     "haveAQuestion": "[DE] Have a question? Type here to search",
