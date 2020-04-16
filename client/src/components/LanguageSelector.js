@@ -17,7 +17,7 @@ class LanguageSelector extends Component {
     return language ? (
       <div className="language-selector">
         <Dropdown text={language}>
-          <Dropdown.Menu>
+          <Dropdown.Menu style={this.props.Dropdownbox}>
             {whitelist.map((key) => (
               <Dropdown.Item
                 selected={key === i18n.language}

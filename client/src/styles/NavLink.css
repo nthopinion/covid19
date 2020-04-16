@@ -29,13 +29,18 @@ nav ul li {
   border-bottom: 1px solid white;
 }
 
-nav ul li a {
+nav ul li a,
+nav ul li span {
   color: white;
   padding: 20px 0px;
   font-size: 24px;
   font-weight: 400;
   white-space: nowrap;
   letter-spacing: 0.3px;
+}
+
+#LanguageSelector {
+  background-color: #1678c2;
 }
 
 nav .ui.button {
