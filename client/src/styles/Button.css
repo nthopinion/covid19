@@ -4,6 +4,12 @@
   cursor: pointer;
 }
 
+.flag-button-group {
+  position: relative;
+  cursor: pointer;
+  padding-right: 1.3em;
+}
+
 .animate-like-color {
   display: inline-block;
   animation: 300ms;

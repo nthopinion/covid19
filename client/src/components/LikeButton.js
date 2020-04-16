@@ -38,7 +38,6 @@ class LikeButton extends React.Component {
           this.props.onClick();
           this.changeColor();
         }}
-        id={this.props.itemId}
       >
         <svg
           ref={(e) => {

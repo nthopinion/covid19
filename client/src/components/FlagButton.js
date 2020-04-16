@@ -11,15 +11,12 @@ class FlagButton extends React.Component {
 
   componentDidMount() {
     const svgToChangeColor = this.itemToChangeColor;
-    svgToChangeColor.addEventListener('colorchangeend', this.colorChangeDone);
+    svgToChangeColor.addEventListener('colorChanged', this.colorChangeDone);
   }
 
   componentWillUnmount() {
     const svgToChangeColor = this.itemToChangeColor;
-    svgToChangeColor.removeEventListener(
-      'colorchangeend',
-      this.colorChangeDone
-    );
+    svgToChangeColor.removeEventListener('colorChanged', this.colorChangeDone);
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -33,11 +30,7 @@ class FlagButton extends React.Component {
   render() {
     return (
       <div
-        style={{
-          position: 'relative',
-          cursor: 'pointer',
-          paddingRight: '1.3em',
-        }}
+        className="flag-button-group"
         onClick={() => {
           this.props.onClick();
         }}
