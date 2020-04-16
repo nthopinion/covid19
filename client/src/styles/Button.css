@@ -1,0 +1,44 @@
+.like-button-group {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.animate-like-color {
+  display: inline-block;
+  animation: 300ms;
+  fill: #006eaa;
+  color: #006eaa;
+  left: 60.83%;
+  right: 36.64%;
+  top: 92.64%;
+  bottom: 6.55%;
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.num-likes {
+  display: inline-block;
+  left: 60.83%;
+  right: 36.64%;
+  top: 92.64%;
+  bottom: 6.55%;
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.animate-flag-color {
+  animation: 300ms;
+  fill: #e44141;
+  color: #e44141;
+}
+
+/*.animate-share-color {*/
+
+/*}*/

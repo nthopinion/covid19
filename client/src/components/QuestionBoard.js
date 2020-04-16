@@ -1,24 +1,19 @@
 import React, { Component } from 'react';
 import { ReactTinyLink } from 'react-tiny-link';
-import {
-  Modal,
-  Card,
-  List,
-  Image,
-  Label,
-  Button,
-  Icon,
-} from 'semantic-ui-react';
+import { Modal, Card, List, Image, Label, Button } from 'semantic-ui-react';
 import AnswerItem from './AnswerItem';
 import CardLeftPanel from './CardLeftPanel';
 
 import '../styles/QuestionBoard.css';
 import config from '../config';
+import LikeButton from './LikeButton';
+import FlagButton from './FlagButton';
+import ShareButton from './ShareButton';
 
 export default class QuestionBoard extends Component {
   constructor(props) {
     super(props);
-    this.state = { open: false, reportQuestion: null };
+    this.state = { open: false, reportQuestion: null, selected: null };
     this.handleSubmitReportIssue = this.handleSubmitReportIssue.bind(this);
   }
 
@@ -28,6 +23,7 @@ export default class QuestionBoard extends Component {
 
   async handleSubmitReportIssue() {
     await this.reportQuestionFlag(this.state.reportQuestion);
+    this.setState({ selected: this.state.reportQuestion.id });
     this.setState({ open: false, reportQuestion: null });
   }
 
@@ -153,47 +149,41 @@ export default class QuestionBoard extends Component {
                 <Icon name='facebook'></Icon>
 
                 </a> */}
-                    <div className="qPanelBottom-buttons-wrapper">
-                      <Button as="div" labelPosition="right">
-                        <Button
-                          color="red"
-                          onClick={this.props.handleClickLike(question.id, i)}
-                        >
-                          <Icon name="heart" />
-                          Like
-                        </Button>
-                        <Label as="a" basic color="red" pointing="left">
-                          {question.like || 0}
-                        </Label>
-                      </Button>
-                      <Button animated="vertical" color="twitter">
-                        <a
-                          style={{ color: 'white' }}
-                          href={`https://twitter.com/intent/tweet?text=${
-                            question.title
-                          }%20Answer:%20${
-                            question.answers &&
-                            question.answers.length > 0 &&
-                            question.answers[0]
-                              .split(' ')
-                              .slice(0, 10)
-                              .join(' ')
-                          }...%20at%20${`${config.domainURL}?qid=${question.id}`}%20@thenthopinion`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Button.Content visible>
-                            <Icon name="twitter" /> Tweet
-                          </Button.Content>
-                        </a>
-                      </Button>
-                      <Button
-                        icon="flag"
+                    <div className="buttonGroupCustom">
+                      <FlagButton
+                        selected={question.id === this.state.selected ? 1 : 0}
                         color="red"
                         basic
                         title="report an issue"
                         onClick={this.handleReportIssue(question)}
                       />
+                      <LikeButton
+                        onClick={this.props.handleClickLike(question.id, i)}
+                        likes={question.like || 0}
+                      />
+                      <ShareButton />
+                      {/* <ShareButton /> */}
+                      {/* <Button animated="vertical" color="twitter"> */}
+                      {/*  <a */}
+                      {/*    style={{ color: 'white' }} */}
+                      {/*    href={`https://twitter.com/intent/tweet?text=${ */}
+                      {/*      question.title */}
+                      {/*    }%20Answer:%20${ */}
+                      {/*      question.answers && */}
+                      {/*      question.answers.length > 0 && */}
+                      {/*      question.answers[0] */}
+                      {/*        .split(' ') */}
+                      {/*        .slice(0, 10) */}
+                      {/*        .join(' ') */}
+                      {/*    }...%20at%20${`${config.domainURL}?qid=${question.id}`}%20@thenthopinion`} */}
+                      {/*    target="_blank" */}
+                      {/*    rel="noopener noreferrer" */}
+                      {/*  > */}
+                      {/*    <Button.Content visible> */}
+                      {/*      <Icon name="twitter" /> Tweet */}
+                      {/*    </Button.Content> */}
+                      {/*  </a> */}
+                      {/* </Button> */}
                     </div>
                   </div>
                 </div>
