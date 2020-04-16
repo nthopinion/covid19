@@ -2,6 +2,8 @@ import _ from 'lodash';
 import React from 'react';
 import { Search } from 'semantic-ui-react';
 import { withTranslation } from 'react-i18next';
+// eslint-disable-next-line no-unused-vars
+import styles from '../styles/SearchBar.css';
 
 const SearchBar = (props) => {
   const { t } = props;
