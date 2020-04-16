@@ -36,7 +36,7 @@ class FlagButton extends React.Component {
         style={{
           position: 'relative',
           cursor: 'pointer',
-          paddingRight: '1em',
+          paddingRight: '1.3em',
         }}
         onClick={() => {
           this.props.onClick();

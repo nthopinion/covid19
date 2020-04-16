@@ -8,7 +8,7 @@ import '../styles/QuestionBoard.css';
 import config from '../config';
 import LikeButton from './LikeButton';
 import FlagButton from './FlagButton';
-// import ShareButton from './ShareButton';
+import ShareButton from './ShareButton';
 
 export default class QuestionBoard extends Component {
   constructor(props) {
@@ -161,6 +161,7 @@ export default class QuestionBoard extends Component {
                         onClick={this.props.handleClickLike(question.id, i)}
                         likes={question.like || 0}
                       />
+                      <ShareButton />
                       {/* <ShareButton /> */}
                       {/* <Button animated="vertical" color="twitter"> */}
                       {/*  <a */}
