@@ -63,7 +63,7 @@ class NavMenu extends Component {
                       rel="noopener noreferrer"
                       href="https://about.askco19.com/#lp-pom-block-118"
                     >
-                      {t('navLink:ABOUT')}
+                      {t('navLink:about')}
                     </a>
                   </li>
                   <li>
@@ -72,7 +72,7 @@ class NavMenu extends Component {
                       rel="noopener noreferrer"
                       href="https://about.askco19.com/contributors"
                     >
-                      {t('navLink:GET INVOLVED')}
+                      {t('navLink:getInvolved')}
                     </a>
                   </li>
                   <li>
@@ -81,7 +81,7 @@ class NavMenu extends Component {
                       rel="noopener noreferrer"
                       href="https://about.askco19.com/sponsors"
                     >
-                      {t('navLink:SPONSORS')}
+                      {t('navLink:ourSponsors')}
                     </a>
                   </li>
                   <li>
@@ -90,7 +90,7 @@ class NavMenu extends Component {
                       rel="noopener noreferrer"
                       href="https://video.askco19.com/dxyopencourse/"
                     >
-                      {t('navLink:PARTNERS')}
+                      {t('navLink:partners')}
                     </a>
                   </li>
                   <li>
@@ -99,17 +99,15 @@ class NavMenu extends Component {
                       rel="noopener noreferrer"
                       href="https://nquestionblob.blob.core.windows.net/images/Full%20Disclaimer%20_%20Legal%20Information%20and%20Disclosures_%20Nth%20Opinion.pdf"
                     >
-                      {t('navLink:CONTACT US')}
+                      {t('navLink:contactUs')}
                     </a>
                   </li>
                   <li>
                     <span rel="noopener noreferrer">
-                      {t('navLink:LANGUAGE')}
+                      {t('navLink:language')}
                     </span>
                     <div>
-                      <LanguageSelector
-                        Dropdownbox={{ backgroundColor: '#1678c2' }}
-                      />
+                      <LanguageSelector className="sidebar-language-dropdown" />
                     </div>
                   </li>
 

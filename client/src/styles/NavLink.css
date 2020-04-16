@@ -39,10 +39,6 @@ nav ul li span {
   letter-spacing: 0.3px;
 }
 
-#LanguageSelector {
-  background-color: #1678c2;
-}
-
 nav .ui.button {
   height: 50px;
   width: 90%;
@@ -97,4 +93,8 @@ button.ui.button.logInlogOut {
   letter-spacing: 0.3px;
   background: transparent;
   height: 50px;
+}
+
+.sidebar_language_dropdown {
+  background-color: #1678c2;
 }
