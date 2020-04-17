@@ -1,0 +1,62 @@
+.like-button-group {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.flag-button-group {
+  position: relative;
+  cursor: pointer;
+  padding-right: 1.3em;
+}
+
+@keyframes click-flag {
+  from {
+    fill: #333333;
+  }
+  to {
+    fill: #e44141;
+  }
+}
+
+@keyframes click-like {
+  from {
+    fill: #333333;
+    color: #333333;
+  }
+  to {
+    fill: #006eaa;
+    color: #006eaa;
+  }
+}
+
+.like-button {
+  display: inline-block;
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.like-button-clicked {
+  display: inline-block;
+  animation-name: click-like;
+  animation-duration: 300ms;
+  animation-fill-mode: forwards;
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.flag-button-clicked {
+  animation-name: click-flag;
+  animation-duration: 300ms;
+  animation-fill-mode: forwards;
+}
+
+/*.animate-share-color {*/
+
+/*}*/
