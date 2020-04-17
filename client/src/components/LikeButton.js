@@ -11,15 +11,12 @@ class LikeButton extends React.Component {
 
   componentDidMount() {
     const svgToChangeColor = this.itemToChangeColor;
-    svgToChangeColor.addEventListener('colorchangeend', this.colorChangeDone);
+    svgToChangeColor.addEventListener('colorChanged', this.colorChangeDone);
   }
 
   componentWillUnmount() {
     const svgToChangeColor = this.itemToChangeColor;
-    svgToChangeColor.removeEventListener(
-      'colorchangeend',
-      this.colorChangeDone
-    );
+    svgToChangeColor.removeEventListener('colorChanged', this.colorChangeDone);
   }
 
   colorChangeDone() {
@@ -38,13 +35,14 @@ class LikeButton extends React.Component {
           this.props.onClick();
           this.changeColor();
         }}
-        id={this.props.itemId}
       >
         <svg
           ref={(e) => {
             this.itemToChangeColor = e;
           }}
-          className={this.state.changeColor ? 'animate-like-color' : ''}
+          className={
+            this.state.changeColor ? 'like-button-clicked' : 'like-button'
+          }
           viewBox="0 0 15 13"
           width="15"
           xmlns="http://www.w3.org/2000/svg"
@@ -56,13 +54,13 @@ class LikeButton extends React.Component {
           </g>
         </svg>
         <div
+          className={
+            this.state.changeColor ? 'like-button-clicked' : 'like-button'
+          }
           style={{ marginLeft: '0.5em' }}
           ref={(e) => {
             this.itemToChangeColor = e;
           }}
-          className={
-            this.state.changeColor ? 'animate-like-color' : 'num-likes'
-          }
         >
           {this.props.likes}
         </div>
