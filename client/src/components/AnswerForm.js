@@ -26,11 +26,11 @@ class AnswerForm extends Component {
   constructor(props) {
     super(props);
     const newQ = { ...props.q };
-    this.state = { q: newQ, idx: props.idx };
+    this.state = { q: newQ, idx: props.idx, newAnswer: '' };
   }
 
   postQuestionAnswer = (question) => {
-    const endpoint = this.props.showUnaswered
+    const endpoint = this.props.showUnanswered
       ? 'updateQuestion'
       : 'editAnswers';
     return fetch(`${config.domainURL}/api/${endpoint}`, {
@@ -40,6 +40,21 @@ class AnswerForm extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ ...question }),
+    })
+      .then((response) => response)
+      .catch((error) => console.log(error));
+  };
+
+  addNewAnswer = (payload) => {
+    const endpoint = 'addanswer';
+
+    return fetch(`${config.domainURL}/api/${endpoint}`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ ...payload }),
     })
       .then((response) => response)
       .catch((error) => console.log(error));
@@ -60,7 +75,7 @@ class AnswerForm extends Component {
   }
 
   handleDeleteQuestion = (qId, idx) => {
-    const isUnanswered = this.props.showUnaswered;
+    const isUnanswered = this.props.showUnanswered;
 
     this.props.deleteQuestion(qId, idx, isUnanswered);
   };
@@ -74,7 +89,28 @@ class AnswerForm extends Component {
     // console.log(this.props)
   };
 
+  handleAddNewAnswer = async (q) => {
+    console.log(this.state.newAnswer);
+
+    const payload = {
+      questionId: q.id,
+      text: this.state.newAnswer,
+    };
+
+    await this.addNewAnswer(payload);
+
+    this.setState({
+      submitted: true,
+      // [`newAnswers${q.id}`]: updatedQuestion.answers,
+    });
+  };
+
   handleSubmit = async (e, value, q) => {
+    if (!this.props.isUnanswered) {
+      this.handleAddNewAnswer(q);
+
+      return;
+    }
     const updatedQuestion = { ...q };
     updatedQuestion.answers = updatedQuestion.answers.filter(
       (a) => a && a.length > 0
@@ -102,8 +138,14 @@ class AnswerForm extends Component {
     // this.setState({ submitted: true, newAnswer: q})
   };
 
+  handleNewAnswerChange = (e) => {
+    this.setState({
+      newAnswer: e.target.value,
+    });
+  };
+
   render() {
-    const { q, idx } = this.state;
+    const { q, idx, newAnswer } = this.state;
     const metaData = q.flagIssue && (
       <Label as="a" color="red" tag>
         Report Issues: <span> {q.flagIssue}</span>
@@ -125,7 +167,7 @@ class AnswerForm extends Component {
                 q.answers.map((answer, index) => {
                   return (
                     <>
-                      {this.props.showUnaswered ? (
+                      {this.props.showUnanswered ? (
                         <Form.TextArea
                           value={q.answers[index].text}
                           placeholder="Tell us more about it..."
@@ -139,18 +181,28 @@ class AnswerForm extends Component {
                           }
                         />
                       ) : (
-                        <AnswerItem
-                          answer={answer}
-                          key={index}
-                          question={q}
-                          handleReportIssue={this.handleReportIssue}
-                          handleClickLike={this.props.handleClickLike}
-                          handleAnswerLike={this.props.handleAnswerLike}
-                        />
+                        <>
+                          <AnswerItem
+                            answer={answer}
+                            key={index}
+                            question={q}
+                            handleReportIssue={this.handleReportIssue}
+                            handleClickLike={this.props.handleClickLike}
+                            handleAnswerLike={this.props.handleAnswerLike}
+                          />
+                        </>
                       )}
                     </>
                   );
                 })}
+              {!this.props.showUnanswered && (
+                <Form.TextArea
+                  value={newAnswer}
+                  className="multiple-answers"
+                  placeholder="Tell us more about it..."
+                  onChange={this.handleNewAnswerChange}
+                />
+              )}
               <div>
                 {false && <Icon name="attach" />}
                 {false && <FileUpload />}
