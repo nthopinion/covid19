@@ -15,7 +15,7 @@
 }
 
 .ui.right.sidebar {
-  position: relative;
+  position: absolute;
   background: #006eaa;
 }
 
