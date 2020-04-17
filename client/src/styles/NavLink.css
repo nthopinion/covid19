@@ -37,7 +37,8 @@ nav ul li {
   border-bottom: 1px solid white;
 }
 
-nav ul li a {
+nav ul li a,
+nav ul li span {
   color: white;
   padding: 20px 0px;
   font-size: 24px;
@@ -100,4 +101,8 @@ button.ui.button.logInlogOut {
   letter-spacing: 0.3px;
   background: transparent;
   height: 50px;
+}
+
+.sidebar_language_dropdown {
+  background-color: #1678c2;
 }
