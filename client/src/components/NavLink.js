@@ -78,7 +78,7 @@ class NavMenu extends Component {
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
-                      href="https://video.askco19.com/dxyopencourse/"
+                      href="https://askco19.com/dxyopencourse/"
                     >
                       VIDEO COURSE
                     </a>
