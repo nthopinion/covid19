@@ -4,15 +4,34 @@
   cursor: pointer;
 }
 
-.animate-like-color {
+.flag-button-group {
+  position: relative;
+  cursor: pointer;
+  padding-right: 1.3em;
+}
+
+@keyframes click-flag {
+  from {
+    fill: #333333;
+  }
+  to {
+    fill: #e44141;
+  }
+}
+
+@keyframes click-like {
+  from {
+    fill: #333333;
+    color: #333333;
+  }
+  to {
+    fill: #006eaa;
+    color: #006eaa;
+  }
+}
+
+.like-button {
   display: inline-block;
-  animation: 300ms;
-  fill: #006eaa;
-  color: #006eaa;
-  left: 60.83%;
-  right: 36.64%;
-  top: 92.64%;
-  bottom: 6.55%;
   font-family: Roboto, sans-serif;
   font-style: normal;
   font-weight: normal;
@@ -20,12 +39,11 @@
   line-height: 14px;
 }
 
-.num-likes {
+.like-button-clicked {
   display: inline-block;
-  left: 60.83%;
-  right: 36.64%;
-  top: 92.64%;
-  bottom: 6.55%;
+  animation-name: click-like;
+  animation-duration: 300ms;
+  animation-fill-mode: forwards;
   font-family: Roboto, sans-serif;
   font-style: normal;
   font-weight: normal;
@@ -33,10 +51,10 @@
   line-height: 14px;
 }
 
-.animate-flag-color {
-  animation: 300ms;
-  fill: #e44141;
-  color: #e44141;
+.flag-button-clicked {
+  animation-name: click-flag;
+  animation-duration: 300ms;
+  animation-fill-mode: forwards;
 }
 
 /*.animate-share-color {*/
