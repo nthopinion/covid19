@@ -130,12 +130,13 @@ class AnswerForm extends Component {
 
   handleUpdatedAnswerChange = (e, { value }, q, ansIdx) => {
     const qu = { ...q };
-    qu.answers[ansIdx] = value;
-    // const key = 'q_'+q.id;
+
+    qu.answers[ansIdx] = {
+      ...qu.answers[ansIdx],
+      text: value,
+    };
+
     this.setState({ q: qu });
-    // this.props.setAnswerForQuestion()
-    // await this.postQuestionAnswer(updatedQuestion)
-    // this.setState({ submitted: true, newAnswer: q})
   };
 
   handleNewAnswerChange = (e) => {
@@ -166,33 +167,13 @@ class AnswerForm extends Component {
               {q.answers &&
                 q.answers.map((answer, index) => {
                   return (
-                    <>
-                      {this.props.showUnanswered ? (
-                        <Form.TextArea
-                          value={q.answers[index].text}
-                          placeholder="Tell us more about it..."
-                          onChange={(e, { value }) =>
-                            this.handleUpdatedAnswerChange(
-                              e,
-                              { value },
-                              q,
-                              index
-                            )
-                          }
-                        />
-                      ) : (
-                        <>
-                          <AnswerItem
-                            answer={answer}
-                            key={index}
-                            question={q}
-                            handleReportIssue={this.handleReportIssue}
-                            handleClickLike={this.props.handleClickLike}
-                            handleAnswerLike={this.props.handleAnswerLike}
-                          />
-                        </>
-                      )}
-                    </>
+                    <Form.TextArea
+                      value={answer.text}
+                      placeholder="Tell us more about it..."
+                      onChange={(e, { value }) =>
+                        this.handleUpdatedAnswerChange(e, { value }, q, index)
+                      }
+                    />
                   );
                 })}
               {!this.props.showUnanswered && (
