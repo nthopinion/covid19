@@ -16,12 +16,6 @@ Install dependencies
 $ npm install
 ```
 
-Create a config file
-
-```shell
-$ cp config.example.js config.js
-```
-
 Create an env file
 
 ```shell
