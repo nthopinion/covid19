@@ -1,0 +1,10 @@
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 480px) {
+  .header-wrapper {
+    flex-direction: column;
+  }
+}

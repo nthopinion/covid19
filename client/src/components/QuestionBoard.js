@@ -9,7 +9,12 @@ import config from '../config';
 export default class QuestionBoard extends Component {
   constructor(props) {
     super(props);
-    this.state = { open: false, reportAnswer: null };
+
+    this.state = {
+      open: false,
+      reportAnswer: null,
+    };
+    this.handleSubmitReportIssue = this.handleSubmitReportIssue.bind(this);
   }
 
   handleReportIssue = (answer) => {
