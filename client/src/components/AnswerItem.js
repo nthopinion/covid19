@@ -67,6 +67,7 @@ const AnswerItem = (props) => {
                     minLine={1}
                     url={link}
                     proxyUrl={config.corsProxyUrl}
+                    loadSecureUrl
                   />
                 )}
               </List.Content>
@@ -86,6 +87,7 @@ const AnswerItem = (props) => {
                     minLine={1}
                     url={source}
                     proxyUrl={config.corsProxyUrl}
+                    loadSecureUrl
                   />
                 )}
               </List.Content>
