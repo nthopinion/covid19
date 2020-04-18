@@ -1,6 +1,7 @@
 {
   "addQuestion": {
-    "askAQuestion": "[DE] Ask a Medical Professional"
+    "askAQuestion": "[DE] Ask a Medical Professional",
+    "askADoctor": "[DE] Ask A Doctor"
   },
   "stickyHeader": {
     "questionSubmitted": "[DE] We've submitted your question",
@@ -16,7 +17,10 @@
   },
   "banner": {
     "text": "[DE] Real-time information on COVID-19 from verified frontline doctors",
-    "subText": "[DE] We are a free, non-profit open source project originally founded by Nth Opinion"
+    "subText": "[DE] We are a free, non-profit open source project originally founded by Nth Opinion",
+    "cannotAnswer": "[DE] Can't find an answer?",
+    "aboutUs": "[DE] About Us",
+    "faq": "[DE] FAQs"
   },
   "searchBar": {
     "haveAQuestion": "[DE] Have a question? Type here to search",

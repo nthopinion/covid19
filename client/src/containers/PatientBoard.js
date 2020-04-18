@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Grid, Ref } from 'semantic-ui-react';
 import { withTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 import {
   fetchQuestions,
@@ -17,16 +18,16 @@ import {
   handleNewQuestionAnswered,
 } from '../actions';
 
+import config from '../config';
 import '../styles/PatientBoard.css';
 
-import Options from '../components/Options';
-import QuestionBoard from '../components/QuestionBoard';
+import Footer from '../components/Footer';
 import StickyHeader from '../components/StickyHeader';
+import QuestionBoard from '../components/QuestionBoard';
+import HeaderWithLink from '../components/HeaderWithLink';
 import TranslationsSuspense from '../components/TranslationsSuspense';
 
-import config from '../config';
 import { normalizeResults } from '../helpers/normalizeResults';
-import Footer from '../components/Footer';
 
 class PatientBoard extends Component {
   constructor(props) {
@@ -133,6 +134,11 @@ class PatientBoard extends Component {
         />
         <div className="containerDiv">
           <div className="banner clearfix">
+            <img
+              src="health-care.svg"
+              className="health-care"
+              alt="health-care"
+            />
             <div className="banner-text">
               {this.props.t('patientBoard:banner.text')}
             </div>
@@ -140,6 +146,12 @@ class PatientBoard extends Component {
               {this.props.t('patientBoard:banner.subText')}
             </div>
           </div>
+          <div className="header-with-link-wrapper">
+            <HeaderWithLink
+              buttonLabel={this.props.t('patientBoard:addQuestion.askADoctor')}
+            />
+          </div>
+
           {this.state.displayNewQuestion && (
             <div
               className="new-answers"
@@ -150,12 +162,31 @@ class PatientBoard extends Component {
           )}
           <Grid centered columns={2} stackable>
             <Grid.Column>
-              <Options />
-              <div className="board-title">
-                {this.props.t(
-                  'patientBoard:questionBoard.answersFromFrontline'
-                )}
+              <div className="patient-header-wrapper">
+                {
+                  // Visibility is set to hidden for this component.
+                  // Please remove visibility:hidden from css while implementing filtering
+                  //  <div className="filter-wrapper">
+                  //   <div className="button-wrapper">
+                  //     <button>filer all</button>
+                  //     <button>popular</button>
+                  //   </div>
+                  // </div>
+                }
+                <div className="header-container">
+                  <div className="board-title">
+                    {this.props.t(
+                      'patientBoard:questionBoard.answersFromFrontline'
+                    )}
+                  </div>
+                  <div className="board-link">
+                    <Link to="/bIiOOIIqgwEXwUU3SaD0F9">
+                      Are you a physician?
+                    </Link>
+                  </div>
+                </div>
               </div>
+
               <Ref innerRef={this.contextRef}>
                 <div>
                   <QuestionBoard

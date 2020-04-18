@@ -7,6 +7,7 @@ using Covid19DbMigration.OldDataModel;
 using Covid19DbMigration.Utility;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Configuration;
+using Xunit;
 
 namespace Covid19DbMigration
 {
@@ -33,12 +34,17 @@ namespace Covid19DbMigration
             {
                 var newQuestionDataAfterUpdate = await MigrateData<Question>(newDataModel.Questions, _databaseSettings.TargetQuestionContainer, "/id");
                 var newAnswerDataAfterUpdate = await MigrateData<Answer>(newDataModel.Answers, _databaseSettings.TargetAnswerContainer, "/questionId");
+
+                Assert.True(newQuestionDataAfterUpdate.Count > 0);
+                Assert.True(newAnswerDataAfterUpdate.Count > 0);
+
+                //verify the contents of the containers.
+                var newQuestionData = await GetNewData<Question>(_databaseSettings.TargetQuestionContainer);
+                var newAnswerData = await GetNewData<Answer>(_databaseSettings.TargetAnswerContainer);
+
+                Assert.True(newQuestionData.Count > 0);
+                Assert.True(newAnswerData.Count > 0);
             }
-
-            //verify the contents of the containers.
-            var newQuestionData = await GetNewData<Question>(_databaseSettings.TargetQuestionContainer);
-            var newAnswerData = await GetNewData<Answer>(_databaseSettings.TargetAnswerContainer);
-
         }
 
         public static async Task<List<QuestionAnswer_V1>> GetLegacyData()
@@ -108,9 +114,17 @@ namespace Covid19DbMigration
 
             Container container = database.GetContainer(containerName);
 
-            if (container != null)
+            try
             {
                 var response = await container.DeleteContainerAsync();
+            }
+            catch (CosmosException ex)
+            {
+                if (ex.StatusCode != System.Net.HttpStatusCode.NotFound)
+                {
+                    //404 is acceptable as it just means the container did not already exist.
+                    throw ex;
+                }
             }
 
         }
@@ -188,6 +202,7 @@ namespace Covid19DbMigration
             };
 
             ItemResponse<Question> responseFromQuestionInsert = await containerQuestion.CreateItemAsync(testQuestion);
+            Assert.NotNull(responseFromQuestionInsert.Resource);
         }
 
         private static async Task PostTestAnswer(string text, string questionId)
@@ -214,6 +229,7 @@ namespace Covid19DbMigration
             };
 
             ItemResponse<Answer> responseFromAnswerInsert = await containerAnswer.CreateItemAsync(testAnswer);
+            Assert.NotNull(responseFromAnswerInsert.Resource);
 
             //Get question
             Question question = null;
@@ -233,6 +249,7 @@ namespace Covid19DbMigration
             //Add answer id to question.Answers
             question.Answers.Add(testAnswer.Id);
             ItemResponse<Question> responseFromQuestionUpdate = await containerQuestion.UpsertItemAsync(question);
+            Assert.NotNull(responseFromQuestionUpdate.Resource);
         }
 
         public static IConfiguration GetIConfigurationRoot()

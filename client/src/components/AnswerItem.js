@@ -1,7 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react';
 import { ReactTinyLink } from 'react-tiny-link';
-import { List, Image, Label, Button, Icon } from 'semantic-ui-react';
+import { List, Image, Label } from 'semantic-ui-react';
+
+import LikeButton from './LikeButton';
+import FlagButton from './FlagButton';
+import ShareButton from './ShareButton';
 
 import avatar from '../assets/images/askco-avatar.svg';
 
@@ -63,6 +67,7 @@ const AnswerItem = (props) => {
                     minLine={1}
                     url={link}
                     proxyUrl={config.corsProxyUrl}
+                    loadSecureUrl
                   />
                 )}
               </List.Content>
@@ -82,6 +87,7 @@ const AnswerItem = (props) => {
                     minLine={1}
                     url={source}
                     proxyUrl={config.corsProxyUrl}
+                    loadSecureUrl
                   />
                 )}
               </List.Content>
@@ -110,16 +116,30 @@ const AnswerItem = (props) => {
 
         <div className="answer-metadata">
           <div>
-            Answered By:{' '}
-            {props.answer.firstAnsweredBy && props.answer.firstAnsweredBy.name}
+            Answered By{' '}
+            <span className="bold">
+              {props.answer.firstAnsweredBy &&
+                props.answer.firstAnsweredBy.name}{' '}
+            </span>
+            on{' '}
+            <span className="bold">
+              {new Date(props.answer.firstAnsweredOn)
+                .toDateString()
+                .substring(4)}
+            </span>
           </div>
-          <div>
-            Posted:{' '}
-            {new Date(props.answer.firstAnsweredOn).toLocaleDateString()}
-          </div>
-          <div>
-            Edited: {new Date(props.answer.lastAnsweredOn).toLocaleDateString()}
-          </div>
+          {props.answer.lastAnsweredOn !== props.answer.firstAnsweredOn && (
+            <div>
+              Last Edited by{' '}
+              <span className="bold">{props.answer.lastAnsweredBy.name}</span>{' '}
+              on{' '}
+              <span className="bold">
+                {new Date(props.answer.lastAnsweredOn)
+                  .toDateString()
+                  .substring(4)}
+              </span>
+            </div>
+          )}
         </div>
 
         <div className="qPanelBottom">
@@ -133,48 +153,22 @@ const AnswerItem = (props) => {
                 );
               })}
           </div>
-
           <div>
-            <div className="qPanelBottom-buttons-wrapper">
-              <Button as="div" labelPosition="right">
-                <Button
-                  color="red"
-                  onClick={() => {
-                    props.handleAnswerLike(props.question.id, props.answer.id);
-                  }}
-                >
-                  <Icon name="heart" />
-                  Like
-                </Button>
-                <Label as="a" basic color="red" pointing="left">
-                  {props.answer.like || 0}
-                </Label>
-              </Button>
-              <Button animated="vertical" color="twitter">
-                <a
-                  style={{ color: 'white' }}
-                  href={`https://twitter.com/intent/tweet?text=${
-                    props.question.title
-                  }%20Answer:%20${
-                    props.answer &&
-                    props.answer.text.length > 0 &&
-                    props.answer.text.slice(0, 50)
-                  }...%20at%20${`${config.domainURL}?qid=${props.answer.id}`}%20@thenthopinion`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button.Content visible>
-                    <Icon name="twitter" /> Tweet
-                  </Button.Content>
-                </a>
-              </Button>
-              <Button
-                icon="flag"
+            <div className="buttonGroupCustom">
+              <FlagButton
+                selected={props.answer.id === props.selected ? 1 : 0}
                 color="red"
                 basic
                 title="report an issue"
                 onClick={() => props.handleReportIssue(props.answer)}
               />
+              <LikeButton
+                onClick={() =>
+                  props.handleAnswerLike(props.question.id, props.answer.id)
+                }
+                likes={props.answer.like || 0}
+              />
+              <ShareButton question={props.question} answer={props.answer} />
             </div>
           </div>
         </div>

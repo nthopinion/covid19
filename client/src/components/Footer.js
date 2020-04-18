@@ -8,7 +8,7 @@ const Footer = () => {
     'Full%20Disclaimer%20_%20Legal%20Information%20and%20Disclosures_%20Nth%20Opinion.pdf';
 
   return (
-    <div className="footer">
+    <div className="footer-wrapper">
       <p>Powered by Nth Opinion. </p>
       <p>AskCo19.com does not provide medical advice,</p>
       <p>

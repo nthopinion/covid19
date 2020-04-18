@@ -162,5 +162,7 @@ body {
 
 .answer-metadata {
   margin: 10px 0px;
+}
+.answer-metadata .bold {
   font-weight: bold;
 }
