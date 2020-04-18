@@ -110,16 +110,30 @@ const AnswerItem = (props) => {
 
         <div className="answer-metadata">
           <div>
-            Answered By:{' '}
-            {props.answer.firstAnsweredBy && props.answer.firstAnsweredBy.name}
+            Answered By{' '}
+            <span className="bold">
+              {props.answer.firstAnsweredBy &&
+                props.answer.firstAnsweredBy.name}{' '}
+            </span>
+            on{' '}
+            <span className="bold">
+              {new Date(props.answer.firstAnsweredOn)
+                .toDateString()
+                .substring(4)}
+            </span>
           </div>
-          <div>
-            Posted:{' '}
-            {new Date(props.answer.firstAnsweredOn).toLocaleDateString()}
-          </div>
-          <div>
-            Edited: {new Date(props.answer.lastAnsweredOn).toLocaleDateString()}
-          </div>
+          {props.answer.lastAnsweredOn !== props.answer.firstAnsweredOn && (
+            <div>
+              Last Edited by{' '}
+              <span className="bold">{props.answer.lastAnsweredBy.name}</span>{' '}
+              on{' '}
+              <span className="bold">
+                {new Date(props.answer.lastAnsweredOn)
+                  .toDateString()
+                  .substring(4)}
+              </span>
+            </div>
+          )}
         </div>
 
         <div className="qPanelBottom">
