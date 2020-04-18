@@ -62,6 +62,7 @@ class LikeButton extends React.Component {
             this.itemToChangeColor = e;
           }}
         >
+          {/* TODO animate the text when it changes */}
           {this.props.likes}
         </div>
       </div>

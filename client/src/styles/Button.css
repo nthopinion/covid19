@@ -43,7 +43,7 @@
   display: inline-block;
   animation-name: click-like;
   animation-duration: 300ms;
-  animation-fill-mode: forwards;
+  animation-fill-mode: both;
   font-family: Roboto, sans-serif;
   font-style: normal;
   font-weight: normal;
@@ -57,10 +57,20 @@
   animation-fill-mode: forwards;
 }
 
-.ReactCollapse--collapse {
-  transition: height 500ms;
-}
-
-/*.animate-share-color {*/
-
+/*.social-container {*/
+/*  float: right;*/
+/*  transition: height 500ms;*/
 /*}*/
+
+.ReactCollapse--collapse {
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  transition: 500ms;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.13);
+  border-radius: 5px;
+  background-color: #ffffff;
+  right: -3em;
+
+  /*top: 25em*/
+}

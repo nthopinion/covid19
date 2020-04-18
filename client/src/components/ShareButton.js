@@ -6,28 +6,29 @@ class ShareButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      changeColor: false,
       isOpen: false,
-      // changeColor: false,
     };
   }
 
-  // componentDidMount() {
-  //   const svgToChangeColor = this.itemToChangeColor;
-  //   svgToChangeColor.addEventListener('colorchangeend', this.colorChangeDone);
-  // }
-  //
-  // componentWillUnmount() {
-  //   const svgToChangeColor = this.itemToChangeColor;
-  //   svgToChangeColor.removeEventListener(
-  //     'colorchangeend',
-  //     this.colorChangeDone
-  //   );
-  // }
-  //
-  // colorChangeDone() {
-  //   this.setState({ changeColor: false });
-  // }
-  //
+  componentDidMount() {
+    const svgToChangeColor = this.itemToChangeColor;
+    svgToChangeColor.addEventListener('colorChanged', this.colorChangeDone);
+  }
+
+  componentWillUnmount() {
+    const svgToChangeColor = this.itemToChangeColor;
+    svgToChangeColor.removeEventListener('colorChanged', this.colorChangeDone);
+  }
+
+  colorChangeDone() {
+    this.setState({ changeColor: !this.state.changeColor });
+  }
+
+  changeColor() {
+    this.setState({ changeColor: !this.state.changeColor });
+  }
+
   handleIsOpen = () => {
     return this.setState({ isOpen: !this.state.isOpen });
   };
@@ -43,6 +44,7 @@ class ShareButton extends React.Component {
             paddingTop: '0.1em',
           }}
           onClick={() => {
+            this.changeColor();
             this.handleIsOpen();
           }}
           // id={this.props.itemId}
@@ -51,7 +53,9 @@ class ShareButton extends React.Component {
             ref={(e) => {
               this.itemToChangeColor = e;
             }}
-            className={this.state.changeColor ? ' animate-color' : ''}
+            className={
+              this.state.changeColor ? 'like-button-clicked' : 'like-button'
+            }
             viewBox="0 0 16 17"
             width="17"
             height="16"
@@ -65,18 +69,20 @@ class ShareButton extends React.Component {
           </svg>
         </div>
         <Collapse isOpened={this.state.isOpen}>
-          <svg
-            overflow="auto"
-            width="32"
-            height="102"
-            viewBox="0 0 32 102"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <rect width="32" height="102" rx="5" fill="black">
-              <div>hello</div>
-            </rect>
-          </svg>
+          <div className="social-container">
+            <svg
+              overflow="auto"
+              width="32"
+              height="102"
+              viewBox="0 0 32 102"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect width="32" height="102" rx="5" fill="white">
+                <h1>hello</h1>
+              </rect>
+            </svg>
+          </div>
         </Collapse>
       </div>
     );
