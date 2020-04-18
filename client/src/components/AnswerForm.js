@@ -11,7 +11,7 @@ import {
 } from 'semantic-ui-react';
 
 import { bindActionCreators } from 'redux';
-import { deleteQuestion, setQuestion } from '../actions';
+import { deleteQuestion, setQuestion, fetchQuestions } from '../actions';
 
 import AuthProvider from '../AuthProvider';
 import AnswerItem from './AnswerItem';
@@ -45,19 +45,48 @@ class AnswerForm extends Component {
       .catch((error) => console.log(error));
   };
 
-  addNewAnswer = (payload) => {
-    const endpoint = 'addanswer';
+  updateAnswers = async (payload) => {
+    const { q, newAnswer } = this.state;
+    const addAnswerEndpoint = 'addanswer';
+    const editAnswerEndpoint = 'editanswer';
+    let addAnswerPromise = [];
+    let editAnswerPromise = [];
+    let editedAnswers = [];
 
-    return fetch(`${config.domainURL}/api/${endpoint}`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ ...payload }),
-    })
-      .then((response) => response)
-      .catch((error) => console.log(error));
+    q.answers.forEach((answer) => {
+      if (answer.isEdited) {
+        const { isEdited, ...rest } = answer;
+        editedAnswers = [...editedAnswers, rest];
+      }
+    });
+
+    if (newAnswer) {
+      addAnswerPromise = [
+        fetch(`${config.domainURL}/api/${addAnswerEndpoint}`, {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ ...payload }),
+        }),
+      ];
+    }
+
+    editedAnswers.forEach((answer) => {
+      const promise = fetch(`${config.domainURL}/api/${editAnswerEndpoint}`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ...answer }),
+      });
+
+      editAnswerPromise = [...editAnswerPromise, promise];
+    });
+
+    return Promise.all([...addAnswerPromise, ...editAnswerPromise]);
   };
 
   // eslint-disable-next-line react/no-deprecated
@@ -86,28 +115,42 @@ class AnswerForm extends Component {
     setThisQuestion(question);
 
     history.push('/questionView');
-    // console.log(this.props)
   };
 
-  handleAddNewAnswer = async (q) => {
-    console.log(this.state.newAnswer);
+  handleUpdateAnswers = async (q) => {
+    try {
+      const payload = {
+        questionId: q.id,
+        text: this.state.newAnswer,
+      };
 
-    const payload = {
-      questionId: q.id,
-      text: this.state.newAnswer,
-    };
+      await this.updateAnswers(payload);
 
-    await this.addNewAnswer(payload);
+      this.setState(
+        {
+          submitted: true,
+          // [`newAnswers${q.id}`]: updatedQuestion.answers,
+        },
+        async () => {
+          await this.props.fetchQuestions();
 
-    this.setState({
-      submitted: true,
-      // [`newAnswers${q.id}`]: updatedQuestion.answers,
-    });
+          const newQ = { ...this.props.q };
+          this.setState({
+            submitted: false,
+            q: newQ,
+            idx: this.props.idx,
+            newAnswer: '',
+          });
+        }
+      );
+    } catch (err) {
+      // TODO: Handle errors properly
+    }
   };
 
   handleSubmit = async (e, value, q) => {
     if (!this.props.isUnanswered) {
-      this.handleAddNewAnswer(q);
+      this.handleUpdateAnswers(q);
 
       return;
     }
@@ -134,6 +177,7 @@ class AnswerForm extends Component {
     qu.answers[ansIdx] = {
       ...qu.answers[ansIdx],
       text: value,
+      isEdited: true,
     };
 
     this.setState({ q: qu });
@@ -249,6 +293,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       deleteQuestion,
+      fetchQuestions,
       setThisQuestion: setQuestion,
     },
     dispatch
