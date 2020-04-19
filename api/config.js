@@ -1,16 +1,14 @@
 var config = {};
-config.endpoint = process.env["DBENDPOINT"];
-config.key = process.env["DBKEY"];
-
-config.databaseId = process.env["DBID"];
-config.containerId = process.env["CONTAINERID"];
-
-config.pusher = {
-  appId: process.env["PUSHER_ID"],
-  key: process.env["PUSHER_KEY"],
-  secret: process.env["PUSHER_SECRET"],
-  cluster: process.env["PUSHER_CLUSTER"],
-  channel: process.env["PUSHER_CHANNEL"]
-};
-
+config.endpoint = 'https://nthopinion-db.documents.azure.com:443/';
+config.key =
+  'J822zQfyJ5WSvz10P857CIlBenaryhs98zroHLvPDGCcMEHifNGPhGEjJDG8C1Puc9W67gXYe0LiZyqVgIjkHw==';
+// config.database = {
+//   id: 'QuestionList'
+// }
+//
+// config.container = {
+//   id: 'DOCUMENTCOLLECTIONID'
+// }
+config.databaseId = 'QuestionList';
+config.containerId = 'Items';
 module.exports = config;

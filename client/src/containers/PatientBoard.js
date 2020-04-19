@@ -24,7 +24,7 @@ import Footer from '../components/Footer';
 import StickyHeader from '../components/StickyHeader';
 import QuestionBoard from '../components/QuestionBoard';
 import HeaderWithLink from '../components/HeaderWithLink';
-import TranslationsSuspense from '../components/TranslationsSuspense';
+// import TranslationsSuspense from '../components/TranslationsSuspense';
 
 import { normalizeResults } from '../helpers/normalizeResults';
 
@@ -116,7 +116,8 @@ class PatientBoard extends Component {
 
   render() {
     return (
-      <TranslationsSuspense>
+      // <TranslationsSuspense>
+      <>
         <StickyHeader
           contextRef={this.contextRef}
           isLoading={this.props.isLoading}
@@ -225,7 +226,8 @@ class PatientBoard extends Component {
           {/* <FloatingMenu/> */}
           <Footer />
         </div>
-      </TranslationsSuspense>
+        </>
+      // {/* </TranslationsSuspense> */}
     );
   }
 }
