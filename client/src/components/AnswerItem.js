@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { ReactTinyLink } from 'react-tiny-link';
 import { List, Image, Label, Button, Icon } from 'semantic-ui-react';
+import clockIcon from '../assets/images/clockIcon.png';
 
 import avatar from '../assets/images/askco-avatar.svg';
 
@@ -17,7 +18,22 @@ const AnswerItem = (props) => {
       <List.Content>
         <div className="answerTitle">
           <div className="answeredByName">
-            <span>A.</span>
+            <span1>A.</span1>
+            <span2>
+              {props.answer.firstAnsweredBy &&
+                props.answer.firstAnsweredBy.name}
+            </span2>
+            <span3>
+              <img src={clockIcon} alt="clock_icon" height="11" width="11" />
+            </span3>
+            <span4>
+              Posted:{' '}
+              {new Date(props.answer.firstAnsweredOn).toLocaleDateString()}
+            </span4>
+            <span5>
+              Last Edited:{' '}
+              {new Date(props.answer.lastAnsweredOn).toLocaleDateString()}
+            </span5>
           </div>
           <img
             src={props.answerByAvatarUrl || avatar}
@@ -108,7 +124,7 @@ const AnswerItem = (props) => {
             );
           })}
 
-        <div className="answer-metadata">
+        {/* <div className="answer-metadata">
           <div>
             Answered By:{' '}
             {props.answer.firstAnsweredBy && props.answer.firstAnsweredBy.name}
@@ -120,7 +136,7 @@ const AnswerItem = (props) => {
           <div>
             Edited: {new Date(props.answer.lastAnsweredOn).toLocaleDateString()}
           </div>
-        </div>
+        </div> */}
 
         <div className="qPanelBottom">
           <div className="qTag">
