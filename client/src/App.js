@@ -22,7 +22,7 @@ export class App extends Component {
   render() {
     return (
       <div className="App">
-        <I18nextProvider i18n={i18n}>
+        {/* <I18nextProvider i18n={i18n}> */}
           <Provider store={store}>
             <Router>
               <Route
@@ -36,7 +36,7 @@ export class App extends Component {
               <Route exact path="/" component={AuthProvider(PatientBoard)} />
             </Router>
           </Provider>
-        </I18nextProvider>
+        {/* </I18nextProvider> */}
       </div>
     );
   }
