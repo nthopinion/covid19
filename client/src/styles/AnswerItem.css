@@ -1,8 +1,5 @@
-.test {
+.overflow {
     line-height: 1.5em;
     height: 3em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: blue;
-    
+    overflow: hidden;        
 }
