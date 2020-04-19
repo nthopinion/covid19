@@ -173,7 +173,7 @@ class AnswerForm extends Component {
             <List>
               {this.state[`newAnswers${q.id}`] &&
                 this.state[`newAnswers${q.id}`].map((answer, index) => {
-                  return <AnswerItem answer={answer} key={index} />;
+                  return <AnswerItem answer={answer} key={index}/>;
                 })}
             </List>
           </Message>
