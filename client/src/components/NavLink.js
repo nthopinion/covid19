@@ -78,7 +78,7 @@ class NavMenu extends Component {
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
-                      href="https://video.askco19.com/dxyopencourse/"
+                      href="https://www.askco19.com/dxyopencourse/"
                     >
                       VIDEO COURSE
                     </a>
@@ -97,7 +97,7 @@ class NavMenu extends Component {
                   <div>
                     <Button
                       id="sponsors"
-                      href="https://about.askco19.com/sponsors"
+                      href="https://www.askco19.com/sponsors"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -108,7 +108,7 @@ class NavMenu extends Component {
                   <div>
                     <Button
                       id="contributors"
-                      href="https://about.askco19.com/contributors"
+                      href="https://www.askco19.com/contributors"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
