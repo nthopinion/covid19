@@ -2,6 +2,7 @@ import _ from 'lodash';
 import React from 'react';
 import { Search } from 'semantic-ui-react';
 import { withTranslation } from 'react-i18next';
+import '../styles/SearchBar.css';
 
 const SearchBar = (props) => {
   const { t } = props;
