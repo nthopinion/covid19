@@ -30,6 +30,24 @@
   }
 }
 
+@keyframes hover-twitter {
+  from {
+    fill: #333333;
+  }
+  to {
+    fill: #1da1f2;
+  }
+}
+
+@keyframes hover-facebook {
+  from {
+    fill: #333333;
+  }
+  to {
+    fill: #4267b2;
+  }
+}
+
 .like-button {
   display: inline-block;
   font-family: Roboto, sans-serif;
@@ -65,12 +83,59 @@
 .ReactCollapse--collapse {
   display: inline-block;
   position: absolute;
-  bottom: 0;
-  transition: 500ms;
+  transition: height 500ms;
+  /*animation-direction: reverse;*/
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.13);
   border-radius: 5px;
   background-color: #ffffff;
-  right: -3em;
-
+  right: -3.2em;
+  bottom: 0;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
   /*top: 25em*/
 }
+
+.social-container-icons {
+  list-style-type: none;
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+  margin: 17px 7px;
+  padding: 0;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+.twitter-icon {
+  cursor: pointer;
+  margin: 1px 1px;
+  fill: #333333;
+}
+
+.twitter-icon:hover {
+  animation-name: hover-twitter;
+  animation-duration: 300ms;
+  animation-fill-mode: both;
+  transition: width 2s, height 4s;
+}
+
+.facebook-icon {
+  cursor: pointer;
+  margin: 1px 1px;
+  fill: #333333;
+}
+
+.facebook-icon:hover {
+  animation-name: hover-facebook;
+  animation-duration: 300ms;
+  animation-fill-mode: both;
+  transition: width 2s, height 4s;
+}
+
+/*.social-container-icons.li {*/
+/*  margin: 12px;*/
+/*}*/
+
+/*div.social-container-icons {*/
+/*  */
+/*}*/
