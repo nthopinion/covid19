@@ -26,6 +26,22 @@ const LanguageSelector = () => {
         <Dropdown text="English">
           <Dropdown.Menu>
             {languageOptions.map((language) => (
+/*
+class LanguageSelector extends Component {
+  render() {
+    const { i18n } = this.props;
+    const language = languages[i18n.language];
+
+    const switchLanguage = (value) => () => {
+      i18n.changeLanguage(value);
+    };
+
+    return language ? (
+      <div className="language-selector">
+        <Dropdown text={language}>
+          <Dropdown.Menu className={this.props.className}>
+            {whitelist.map((key) => (
+*/
               <Dropdown.Item
                 text={language.text}
                 as={Link}
