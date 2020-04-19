@@ -15,6 +15,7 @@ import {
   postQuestion,
   clickLikeQuestion,
   handleNewQuestionAnswered,
+  changeLanguage,
 } from '../actions';
 
 import config from '../config';
@@ -65,6 +66,10 @@ class PatientBoard extends Component {
 
   handleClickLike = (id, index) => {
     return () => this.props.clickLikeQuestion(id, index);
+  };
+
+  handleChangeLanguage = (language) => {
+    this.props.changeLanguage(language);
   };
 
   handleResultSelect = (e, { result }) => {
@@ -130,6 +135,7 @@ class PatientBoard extends Component {
           handleKeyPress={this.handleKeyPress}
           account={this.props.account}
           onSignOut={this.props.onSignOut}
+          handleChangeLanguage={this.handleChangeLanguage}
         />
         <div className="containerDiv">
           <div className="banner clearfix">
@@ -246,6 +252,7 @@ const mapDispatchToProps = (dispatch) =>
       postQuestion,
       clickLikeQuestion,
       handleNewQuestionAnswered,
+      changeLanguage,
     },
     dispatch
   );

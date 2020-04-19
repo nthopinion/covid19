@@ -25,6 +25,7 @@ class StickyHeader extends Component {
       t,
       account,
       onSignOut,
+      handleChangeLanguage,
     } = this.props;
 
     return (
@@ -32,7 +33,9 @@ class StickyHeader extends Component {
         <div className="sticky-top">
           <img className="logo" src={logo} alt="Logo" />
           <div>
-            <LanguageSelector />
+            <LanguageSelector
+              handleChangeLanguage={handleChangeLanguage}
+            />
             <SearchBar
               isLoading={isLoading}
               results={normalizeResults(results)}
