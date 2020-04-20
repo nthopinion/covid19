@@ -1,30 +1,28 @@
-{
+﻿{
   "addQuestion": {
-    "askAQuestion": "[DE] Ask a Medical Professional",
-    "askADoctor": "[DE] Ask A Doctor"
+    "askAQuestion": "Fragen Sie einen Arzt",
+    "askADoctor": "Fragen Sie einen Arzt",
+    "newQuestion": "Neue Frage",
+    "areyouphysician": "Bist du ein Arzt?"
   },
   "stickyHeader": {
-    "questionSubmitted": "[DE] We've submitted your question",
-    "checkBackLater": "[DE] Please check back later.",
-    "triedToSubmit": "[DE] We've tried to submit your question",
-    "somethingWentWrong": "[DE] Sorry Something went wrong. Please try again later"
+    "questionSubmitted": "Wir haben Ihre Frage eingereicht",
+    "checkBackLater": "Bitte versuchen Sie es später erneut.",
+    "triedToSubmit": "Wir haben versucht, Ihre Frage einzureichen",
+    "somethingWentWrong": "Entschuldigung, etwas ist schief gelaufen. Bitte versuchen Sie es später noch einmal"
   },
-  "questionBoard": {
-    "answersFromFrontline": "[DE] Answers from the frontlines:"
-  },
-  "answers": {
-    "seeNew": "[DE] See new answers"
-  },
+  "questionBoard": { "answersFromFrontline": "Antworten von der Front:" },
+  "answers": { "seeNew": "Neue Antworten anzeigen" },
   "banner": {
-    "text": "[DE] Real-time information on COVID-19 from verified frontline doctors",
-    "subText": "[DE] We are a free, non-profit open source project originally founded by Nth Opinion",
-    "cannotAnswer": "[DE] Can't find an answer?",
-    "aboutUs": "[DE] About Us",
-    "faq": "[DE] FAQs"
+    "text": "Echtzeitinformationen zu COVID-19 von verifizierten Ärzten an vorderster Front",
+    "subText": "Wir sind ein kostenloses, gemeinnütziges Open Source-Projekt, das ursprünglich von Nth Opinion gegründet wurde",
+    "cannotAnswer": "Kannst du keine Antwort finden?",
+    "aboutUs": "Über uns",
+    "faq": "FAQs"
   },
   "searchBar": {
-    "haveAQuestion": "[DE] Have a question? Type here to search",
-    "noResultsFound": "[DE] No results found.",
-    "selectAskAQuestion": "[DE] Select Ask a Question to Continue"
+    "haveAQuestion": "Eine Frage haben? Schreibe hier um zu suchen",
+    "noResultsFound": "Keine Ergebnisse gefunden.",
+    "selectAskAQuestion": "Wählen Sie Frage stellen, um fortzufahren"
   }
 }
