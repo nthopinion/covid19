@@ -14,6 +14,7 @@ import {
   setSearchTerm,
   postQuestion,
   clickLikeQuestion,
+  handleAnswerLike,
   handleNewQuestionAnswered,
   changeLanguage,
 } from '../actions';
@@ -64,8 +65,8 @@ class PatientBoard extends Component {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  handleClickLike = (id, index) => {
-    return () => this.props.clickLikeQuestion(id, index);
+  handleAnswerLike = (questionId, answerId) => {
+    this.props.handleAnswerLike(questionId, answerId);
   };
 
   handleChangeLanguage = (language) => {
@@ -199,6 +200,7 @@ class PatientBoard extends Component {
                 <div>
                   <QuestionBoard
                     handleClickLike={this.handleClickLike}
+                    handleAnswerLike={this.props.handleAnswerLike}
                     results={this.props.results}
                   />
 
@@ -254,6 +256,7 @@ const mapDispatchToProps = (dispatch) =>
       setSearchTerm,
       postQuestion,
       clickLikeQuestion,
+      handleAnswerLike,
       handleNewQuestionAnswered,
       changeLanguage,
     },

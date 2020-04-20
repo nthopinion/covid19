@@ -142,7 +142,16 @@ class PostList {
    * @param {QuestionDao} questionDao
    */
   constructor (questionDao) {
+    const {appId, key, secret, cluster, channel} = config.pusher
     this.questionDao = questionDao
+    this.pusher = new Pusher({
+      appId,
+      key,
+      secret,
+      cluster,
+      channel,
+      useTLS: true
+    })
   }
 
   async changeQnAcontainer(req, res){
@@ -167,8 +176,6 @@ class PostList {
   }
 
   async showQuestions (req, res, answered) {
-    console.log('showQuestions')
-
     const querySpec = {
       query: "SELECT * from c WHERE c.answered = @answered",
       // ORDER BY date DESC
@@ -181,15 +188,75 @@ class PostList {
       ]
     };
 
-    const items = await this.questionDao.find(querySpec);
-    // console.log('items', items, querySpec)
+    let items = await this.questionDao.find(querySpec, 'questions');
+    
+    if (answered = true)
+    {
+      let questionIds = items.map(item => (item.id));
+
+      const answers = await this.loadAnswers(questionIds);
+
+      let answerObject = {};
+
+      answers.forEach(answer => {
+        if (answerObject[answer.questionId]) {
+          answerObject = {
+            ...answerObject,
+            [answer.questionId]: [...answerObject[answer.questionId], answer]
+          }
+        } else {
+          answerObject = {
+            ...answerObject,
+            [answer.questionId]: [answer]
+          }
+        }
+      });
+
+      items = items.map(item => ({
+        ...item,
+        answers: answerObject[item.id] || []
+      }));
+    }
+  
     res.send(items)
+  }
+
+  async loadAnswers (questionIds)
+  {
+    // TODO: Use a better approach for setting parameters in the query
+    let questionIdsString = "";
+
+    questionIds.forEach((id, index) => {
+      questionIdsString += `${index === 0 ? "" : ", "}"${id}"`
+    })
+
+    const querySpec = {
+      query: `SELECT * from c WHERE c.questionId in (${questionIdsString}) and c.deleted = false`,
+      // ORDER BY date DESC
+      //  WHERE c.answered = @answered and EXISTS (SELECT VALUE t from t in c.tags WHERE (t != 'Wellspring' and t != 'Holistic' and t != 'yu' and t != 'Yu' and t != 'Retinitis Pigmentosa' and t != 'Traditional Chinese Medicine' and t != 'Wellspring Vision Improvement Program' and t != 'biography' and t != 'questions' and t != 'Li Wenliang' and t != 'Zhang' and t != 'question' and t != 'address'))",
+      parameters: [
+        {
+          name: '@questionIdsString',
+          value: questionIdsString
+        }
+      ]
+    };
+
+    const answers = await this.questionDao.find(querySpec, 'answers');
+
+    return answers;
   }
 
   async addQuestion (req, res) {
     // console.log('req' + JSON.stringify(req.body))
     const item = req.body
-    const itemAdd = await this.questionDao.addItem(item)
+    item.answers = []
+    item.answered = false
+    item.like = 0
+     const itemAdd = await this.questionDao.addItem(item, 'questions')
+/*    this.pusher.trigger(channel, 'answer-question', {
+      question
+    }); */
     // res.redirect("/");
     res.send(itemAdd)
   }
@@ -202,15 +269,26 @@ class PostList {
     res.send('ok')
   }
 
-  async updateQuestion (req, res) {
+  async editQuestion (req, res) {
     let question = req.body
+    
+    await this.questionDao.updateQuestion(question, 'questions')
+/*     if (!question.answered) {
+      this.pusher.trigger(channel, 'answer-question', {
+        question
+      });
+    } */
+    res.send('ok')
+  }
+
+  parseAnswer (req) {
     const youtubeRegex = /http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?/
 
     let sources = [];
     let youtubeLinks = [];
-    const answer = question.answers && question.answers.length && question.answers[0];
+    let answer = req.body;
 
-    const urls = getUrls(answer);
+    const urls = getUrls(answer.text);
 
     urls.forEach(url => {
       if (url.match(youtubeRegex)) {
@@ -219,58 +297,95 @@ class PostList {
         sources.push(url);
       }
     });
+    if (answer.sources !== undefined){
+      answer.sources.forEach(url =>{
+        sources.push(url);
+      });
+    }
 
-    question = {
-      ...question,
+    return {
+      ...answer,
       sources,
       youtubeLinks
     };
+  }
 
-    await this.questionDao.updateItem(question)
-
-    const {appId, key, secret, cluster, channel} = config.pusher;
-  
-    const pusher = new Pusher({
-      appId,
-      key,
-      secret,
-      cluster,
-      encrypted: true
-    });
-
-    pusher.trigger(channel, 'answer-question', {
-      question
-    });
-
+  async addAnswer (req, res) {
+    const answer = this.parseAnswer(req)
+    var firstAnsweredBy = {}, lastAnsweredBy = {};
+    firstAnsweredBy.name = "Nth Opinion"
+    firstAnsweredBy.loginId = "e060f24a-bd81-4d65-877f-857f31f2cf31"
+    lastAnsweredBy.name = "Nth Opinion"
+    lastAnsweredBy.loginId = "e060f24a-bd81-4d65-877f-857f31f2cf31"
+    answer["firstAnsweredBy"] = firstAnsweredBy;
+    answer["lastAnsweredBy"] = lastAnsweredBy;
+    answer.firstAnsweredOn = Date.now();
+    answer.lastAnsweredOn = Date.now();
+    await this.questionDao.addAnswer(answer)
     res.send('ok')
   }
 
-  async editAnswers (req, res) {
-    const question = req.body
-    await this.questionDao.editAnswers(question)
+  async editAnswer (req, res) {
+    const answer = this.parseAnswer(req)
+    if (answer.lastAnsweredBy === undefined)
+    {
+      var lastAnsweredBy = {};
+      lastAnsweredBy.name = "Nth Opinion"
+      lastAnsweredBy.loginId = "e060f24a-bd81-4d65-877f-857f31f2cf31"
+      answer["lastAnsweredBy"] = lastAnsweredBy;
+    }
+    else
+    {
+      answer.lastAnsweredBy.name = "Nth Opinion"
+      answer.lastAnsweredBy.loginId = "e060f24a-bd81-4d65-877f-857f31f2cf31"
+    }
+    answer.lastAnsweredOn = Date.now();
+    await this.questionDao.editAnswer(answer)
     res.send('ok')
   }
 
   // need to use better way :id
   async deleteQuestion (req, res) {
     const { id } = req.body
-    await this.questionDao.deleteItem(id)
+    await this.questionDao.deleteItem(id,'questions')
     res.send('ok')
   }
 
-  async reportQuestion(req, res) {
+/*   async reportQuestion(req, res) {
     const { id } = req.body
     console.log('req.body', req.body)
     await this.questionDao.reportQuestion(id)
     res.send('ok')
-  }
+  } */
 
-  async increaseLike (req, res) {
-    const { id } = req.body
+  async updateQuestionLike (req, res) {
     console.log('req.body', req.body)
-    await this.questionDao.likeIncrease(id)
+    const { id } = req.body
+    await this.questionDao.updateLike(id, 'questions')
     res.send('ok')
   }
+
+  async updateAnswerLike (req, res) {
+    console.log('req.body', req.body)
+    const { id } = req.body
+    await this.questionDao.updateLike(id, 'answers')
+    res.send('ok')
+  }
+
+  async reportAnswer (req, res) {
+    console.log('req.body', req.body)
+    const { id } = req.body
+    await this.questionDao.reportAnswer(id, 'answers')
+    res.send('ok')
+  }
+
+  async deleteAnswer (req, res) {
+    console.log('req.body', req.body)
+    const { id } = req.body
+    await this.questionDao.deleteAnswer(id, 'answers')
+    res.send('ok')
+  }
+
 }
 
 module.exports = PostList

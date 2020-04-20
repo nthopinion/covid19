@@ -19,7 +19,7 @@ import Footer from './Footer';
 class PhysicianView extends Component {
   constructor(props) {
     super(props);
-    this.state = { showUnaswered: true };
+    this.state = { showUnanswered: true };
   }
 
   componentDidMount() {
@@ -27,8 +27,8 @@ class PhysicianView extends Component {
     this.props.fetchQuestions();
   }
 
-  handleToggleView(showUnaswered) {
-    this.setState({ showUnaswered });
+  handleToggleView(showUnanswered) {
+    this.setState({ showUnanswered });
   }
 
   render() {
@@ -68,7 +68,7 @@ class PhysicianView extends Component {
                   basic
                   color="blue"
                   onClick={() => this.handleToggleView(true)}
-                  active={this.state.showUnaswered}
+                  active={this.state.showUnanswered}
                 >
                   Unanswered Questions
                 </Button>
@@ -76,7 +76,7 @@ class PhysicianView extends Component {
                   basic
                   color="green"
                   onClick={() => this.handleToggleView(false)}
-                  active={!this.state.showUnaswered}
+                  active={!this.state.showUnanswered}
                 >
                   Answered Questions
                 </Button>
@@ -95,7 +95,7 @@ class PhysicianView extends Component {
           <div>
             <Grid centered columns={2} stackable>
               <Grid.Column>
-                {this.state.showUnaswered &&
+                {this.state.showUnanswered &&
                   this.props.account &&
                   this.props.unansweredQuestions &&
                   this.props.unansweredQuestions.map((q, idx) => (
@@ -103,11 +103,11 @@ class PhysicianView extends Component {
                       history={this.props.history}
                       q={q}
                       idx={idx}
-                      showUnaswered={this.state.showUnaswered}
+                      showUnanswered={this.state.showUnanswered}
                     />
                   ))}
 
-                {!this.state.showUnaswered &&
+                {!this.state.showUnanswered &&
                   this.props.account &&
                   this.props.questions &&
                   this.props.questions.map((q, idx) => (
@@ -115,7 +115,7 @@ class PhysicianView extends Component {
                       history={this.props.history}
                       q={q}
                       idx={idx}
-                      showUnaswered={this.state.showUnaswered}
+                      showUnanswered={this.state.showUnanswered}
                     />
                   ))}
               </Grid.Column>

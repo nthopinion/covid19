@@ -3,7 +3,8 @@ config.endpoint = process.env["DBENDPOINT"];
 config.key = process.env["DBKEY"];
 
 config.databaseId = process.env["DBID"];
-config.containerId = process.env["CONTAINERID"];
+config.questionContainerId = process.env["QUESTION_CONTAINERID"];
+config.answerContainerId = process.env["ANSWER_CONTAINERID"];
 
 config.pusher = {
   appId: process.env["PUSHER_ID"],
