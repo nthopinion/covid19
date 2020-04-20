@@ -41,7 +41,16 @@ class PhysicianView extends Component {
           onSignOut={this.props.onSignOut}
         />
         <div className="physician-view-container">
-          <Menu secondary>
+          <Menu secondary style={{ display: 'flex', flexDirection: 'column' }}>
+            <div className="right menu" style={{ margin: '1rem 0' }}>
+              <a
+                href="https://ai-passion.appspot.com/"
+                target="_blank"
+                class="active item"
+              >
+                Televideo
+              </a>
+            </div>
             <Menu.Menu position="right">
               {this.props.account && (
                 <Menu.Item
