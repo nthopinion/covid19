@@ -11,7 +11,7 @@ const PhysicianLogin = (props) => {
         <div>
           <h1>Log In</h1>
           <p>
-            Thank you for taking the time to share you knowledge and experience
+            Thank you for taking the time to share your knowledge and experience
             about Covid19!
           </p>
           <Button active onClick={props.onSignIn}>
