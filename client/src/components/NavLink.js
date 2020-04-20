@@ -61,7 +61,7 @@ class NavMenu extends Component {
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
-                      href="https://about.askco19.com/#lp-pom-block-118"
+                      href="https://www.askco19.com/"
                     >
                       {t('navLink:about')}
                     </a>
@@ -70,7 +70,7 @@ class NavMenu extends Component {
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
-                      href="https://about.askco19.com/contributors"
+                      href="https://www.askco19.com/contributors"
                     >
                       {t('navLink:getInvolved')}
                     </a>
@@ -79,7 +79,7 @@ class NavMenu extends Component {
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
-                      href="https://about.askco19.com/sponsors"
+                      href="https://www.askco19.com/sponsors"
                     >
                       {t('navLink:ourSponsors')}
                     </a>
@@ -88,7 +88,7 @@ class NavMenu extends Component {
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
-                      href="https://askco19.com/dxyopencourse/"
+                      href="https://www.askco19.com/dxyopencourse/"
                     >
                       {t('navLink:partners')}
                     </a>

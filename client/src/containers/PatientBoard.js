@@ -15,6 +15,7 @@ import {
   postQuestion,
   clickLikeQuestion,
   handleNewQuestionAnswered,
+  changeLanguage,
 } from '../actions';
 
 import config from '../config';
@@ -67,6 +68,10 @@ class PatientBoard extends Component {
     return () => this.props.clickLikeQuestion(id, index);
   };
 
+  handleChangeLanguage = (language) => {
+    this.props.changeLanguage(language);
+  };
+
   handleResultSelect = (e, { result }) => {
     this.props.searchQuestions(this.props.questions, result.title);
   };
@@ -82,7 +87,7 @@ class PatientBoard extends Component {
       this.props.searchQuestions(this.props.questions, this.props.searchTerm);
     }, 500);
 
-    // submit question
+/*     // submit question
     if (this.props.results.length !== 0) return;
     // var self = this
     if (
@@ -96,6 +101,7 @@ class PatientBoard extends Component {
         this.handleSubmitNewQuestion();
       }, 1000);
     }
+ */  
   };
 
   handleSubmitNewQuestion = () => {
@@ -130,6 +136,7 @@ class PatientBoard extends Component {
           handleKeyPress={this.handleKeyPress}
           account={this.props.account}
           onSignOut={this.props.onSignOut}
+          handleChangeLanguage={this.handleChangeLanguage}
         />
         <div className="containerDiv">
           <div className="banner clearfix">
@@ -180,7 +187,9 @@ class PatientBoard extends Component {
                   </div>
                   <div className="board-link">
                     <Link to="/bIiOOIIqgwEXwUU3SaD0F9">
-                      Are you a physician?
+                    {this.props.t(
+                      'patientBoard:addQuestion.areyouphysician'
+                    )}
                     </Link>
                   </div>
                 </div>
@@ -246,6 +255,7 @@ const mapDispatchToProps = (dispatch) =>
       postQuestion,
       clickLikeQuestion,
       handleNewQuestionAnswered,
+      changeLanguage,
     },
     dispatch
   );

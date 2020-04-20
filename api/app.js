@@ -79,6 +79,9 @@ questionDao
     );
     // process.exit(1)
   });
+app.post("/api/changeLanguage", (req, res, next) =>
+  questionList.changeQnAcontainer(req, res).catch(next)
+);
 app.get("/api/questions", (req, res, next) =>
   questionList.showQuestions(req, res, true).catch(next)
 );
