@@ -11,6 +11,7 @@ export {
   deleteQuestion,
   clickLikeQuestion,
   handleNewQuestionAnswered,
+  changeLanguage,
 } from './question';
 
 export {

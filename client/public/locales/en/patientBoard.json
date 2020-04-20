@@ -1,7 +1,9 @@
 {
   "addQuestion": {
     "askAQuestion": "Ask a Medical Professional",
-    "askADoctor": "Ask A Doctor"
+    "askADoctor": "Ask A Doctor",
+    "newQuestion": "New Question",
+    "areyouphysician": "Are you a physician?"
   },
   "stickyHeader": {
     "questionSubmitted": "We've submitted your question",
