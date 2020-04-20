@@ -67,12 +67,7 @@ class ShareButton extends React.Component {
     return (
       <div>
         <div
-          style={{
-            position: 'relative',
-            cursor: 'pointer',
-            paddingLeft: '0.8em',
-            paddingTop: '0.1em',
-          }}
+          className="share-button"
           onClick={() => {
             this.changeColor();
             this.handleIsOpen();
