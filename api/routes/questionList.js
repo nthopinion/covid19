@@ -154,6 +154,27 @@ class PostList {
     })
   }
 
+  async changeQnAcontainer(req, res){
+    const { language } = req.body;
+    const changed = await this.questionDao.changeQnAcontainer(language);
+    const answered = true
+    const querySpec = {
+      query: "SELECT * from c WHERE c.answered =@answered",
+      // ORDER BY date DESC
+      //  WHERE c.answered = @answered and EXISTS (SELECT VALUE t from t in c.tags WHERE (t != 'Wellspring' and t != 'Holistic' and t != 'yu' and t != 'Yu' and t != 'Retinitis Pigmentosa' and t != 'Traditional Chinese Medicine' and t != 'Wellspring Vision Improvement Program' and t != 'biography' and t != 'questions' and t != 'Li Wenliang' and t != 'Zhang' and t != 'question' and t != 'address'))",
+      parameters: [
+        {
+          name: '@answered',
+          value: answered
+        }
+      ]
+    };
+
+    const items = await this.questionDao.find(querySpec);
+    // console.log('items', items, querySpec)
+    res.send(items)
+  }
+
   async showQuestions (req, res, answered) {
     const querySpec = {
       query: "SELECT * from c WHERE c.answered = @answered",

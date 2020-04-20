@@ -1,6 +1,9 @@
-export const whitelist = ['en', 'de'];
+export const whitelist = ['en', 'zh-CN', 'hi-IN', 'de', 'ko-KR' ];
 
 export const languages = {
   en: 'English',
-  de: 'Deutsch',
+  'zh-CN': 'Chinese',
+  'hi-IN': 'Hindi',
+  'de': 'Deutsch',
+  'ko-KR': 'Korean',
 };

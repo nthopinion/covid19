@@ -22,6 +22,10 @@ class PostDao {
       questionContainerId: questionContainerId,
       answerContainerId: answerContainerId
     }
+    this.containerIds = {
+      questionContainerId: questionContainerId,
+      answerContainerId: answerContainerId
+    }
 
     this.database = null
     this.containers = {}
@@ -45,6 +49,30 @@ class PostDao {
     this.containers.answers = aResponse.container
     debug('Setting up the container...done!')
   }
+
+  async changeQnAcontainer(language){
+      if (language === 'English')
+      {
+        this.collections.questionContainerId = this.containerIds.questionContainerId
+        this.collections.answerContainerId = this.containerIds.answerContainerId
+      }
+      else {
+        this.collections.questionContainerId = this.containerIds.questionContainerId + "_" + language
+        this.collections.answerContainerId = this.containerIds.answerContainerId + "_" + language
+      }
+    debug('Setting up the container...')
+    const qResponse = await this.database.containers.createIfNotExists({
+      id: this.collections.questionContainerId
+    })
+    this.containers.questions = qResponse.container
+    const aResponse = await this.database.containers.createIfNotExists({
+      id: this.collections.answerContainerId
+    })
+    this.containers.answers = aResponse.container
+    debug('Setting up the container...done!')
+      return 'ok'
+  }
+
 
   async find (querySpec, containerName) {
     debug('Querying for items from the database')

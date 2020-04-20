@@ -12,6 +12,7 @@ export {
   clickLikeQuestion,
   handleAnswerLike,
   handleNewQuestionAnswered,
+  changeLanguage,
 } from './question';
 
 export {
