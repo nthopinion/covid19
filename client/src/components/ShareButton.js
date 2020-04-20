@@ -13,23 +13,23 @@ class ShareButton extends React.Component {
   }
 
   componentDidMount() {
-    window.fbAsyncInit = () => {
-      window.FB.init({
-        appId: '2623002327974339',
-        autoLogAppEvents: true,
-        cookie: true,
-        xfbml: true,
-        version: 'v6.0',
-      });
-    };
-    (function (d, s, id) {
-      const fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      const js = d.createElement(s);
-      js.id = id;
-      js.src = '//connect.facebook.net/en_US/sdk.js';
-      fjs.parentNode.insertBefore(js, fjs);
-    })(document, 'script', 'facebook-jssdk');
+    // window.fbAsyncInit = () => {
+    //   window.FB.init({
+    //     appId: '2623002327974339',
+    //     autoLogAppEvents: true,
+    //     cookie: true,
+    //     xfbml: true,
+    //     version: 'v6.0',
+    //   });
+    // };
+    // (function (d, s, id) {
+    //   const fjs = d.getElementsByTagName(s)[0];
+    //   if (d.getElementById(id)) return;
+    //   const js = d.createElement(s);
+    //   js.id = id;
+    //   js.src = '//connect.facebook.net/en_US/sdk.js';
+    //   fjs.parentNode.insertBefore(js, fjs);
+    // })(document, 'script', 'facebook-jssdk');
 
     const svgToChangeColor = this.itemToChangeColor;
     svgToChangeColor.addEventListener('colorChanged', this.colorChangeDone);
@@ -53,14 +53,14 @@ class ShareButton extends React.Component {
   };
 
   handleFbShare = () => {
-    window.FB.ui(
-      {
-        method: 'share',
-        href: 'google.com',
-      },
-      // eslint-disable-next-line func-names,no-unused-vars
-      function (response) {}
-    );
+    // window.FB.ui(
+    //   {
+    //     method: 'share',
+    //     href: 'google.com',
+    //   },
+    //   // eslint-disable-next-line func-names,no-unused-vars
+    //   function (response) {}
+    // );
   };
 
   render() {
