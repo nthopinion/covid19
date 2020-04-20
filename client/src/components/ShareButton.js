@@ -13,6 +13,24 @@ class ShareButton extends React.Component {
   }
 
   componentDidMount() {
+    window.fbAsyncInit = () => {
+      window.FB.init({
+        appId: '2623002327974339',
+        autoLogAppEvents: true,
+        cookie: true,
+        xfbml: true,
+        version: 'v6.0',
+      });
+    };
+    (function (d, s, id) {
+      const fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      const js = d.createElement(s);
+      js.id = id;
+      js.src = '//connect.facebook.net/en_US/sdk.js';
+      fjs.parentNode.insertBefore(js, fjs);
+    })(document, 'script', 'facebook-jssdk');
+
     const svgToChangeColor = this.itemToChangeColor;
     svgToChangeColor.addEventListener('colorChanged', this.colorChangeDone);
   }
@@ -32,6 +50,17 @@ class ShareButton extends React.Component {
 
   handleIsOpen = () => {
     return this.setState({ isOpen: !this.state.isOpen });
+  };
+
+  handleFbShare = () => {
+    window.FB.ui(
+      {
+        method: 'share',
+        href: 'google.com',
+      },
+      // eslint-disable-next-line func-names,no-unused-vars
+      function (response) {}
+    );
   };
 
   render() {
@@ -55,7 +84,7 @@ class ShareButton extends React.Component {
               this.itemToChangeColor = e;
             }}
             className={
-              this.state.changeColor ? 'like-button-clicked' : 'like-button'
+              this.state.changeColor ? 'like-button-clicked' : 'button'
             }
             viewBox="0 0 16 17"
             width="17"
@@ -97,16 +126,18 @@ class ShareButton extends React.Component {
                 </a>
               </li>
               <li>
-                <svg
-                  className="facebook-icon"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 18 18"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M18 9C18 4.02891 13.9711 0 9 0C4.02891 0 0 4.02891 0 9C0 13.493 3.29062 17.216 7.59375 17.891V11.6016H5.30859V9H7.59375V7.01719C7.59375 4.76191 8.93672 3.51562 10.9934 3.51562C11.9777 3.51562 13.0078 3.69141 13.0078 3.69141V5.90625H11.8723C10.7543 5.90625 10.4062 6.60059 10.4062 7.3125V9H12.9023L12.5033 11.6016H10.4062V17.891C14.7094 17.216 18 13.493 18 9Z" />
-                </svg>
+                <div onClick={this.handleFbShare}>
+                  <svg
+                    className="facebook-icon"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M18 9C18 4.02891 13.9711 0 9 0C4.02891 0 0 4.02891 0 9C0 13.493 3.29062 17.216 7.59375 17.891V11.6016H5.30859V9H7.59375V7.01719C7.59375 4.76191 8.93672 3.51562 10.9934 3.51562C11.9777 3.51562 13.0078 3.69141 13.0078 3.69141V5.90625H11.8723C10.7543 5.90625 10.4062 6.60059 10.4062 7.3125V9H12.9023L12.5033 11.6016H10.4062V17.891C14.7094 17.216 18 13.493 18 9Z" />
+                  </svg>
+                </div>
               </li>
             </ul>
           </Collapse>

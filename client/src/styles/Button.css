@@ -48,7 +48,8 @@
   }
 }
 
-.like-button {
+.button {
+  fill: #333333;
   display: inline-block;
   font-family: Roboto, sans-serif;
   font-style: normal;
