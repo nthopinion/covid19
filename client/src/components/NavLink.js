@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react';
 import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
-import styles from '../styles/NavLink.css';
 import LanguageSelector from './LanguageSelector';
+import '../styles/NavLink.css';
 
 class NavMenu extends Component {
   constructor() {
@@ -51,10 +51,8 @@ class NavMenu extends Component {
         </Button>
 
         {this.state.showMenu ? (
-          <div className="menu" ref={this.WrapperRef}>
-            <div
-              className={`ui visible right demo vertical sidebar labeled icon menu ${styles.NavLink}`}
-            >
+          <div className="menu-wrapper" ref={this.WrapperRef}>
+            <div className="ui visible right demo vertical sidebar labeled icon menu">
               <nav>
                 <ul>
                   <li>
