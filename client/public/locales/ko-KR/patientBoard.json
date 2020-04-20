@@ -1,0 +1,28 @@
+﻿{
+  "addQuestion": {
+    "askAQuestion": "의료 전문가에게 문의",
+    "askADoctor": "의사에게 물어보기",
+    "newQuestion": "새로운 질문",
+    "areyouphysician": "당신은 의사입니까?"
+  },
+  "stickyHeader": {
+    "questionSubmitted": "귀하의 질문을 제출했습니다",
+    "checkBackLater": "나중에 다시 확인하십시오.",
+    "triedToSubmit": "귀하의 질문을 제출하려고했습니다",
+    "somethingWentWrong": "죄송합니다. 문제가 발생했습니다. 나중에 다시 시도하세요"
+  },
+  "questionBoard": { "answersFromFrontline": "최전선의 답변 :" },
+  "answers": { "seeNew": "새로운 답변보기" },
+  "banner": {
+    "text": "검증 된 최전선 의사의 COVID-19에 대한 실시간 정보",
+    "subText": "우리는 Nth Opinion이 처음 설립 한 무료 비영리 오픈 소스 프로젝트입니다",
+    "cannotAnswer": "답을 찾을 수 없습니까?",
+    "aboutUs": "회사 소개",
+    "faq": "자주 묻는 질문"
+  },
+  "searchBar": {
+    "haveAQuestion": "질문이있다? 검색하려면 여기를 입력하십시오",
+    "noResultsFound": "검색 결과가 없습니다.",
+    "selectAskAQuestion": "계속하려면 질문하기를 선택하십시오"
+  }
+}

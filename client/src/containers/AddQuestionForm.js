@@ -46,7 +46,7 @@ class AddQuestionForm extends Component {
         open={showModal}
       >
         <Modal.Header>
-          <span>New Question</span>
+          <span>{t('patientBoard:addQuestion.newQuestion')}</span>
           <Icon
             circular
             inverted

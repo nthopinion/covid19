@@ -4,13 +4,12 @@
   "developers": "DEVELOPERS",
   "videoCourse": "VIDEO COURSE",
   "disclaimer": "DISCLAIMER",
-  "ourSponsors": "OUR SPONSORS",
-  "ourContributors": "OUR CONTRIBUTORS",
-  "logOut": "LOG OUT",
-  "logIn": "LOG IN",
+  "ourSponsors": "Our Sponsors",
+  "ourContributors": "Our Contributors",
+  "logOut": "Log out",
+  "logIn": "Log in",
   "getInvolved": "GET INVOLVED",
   "partners": "PARTNERS",
-  "contactUs": "DISCLAIMER",
-  "language": "LANGUAGE",
-  "teleVideo": "TELEVIDEO"
+  "contactUs": "CONTACT US",
+  "language": "LANGUAGE"
 }
