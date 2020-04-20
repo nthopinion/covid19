@@ -87,7 +87,7 @@ class PatientBoard extends Component {
       this.props.searchQuestions(this.props.questions, this.props.searchTerm);
     }, 500);
 
-    // submit question
+/*     // submit question
     if (this.props.results.length !== 0) return;
     // var self = this
     if (
@@ -101,6 +101,7 @@ class PatientBoard extends Component {
         this.handleSubmitNewQuestion();
       }, 1000);
     }
+ */  
   };
 
   handleSubmitNewQuestion = () => {
@@ -186,7 +187,9 @@ class PatientBoard extends Component {
                   </div>
                   <div className="board-link">
                     <Link to="/bIiOOIIqgwEXwUU3SaD0F9">
-                      Are you a physician?
+                    {this.props.t(
+                      'patientBoard:addQuestion.areyouphysician'
+                    )}
                     </Link>
                   </div>
                 </div>
