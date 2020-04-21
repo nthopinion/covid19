@@ -9,6 +9,7 @@ import config from '../config';
 import LikeButton from './LikeButton';
 import FlagButton from './FlagButton';
 import ShareButton from './ShareButton';
+import TelevideoButton from './TelevideoButton';
 
 export default class QuestionBoard extends Component {
   constructor(props) {
@@ -150,6 +151,7 @@ export default class QuestionBoard extends Component {
 
                 </a> */}
                     <div className="buttonGroupCustom">
+                      <TelevideoButton />
                       <FlagButton
                         selected={question.id === this.state.selected ? 1 : 0}
                         color="red"
