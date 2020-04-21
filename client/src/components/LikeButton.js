@@ -40,9 +40,7 @@ class LikeButton extends React.Component {
           ref={(e) => {
             this.itemToChangeColor = e;
           }}
-          className={
-            this.state.changeColor ? 'like-button-clicked' : 'like-button'
-          }
+          className={this.state.changeColor ? 'like-button-clicked' : 'button'}
           viewBox="0 0 15 13"
           width="15"
           xmlns="http://www.w3.org/2000/svg"
@@ -54,14 +52,13 @@ class LikeButton extends React.Component {
           </g>
         </svg>
         <div
-          className={
-            this.state.changeColor ? 'like-button-clicked' : 'like-button'
-          }
+          className={this.state.changeColor ? 'like-button-clicked' : 'button'}
           style={{ marginLeft: '0.5em' }}
           ref={(e) => {
             this.itemToChangeColor = e;
           }}
         >
+          {/* TODO animate the text when it changes */}
           {this.props.likes}
         </div>
       </div>
