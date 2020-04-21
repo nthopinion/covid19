@@ -161,7 +161,7 @@ export default class QuestionBoard extends Component {
                         onClick={this.props.handleClickLike(question.id, i)}
                         likes={question.like || 0}
                       />
-                      <ShareButton />
+                      <ShareButton question={question} />
                       {/* <ShareButton /> */}
                       {/* <Button animated="vertical" color="twitter"> */}
                       {/*  <a */}
