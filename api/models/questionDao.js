@@ -15,6 +15,7 @@ class PostDao {
     this.client = cosmosClient
     this.databaseId = databaseId
     this.collectionId = containerId
+    this.containerId = containerId
 
     this.database = null
     this.container = null
@@ -34,6 +35,22 @@ class PostDao {
     this.container = coResponse.container
     debug('Setting up the container...done!')
   }
+
+  async changeQnAcontainer(language){
+      if (language === 'English')
+      {
+        this.collectionId = this.containerId
+      }
+      else {
+        this.collectionId = this.containerId + "_" + language
+      }
+      const coResponse = await this.database.containers.createIfNotExists({
+        id: this.collectionId
+      })
+      this.container = coResponse.container
+      return 'ok'
+  }
+
 
   async find (querySpec) {
     debug('Querying for items from the database')
