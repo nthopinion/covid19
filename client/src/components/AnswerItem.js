@@ -123,7 +123,7 @@ const AnswerItem = (props) => {
             </span>
             on{' '}
             <span className="bold">
-              {new Date(props.answer.firstAnsweredOn)
+              {new Date(props.answer.firstAnsweredOn * 1000)
                 .toDateString()
                 .substring(4)}
             </span>
@@ -134,7 +134,7 @@ const AnswerItem = (props) => {
               <span className="bold">{props.answer.lastAnsweredBy.name}</span>{' '}
               on{' '}
               <span className="bold">
-                {new Date(props.answer.lastAnsweredOn)
+                {new Date(props.answer.lastAnsweredOn * 1000)
                   .toDateString()
                   .substring(4)}
               </span>

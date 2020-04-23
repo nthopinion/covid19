@@ -88,7 +88,9 @@ class PostDao {
   async addItem (item, containerName) {
     debug('Adding an item to the database')
     const container = this.containers[containerName]
-    item.date = Date.now()
+    var date = new Date();
+    var timestamp = Math.floor(date.getTime()/1000.0);
+    item.date = timestamp;
     console.log(JSON.stringify(item))
     const uuid = require("uuid");
     item.id = uuid.v4();
@@ -103,8 +105,11 @@ class PostDao {
   async addItems (items, containerName) {
     debug('Adding an item to the database')
     const container = this.containers[containerName]
+    var date = new Date();
+    var timestamp = Math.floor(date.getTime()/1000.0);
+
     Promise.all(items.map(async (item) => {
-      item.date = Date.now()
+      item.date = timestamp
       item.answered = !!(item.answers)
       const { resource: doc } = await container.items.create(item)
     }))

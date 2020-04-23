@@ -159,7 +159,7 @@ class PostList {
     const changed = await this.questionDao.changeQnAcontainer(language);
     const answered = true
     const querySpec = {
-      query: "SELECT * from c WHERE c.answered =@answered",
+      query: "SELECT * from c WHERE c.answered = @answered",
       // ORDER BY date DESC
       //  WHERE c.answered = @answered and EXISTS (SELECT VALUE t from t in c.tags WHERE (t != 'Wellspring' and t != 'Holistic' and t != 'yu' and t != 'Yu' and t != 'Retinitis Pigmentosa' and t != 'Traditional Chinese Medicine' and t != 'Wellspring Vision Improvement Program' and t != 'biography' and t != 'questions' and t != 'Li Wenliang' and t != 'Zhang' and t != 'question' and t != 'address'))",
       parameters: [
@@ -170,8 +170,35 @@ class PostList {
       ]
     };
 
-    const items = await this.questionDao.find(querySpec);
-    // console.log('items', items, querySpec)
+    let items = await this.questionDao.find(querySpec, 'questions');
+    
+    if (answered === true)
+    {
+      let questionIds = items.map(item => (item.id));
+
+      const answers = await this.loadAnswers(questionIds);
+
+      let answerObject = {};
+
+      answers.forEach(answer => {
+        if (answerObject[answer.questionId]) {
+          answerObject = {
+            ...answerObject,
+            [answer.questionId]: [...answerObject[answer.questionId], answer]
+          }
+        } else {
+          answerObject = {
+            ...answerObject,
+            [answer.questionId]: [answer]
+          }
+        }
+      });
+
+      items = items.map(item => ({
+        ...item,
+        answers: answerObject[item.id] || []
+      }));
+    }
     res.send(items)
   }
 
@@ -190,7 +217,7 @@ class PostList {
 
     let items = await this.questionDao.find(querySpec, 'questions');
     
-    if (answered = true)
+    if (answered ===   true)
     {
       let questionIds = items.map(item => (item.id));
 
@@ -319,8 +346,10 @@ class PostList {
     lastAnsweredBy.loginId = "e060f24a-bd81-4d65-877f-857f31f2cf31"
     answer["firstAnsweredBy"] = firstAnsweredBy;
     answer["lastAnsweredBy"] = lastAnsweredBy;
-    answer.firstAnsweredOn = Date.now();
-    answer.lastAnsweredOn = Date.now();
+    var date = new Date();
+    var timestamp = Math.floor(date.getTime()/1000.0);
+    answer.firstAnsweredOn = timestamp;
+    answer.lastAnsweredOn = timestamp;
     await this.questionDao.addAnswer(answer)
     res.send('ok')
   }
@@ -339,7 +368,9 @@ class PostList {
       answer.lastAnsweredBy.name = "Nth Opinion"
       answer.lastAnsweredBy.loginId = "e060f24a-bd81-4d65-877f-857f31f2cf31"
     }
-    answer.lastAnsweredOn = Date.now();
+    var date = new Date();
+    var timestamp = Math.floor(date.getTime()/1000.0);
+    answer.lastAnsweredOn = timestamp;
     await this.questionDao.editAnswer(answer)
     res.send('ok')
   }
