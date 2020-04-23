@@ -22,6 +22,10 @@ class PostDao {
       questionContainerId: questionContainerId,
       answerContainerId: answerContainerId
     }
+    this.containerIds = {
+      questionContainerId: questionContainerId,
+      answerContainerId: answerContainerId
+    }
 
     this.database = null
     this.containers = {}
@@ -46,6 +50,30 @@ class PostDao {
     debug('Setting up the container...done!')
   }
 
+  async changeQnAcontainer(language){
+      if (language === 'English')
+      {
+        this.collections.questionContainerId = this.containerIds.questionContainerId
+        this.collections.answerContainerId = this.containerIds.answerContainerId
+      }
+      else {
+        this.collections.questionContainerId = this.containerIds.questionContainerId + "_" + language
+        this.collections.answerContainerId = this.containerIds.answerContainerId + "_" + language
+      }
+    debug('Setting up the container...')
+    const qResponse = await this.database.containers.createIfNotExists({
+      id: this.collections.questionContainerId
+    })
+    this.containers.questions = qResponse.container
+    const aResponse = await this.database.containers.createIfNotExists({
+      id: this.collections.answerContainerId
+    })
+    this.containers.answers = aResponse.container
+    debug('Setting up the container...done!')
+      return 'ok'
+  }
+
+
   async find (querySpec, containerName) {
     debug('Querying for items from the database')
     const container = this.containers[containerName]
@@ -60,7 +88,9 @@ class PostDao {
   async addItem (item, containerName) {
     debug('Adding an item to the database')
     const container = this.containers[containerName]
-    item.date = Date.now()
+    var date = new Date();
+    var timestamp = Math.floor(date.getTime()/1000.0);
+    item.date = timestamp;
     console.log(JSON.stringify(item))
     const uuid = require("uuid");
     item.id = uuid.v4();
@@ -75,8 +105,11 @@ class PostDao {
   async addItems (items, containerName) {
     debug('Adding an item to the database')
     const container = this.containers[containerName]
+    var date = new Date();
+    var timestamp = Math.floor(date.getTime()/1000.0);
+
     Promise.all(items.map(async (item) => {
-      item.date = Date.now()
+      item.date = timestamp
       item.answered = !!(item.answers)
       const { resource: doc } = await container.items.create(item)
     }))

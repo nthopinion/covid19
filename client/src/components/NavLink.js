@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react';
+import { bindActionCreators } from 'redux';
 import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
 import styles from '../styles/NavLink.css';
+import {changeLanguage} from '../actions';
+
 import LanguageSelector from './LanguageSelector';
 
 class NavMenu extends Component {
@@ -41,8 +44,15 @@ class NavMenu extends Component {
     }
   }
 
+  handleChangeLanguage = (language) => {
+    return() => this.prop.changeLanguage(language);
+  };
+
+
+
+
   render() {
-    const { t } = this.props;
+    const { t, handleChangeLanguage } = this.props;
     return (
       <div>
         <Button id="menu" className="ui icon button" onClick={this.showmenu}>
@@ -61,7 +71,7 @@ class NavMenu extends Component {
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
-                      href="https://about.askco19.com/#lp-pom-block-118"
+                      href="https://www.askco19.com/"
                     >
                       {t('navLink:about')}
                     </a>
@@ -70,7 +80,7 @@ class NavMenu extends Component {
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
-                      href="https://about.askco19.com/contributors"
+                      href="https://www.askco19.com/contributors"
                     >
                       {t('navLink:getInvolved')}
                     </a>
@@ -79,7 +89,7 @@ class NavMenu extends Component {
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
-                      href="https://about.askco19.com/sponsors"
+                      href="https://www.askco19.com/sponsors"
                     >
                       {t('navLink:ourSponsors')}
                     </a>
@@ -88,7 +98,7 @@ class NavMenu extends Component {
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
-                      href="https://video.askco19.com/dxyopencourse/"
+                      href="https://www.askco19.com/dxyopencourse/"
                     >
                       {t('navLink:partners')}
                     </a>
@@ -102,14 +112,14 @@ class NavMenu extends Component {
                       {t('navLink:contactUs')}
                     </a>
                   </li>
-                  <li>
+{/*                   <li>
                     <span rel="noopener noreferrer">
                       {t('navLink:language')}
                     </span>
                     <div>
-                      <LanguageSelector className="sidebar-language-dropdown" />
+                      <LanguageSelector className="sidebar-language-dropdown" handleChangeLanguage={this.handleChangeLanguage}/>
                     </div>
-                  </li>
+                  </li> */}
 
                   <div>
                     {this.props.account ? (
@@ -141,4 +151,11 @@ class NavMenu extends Component {
   }
 }
 
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      changeLanguage,
+    },
+    dispatch
+  );
 export default withTranslation()(withRouter(NavMenu));
