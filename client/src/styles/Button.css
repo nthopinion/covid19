@@ -10,6 +10,12 @@
   padding-right: 1.3em;
 }
 
+.televideo-button-group {
+  position: relative;
+  cursor: pointer;
+  padding-right: 1.3em;
+}
+
 @keyframes click-flag {
   from {
     fill: #333333;
@@ -103,8 +109,8 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.13);
     border-radius: 5px;
     background-color: #ffffff;
-    right: 3.2em;
-    bottom: 0;
+    right: 0.8em;
+    bottom: 0.7em;
     /*top: 25em*/
   }
 
@@ -134,7 +140,7 @@
   .share-button {
     position: relative;
     cursor: pointer;
-    padding-right: 4em;
+    padding-right: 1.5em;
   }
 }
 
