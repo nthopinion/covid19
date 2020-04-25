@@ -6,7 +6,7 @@ class TelevideoButton extends React.Component {
     return (
       <div className="televideo-button-group">
         <a
-          href="https://ai-passion.appspot.com/"
+          href="https://2key.me/MakeAppointmentCovid19GlobalContactTracingTriageByTelemedicine/BnG3h"
           target="_blank"
           rel="noopener noreferrer"
           className="active item"
