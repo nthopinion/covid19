@@ -24,6 +24,8 @@ namespace Covid19DbMigration.NewDataModel
         public List<string> Attachments { get; set; }
         [JsonProperty(PropertyName = "tags")]
         public List<string> Tags { get; set; }
+        [JsonProperty(PropertyName = "images")]
+        public List<string> Images { get; set; }
         [JsonProperty(PropertyName = "firstAnsweredOn")]
         public long FirstAnsweredOn { get; set; }
         [JsonProperty(PropertyName = "firstAnsweredBy")]

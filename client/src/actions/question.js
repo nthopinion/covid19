@@ -12,11 +12,11 @@ import {
   FETCH_ALL_UNANSWERED_QUESTION,
   DISMISS_MESSAGE,
   LIKE_QUESTION_SUCCESS,
+  LIKE_ANSWER_SUCCESS,
   SET_ANSWERS_BY_QUESTION,
   NEW_QUESTION_ANSWERED,
   DELETE_ANSWERED_QUESTION_SUCCESS,
   DELETE_UNANSWERED_QUESTION_SUCCESS,
-  CHANGE_LANGUAGE,
 } from '../constants/ActionTypes';
 
 import config from '../config';
@@ -135,14 +135,14 @@ export const handleNewQuestionAnswered = (question) => (dispatch) => {
 };
 
 export const changeLanguage = (selectLanguage) => {
-  let lang = selectLanguage;
+  const lang = selectLanguage;
   return (dispatch) => {
-    return fetch(`${config.domainURL}/api/changeLanguage`,{
+    return fetch(`${config.domainURL}/api/changeLanguage`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        'language': lang,
+        language: lang,
       },
       body: JSON.stringify({ language: lang }),
     })
@@ -231,6 +231,16 @@ export const increaseLike = (qId, idx) => {
   };
 };
 
+export const increaseAnswerLike = (questionId, answerId) => {
+  return (dispatch) => {
+    return dispatch({
+      type: LIKE_ANSWER_SUCCESS,
+      questionId,
+      answerId,
+    });
+  };
+};
+
 export const clickLikeQuestion = (qId, idx) => {
   let likeItems = localStorage.getItem('likeItems');
   likeItems = likeItems ? JSON.parse(likeItems) : {};
@@ -252,4 +262,19 @@ export const clickLikeQuestion = (qId, idx) => {
   };
 };
 
-
+export const handleAnswerLike = (questionId, answerId) => {
+  return (dispatch) => {
+    return fetch(`${config.domainURL}/api/answer/like`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ id: answerId }),
+    })
+      .then(() => dispatch(increaseAnswerLike(questionId, answerId)))
+      .catch(() => {
+        // dispatch(addQuestionFailure(error));
+      });
+  };
+};

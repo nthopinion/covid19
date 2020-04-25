@@ -31,4 +31,3 @@ steps:
     pathtoPublish: '$(Build.SourcesDirectory)/result.zip' 
     artifactName: 'drop' 
   displayName: 'upload artifacts'   
-  
