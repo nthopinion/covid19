@@ -46,7 +46,8 @@ class PhysicianView extends Component {
               <a
                 href="https://ai-passion.appspot.com/"
                 target="_blank"
-                class="active item"
+                rel="noopener noreferrer"
+                className="active item"
               >
                 Televideo
               </a>
