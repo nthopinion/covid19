@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react';
 import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
-import LanguageSelector from './LanguageSelector';
 import '../styles/NavLink.css';
 
 class NavMenu extends Component {
@@ -99,14 +98,6 @@ class NavMenu extends Component {
                     >
                       {t('navLink:contactUs')}
                     </a>
-                  </li>
-                  <li>
-                    <span rel="noopener noreferrer">
-                      {t('navLink:language')}
-                    </span>
-                    <div>
-                      <LanguageSelector className="sidebar-language-dropdown" />
-                    </div>
                   </li>
 
                   <div>
