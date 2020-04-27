@@ -27,6 +27,8 @@ namespace Covid19DbMigration.OldDataModel
 		public List<string> Links { get; set; }
 		[JsonProperty(PropertyName = "tags")]
 		public List<string> Tags { get; set; }
+		[JsonProperty(PropertyName = "images")]
+		public List<string> Images { get; set; }
 		[JsonProperty(PropertyName = "answered")]
 		public bool Answered { get; set; }
 		[JsonProperty(PropertyName = "like")]

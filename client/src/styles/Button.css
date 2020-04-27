@@ -10,6 +10,12 @@
   padding-right: 1.3em;
 }
 
+.televideo-button-group {
+  position: relative;
+  cursor: pointer;
+  padding-right: 1.3em;
+}
+
 @keyframes click-flag {
   from {
     fill: #333333;
@@ -30,7 +36,26 @@
   }
 }
 
-.like-button {
+@keyframes hover-twitter {
+  from {
+    fill: #333333;
+  }
+  to {
+    fill: #1da1f2;
+  }
+}
+
+@keyframes hover-facebook {
+  from {
+    fill: #333333;
+  }
+  to {
+    fill: #4267b2;
+  }
+}
+
+.button {
+  fill: #333333;
   display: inline-block;
   font-family: Roboto, sans-serif;
   font-style: normal;
@@ -43,7 +68,7 @@
   display: inline-block;
   animation-name: click-like;
   animation-duration: 300ms;
-  animation-fill-mode: forwards;
+  animation-fill-mode: both;
   font-family: Roboto, sans-serif;
   font-style: normal;
   font-weight: normal;
@@ -57,6 +82,114 @@
   animation-fill-mode: forwards;
 }
 
-/*.animate-share-color {*/
+/*.social-container {*/
+/*  float: right;*/
+/*  transition: height 500ms;*/
+/*}*/
 
+.ReactCollapse--collapse {
+  display: inline-block;
+  position: absolute;
+  transition: height 500ms;
+  /*animation-direction: reverse;*/
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.13);
+  border-radius: 5px;
+  background-color: #ffffff;
+  right: -3.2em;
+  bottom: 0;
+  /*top: 25em*/
+}
+
+@media only screen and (max-width: 768px) {
+  .ReactCollapse--collapse {
+    display: inline-block;
+    position: absolute;
+    transition: height 500ms;
+    /*animation-direction: reverse;*/
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.13);
+    border-radius: 5px;
+    background-color: #ffffff;
+    right: 0.8em;
+    bottom: 0.7em;
+    /*top: 25em*/
+  }
+
+  .button {
+    fill: #333333;
+    display: inline-block;
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  .like-button-group {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    /*padding-right: 2.5em;*/
+  }
+
+  .flag-button-group {
+    position: relative;
+    cursor: pointer;
+    /*padding-right: 1em;*/
+  }
+
+  .share-button {
+    position: relative;
+    cursor: pointer;
+    padding-right: 1.5em;
+  }
+}
+
+.share-button {
+  position: relative;
+  cursor: pointer;
+  padding-left: 0.8em;
+  padding-top: 0.1em;
+}
+
+.social-container-icons {
+  list-style-type: none;
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+  margin: 17px 7px;
+  padding: 0;
+}
+
+.twitter-icon {
+  cursor: pointer;
+  margin: 1px 1px;
+  fill: #333333;
+}
+
+.twitter-icon:hover {
+  animation-name: hover-twitter;
+  animation-duration: 300ms;
+  animation-fill-mode: both;
+  transition: width 2s, height 4s;
+}
+
+.facebook-icon {
+  cursor: pointer;
+  margin: 1px 1px;
+  fill: #333333;
+}
+
+.facebook-icon:hover {
+  animation-name: hover-facebook;
+  animation-duration: 300ms;
+  animation-fill-mode: both;
+  transition: width 2s, height 4s;
+}
+
+/*.social-container-icons.li {*/
+/*  margin: 12px;*/
+/*}*/
+
+/*div.social-container-icons {*/
+/*  */
 /*}*/
