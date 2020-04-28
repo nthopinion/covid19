@@ -213,7 +213,7 @@ class AnswerForm extends Component {
                   return (
                     <Form.TextArea
                       value={answer.text}
-                      placeholder="Tell us more about it again..."
+                      placeholder="Tell us more about it..."
                       onChange={(e, { value }) =>
                         this.handleUpdatedAnswerChange(e, { value }, q, index)
                       }
