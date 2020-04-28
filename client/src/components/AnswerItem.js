@@ -144,8 +144,8 @@ const AnswerItem = (props) => {
 
         <div className="qPanelBottom">
           <div className="qTag">
-            {props.tags &&
-              props.tags.map((tag, index) => {
+            {props.answer.tags &&
+              props.answer.tags.map((tag, index) => {
                 return (
                   <Label color="blue" key={index}>
                     {tag}
@@ -160,7 +160,7 @@ const AnswerItem = (props) => {
                 color="red"
                 basic
                 title="report an issue"
-                onClick={() => props.handleReportIssue(props.answer)}
+                onClick={() => props.handleReportAnswer(props.answer)}
               />
               <LikeButton
                 onClick={() =>
