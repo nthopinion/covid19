@@ -77,6 +77,7 @@ function AnswerSource(props) {
         minLine={1}
         url={link}
         proxyUrl={config.corsProxyUrl}
+        loadSecureUrl
       />
     </div>
   );

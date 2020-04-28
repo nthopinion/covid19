@@ -18,3 +18,7 @@
 .answer-submission .ui.form textarea {
   margin-bottom: 0px;
 }
+.multiple-answers textarea {
+  margin: 10px 0px !important;
+  padding-bottom: 10px !important;
+}

@@ -12,6 +12,7 @@ import {
   FETCH_ALL_UNANSWERED_QUESTION,
   DISMISS_MESSAGE,
   LIKE_QUESTION_SUCCESS,
+  LIKE_ANSWER_SUCCESS,
   SET_ANSWERS_BY_QUESTION,
   NEW_QUESTION_ANSWERED,
   DELETE_ANSWERED_QUESTION_SUCCESS,
@@ -230,6 +231,16 @@ export const increaseLike = (qId, idx) => {
   };
 };
 
+export const increaseAnswerLike = (questionId, answerId) => {
+  return (dispatch) => {
+    return dispatch({
+      type: LIKE_ANSWER_SUCCESS,
+      questionId,
+      answerId,
+    });
+  };
+};
+
 export const clickLikeQuestion = (qId, idx) => {
   let likeItems = localStorage.getItem('likeItems');
   likeItems = likeItems ? JSON.parse(likeItems) : {};
@@ -245,6 +256,23 @@ export const clickLikeQuestion = (qId, idx) => {
       body: JSON.stringify({ id: qId }),
     })
       .then(() => dispatch(increaseLike(qId, idx)))
+      .catch(() => {
+        // dispatch(addQuestionFailure(error));
+      });
+  };
+};
+
+export const handleAnswerLike = (questionId, answerId) => {
+  return (dispatch) => {
+    return fetch(`${config.domainURL}/api/answer/like`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ id: answerId }),
+    })
+      .then(() => dispatch(increaseAnswerLike(questionId, answerId)))
       .catch(() => {
         // dispatch(addQuestionFailure(error));
       });

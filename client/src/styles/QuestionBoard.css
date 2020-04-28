@@ -83,7 +83,7 @@ body {
   width: 80%;
   height: 1px;
   background: rgba(0, 110, 170, 0.1);
-  margin: 30px auto;
+  margin: 15px auto;
 }
 .qTitle > span,
 .answeredByName > span {
@@ -158,4 +158,11 @@ body {
     margin-top: 200px !important;
     margin-left: 10px !important;
   }
+}
+
+.answer-metadata {
+  margin: 10px 0px;
+}
+.answer-metadata .bold {
+  font-weight: bold;
 }
