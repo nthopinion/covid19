@@ -69,6 +69,10 @@ class PatientBoard extends Component {
     this.props.handleAnswerLike(questionId, answerId);
   };
 
+  handleClickLike = (id, index) => {
+    return () => this.props.clickLikeQuestion(id, index);
+  };
+
   handleChangeLanguage = (language) => {
     this.props.changeLanguage(language);
   };
