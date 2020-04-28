@@ -208,19 +208,19 @@ class AnswerForm extends Component {
         {!this.state.submitted && !q.undeleted && (
           <>
             <Form>
-              {q.answers &&
+              {!this.props.showUnanswered && q.answers &&
                 q.answers.map((answer, index) => {
                   return (
                     <Form.TextArea
                       value={answer.text}
-                      placeholder="Tell us more about it..."
+                      placeholder="Tell us more about it again..."
                       onChange={(e, { value }) =>
                         this.handleUpdatedAnswerChange(e, { value }, q, index)
                       }
                     />
                   );
                 })}
-              {!this.props.showUnanswered && (
+              {(
                 <Form.TextArea
                   value={newAnswer}
                   className="multiple-answers"
