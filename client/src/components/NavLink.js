@@ -121,7 +121,7 @@ class NavMenu extends Component {
                     </div>
                   </li> */}
 
-                  <div>
+{/*                   <div>
                     {this.props.account ? (
                       <Button
                         onClick={this.props.onSignOut}
@@ -140,7 +140,7 @@ class NavMenu extends Component {
                         {t('navLink:logIn')}
                       </Button>
                     )}
-                  </div>
+                  </div> */}
                 </ul>
               </nav>
             </div>
