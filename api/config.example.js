@@ -5,6 +5,7 @@ config.key = '';
 config.databaseId = '';
 config.questionContainerId = '';
 config.answerContainerId = '';
+config.userContainerId = '';
 
 config.pusher = {
   appId: '',

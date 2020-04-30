@@ -66,6 +66,7 @@ export const msalApp = new UserAgentApplication({
     validateAuthority: false,
     postLogoutRedirectUri: window.location.origin,
     navigateToLoginRequestUrl: false,
+    
   },
   cache: {
     cacheLocation: 'sessionStorage',

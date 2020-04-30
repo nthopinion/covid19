@@ -8,6 +8,8 @@ import {
   GRAPH_SCOPES,
   GRAPH_REQUESTS,
 } from './auth-utils';
+import { applyMiddleware } from 'redux';
+import config from './config';
 
 // If you support IE, our recommendation is that you sign-in using Redirect APIs
 const useRedirectFlow = isIE();
@@ -20,6 +22,8 @@ export default (C) =>
 
       this.state = {
         account: null,
+        idToken: null,
+        authuser: null,
         error: null,
         emailMessages: null,
         graphProfile: null,
@@ -39,6 +43,18 @@ export default (C) =>
       });
     }
 
+    // eslint-disable-next-line class-methods-use-this
+    async verifyUser(idToken) {
+      return fetch(`${config.domainURL}/api/validateUser`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ jwt: idToken }),
+      }).then((response) => response.json());
+    }
+
     async onSignIn(redirect) {
       if (redirect) {
         return msalApp.loginRedirect(GRAPH_REQUESTS.LOGIN);
@@ -55,8 +71,30 @@ export default (C) =>
       if (loginResponse) {
         this.setState({
           account: loginResponse.account,
+          idToken: loginResponse.idToken.rawIdToken,
           error: null,
         });
+
+        const verifiedUser = await this.verifyUser(
+          loginResponse.idToken.rawIdToken
+        ).catch((error) => {
+          this.setState({
+            error: error.message,
+          });
+        });
+
+        if (verifiedUser.profilestatus === 'level 0') {
+          this.setState({
+            error:
+              'Thank you for signing up, It looks like your email is yet verified, please visit AskCo19.com to submit a Physician Registration. ',
+          });
+          msalApp.logout();
+        } else {
+          this.setState({
+            authuser: verifiedUser,
+            error: null,
+          });
+        }
 
         const tokenResponse = await this.acquireToken(
           GRAPH_REQUESTS.LOGIN
