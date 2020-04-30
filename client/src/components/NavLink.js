@@ -112,6 +112,15 @@ class NavMenu extends Component {
                       {t('navLink:contactUs')}
                     </a>
                   </li>
+                  <li>
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href="https://www.askco19.com/login"
+                    >
+                      {t('navLink:logIn')}
+                    </a>
+                  </li>
 {/*                   <li>
                     <span rel="noopener noreferrer">
                       {t('navLink:language')}
