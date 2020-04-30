@@ -14,17 +14,20 @@ class PostDao {
    * @param {string} databaseId
    * @param {string} questionContainerId
    * @param {string} answerContainerId
+   * @param {string} userContainerId
    */
-  constructor (cosmosClient, databaseId, questionContainerId, answerContainerId) {
+  constructor (cosmosClient, databaseId, questionContainerId, answerContainerId, userContainerId) {
     this.client = cosmosClient
     this.databaseId = databaseId
     this.collections = {
       questionContainerId: questionContainerId,
-      answerContainerId: answerContainerId
+      answerContainerId: answerContainerId,
+      userContainerId: userContainerId
     }
     this.containerIds = {
       questionContainerId: questionContainerId,
-      answerContainerId: answerContainerId
+      answerContainerId: answerContainerId,
+      userContainerId: userContainerId
     }
 
     this.database = null
@@ -47,6 +50,12 @@ class PostDao {
       id: this.collections.answerContainerId
     })
     this.containers.answers = aResponse.container
+    debug('Setting up the container...done!')
+    this.containers.users = qResponse.container
+    const uResponse = await this.database.containers.createIfNotExists({
+      id: this.collections.userContainerId
+    })
+    this.containers.users = uResponse.container
     debug('Setting up the container...done!')
   }
 
@@ -271,6 +280,74 @@ class PostDao {
     }
     return results
   }
+
+  async addUser (user) {
+    debug('Adding a user to the database')
+    const container = this.containers["users"]
+    const uuid = require("uuid");
+    user.id = uuid.v4();
+    const { resource: doc } = await container.items.create(user);
+
+    return doc
+  }
+
+  async editUser (user) {
+    debug('Update a user in the database', user, user.id)
+    const doc = await this.getItem(user.id, "users");
+    doc.npiidentifier = user.xnpiidentifier;
+    doc.role = user.role;
+    doc.country = user.country;
+    doc.profilelink = user.profilelink;
+    doc.anonymous = user.anonymous;
+    doc.profilestatus = "level 0";
+    if (user.role.toLowerCase() !== "other")
+    {
+      user.profilestatus = "level 1";
+    }    
+    doc.email = user.email;
+    const { resource: replaced } = await this.containers.users
+      .item(doc.id)
+      .replace(doc)
+    return replaced
+  }
+
+  async deleteUser (userId) {
+    debug('Delete an item from the database', userId);
+    const container = this.containers["users"];
+    const result = await container.item(userId).delete();
+    console.log(result);
+    return result
+  }
+
+  async getUser (email) 
+  {
+    debug('Getting the user from the database')
+    const querySpec = {
+      query: "SELECT * from c WHERE c.email = @email",
+      parameters: [
+        {
+          name: '@email',
+          value: email
+        }
+      ]
+    };
+    const results = await this.find(querySpec, "users");
+    var user =  undefined;
+    if (results[0] !== undefined)
+    {
+      user =  results[0];
+    }
+    return user
+  }
+
+  async updatesignintime (user) {
+    debug('Update a user in the database', user, user.id)
+    const { resource: replaced } = await this.containers.users
+      .item(user.id)
+      .replace(user)
+    return replaced
+  }
+    
 }
 
 module.exports = PostDao
