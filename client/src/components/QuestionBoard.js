@@ -6,6 +6,10 @@ import CardLeftPanel from './CardLeftPanel';
 import '../styles/QuestionBoard.css';
 import config from '../config';
 
+import LikeButton from './LikeButton';
+import FlagButton from './FlagButton';
+import ShareButton from './ShareButton';
+
 export default class QuestionBoard extends Component {
   constructor(props) {
     super(props);
@@ -17,9 +21,13 @@ export default class QuestionBoard extends Component {
     this.handleSubmitReportIssue = this.handleSubmitReportIssue.bind(this);
   }
 
-  handleReportIssue = (answer) => {
+  handleReportAnswer= (answer) => {
     this.setState({ open: true, reportAnswer: answer });
   };
+
+  handleReportIssue(q) {
+    return () => this.setState({ open: true, reportQuestion: q });
+  }
 
   handleSubmitReportIssue = async () => {
     await this.reportAnswerFlag(this.state.reportAnswer);
@@ -65,13 +73,23 @@ export default class QuestionBoard extends Component {
                         answer={answer}
                         key={index}
                         question={question}
-                        handleReportIssue={this.handleReportIssue}
+                        handleReportAnswer={this.handleReportAnswer}
                         handleClickLike={this.props.handleClickLike}
                         handleAnswerLike={this.props.handleAnswerLike}
                       />
                     );
                   })}
                 </List>
+                <div className="qPanelBottom">
+                  <div className="buttonGroupCustom">
+                    <LikeButton
+                      onClick={this.props.handleClickLike(question.id, i)}
+                      likes={question.like || 0}
+                    />
+{/*                     <ShareButton question={question}/> */}
+                  </div>
+
+                </div>
               </Card>
             );
           })}

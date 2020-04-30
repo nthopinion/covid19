@@ -206,7 +206,7 @@ export const postQuestion = (title) => {
 
 export const deleteQuestion = (qId, idx, isUnanswered) => {
   return (dispatch) => {
-    return fetch(`${config.domainURL}/api/question`, {
+    return fetch(`${config.domainURL}/api/deleteQuestion`, {
       method: 'DELETE',
       headers: {
         Accept: 'application/json',
