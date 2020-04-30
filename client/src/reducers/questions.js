@@ -147,7 +147,7 @@ const questions = (state = initialState, action) => {
         unansweredQuestions,
       };
     case DELETE_ANSWERED_QUESTION_SUCCESS:
-      data = state.questions.map((question, index) => {
+       const answeredQuestions = state.questions.map((question, index) => {
         return {
           ...question,
           undeleted: index === action.qIdx,
@@ -156,8 +156,8 @@ const questions = (state = initialState, action) => {
 
       return {
         ...state,
-        questions: data,
-      };
+        answeredQuestions,
+      }; 
 
     default:
       return state;
