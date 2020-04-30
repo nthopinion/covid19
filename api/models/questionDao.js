@@ -1,6 +1,9 @@
 // @ts-check
+
+
 const CosmosClient = require('@azure/cosmos').CosmosClient
 const debug = require('debug')('questionList:questionDao')
+var uuid = require("express");
 
 // For simplicity we'll set a constant partition key
 const partitionKey = '0'
@@ -9,16 +12,23 @@ class PostDao {
    * Manages reading, adding, and updating Tasks in Cosmos DB
    * @param {CosmosClient} cosmosClient
    * @param {string} databaseId
-   * @param {string} containerId
+   * @param {string} questionContainerId
+   * @param {string} answerContainerId
    */
-  constructor (cosmosClient, databaseId, containerId) {
+  constructor (cosmosClient, databaseId, questionContainerId, answerContainerId) {
     this.client = cosmosClient
     this.databaseId = databaseId
-    this.collectionId = containerId
-    this.containerId = containerId
+    this.collections = {
+      questionContainerId: questionContainerId,
+      answerContainerId: answerContainerId
+    }
+    this.containerIds = {
+      questionContainerId: questionContainerId,
+      answerContainerId: answerContainerId
+    }
 
     this.database = null
-    this.container = null
+    this.containers = {}
   }
 
   async init () {
@@ -29,123 +39,237 @@ class PostDao {
     this.database = dbResponse.database
     debug('Setting up the database...done!')
     debug('Setting up the container...')
-    const coResponse = await this.database.containers.createIfNotExists({
-      id: this.collectionId
+    const qResponse = await this.database.containers.createIfNotExists({
+      id: this.collections.questionContainerId
     })
-    this.container = coResponse.container
+    this.containers.questions = qResponse.container
+    const aResponse = await this.database.containers.createIfNotExists({
+      id: this.collections.answerContainerId
+    })
+    this.containers.answers = aResponse.container
     debug('Setting up the container...done!')
   }
 
   async changeQnAcontainer(language){
       if (language === 'English')
       {
-        this.collectionId = this.containerId
+        this.collections.questionContainerId = this.containerIds.questionContainerId
+        this.collections.answerContainerId = this.containerIds.answerContainerId
       }
       else {
-        this.collectionId = this.containerId + "_" + language
+        this.collections.questionContainerId = this.containerIds.questionContainerId + "_" + language
+        this.collections.answerContainerId = this.containerIds.answerContainerId + "_" + language
       }
-      const coResponse = await this.database.containers.createIfNotExists({
-        id: this.collectionId
-      })
-      this.container = coResponse.container
+    debug('Setting up the container...')
+    const qResponse = await this.database.containers.createIfNotExists({
+      id: this.collections.questionContainerId
+    })
+    this.containers.questions = qResponse.container
+    const aResponse = await this.database.containers.createIfNotExists({
+      id: this.collections.answerContainerId
+    })
+    this.containers.answers = aResponse.container
+    debug('Setting up the container...done!')
       return 'ok'
   }
 
 
-  async find (querySpec) {
+  async find (querySpec, containerName) {
     debug('Querying for items from the database')
-    if (!this.container) {
+    const container = this.containers[containerName]
+    if (!container) {
       throw new Error('Collection is not initialized.')
     }
-    const { resources } = await this.container.items.query(querySpec).fetchAll()
+    const { resources } = await container.items.query(querySpec).fetchAll()
+    
     return resources
   }
 
-  async addItem (item) {
+  async addItem (item, containerName) {
     debug('Adding an item to the database')
-    item.date = Date.now()
-    item.answered = !!(item.answers)
-    const { resource: doc } = await this.container.items.create(item)
+    const container = this.containers[containerName]
+    var date = new Date();
+    var timestamp = Math.floor(date.getTime()/1000.0);
+    item.date = timestamp;
+    console.log(JSON.stringify(item))
+    const uuid = require("uuid");
+    item.id = uuid.v4();
+/*     if (item.id === undefined || item.id === "") {
+      item.id = uuid4();
+    } */
+    const { resource: doc } = await container.items.create(item, item.id)
+
     return doc
   }
 
-  async addItems (items) {
+  async addItems (items, containerName) {
     debug('Adding an item to the database')
+    const container = this.containers[containerName]
+    var date = new Date();
+    var timestamp = Math.floor(date.getTime()/1000.0);
+
     Promise.all(items.map(async (item) => {
-      item.date = Date.now()
+      item.date = timestamp
       item.answered = !!(item.answers)
-      const { resource: doc } = await this.container.items.create(item)
+      const { resource: doc } = await container.items.create(item)
     }))
     return 'ok'
   }
 
-  async updateItem (item) {
+  async updateQuestion (item, containerName) {
     debug('Update an item in the database', item, item.id)
-    const doc = await this.getItem(item.id)
+    const container = this.containers[containerName]
+    const doc = await this.getItem(item.id, containerName)
+    doc.title = item.title;
+    if (item.like !== undefined){
+      doc.like = item.like;
+    }
     debug('getting an item in the database', doc)
-    let answers = doc.answers || []
-    answers.concat((item.answers || []))
-    doc.answers = item.answers
-    doc.answered = !!(item.answers)
-    doc.sources = item.sources
-    doc.youtubeLinks = item.youtubeLinks
 
-    const { resource: replaced } = await this.container
-      .item(item.id)
-      .replace(doc)
-    return replaced
-  }
-  async editAnswers (item) {
-    debug('Update an item in the database', item, item.id)
-    const doc = await this.getItem(item.id)
-    debug('getting an item in the database', doc)
-    doc.answers = item.answers
-    doc.answered = !!(item.answers)
-
-    const { resource: replaced } = await this.container
+    const { resource: replaced } = await container
       .item(item.id)
       .replace(doc)
     return replaced
   }
 
-  async reportQuestion (itemId) {
+  async addAnswer (item) {
+    debug('Update an item in the database with new answer', item, item.id)
+    const querySpec = `select * from c where c.id = '${item.questionId}'`
+    const [ question ] = await this.find(querySpec, 'questions')
+    if (!question.answered) {
+      question.answered = !!(item)
+    }
+    item.like = 0;
+    item.flag = 0;
+    item.deleted = false;
+    const result = await this.addItem(item, 'answers')
+    debug('result', result)
+    question.answers.push(result.id)
+    const { resource: replaced } = await this.containers.questions
+      .item(question.id)
+      .replace(question)
+    return {question: replaced, answer: result}
+  }
+
+  async editAnswer (item) {
+    debug('Update an item in the database', item, item.id)
+    const { resource: replaced } = await this.containers.answers
+      .item(item.id)
+      .replace(item)
+    return replaced
+  }
+
+/*   async reportQuestion (itemId) {
     debug('likeIncrease an item in the database', itemId)
-    const doc = await this.getItem(itemId)
+    const doc = await this.getItem(itemId, 'questions')
     debug('likeIncrease an item in the database', doc)
 
     doc.flagIssue = (doc.flagIssue || 0) + 1
 
-    const { resource: replaced } = await this.container
+    const { resource: replaced } = await this.containers.questions
       .item(itemId)
       .replace(doc)
     return replaced
-  }
+  } */
 
-  async likeIncrease (itemId) {
-    debug('likeIncrease an item in the database', itemId)
-    const doc = await this.getItem(itemId)
-    debug('likeIncrease an item in the database', doc)
+  async updateLike (itemId, containerName) {
+    debug('updateLike an item in the database', itemId)
+    const container = this.containers[containerName]
+    const doc = await this.getItem(itemId, containerName)
+    debug('updateLike an item in the database', doc)
 
     doc.like = (doc.like || 0) + 1
 
-    const { resource: replaced } = await this.container
+    const { resource: replaced } = await container
       .item(itemId)
       .replace(doc)
     return replaced
   }
 
-  async getItem (itemId) {
+  async reportAnswer (itemId, containerName) {
+    debug('reportAnswer an item in the database', itemId)
+    const container = this.containers[containerName]
+    const doc = await this.getItem(itemId, containerName)
+    debug('reportAnswer an item in the database', doc)
+
+    doc.flag = (doc.flag || 0) + 1
+
+    const { resource: replaced } = await container
+      .item(itemId)
+      .replace(doc)
+    return replaced
+  }
+ 
+  async deleteAnswer (itemId, containerName) {
+    debug('deleteAnswer an item in the database', itemId)
+    const container = this.containers[containerName]
+    const doc = await this.getItem(itemId, containerName)
+    debug('deleteAnswer an item in the database', doc)
+
+    doc.deleted = true;
+    const { resource: replaced } = await container
+      .item(itemId)
+      .replace(doc)
+    return replaced
+  }
+ 
+  async getItem (itemId, containerName) 
+  {
     debug('Getting an item from the database')
-    const { resource } = await this.container.item(itemId).read()
-    return resource
+    const querySpec = {
+      query: "SELECT * from c WHERE c.id = @id",
+      parameters: [
+        {
+          name: '@id',
+          value: itemId
+        }
+      ]
+    };
+    const results = await this.find(querySpec, containerName);
+    const item =  results[0];
+    return item
   }
 
-  async deleteItem (itemId) {
+  // this doesn't work for me when trying to retrieve questions by id with the new container setup.
+/*  async getItem (itemId, partitionId, containerName) {
+    debug('Getting an item from the database')
+    const container = this.containers[containerName]
+    //const resp = await container.item(itemId).read()
+    const resp = await container.item(itemId, partitionId).read();
+    console.log(resp)
+    return resp
+  } */
+
+  async deleteItem (itemId, containerName) {
     debug('Delete an item from the database', itemId)
-    const doc = await this.getItem(itemId)
-    const result = await this.container.item(itemId).delete()
+    const container = this.containers[containerName]
+    const doc = await this.getItem(itemId, containerName)
+    const answers = await this.deleteAnswersfortheQuestion(itemId, "answers")
+    const result = await container.item(itemId, itemId).delete()
     console.log(result)
     return result
+  }
+
+  async deleteAnswersfortheQuestion (questionId, containerName) {
+    debug('Getting answers from the database')
+    const querySpec = {
+      query: "SELECT * from c WHERE c.questionId= @questionId",
+      parameters: [
+        {
+          name: '@questionId',
+          value: questionId
+        }
+      ]
+    };
+    const results = await this.find(querySpec, containerName);
+    const container = this.containers[containerName];
+    //results.array.forEach(answer => {
+    for (const answer of results){  
+      debug('Delete an item from the database', answer.id)
+      const result = await container.item(answer.id, questionId).delete()
+      console.log(result)
+    }
+    return results
   }
 }
 

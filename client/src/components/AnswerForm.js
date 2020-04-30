@@ -9,24 +9,28 @@ import {
   List,
   Label,
 } from 'semantic-ui-react';
+
 import { bindActionCreators } from 'redux';
+import { deleteQuestion, setQuestion, fetchQuestions } from '../actions';
+
 import AuthProvider from '../AuthProvider';
-import { deleteQuestion, setQuestion } from '../actions';
 import AnswerItem from './AnswerItem';
 import FileUpload from './FileUpload';
 import CardLeftPanel from './CardLeftPanel';
+
 import '../styles/QuestionBoard.css';
+
 import config from '../config';
 
 class AnswerForm extends Component {
   constructor(props) {
     super(props);
     const newQ = { ...props.q };
-    this.state = { q: newQ, idx: props.idx };
+    this.state = { q: newQ, idx: props.idx, newAnswer: '' };
   }
 
   postQuestionAnswer = (question) => {
-    const endpoint = this.props.showUnaswered
+    const endpoint = this.props.showUnanswered
       ? 'updateQuestion'
       : 'editAnswers';
     return fetch(`${config.domainURL}/api/${endpoint}`, {
@@ -39,6 +43,50 @@ class AnswerForm extends Component {
     })
       .then((response) => response)
       .catch((error) => console.log(error));
+  };
+
+  updateAnswers = async (payload) => {
+    const { q, newAnswer } = this.state;
+    const addAnswerEndpoint = 'addanswer';
+    const editAnswerEndpoint = 'editanswer';
+    let addAnswerPromise = [];
+    let editAnswerPromise = [];
+    let editedAnswers = [];
+
+    q.answers.forEach((answer) => {
+      if (answer.isEdited) {
+        const { isEdited, ...rest } = answer;
+        editedAnswers = [...editedAnswers, rest];
+      }
+    });
+
+    if (newAnswer) {
+      addAnswerPromise = [
+        fetch(`${config.domainURL}/api/${addAnswerEndpoint}`, {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ ...payload }),
+        }),
+      ];
+    }
+
+    editedAnswers.forEach((answer) => {
+      const promise = fetch(`${config.domainURL}/api/${editAnswerEndpoint}`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ...answer }),
+      });
+
+      editAnswerPromise = [...editAnswerPromise, promise];
+    });
+
+    return Promise.all([...addAnswerPromise, ...editAnswerPromise]);
   };
 
   // eslint-disable-next-line react/no-deprecated
@@ -56,7 +104,7 @@ class AnswerForm extends Component {
   }
 
   handleDeleteQuestion = (qId, idx) => {
-    const isUnanswered = this.props.showUnaswered;
+    const isUnanswered = this.props.showUnanswered;
 
     this.props.deleteQuestion(qId, idx, isUnanswered);
   };
@@ -67,10 +115,45 @@ class AnswerForm extends Component {
     setThisQuestion(question);
 
     history.push('/questionView');
-    // console.log(this.props)
+  };
+
+  handleUpdateAnswers = async (q) => {
+    try {
+      const payload = {
+        questionId: q.id,
+        text: this.state.newAnswer,
+      };
+
+      await this.updateAnswers(payload);
+
+      this.setState(
+        {
+          submitted: true,
+          // [`newAnswers${q.id}`]: updatedQuestion.answers,
+        },
+        async () => {
+          await this.props.fetchQuestions();
+
+          const newQ = { ...this.props.q };
+          this.setState({
+            submitted: false,
+            q: newQ,
+            idx: this.props.idx,
+            newAnswer: '',
+          });
+        }
+      );
+    } catch (err) {
+      // TODO: Handle errors properly
+    }
   };
 
   handleSubmit = async (e, value, q) => {
+    if (!this.props.isUnanswered) {
+      this.handleUpdateAnswers(q);
+
+      return;
+    }
     const updatedQuestion = { ...q };
     updatedQuestion.answers = updatedQuestion.answers.filter(
       (a) => a && a.length > 0
@@ -90,21 +173,30 @@ class AnswerForm extends Component {
 
   handleUpdatedAnswerChange = (e, { value }, q, ansIdx) => {
     const qu = { ...q };
-    qu.answers[ansIdx] = value;
-    // const key = 'q_'+q.id;
+
+    qu.answers[ansIdx] = {
+      ...qu.answers[ansIdx],
+      text: value,
+      isEdited: true,
+    };
+
     this.setState({ q: qu });
-    // this.props.setAnswerForQuestion()
-    // await this.postQuestionAnswer(updatedQuestion)
-    // this.setState({ submitted: true, newAnswer: q})
+  };
+
+  handleNewAnswerChange = (e) => {
+    this.setState({
+      newAnswer: e.target.value,
+    });
   };
 
   render() {
-    const { q, idx } = this.state;
+    const { q, idx, newAnswer } = this.state;
     const metaData = q.flagIssue && (
       <Label as="a" color="red" tag>
         Report Issues: <span> {q.flagIssue}</span>
       </Label>
     );
+
     return (
       <Card className="qCard" key={idx} style={{ width: '100%' }}>
         <CardLeftPanel
@@ -116,18 +208,27 @@ class AnswerForm extends Component {
         {!this.state.submitted && !q.undeleted && (
           <>
             <Form>
-              {q.answers &&
-                q.answers.map((ans, ansIdx) => {
+              {!this.props.showUnanswered &&
+                q.answers &&
+                q.answers.map((answer, index) => {
                   return (
                     <Form.TextArea
-                      value={q.answers[ansIdx]}
+                      value={answer.text}
                       placeholder="Tell us more about it..."
                       onChange={(e, { value }) =>
-                        this.handleUpdatedAnswerChange(e, { value }, q, ansIdx)
+                        this.handleUpdatedAnswerChange(e, { value }, q, index)
                       }
                     />
                   );
                 })}
+              {
+                <Form.TextArea
+                  value={newAnswer}
+                  className="multiple-answers"
+                  placeholder="Tell us more about it..."
+                  onChange={this.handleNewAnswerChange}
+                />
+              }
               <div>
                 {false && <Icon name="attach" />}
                 {false && <FileUpload />}
@@ -193,6 +294,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       deleteQuestion,
+      fetchQuestions,
       setThisQuestion: setQuestion,
     },
     dispatch

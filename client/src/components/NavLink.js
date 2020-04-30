@@ -99,8 +99,17 @@ class NavMenu extends Component {
                       {t('navLink:contactUs')}
                     </a>
                   </li>
+                  <li>
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href="https://www.askco19.com/login"
+                    >
+                      {t('navLink:logIn')}
+                    </a>
+                  </li>
 
-                  <div>
+                  {/*                   <div>
                     {this.props.account ? (
                       <Button
                         onClick={this.props.onSignOut}
@@ -119,7 +128,7 @@ class NavMenu extends Component {
                         {t('navLink:logIn')}
                       </Button>
                     )}
-                  </div>
+                  </div> */}
                 </ul>
               </nav>
             </div>

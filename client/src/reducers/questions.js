@@ -11,6 +11,7 @@ import {
   FETCH_ALL_UNANSWERED_QUESTION,
   DISMISS_MESSAGE,
   LIKE_QUESTION_SUCCESS,
+  LIKE_ANSWER_SUCCESS,
   NEW_QUESTION_ANSWERED,
   DELETE_ANSWERED_QUESTION_SUCCESS,
   DELETE_UNANSWERED_QUESTION_SUCCESS,
@@ -105,6 +106,32 @@ const questions = (state = initialState, action) => {
         questions: newData,
         results: newData,
       };
+    case LIKE_ANSWER_SUCCESS:
+      const data = state.questions.map((question) => {
+        if (question.id === action.questionId) {
+          return {
+            ...question,
+            answers: question.answers.map((answer) => {
+              if (answer.id === action.answerId) {
+                return {
+                  ...answer,
+                  like: (answer.like || 0) + 1,
+                };
+              }
+
+              return answer;
+            }),
+          };
+        }
+
+        return question;
+      });
+
+      return {
+        ...state,
+        questions: data,
+        results: data,
+      };
     case DELETE_UNANSWERED_QUESTION_SUCCESS:
       const unansweredQuestions = state.unansweredQuestions.map(
         (question, index) => {
@@ -120,7 +147,7 @@ const questions = (state = initialState, action) => {
         unansweredQuestions,
       };
     case DELETE_ANSWERED_QUESTION_SUCCESS:
-      const data = state.questions.map((question, index) => {
+      const answeredQuestions = state.questions.map((question, index) => {
         return {
           ...question,
           undeleted: index === action.qIdx,
@@ -129,7 +156,7 @@ const questions = (state = initialState, action) => {
 
       return {
         ...state,
-        questions: data,
+        answeredQuestions,
       };
 
     default:

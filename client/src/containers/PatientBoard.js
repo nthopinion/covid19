@@ -14,6 +14,7 @@ import {
   setSearchTerm,
   postQuestion,
   clickLikeQuestion,
+  handleAnswerLike,
   handleNewQuestionAnswered,
   changeLanguage,
 } from '../actions';
@@ -64,6 +65,10 @@ class PatientBoard extends Component {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  handleAnswerLike = (questionId, answerId) => {
+    this.props.handleAnswerLike(questionId, answerId);
+  };
+
   handleClickLike = (id, index) => {
     return () => this.props.clickLikeQuestion(id, index);
   };
@@ -87,7 +92,7 @@ class PatientBoard extends Component {
       this.props.searchQuestions(this.props.questions, this.props.searchTerm);
     }, 500);
 
-/*     // submit question
+    /*     // submit question
     if (this.props.results.length !== 0) return;
     // var self = this
     if (
@@ -101,13 +106,13 @@ class PatientBoard extends Component {
         this.handleSubmitNewQuestion();
       }, 1000);
     }
- */  
+ */
   };
 
   handleSubmitNewQuestion = () => {
     this.props.postQuestion(this.props.searchTerm);
 
-    this.setState({ prevSearchTerm: this.props.searchTerm });
+    // this.setState({ prevSearchTerm: this.props.searchTerm });
     // dispatch(resetSearchResult());
     // dispatch(searchQuestions(this.props.questions, this.props.searchTerm))
   };
@@ -187,9 +192,7 @@ class PatientBoard extends Component {
                   </div>
                   <div className="board-link">
                     <Link to="/bIiOOIIqgwEXwUU3SaD0F9">
-                    {this.props.t(
-                      'patientBoard:addQuestion.areyouphysician'
-                    )}
+                      {this.props.t('patientBoard:addQuestion.areyouphysician')}
                     </Link>
                   </div>
                 </div>
@@ -199,6 +202,7 @@ class PatientBoard extends Component {
                 <div>
                   <QuestionBoard
                     handleClickLike={this.handleClickLike}
+                    handleAnswerLike={this.props.handleAnswerLike}
                     results={this.props.results}
                   />
 
@@ -254,6 +258,7 @@ const mapDispatchToProps = (dispatch) =>
       setSearchTerm,
       postQuestion,
       clickLikeQuestion,
+      handleAnswerLike,
       handleNewQuestionAnswered,
       changeLanguage,
     },
