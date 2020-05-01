@@ -70,7 +70,7 @@ export default (C) =>
 
       if (loginResponse) {
         this.setState({
-          account: loginResponse.account,
+          //account: loginResponse.account,
           idToken: loginResponse.idToken.rawIdToken,
           error: null,
         });
@@ -85,15 +85,11 @@ export default (C) =>
 
         if (verifiedUser.profilestatus === 'level 0') {
           msalApp.logout();
-/*           this.setState({
-            error:
-              'Thank you for signing up, It looks like your email is yet verified, please visit AskCo19.com to submit a Physician Registration. ',
-          });
- */          //msalApp.logout();
         } 
         else {
           this.setState({
             authuser: verifiedUser,
+            account: loginResponse.account,
             error: null,
           });
         }
@@ -221,6 +217,8 @@ export default (C) =>
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...this.props}
           account={this.state.account}
+          authuser={this.state.authuser}
+          idToken={this.state.idToken}
           emailMessages={this.state.emailMessages}
           error={this.state.error}
           graphProfile={this.state.graphProfile}
