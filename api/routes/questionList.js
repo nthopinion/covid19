@@ -3,6 +3,10 @@ const getUrls = require('get-urls');
 
 const QuestionDao = require('../models/questionDao')
 
+
+import { parseToken } from './common';
+import { answerContainerId } from '../config';
+
 /**
  * @swagger
  * definitions:
@@ -314,6 +318,12 @@ class PostList {
     let sources = [];
     let youtubeLinks = [];
     let answer = req.body;
+    let userData = parseToken(answer.jwt);
+
+    const userDetails = {
+      id: userData.id,
+      name: userData.anonymous ? userData.fullname : null
+    }
 
     const urls = getUrls(answer.text);
 
@@ -332,6 +342,8 @@ class PostList {
 
     return {
       ...answer,
+      userDetails,
+      country: userData.country,
       sources,
       youtubeLinks
     };
@@ -339,15 +351,10 @@ class PostList {
 
   async addAnswer (req, res) {
     const answer = this.parseAnswer(req)
-    var firstAnsweredBy = {}, lastAnsweredBy = {};
-    firstAnsweredBy.name = "Nth Opinion"
-    firstAnsweredBy.loginId = "e060f24a-bd81-4d65-877f-857f31f2cf31"
-    lastAnsweredBy.name = "Nth Opinion"
-    lastAnsweredBy.loginId = "e060f24a-bd81-4d65-877f-857f31f2cf31"
-    answer["firstAnsweredBy"] = firstAnsweredBy;
-    answer["lastAnsweredBy"] = lastAnsweredBy;
-    var date = new Date();
-    var timestamp = Math.floor(date.getTime()/1000.0);
+    answer["firstAnsweredBy"] = answer.userDetails;
+    answer["lastAnsweredBy"] = answer.userDetails;
+    let date = new Date();
+    let timestamp = Math.floor(date.getTime()/1000.0);
     answer.firstAnsweredOn = timestamp;
     answer.lastAnsweredOn = timestamp;
     await this.questionDao.addAnswer(answer)
@@ -356,20 +363,12 @@ class PostList {
 
   async editAnswer (req, res) {
     const answer = this.parseAnswer(req)
-    if (answer.lastAnsweredBy === undefined)
+    if (answer.lastAnsweredBy === undefined || answer.lastAnsweredBy != answer.userDetails.name)
     {
-      var lastAnsweredBy = {};
-      lastAnsweredBy.name = "Nth Opinion"
-      lastAnsweredBy.loginId = "e060f24a-bd81-4d65-877f-857f31f2cf31"
-      answer["lastAnsweredBy"] = lastAnsweredBy;
+      answer.lastAnsweredBy = answer.userDetails;
     }
-    else
-    {
-      answer.lastAnsweredBy.name = "Nth Opinion"
-      answer.lastAnsweredBy.loginId = "e060f24a-bd81-4d65-877f-857f31f2cf31"
-    }
-    var date = new Date();
-    var timestamp = Math.floor(date.getTime()/1000.0);
+    let date = new Date();
+    let timestamp = Math.floor(date.getTime()/1000.0);
     answer.lastAnsweredOn = timestamp;
     await this.questionDao.editAnswer(answer)
     res.send('ok')
