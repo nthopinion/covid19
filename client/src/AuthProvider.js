@@ -84,12 +84,14 @@ export default (C) =>
         });
 
         if (verifiedUser.profilestatus === 'level 0') {
-          this.setState({
+          msalApp.logout();
+/*           this.setState({
             error:
               'Thank you for signing up, It looks like your email is yet verified, please visit AskCo19.com to submit a Physician Registration. ',
           });
-          msalApp.logout();
-        } else {
+ */          //msalApp.logout();
+        } 
+        else {
           this.setState({
             authuser: verifiedUser,
             error: null,
