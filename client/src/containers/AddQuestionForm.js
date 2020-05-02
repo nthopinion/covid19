@@ -11,19 +11,28 @@ class AddQuestionForm extends Component {
     super(props);
     this.state = {
       showModal: false,
+      value: '',
     };
   }
 
   handleSubmit = async () => {
-    const { dispatch } = this.props;
+    const { t, dispatch } = this.props;
+
+    if (!this.state.value.trim()) {
+      this.setState({
+        error: t('patientBoard:addQuestion.questionRequired'),
+      });
+      return;
+    }
+
     await dispatch(postQuestion(this.state.value));
     this.setState({ value: '', showModal: false });
   };
 
-  handleChange = (e, { value }) => this.setState({ value });
+  handleChange = (e, { value }) => this.setState({ value, error: false });
 
   closeModal = () => {
-    this.setState({ showModal: false });
+    this.setState({ showModal: false, error: false });
   };
 
   openModal = () => {
@@ -62,6 +71,7 @@ class AddQuestionForm extends Component {
               <Form.TextArea
                 value={this.state.value}
                 onChange={this.handleChange}
+                error={this.state.error}
               />
               <div className="flex-container">
                 <Form.Button type="submit" color="blue">
