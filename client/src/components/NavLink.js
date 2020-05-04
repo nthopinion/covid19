@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react';
-import { bindActionCreators } from 'redux';
 import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
 import styles from '../styles/NavLink.css';
-import {changeLanguage} from '../actions';
-
-import LanguageSelector from './LanguageSelector';
 
 class NavMenu extends Component {
   constructor() {
@@ -44,15 +40,8 @@ class NavMenu extends Component {
     }
   }
 
-  handleChangeLanguage = (language) => {
-    return() => this.prop.changeLanguage(language);
-  };
-
-
-
-
   render() {
-    const { t, handleChangeLanguage } = this.props;
+    const { t } = this.props;
     return (
       <div>
         <Button id="menu" className="ui icon button" onClick={this.showmenu}>
@@ -121,35 +110,6 @@ class NavMenu extends Component {
                       {t('navLink:logIn')}
                     </a>
                   </li>
-{/*                   <li>
-                    <span rel="noopener noreferrer">
-                      {t('navLink:language')}
-                    </span>
-                    <div>
-                      <LanguageSelector className="sidebar-language-dropdown" handleChangeLanguage={this.handleChangeLanguage}/>
-                    </div>
-                  </li> */}
-
-{/*                   <div>
-                    {this.props.account ? (
-                      <Button
-                        onClick={this.props.onSignOut}
-                        className="logInlogOut"
-                      >
-                        {t('navLink:logOut')}
-                      </Button>
-                    ) : (
-                      <Button
-                        target="_blank"
-                        onClick={() =>
-                          this.props.history.push('/bIiOOIIqgwEXwUU3SaD0F9')
-                        }
-                        className="logInlogOut"
-                      >
-                        {t('navLink:logIn')}
-                      </Button>
-                    )}
-                  </div> */}
                 </ul>
               </nav>
             </div>
@@ -160,11 +120,4 @@ class NavMenu extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) =>
-  bindActionCreators(
-    {
-      changeLanguage,
-    },
-    dispatch
-  );
 export default withTranslation()(withRouter(NavMenu));
