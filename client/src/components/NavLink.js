@@ -14,17 +14,14 @@ class NavMenu extends Component {
     this.showmenu = this.showmenu.bind(this);
     this.WrapperRef = this.WrapperRef.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.hideMobileMenu = this.hideMobileMenu.bind(this);
   }
 
   componentDidMount() {
     document.addEventListener('mousedown', this.handleClick);
-    document.addEventListener('scroll', this.hideMobileMenu);
   }
 
   componentWillUnmount() {
     document.removeEventListener('mousedown ', this.handleClick);
-    document.addEventListener('scroll', this.hideMobileMenu);
   }
 
   WrapperRef(node) {
@@ -35,14 +32,6 @@ class NavMenu extends Component {
     this.setState({
       showMenu: !this.state.showMenu,
     });
-  }
-
-  hideMobileMenu() {
-    if (window.innerWidth < 480) {
-      this.setState({
-        showMenu: false,
-      });
-    }
   }
 
   handleClick(event) {
