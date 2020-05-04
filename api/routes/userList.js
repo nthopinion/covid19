@@ -1,8 +1,9 @@
 const Pusher = require('pusher');
 const getUrls = require('get-urls');
-const jose = require('jose');
 
 const UserDao = require('../models/questionDao')
+
+import { parseToken } from './common';
 
 const config = require('../config')
 
@@ -73,7 +74,7 @@ class UserList{
 
     async validateUser (req, res) {
       const jwtToken = req.body;
-      const user = this.parsetoken(jwtToken.jwt);
+      const user = parseToken(jwtToken.jwt);
       const verifiedUser = await this.userDao.getUser(user.email);
       user.profilestatus = "level 0";  //initializing the access
       if (verifiedUser !== undefined)
@@ -89,18 +90,6 @@ class UserList{
           await this.userDao.updatesignintime(user);
       }
       res.send(user);
-    }
-
-    parsetoken(jwtToken)
-    {
-      const item = jose.JWT.decode(jwtToken);
-      const user = new User();
-      user.profilestatus = "level 0";
-      user.fullname = item.given_name + " " + item.family_name;
-      user.b2cid = item.sub;
-      user.lastsignintime = item.auth_time;
-      user.email = item.emails[0];
-      return user;  
     }
 
     async addUser (req, res) {
