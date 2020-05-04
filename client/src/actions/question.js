@@ -17,7 +17,6 @@ import {
   NEW_QUESTION_ANSWERED,
   DELETE_ANSWERED_QUESTION_SUCCESS,
   DELETE_UNANSWERED_QUESTION_SUCCESS,
-  CHANGE_LANGUAGE,
 } from '../constants/ActionTypes';
 
 import config from '../config';
@@ -136,14 +135,14 @@ export const handleNewQuestionAnswered = (question) => (dispatch) => {
 };
 
 export const changeLanguage = (selectLanguage) => {
-  let lang = selectLanguage;
+  const lang = selectLanguage;
   return (dispatch) => {
-    return fetch(`${config.domainURL}/api/changeLanguage`,{
+    return fetch(`${config.domainURL}/api/changeLanguage`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        'language': lang,
+        language: lang,
       },
       body: JSON.stringify({ language: lang }),
     })
@@ -279,4 +278,3 @@ export const handleAnswerLike = (questionId, answerId) => {
       });
   };
 };
-
