@@ -1,10 +1,11 @@
+/* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
 import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
 import styles from '../styles/NavLink.css';
-import {changeLanguage} from '../actions';
+import { changeLanguage } from '../actions';
 
 import LanguageSelector from './LanguageSelector';
 
@@ -18,14 +19,17 @@ class NavMenu extends Component {
     this.showmenu = this.showmenu.bind(this);
     this.WrapperRef = this.WrapperRef.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.hideMenuMobileMenu = this.hideMenuMobileMenu.bind(this);
   }
 
   componentDidMount() {
     document.addEventListener('mousedown', this.handleClick);
+    document.addEventListener('scroll', this.hideMenuMobileMenu);
   }
 
   componentWillUnmount() {
     document.removeEventListener('mousedown ', this.handleClick);
+    document.addEventListener('scroll', this.hideMenuMobileMenu);
   }
 
   WrapperRef(node) {
@@ -38,6 +42,14 @@ class NavMenu extends Component {
     });
   }
 
+  hideMenuMobileMenu() {
+    if (window.innerWidth < 480) {
+      this.setState({
+        showMenu: false,
+      });
+    }
+  }
+
   handleClick(event) {
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
       this.showmenu();
@@ -45,11 +57,8 @@ class NavMenu extends Component {
   }
 
   handleChangeLanguage = (language) => {
-    return() => this.prop.changeLanguage(language);
+    return () => this.prop.changeLanguage(language);
   };
-
-
-
 
   render() {
     const { t, handleChangeLanguage } = this.props;
@@ -121,7 +130,7 @@ class NavMenu extends Component {
                       {t('navLink:logIn')}
                     </a>
                   </li>
-{/*                   <li>
+                  {/*                   <li>
                     <span rel="noopener noreferrer">
                       {t('navLink:language')}
                     </span>
@@ -130,7 +139,7 @@ class NavMenu extends Component {
                     </div>
                   </li> */}
 
-{/*                   <div>
+                  {/*                   <div>
                     {this.props.account ? (
                       <Button
                         onClick={this.props.onSignOut}
