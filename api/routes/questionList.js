@@ -322,7 +322,7 @@ class PostList {
 
     const userDetails = {
       id: userData.id,
-      name: userData.anonymous ? userData.fullname : null
+      name: userData.anonymous ? "Dr. Anonymous" : userData.fullname
     }
 
     const urls = getUrls(answer.text);
