@@ -7,8 +7,7 @@ import '../styles/QuestionBoard.css';
 import config from '../config';
 
 import LikeButton from './LikeButton';
-import FlagButton from './FlagButton';
-import ShareButton from './ShareButton';
+import TelevideoButton from './TelevideoButton';
 
 export default class QuestionBoard extends Component {
   constructor(props) {
@@ -21,7 +20,7 @@ export default class QuestionBoard extends Component {
     this.handleSubmitReportIssue = this.handleSubmitReportIssue.bind(this);
   }
 
-  handleReportAnswer= (answer) => {
+  handleReportAnswer = (answer) => {
     this.setState({ open: true, reportAnswer: answer });
   };
 
@@ -82,13 +81,13 @@ export default class QuestionBoard extends Component {
                 </List>
                 <div className="qPanelBottom">
                   <div className="buttonGroupCustom">
+                    <TelevideoButton />
                     <LikeButton
                       onClick={this.props.handleClickLike(question.id, i)}
                       likes={question.like || 0}
                     />
-{/*                     <ShareButton question={question}/> */}
+                    {/*                     <ShareButton question={question}/> */}
                   </div>
-
                 </div>
               </Card>
             );
