@@ -7,7 +7,6 @@ import '../styles/QuestionBoard.css';
 import config from '../config';
 
 import LikeButton from './LikeButton';
-import TelevideoButton from './TelevideoButton';
 
 export default class QuestionBoard extends Component {
   constructor(props) {
@@ -81,7 +80,6 @@ export default class QuestionBoard extends Component {
                 </List>
                 <div className="qPanelBottom">
                   <div className="buttonGroupCustom">
-                    <TelevideoButton />
                     <LikeButton
                       onClick={this.props.handleClickLike(question.id, i)}
                       likes={question.like || 0}
