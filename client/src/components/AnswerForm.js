@@ -26,7 +26,7 @@ class AnswerForm extends Component {
   constructor(props) {
     super(props);
     const newQ = { ...props.q };
-    this.state = { q: newQ, idx: props.idx, newAnswer: '' };
+    this.state = { q: newQ, idx: props.idx, newAnswer: '', idToken: props.userToken };
   }
 
   postQuestionAnswer = (question) => {
@@ -38,6 +38,7 @@ class AnswerForm extends Component {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
+        idToken: this.props.userToken,
       },
       body: JSON.stringify({ ...question }),
     })
@@ -67,6 +68,7 @@ class AnswerForm extends Component {
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
+            idToken: this.props.userToken,
           },
           body: JSON.stringify({ ...payload }),
         }),
@@ -79,6 +81,7 @@ class AnswerForm extends Component {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
+          idToken: this.props.userToken,
         },
         body: JSON.stringify({ ...answer }),
       });

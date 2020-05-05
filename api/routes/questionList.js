@@ -2,10 +2,11 @@ const Pusher = require('pusher');
 const getUrls = require('get-urls');
 
 const QuestionDao = require('../models/questionDao')
+const parseToken = require('./common');
+const User = require('./user');
 
-
-import { parseToken } from './common';
-import { answerContainerId } from '../config';
+//import { parseToken } from './common';
+//import { answerContainerId } from '../config';
 
 /**
  * @swagger
@@ -312,17 +313,19 @@ class PostList {
     res.send('ok')
   }
 
-  parseAnswer (req) {
+  async parseAnswer (req) {
     const youtubeRegex = /http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?/
 
     let sources = [];
     let youtubeLinks = [];
     let answer = req.body;
-    let userData = parseToken(answer.jwt);
+    let jwt = req.headers.idtoken;
+    let userData = parseToken(jwt);
+    let user = await this.questionDao.getUser(userData.email);
 
     const userDetails = {
-      id: userData.id,
-      name: userData.anonymous ? "Dr. Anonymous" : userData.fullname
+      id: user.id,
+      name: user.anonymous ? "Dr. Anonymous" : user.fullname
     }
 
     const urls = getUrls(answer.text);
@@ -350,7 +353,7 @@ class PostList {
   }
 
   async addAnswer (req, res) {
-    const answer = this.parseAnswer(req)
+    const answer = await this.parseAnswer(req)
     answer["firstAnsweredBy"] = answer.userDetails;
     answer["lastAnsweredBy"] = answer.userDetails;
     let date = new Date();
@@ -362,7 +365,7 @@ class PostList {
   }
 
   async editAnswer (req, res) {
-    const answer = this.parseAnswer(req)
+    const answer = await this.parseAnswer(req)
     if (answer.lastAnsweredBy === undefined || answer.lastAnsweredBy != answer.userDetails.name)
     {
       answer.lastAnsweredBy = answer.userDetails;
