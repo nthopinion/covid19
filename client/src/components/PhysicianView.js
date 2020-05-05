@@ -19,7 +19,12 @@ import Footer from './Footer';
 class PhysicianView extends Component {
   constructor(props) {
     super(props);
-    this.state = { showUnanswered: true };
+    this.state = {
+       showUnanswered: true, 
+       idToken: null,
+       authuser: null
+    }   
+    this.idToken = null;
   }
 
   componentDidMount() {
@@ -32,14 +37,19 @@ class PhysicianView extends Component {
   }
 
   render() {
-    return !this.props.account ? (
+    return !this.props.authuser ? (
       <PhysicianLogin onSignIn={this.props.onSignIn} />
     ) : (
       <>
         <NavMenu
           account={this.props.account}
           onSignOut={this.props.onSignOut}
+          idToken = {this.props.idToken}
         />
+        <div>
+              <a>Welcome {this.props.authuser.fullname}</a>
+        </div>  
+
         <div className="physician-view-container">
           <Menu secondary style={{ display: 'flex', flexDirection: 'column' }}>
             <div className="right menu" style={{ margin: '1rem 0' }}>
@@ -102,6 +112,7 @@ class PhysicianView extends Component {
                   this.props.unansweredQuestions.map((q, idx) => (
                     <AnswerForm
                       history={this.props.history}
+                      userToken={this.props.idToken}
                       q={q}
                       idx={idx}
                       showUnanswered={this.state.showUnanswered}
@@ -114,6 +125,7 @@ class PhysicianView extends Component {
                   this.props.questions.map((q, idx) => (
                     <AnswerForm
                       history={this.props.history}
+                      userToken={this.props.idToken}
                       q={q}
                       idx={idx}
                       showUnanswered={this.state.showUnanswered}

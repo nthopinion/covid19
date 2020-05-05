@@ -1,47 +1,14 @@
 const Pusher = require('pusher');
 const getUrls = require('get-urls');
-const jose = require('jose');
 
 const UserDao = require('../models/questionDao')
 
+const parseToken = require('./common');
+const User = require('./user');
+//import { parseToken } from './common';
+
 const config = require('../config')
 
-class User{
-      /**
-   * Manages reading, adding, and updating Tasks in Cosmos DB
-   * @param {string} id
-   * @param {Date} registeredon
-   * @param {string} npiidentifier
-   * @param {string} role
-   * @param {string} country
-   * @param {string} profilelink
-   * @param {string} anonymous
-   * @param {string} profilestatus
-   * @param {string} fullname
-   * @param {string} email
-   * @param {string} b2cid
-   * @param {Date} lastsignintime
-   */
-    constructor(){
-        this.id = null;
-        var date = new Date();
-        var timestamp = Math.floor(date.getTime()/1000.0);
-        this.registeredon =timestamp;
-        this.npiidentifier = "";
-        this.role = "";
-        this.country = "";
-        this.profilelink = "";
-        this.anonymous = true;
-        this.profilestatus = "level 0";
-        this.fullname = "";
-        this.email = "";
-        this.b2cid = "";
-        this.lastsignintime = null;
-        
-    }
-
-
-}
 
 class UserList{
   /**
@@ -73,7 +40,7 @@ class UserList{
 
     async validateUser (req, res) {
       const jwtToken = req.body;
-      const user = this.parsetoken(jwtToken.jwt);
+      const user = parseToken(jwtToken.jwt);
       const verifiedUser = await this.userDao.getUser(user.email);
       user.profilestatus = "level 0";  //initializing the access
       if (verifiedUser !== undefined)
@@ -91,17 +58,11 @@ class UserList{
       res.send(user);
     }
 
-    parsetoken(jwtToken)
-    {
-      const item = jose.JWT.decode(jwtToken);
-      const user = new User();
-      user.profilestatus = "level 0";
-      user.fullname = item.given_name + " " + item.family_name;
-      user.b2cid = item.sub;
-      user.lastsignintime = item.auth_time;
-      user.email = item.emails[0];
-      return user;  
+    async getUser (email) {
+      const user = await this.userDao.getUser(user.email);
+      return user;
     }
+
 
     async addUser (req, res) {
       // console.log('req' + JSON.stringify(req.body))
