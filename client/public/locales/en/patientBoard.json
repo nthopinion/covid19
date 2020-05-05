@@ -3,6 +3,7 @@
     "askAQuestion": "Ask a Medical Professional",
     "askADoctor": "Ask A Doctor",
     "newQuestion": "New Question",
+    "questionRequired": "Question can not be blank.",
     "areyouphysician": "Are you a physician?"
   },
   "stickyHeader": {

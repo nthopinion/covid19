@@ -7,6 +7,7 @@ import {
   GRAPH_ENDPOINTS,
   GRAPH_SCOPES,
   GRAPH_REQUESTS,
+  loginInfo,
 } from './auth-utils';
 import { applyMiddleware } from 'redux';
 import config from './config';
@@ -70,7 +71,6 @@ export default (C) =>
 
       if (loginResponse) {
         this.setState({
-          //account: loginResponse.account,
           idToken: loginResponse.idToken.rawIdToken,
           error: null,
         });
