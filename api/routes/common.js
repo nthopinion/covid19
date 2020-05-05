@@ -1,6 +1,7 @@
 const jose = require('jose');
+const User = require('./user');
 
-export const parseToken = (jwtToken) => {
+const parseToken = (jwtToken) => {
       const item = jose.JWT.decode(jwtToken);
       const user = new User();
       user.profilestatus = "level 0";
@@ -10,3 +11,5 @@ export const parseToken = (jwtToken) => {
       user.email = item.emails[0];
       return user;  
 };
+
+module.exports = parseToken;
