@@ -6,7 +6,7 @@ class TelevideoButton extends React.Component {
     return (
       <div className="televideo-button-group">
         <a
-          href="https://us02web.zoom.us/j/3276258888?pwd=KzdlTWZudDlvWmRaeFZ0bW51czdKdz09"
+          href="https://us02web.zoom.us/j/7517341111?pwd=Sjd2ZlgxWTl4R01MZTdzOSswZ1VuQT09"
           target="_blank"
           rel="noopener noreferrer"
           className="active item"
