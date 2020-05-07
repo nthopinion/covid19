@@ -82,36 +82,40 @@
   animation-fill-mode: forwards;
 }
 
-/*.social-container {*/
-/*  float: right;*/
-/*  transition: height 500ms;*/
-/*}*/
+.share-container {
+  position: relative;
+  padding-top: 22px;
+}
 
 .ReactCollapse--collapse {
   display: inline-block;
   position: absolute;
+  left: 5.4em;
   transition: height 500ms;
-  /*animation-direction: reverse;*/
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.13);
   border-radius: 5px;
   background-color: #ffffff;
-  right: -3.2em;
   bottom: 0;
-  /*top: 25em*/
 }
 
 @media only screen and (max-width: 768px) {
   .ReactCollapse--collapse {
     display: inline-block;
     position: absolute;
+    left: 3.4em;
     transition: height 500ms;
-    /*animation-direction: reverse;*/
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.13);
     border-radius: 5px;
     background-color: #ffffff;
-    right: 0.8em;
-    bottom: 0.7em;
-    /*top: 25em*/
+    bottom: 0;
+    /*display: inline-block;*/
+    /*position: absolute;*/
+    /*transition: height 500ms;*/
+    /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.13);*/
+    /*border-radius: 5px;*/
+    /*background-color: #ffffff;*/
+    /*right: 0.8em;*/
+    /*bottom: 0.7em;*/
   }
 
   .button {
