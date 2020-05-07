@@ -170,7 +170,7 @@ const AnswerItem = (props) => {
                 }
                 likes={props.answer.like || 0}
               />
-              {/* <ShareButton /> */}
+              <ShareButton question={props.question} answer={props.answer} />
             </div>
           </div>
         </div>
