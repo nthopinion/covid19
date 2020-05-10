@@ -1,6 +1,6 @@
 {
-  "showMore": "Show more",
-  "showLess": "Show less",
-  "answeredBy": "Answered By <0>{{firstAnsweredBy}}</0> on <1>{{firstAnsweredOn}}</1>",
-  "lastEditedBy": "Last Edited by <0>{{lastAnsweredBy}}</0> on <1>{{lastAnsweredOn}}</1>"
+  "showMore": "[hi-IN] Show more",
+  "showLess": "[hi-IN] Show less",
+  "answeredBy": "[hi-IN] Answered By <0>{{firstAnsweredBy}}</0> on <1>{{firstAnsweredOn}}</1>",
+  "lastEditedBy": "[hi-IN] Last Edited by <0>{{lastAnsweredBy}}</0> on <1>{{lastAnsweredOn}}</1>"
 }
