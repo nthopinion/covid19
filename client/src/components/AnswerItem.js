@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react';
+import { Trans, withTranslation } from 'react-i18next';
 import { ReactTinyLink } from 'react-tiny-link';
 import { List, Image, Label } from 'semantic-ui-react';
 
@@ -15,6 +16,19 @@ const PREVIEW_CHARS = 200;
 
 const AnswerItem = (props) => {
   const [expanded, setExpanded] = useState(false);
+  const { t } = props;
+  const firstAnsweredBy = props.answer.firstAnsweredBy
+    ? props.answer.firstAnsweredBy.name
+    : '';
+  const firstAnsweredOn = new Date(props.answer.firstAnsweredOn * 1000)
+    .toDateString()
+    .substring(4);
+  const lastAnsweredBy = props.answer.lastAnsweredBy
+    ? props.answer.lastAnsweredBy.name
+    : '';
+  const lastAnsweredOn = new Date(props.answer.lastAnsweredOn * 1000)
+    .toDateString()
+    .substring(4);
 
   return (
     <List.Item>
@@ -39,7 +53,7 @@ const AnswerItem = (props) => {
               </span>
               <br />
               <a onClick={() => setExpanded(!expanded)}>
-                Show {expanded ? 'less' : 'more'}
+                {expanded ? t('common:showLess') : t('common:showMore')}
               </a>
             </>
           ) : (
@@ -116,28 +130,29 @@ const AnswerItem = (props) => {
 
         <div className="answer-metadata">
           <div>
-            Answered By{' '}
-            <span className="bold">
-              {props.answer.firstAnsweredBy &&
-                props.answer.firstAnsweredBy.name}{' '}
-            </span>
-            on{' '}
-            <span className="bold">
-              {new Date(props.answer.firstAnsweredOn * 1000)
-                .toDateString()
-                .substring(4)}
-            </span>
+            <p>
+              <Trans
+                i18nKey="common:answeredBy"
+                firstAnsweredBy={firstAnsweredBy}
+                firstAnsweredOn={firstAnsweredOn}
+              >
+                <span className="bold">{{ firstAnsweredBy }}</span>
+                <span className="bold">{{ firstAnsweredOn }}</span>
+              </Trans>
+            </p>
           </div>
           {props.answer.lastAnsweredOn !== props.answer.firstAnsweredOn && (
             <div>
-              Last Edited by{' '}
-              <span className="bold">{props.answer.lastAnsweredBy.name}</span>{' '}
-              on{' '}
-              <span className="bold">
-                {new Date(props.answer.lastAnsweredOn * 1000)
-                  .toDateString()
-                  .substring(4)}
-              </span>
+              <p>
+                <Trans
+                  i18nKey="common:lastEditedBy"
+                  lastAnsweredBy={lastAnsweredBy}
+                  lastAnsweredOn={lastAnsweredOn}
+                >
+                  <span className="bold">{{ lastAnsweredBy }}</span>
+                  <span className="bold">{{ lastAnsweredOn }}</span>
+                </Trans>
+              </p>
             </div>
           )}
         </div>
@@ -176,4 +191,4 @@ const AnswerItem = (props) => {
     </List.Item>
   );
 };
-export default AnswerItem;
+export default withTranslation()(AnswerItem);
