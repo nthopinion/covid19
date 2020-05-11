@@ -15,7 +15,7 @@ const Footer = () => {
         <Trans i18nKey="patientBoard:footer">
           <br />
           <br />
-          <a href={disclaimerLink} />
+          <a href={disclaimerLink} target="_blank" rel="noopener noreferrer" />
         </Trans>
       </p>
     </div>
