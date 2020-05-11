@@ -31,11 +31,11 @@ class StickyHeader extends Component {
     return (
       <Sticky context={contextRef} className="sticky-container">
         <div className="sticky-top">
-          <img className="logo" src={logo} alt="Logo" />
+          <a href="https://www.askco19.com/">
+            <img className="logo" src={logo} alt="Logo" />
+          </a>
           <div>
-            <LanguageSelector
-              handleChangeLanguage={handleChangeLanguage}
-            />
+            <LanguageSelector handleChangeLanguage={handleChangeLanguage} />
             <SearchBar
               isLoading={isLoading}
               results={normalizeResults(results)}
