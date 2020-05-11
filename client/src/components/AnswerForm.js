@@ -211,7 +211,8 @@ class AnswerForm extends Component {
         {!this.state.submitted && !q.undeleted && (
           <>
             <Form>
-              {!this.props.showUnanswered && q.answers &&
+              {!this.props.showUnanswered &&
+                q.answers &&
                 q.answers.map((answer, index) => {
                   return (
                     <Form.TextArea
@@ -223,14 +224,14 @@ class AnswerForm extends Component {
                     />
                   );
                 })}
-              {(
+              {
                 <Form.TextArea
                   value={newAnswer}
                   className="multiple-answers"
                   placeholder="Tell us more about it..."
                   onChange={this.handleNewAnswerChange}
                 />
-              )}
+              }
               <div>
                 {false && <Icon name="attach" />}
                 {false && <FileUpload />}

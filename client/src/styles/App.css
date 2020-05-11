@@ -1,3 +1,5 @@
+@import './common/font.css';
+
 .vertical-grid {
   /* display: flex;
   flex-direction: column;
