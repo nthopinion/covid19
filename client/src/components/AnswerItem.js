@@ -5,6 +5,7 @@ import { List, Image, Label } from 'semantic-ui-react';
 
 import LikeButton from './LikeButton';
 import FlagButton from './FlagButton';
+import TelevideoButton from './TelevideoButton';
 import ShareButton from './ShareButton';
 
 import avatar from '../assets/images/askco-avatar.svg';
@@ -155,6 +156,7 @@ const AnswerItem = (props) => {
           </div>
           <div>
             <div className="buttonGroupCustom">
+              <TelevideoButton />
               <FlagButton
                 selected={props.answer.id === props.selected ? 1 : 0}
                 color="red"
