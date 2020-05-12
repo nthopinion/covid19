@@ -25,6 +25,8 @@ class FlagButton extends React.Component {
         selected: nextProps.selected,
       };
     }
+
+    return null;
   }
 
   render() {
