@@ -105,7 +105,7 @@ class NavMenu extends Component {
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
-                      href="https://www.askco19.com/login"
+                      href="https://qna.askco19.com/bIiOOIIqgwEXwUU3SaD0F9"
                     >
                       {t('navLink:logIn')}
                     </a>
