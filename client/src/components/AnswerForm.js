@@ -26,7 +26,12 @@ class AnswerForm extends Component {
   constructor(props) {
     super(props);
     const newQ = { ...props.q };
-    this.state = { q: newQ, idx: props.idx, newAnswer: '', idToken: props.userToken };
+    this.state = {
+      q: newQ,
+      idx: props.idx,
+      newAnswer: '',
+      idToken: props.userToken,
+    };
   }
 
   postQuestionAnswer = (question) => {
