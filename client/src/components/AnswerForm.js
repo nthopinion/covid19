@@ -198,7 +198,7 @@ class AnswerForm extends Component {
   };
 
   render() {
-    const { q, idx, newAnswer } = this.state;
+    const { q, idx, newAnswer, authuser } = this.state;
     const metaData = q.flagIssue && (
       <Label as="a" color="red" tag>
         Report Issues: <span> {q.flagIssue}</span>
@@ -221,6 +221,9 @@ class AnswerForm extends Component {
                 q.answers.map((answer, index) => {
                   return (
                     <Form.TextArea
+                      readOnly={
+                        authuser.profilestatus !== 'level 1' ? 'true' : 'false'
+                      }
                       value={answer.text}
                       placeholder="Tell us more about it..."
                       onChange={(e, { value }) =>
@@ -231,6 +234,9 @@ class AnswerForm extends Component {
                 })}
               {
                 <Form.TextArea
+                  readOnly={
+                    authuser.profilestatus !== 'level 1' ? 'true' : 'false'
+                  }
                   value={newAnswer}
                   className="multiple-answers"
                   placeholder="Tell us more about it..."
@@ -246,6 +252,9 @@ class AnswerForm extends Component {
             <Card.Content extra>
               <div className="ui three buttons">
                 <Button
+                  disabled={
+                    authuser.profilestatus !== 'level 1' ? 'true' : 'false'
+                  }
                   basic
                   color="green"
                   onClick={(e, { value }) => this.handleSubmit(e, { value }, q)}
