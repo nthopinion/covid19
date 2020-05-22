@@ -317,12 +317,21 @@ class PostList {
     let answer = req.body;
     let jwt = req.headers.idtoken;
     let userData = parseToken(jwt);
-    let user = await this.questionDao.getUser(userData.email);
+    let user = null;
+    try {
+      user = await this.questionDao.getUser(userData.email);
+    } catch (e) {
+      //TODO: log
+    }
+    let userDetails = null;
 
-    const userDetails = {
-      id: user.id,
-      name: user.anonymous ? "Dr. Anonymous" : user.fullname,
-    };
+    if (user) {
+      userDetails = {
+        id: user.id,
+        name: user.anonymous ? "Dr. Anonymous" : user.fullname,
+        verified: userData.profilestatus === "level 1" ? true : false,
+      };
+    }
 
     const urls = getUrls(answer.text);
 
@@ -349,7 +358,16 @@ class PostList {
   }
 
   async addAnswer(req, res) {
-    const answer = await this.parseAnswer(req);
+    let answer = {};
+    try {
+      answer = await this.parseAnswer(req);
+    } catch (e) {
+      // Todo:log error
+    }
+    if (!answer.userDetails || answer.userDetails.verified === false) {
+      res.status(406).send("Only verified physicians can provide answers");
+      return;
+    }
     answer["firstAnsweredBy"] = answer.userDetails;
     answer["lastAnsweredBy"] = answer.userDetails;
     let date = new Date();
@@ -361,7 +379,16 @@ class PostList {
   }
 
   async editAnswer(req, res) {
-    const answer = await this.parseAnswer(req);
+    let answer = {};
+    try {
+      answer = await this.parseAnswer(req);
+    } catch (e) {
+      // Todo:log error
+    }
+    if (!answer.userDetails || answer.userDetails.verified === false) {
+      res.status(406).send("Only verified physicians can provide answers");
+      return;
+    }
     if (
       answer.lastAnsweredBy === undefined ||
       answer.lastAnsweredBy != answer.userDetails.name
