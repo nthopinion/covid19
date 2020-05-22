@@ -1,0 +1,6 @@
+{
+  "showMore": "[DE] Show more",
+  "showLess": "[DE] Show less",
+  "answeredBy": "[DE] Answered By <0>{{firstAnsweredBy}}</0> on <1>{{firstAnsweredOn}}</1>",
+  "lastEditedBy": "[DE] Last Edited by <0>{{lastAnsweredBy}}</0> on <1>{{lastAnsweredOn}}</1>"
+}
