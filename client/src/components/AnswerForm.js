@@ -222,7 +222,7 @@ class AnswerForm extends Component {
                   return (
                     <Form.TextArea
                       readOnly={
-                        authuser.profilestatus !== 'level 1' ? 'true' : 'false'
+                        authuser && authuser.profilestatus !== 'level 1' ? 'true' : 'false'
                       }
                       value={answer.text}
                       placeholder="Tell us more about it..."
@@ -235,7 +235,7 @@ class AnswerForm extends Component {
               {
                 <Form.TextArea
                   readOnly={
-                    authuser.profilestatus !== 'level 1' ? 'true' : 'false'
+                    authuser && authuser.profilestatus !== 'level 1' ? 'true' : 'false'
                   }
                   value={newAnswer}
                   className="multiple-answers"
@@ -253,7 +253,7 @@ class AnswerForm extends Component {
               <div className="ui three buttons">
                 <Button
                   disabled={
-                    authuser.profilestatus !== 'level 1' ? 'true' : 'false'
+                    authuser && authuser.profilestatus !== 'level 1' ? 'true' : 'false'
                   }
                   basic
                   color="green"
