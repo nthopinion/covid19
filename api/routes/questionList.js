@@ -365,7 +365,7 @@ class PostList {
       // Todo:log error
     }
     if (!answer.userDetails || answer.userDetails.verified === false) {
-      res.status(406).send("Only verified physicians can provide answers");
+      res.status(403).send("Only verified physicians can provide answers");
       return;
     }
     answer["firstAnsweredBy"] = answer.userDetails;
@@ -386,7 +386,7 @@ class PostList {
       // Todo:log error
     }
     if (!answer.userDetails || answer.userDetails.verified === false) {
-      res.status(406).send("Only verified physicians can provide answers");
+      res.status(403).send("Only verified physicians can provide answers");
       return;
     }
     if (
