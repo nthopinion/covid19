@@ -20,10 +20,10 @@ class PhysicianView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-       showUnanswered: true, 
-       idToken: null,
-       authuser: null
-    }   
+      showUnanswered: true,
+      idToken: null,
+      authuser: null,
+    };
     this.idToken = null;
   }
 
@@ -44,11 +44,11 @@ class PhysicianView extends Component {
         <NavMenu
           account={this.props.account}
           onSignOut={this.props.onSignOut}
-          idToken = {this.props.idToken}
+          idToken={this.props.idToken}
         />
         <div>
-              <a>Welcome {this.props.authuser.fullname}</a>
-        </div>  
+          <a>Welcome {this.props.authuser.fullname}</a>
+        </div>
 
         <div className="physician-view-container">
           <Menu secondary style={{ display: 'flex', flexDirection: 'column' }}>
@@ -113,6 +113,7 @@ class PhysicianView extends Component {
                     <AnswerForm
                       history={this.props.history}
                       userToken={this.props.idToken}
+                      profileStatus={this.props.authuser.profilestatus}
                       q={q}
                       idx={idx}
                       showUnanswered={this.state.showUnanswered}
@@ -126,6 +127,7 @@ class PhysicianView extends Component {
                     <AnswerForm
                       history={this.props.history}
                       userToken={this.props.idToken}
+                      profileStatus={this.props.authuser.profilestatus}
                       q={q}
                       idx={idx}
                       showUnanswered={this.state.showUnanswered}
