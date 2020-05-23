@@ -329,7 +329,7 @@ class PostList {
       userDetails = {
         id: user.id,
         name: user.anonymous ? "Dr. Anonymous" : user.fullname,
-        verified: userData.profilestatus === "level 1" ? true : false,
+        verified: userData.profilestatus === "level 1",
       };
     }
 
