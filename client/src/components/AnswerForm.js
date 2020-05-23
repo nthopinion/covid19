@@ -200,9 +200,8 @@ class AnswerForm extends Component {
 
   render() {
     const { q, idx, newAnswer, userProfileStatus } = this.state;
-    const readOnly =
-      userProfileStatus && userProfileStatus !== 'level 1' ? true : false;
-    const disabled = readOnly;
+    const deactivate =
+      userProfileStatus && userProfileStatus !== 'level 0' ? true : false;
     const metaData = q.flagIssue && (
       <Label as="a" color="red" tag>
         Report Issues: <span> {q.flagIssue}</span>
@@ -225,7 +224,7 @@ class AnswerForm extends Component {
                 q.answers.map((answer, index) => {
                   return (
                     <Form.TextArea
-                      readOnly={readOnly}
+                      readOnly={deactivate}
                       value={answer.text}
                       placeholder="Tell us more about it..."
                       onChange={(e, { value }) =>
@@ -236,7 +235,7 @@ class AnswerForm extends Component {
                 })}
               {
                 <Form.TextArea
-                  readOnly={readOnly}
+                  readOnly={deactivate}
                   value={newAnswer}
                   className="multiple-answers"
                   placeholder="Tell us more about it..."
@@ -252,7 +251,7 @@ class AnswerForm extends Component {
             <Card.Content extra>
               <div className="ui three buttons">
                 <Button
-                  disabled={disabled}
+                  disabled={deactivate}
                   basic
                   color="green"
                   onClick={(e, { value }) => this.handleSubmit(e, { value }, q)}
@@ -260,7 +259,7 @@ class AnswerForm extends Component {
                   Submit
                 </Button>
                 <Button
-                  disabled={disabled}
+                  disabled={deactivate}
                   basic
                   color="red"
                   onClick={() => this.handleDeleteQuestion(q.id, idx)}
@@ -268,7 +267,7 @@ class AnswerForm extends Component {
                   Delete
                 </Button>
                 <Button
-                  disabled={disabled}
+                  disabled={deactivate}
                   basic
                   color="blue"
                   onClick={() => this.handleExpandQuestion(q)}
