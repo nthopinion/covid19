@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react';
+import { Link, withRouter } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
-import { withRouter } from 'react-router-dom';
+
 import styles from '../styles/NavLink.css';
 
 class NavMenu extends Component {
@@ -102,9 +103,9 @@ class NavMenu extends Component {
                     </a>
                   </li>
                   <li>
-                    <a rel="noopener noreferrer" href="/bIiOOIIqgwEXwUU3SaD0F9">
+                    <Link to="/bIiOOIIqgwEXwUU3SaD0F9">
                       {t('navLink:logIn')}
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </nav>
