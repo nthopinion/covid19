@@ -200,8 +200,7 @@ class AnswerForm extends Component {
 
   render() {
     const { q, idx, newAnswer, userProfileStatus } = this.state;
-    const deactivate =
-      userProfileStatus && userProfileStatus !== 'level 0' ? true : false;
+    const deactivate = userProfileStatus && userProfileStatus === 'level 0';
     const metaData = q.flagIssue && (
       <Label as="a" color="red" tag>
         Report Issues: <span> {q.flagIssue}</span>
