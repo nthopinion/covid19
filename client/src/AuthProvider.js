@@ -79,15 +79,11 @@ export default (C) =>
           });
         });
 
-        if (verifiedUser.profilestatus === 'level 0') {
-          msalApp.logout();
-        } else {
-          this.setState({
-            authuser: verifiedUser,
-            account: loginResponse.account,
-            error: null,
-          });
-        }
+        this.setState({
+          authuser: verifiedUser,
+          account: loginResponse.account,
+          error: null,
+        });
 
         const tokenResponse = await this.acquireToken(
           GRAPH_REQUESTS.LOGIN
