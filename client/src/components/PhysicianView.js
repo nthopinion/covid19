@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { withTranslation } from 'react-i18next';
 import { Menu, Button, Message, Grid } from 'semantic-ui-react';
 
 import '../styles/QuestionBoard.css';
@@ -55,16 +56,16 @@ class PhysicianView extends Component {
             {this.props.authuser.profilestatus === 'level 0' ? (
               <Message
                 color="yellow"
-                header={`Welcome, ${this.props.authuser.fullname}`}
-                content="You have been granted READ-ONLY access to rate, review, and flag
-    answers until your account has been verified. Please submit a
-    Physician Registration form if you have not already done so. Thank
-    you."
+                header={`${this.props.t('physicianView:welcome')} ${
+                  this.props.authuser.fullname
+                }`}
+                content={this.props.t('physicianView:unverifiedUserMessage')}
               />
             ) : (
               this.state.isMessageVisible && (
                 <Message color="green" onDismiss={this.handleDismissMessage}>
-                  Welcome, {this.props.authuser.fullname}
+                  {this.props.t('physicianView:welcome')}{' '}
+                  {this.props.authuser.fullname}
                 </Message>
               )
             )}
@@ -80,14 +81,14 @@ class PhysicianView extends Component {
                 rel="noopener noreferrer"
                 className="active item"
               >
-                Televideo
+                {this.props.t('physicianView:buttons.televideo')}
               </a>
             </div>
             <Menu.Menu position="right">
               {this.props.account && (
                 <Menu.Item
                   active
-                  name="logout"
+                  name={this.props.t('physicianView:buttons.logOut')}
                   onClick={this.props.onSignOut}
                 />
               )}
@@ -102,7 +103,7 @@ class PhysicianView extends Component {
                   onClick={() => this.handleToggleView(true)}
                   active={this.state.showUnanswered}
                 >
-                  Unanswered Questions
+                  {this.props.t('physicianView:buttons.unansweredQuestions')}
                 </Button>
                 <Button
                   basic
@@ -110,7 +111,7 @@ class PhysicianView extends Component {
                   onClick={() => this.handleToggleView(false)}
                   active={!this.state.showUnanswered}
                 >
-                  Answered Questions
+                  {this.props.t('physicianView:buttons.answeredQuestions')}
                 </Button>
               </Button.Group>
             )}
@@ -118,7 +119,7 @@ class PhysicianView extends Component {
           <section className="container">
             {this.props.error && (
               <Message negative>
-                <Message.Header>Sorry Something went wrong!</Message.Header>
+                <Message.Header></Message.Header>
                 <p>{this.props.error}</p>
               </Message>
             )}
@@ -181,7 +182,6 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AuthProvider(PhysicianView));
+export default withTranslation()(
+  connect(mapStateToProps, mapDispatchToProps)(AuthProvider(PhysicianView))
+);
