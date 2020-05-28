@@ -20,9 +20,8 @@ class PhysicianView extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isMessageVisible: true,
       showUnanswered: true,
-      idToken: null,
-      authuser: null,
     };
     this.idToken = null;
   }
@@ -36,6 +35,10 @@ class PhysicianView extends Component {
     this.setState({ showUnanswered });
   }
 
+  handleDismissMessage = () => {
+    this.setState({ isMessageVisible: false });
+  };
+
   render() {
     return !this.props.authuser ? (
       <PhysicianLogin onSignIn={this.props.onSignIn} />
@@ -46,9 +49,27 @@ class PhysicianView extends Component {
           onSignOut={this.props.onSignOut}
           idToken={this.props.idToken}
         />
-        <div>
-          <a>Welcome {this.props.authuser.fullname}</a>
-        </div>
+
+        <Grid centered columns={2} stackable>
+          <Grid.Column>
+            {this.props.authuser.profilestatus === 'level 0' ? (
+              <Message
+                color="yellow"
+                header={`Welcome, ${this.props.authuser.fullname}`}
+                content="You have been granted READ-ONLY access to rate, review, and flag
+    answers until your account has been verified. Please submit a
+    Physician Registration form if you have not already done so. Thank
+    you."
+              />
+            ) : (
+              this.state.isMessageVisible && (
+                <Message color="green" onDismiss={this.handleDismissMessage}>
+                  Welcome, {this.props.authuser.fullname}
+                </Message>
+              )
+            )}
+          </Grid.Column>
+        </Grid>
 
         <div className="physician-view-container">
           <Menu secondary style={{ display: 'flex', flexDirection: 'column' }}>
