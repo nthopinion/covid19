@@ -1,0 +1,11 @@
+{
+  "welcome": "Welcome, ",
+  "unverifiedUserMessage": "You have been granted READ-ONLY access to rate, review, and flag answers until your account has been verified. Please submit a Physician Registration form if you have not already done so. Thank you.",
+  "buttons": {
+    "answeredQuestions": "Answered Questions",
+    "unansweredQuestions": "Unanswered Questions",
+    "televideo": "Televideo",
+    "logOut": "Log out"
+  },
+  "errorMessage": "Sorry, something went wrong!"
+}
