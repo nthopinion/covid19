@@ -7,14 +7,10 @@ import {
   GRAPH_ENDPOINTS,
   GRAPH_SCOPES,
   GRAPH_REQUESTS,
-  loginInfo,
 } from './auth-utils';
-import { applyMiddleware } from 'redux';
 import config from './config';
 
-// If you support IE, our recommendation is that you sign-in using Redirect APIs
 const useRedirectFlow = isIE();
-// const useRedirectFlow = true;
 
 export default (C) =>
   class AuthProvider extends Component {
@@ -83,16 +79,11 @@ export default (C) =>
           });
         });
 
-        if (verifiedUser.profilestatus === 'level 0') {
-          msalApp.logout();
-        } 
-        else {
-          this.setState({
-            authuser: verifiedUser,
-            account: loginResponse.account,
-            error: null,
-          });
-        }
+        this.setState({
+          authuser: verifiedUser,
+          account: loginResponse.account,
+          error: null,
+        });
 
         const tokenResponse = await this.acquireToken(
           GRAPH_REQUESTS.LOGIN
