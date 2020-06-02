@@ -54,8 +54,11 @@ class NavMenu extends Component {
             <div
               className={`ui visible right demo vertical sidebar labeled icon menu ${styles.NavLink}`}
             >
+            <div onClick={this.showmenu} className="close-menu">
+                X
+            </div>
               <nav>
-                <ul>
+                <ul>                  
                   <li>
                     <a
                       target="_blank"
