@@ -324,7 +324,9 @@ class PostList {
       //TODO: log
     }
     let userDetails = null;
-
+    if(!user && userData){
+      user = userData; 
+    }
     if (user) {
       userDetails = {
         id: user.id,
