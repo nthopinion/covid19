@@ -324,14 +324,11 @@ class PostList {
       //TODO: log
     }
     let userDetails = null;
-    if(!user && userData){
-      user = userData; 
-    }
     if (user) {
       userDetails = {
         id: user.id,
         name: user.anonymous ? "Dr. Anonymous" : user.fullname,
-        verified: userData.profilestatus === "level 1",
+        verified: user.profilestatus === "level 1",
       };
     }
 
