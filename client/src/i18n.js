@@ -13,7 +13,7 @@ i18n
       loadPath: '/locales/{{lng}}/{{ns}}.json',
     },
     // string or array of namespaces to load
-    ns: ['navLink', 'patientBoard', 'about', 'physicianView'],
+    ns: ['common', 'navLink', 'patientBoard', 'physicianView'],
     defaultNS: 'patientBoard',
     // array of allowed languages
     // @toDo add other languages

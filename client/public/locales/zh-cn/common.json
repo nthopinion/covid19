@@ -1,0 +1,6 @@
+{
+  "showMore": "[zh-cn] Show more",
+  "showLess": "[zh-cn] Show less",
+  "answeredBy": "[zh-cn] Answered By <0>{{firstAnsweredBy}}</0> on <1>{{firstAnsweredOn}}</1>",
+  "lastEditedBy": "[zh-cn] Last Edited by <0>{{lastAnsweredBy}}</0> on <1>{{lastAnsweredOn}}</1>"
+}
