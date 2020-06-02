@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { withTranslation } from 'react-i18next';
 import { Menu, Button, Message, Grid } from 'semantic-ui-react';
 
 import '../styles/QuestionBoard.css';
@@ -20,9 +21,8 @@ class PhysicianView extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isMessageVisible: true,
       showUnanswered: true,
-      idToken: null,
-      authuser: null,
     };
     this.idToken = null;
   }
@@ -36,6 +36,10 @@ class PhysicianView extends Component {
     this.setState({ showUnanswered });
   }
 
+  handleDismissMessage = () => {
+    this.setState({ isMessageVisible: false });
+  };
+
   render() {
     return !this.props.authuser ? (
       <PhysicianLogin onSignIn={this.props.onSignIn} />
@@ -46,9 +50,27 @@ class PhysicianView extends Component {
           onSignOut={this.props.onSignOut}
           idToken={this.props.idToken}
         />
-        <div>
-          <a>Welcome {this.props.authuser.fullname}</a>
-        </div>
+
+        <Grid centered columns={2} stackable>
+          <Grid.Column>
+            {this.props.authuser.profilestatus === 'level 0' ? (
+              <Message
+                color="yellow"
+                header={`${this.props.t('physicianView:welcome')} ${
+                  this.props.authuser.fullname
+                }`}
+                content={this.props.t('physicianView:unverifiedUserMessage')}
+              />
+            ) : (
+              this.state.isMessageVisible && (
+                <Message color="green" onDismiss={this.handleDismissMessage}>
+                  {this.props.t('physicianView:welcome')}{' '}
+                  {this.props.authuser.fullname}
+                </Message>
+              )
+            )}
+          </Grid.Column>
+        </Grid>
 
         <div className="physician-view-container">
           <Menu secondary style={{ display: 'flex', flexDirection: 'column' }}>
@@ -59,14 +81,14 @@ class PhysicianView extends Component {
                 rel="noopener noreferrer"
                 className="active item"
               >
-                Televideo
+                {this.props.t('physicianView:buttons.televideo')}
               </a>
             </div>
             <Menu.Menu position="right">
               {this.props.account && (
                 <Menu.Item
                   active
-                  name="logout"
+                  name={this.props.t('physicianView:buttons.logOut')}
                   onClick={this.props.onSignOut}
                 />
               )}
@@ -81,7 +103,7 @@ class PhysicianView extends Component {
                   onClick={() => this.handleToggleView(true)}
                   active={this.state.showUnanswered}
                 >
-                  Unanswered Questions
+                  {this.props.t('physicianView:buttons.unansweredQuestions')}
                 </Button>
                 <Button
                   basic
@@ -89,7 +111,7 @@ class PhysicianView extends Component {
                   onClick={() => this.handleToggleView(false)}
                   active={!this.state.showUnanswered}
                 >
-                  Answered Questions
+                  {this.props.t('physicianView:buttons.answeredQuestions')}
                 </Button>
               </Button.Group>
             )}
@@ -97,7 +119,7 @@ class PhysicianView extends Component {
           <section className="container">
             {this.props.error && (
               <Message negative>
-                <Message.Header>Sorry Something went wrong!</Message.Header>
+                <Message.Header></Message.Header>
                 <p>{this.props.error}</p>
               </Message>
             )}
@@ -160,7 +182,6 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AuthProvider(PhysicianView));
+export default withTranslation()(
+  connect(mapStateToProps, mapDispatchToProps)(AuthProvider(PhysicianView))
+);
