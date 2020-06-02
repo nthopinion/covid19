@@ -119,7 +119,9 @@ class PhysicianView extends Component {
           <section className="container">
             {this.props.error && (
               <Message negative>
-                <Message.Header></Message.Header>
+                <Message.Header>
+                  {this.props.t('physicianView:errorMessage')}
+                </Message.Header>
                 <p>{this.props.error}</p>
               </Message>
             )}
