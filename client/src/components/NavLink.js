@@ -1,54 +1,70 @@
 import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react';
+import { Link, withRouter } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
-import { withRouter } from 'react-router-dom';
-import '../styles/NavLink.css';
+
+import styles from '../styles/NavLink.css';
 
 class NavMenu extends Component {
   constructor() {
     super();
-
     this.state = {
       showMenu: false,
     };
 
-    this.showMenu = this.showMenu.bind(this);
-    this.closeMenu = this.closeMenu.bind(this);
+    this.showmenu = this.showmenu.bind(this);
+    this.WrapperRef = this.WrapperRef.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  showMenu(event) {
-    event.preventDefault();
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClick);
+  }
 
-    this.setState({ showMenu: true }, () => {
-      document.addEventListener('click', this.closeMenu);
+  componentWillUnmount() {
+    document.removeEventListener('mousedown ', this.handleClick);
+  }
+
+  WrapperRef(node) {
+    this.wrapperRef = node;
+  }
+
+  showmenu() {
+    this.setState({
+      showMenu: !this.state.showMenu,
     });
   }
 
-  closeMenu() {
-    this.setState({ showMenu: false }, () => {
-      document.removeEventListener('click', this.closeMenu);
-    });
+  handleClick(event) {
+    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+      this.showmenu();
+    }
   }
 
   render() {
     const { t } = this.props;
     return (
       <div>
-        <Button id="menu" className="ui icon button" onClick={this.showMenu}>
+        <Button id="menu" className="ui icon button" onClick={this.showmenu}>
           {' '}
-          <i className="bars icon" onClick={this.showMenu} />
+          <i className="bars icon" onClick={this.showmenu} />
         </Button>
 
         {this.state.showMenu ? (
-          <div className="menu-wrapper">
-            <div className="ui visible right demo vertical sidebar labeled icon menu">
+          <div className="menu" ref={this.WrapperRef}>
+            <div
+              className={`ui visible right demo vertical sidebar labeled icon menu ${styles.NavLink}`}
+            >
+            <div onClick={this.showmenu} className="close-menu">
+                X
+            </div>
               <nav>
-                <ul>
+                <ul>                  
                   <li>
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
-                      href="https://about.askco19.com/#lp-pom-block-118"
+                      href="https://www.askco19.com/"
                     >
                       {t('navLink:about')}
                     </a>
@@ -57,27 +73,27 @@ class NavMenu extends Component {
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
-                      href="https://about.askco19.com/"
+                      href="https://www.askco19.com/contributors"
                     >
-                      {t('navLink:physicians')}
+                      {t('navLink:getInvolved')}
                     </a>
                   </li>
                   <li>
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
-                      href=" https://github.com/nthopinion/covid19/blob/master/README.md"
+                      href="https://www.askco19.com/sponsors"
                     >
-                      {t('navLink:developers')}
+                      {t('navLink:ourSponsors')}
                     </a>
                   </li>
                   <li>
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
-                      href="https://video.askco19.com/dxyopencourse/"
+                      href="https://www.askco19.com/dxyopencourse/"
                     >
-                      {t('navLink:videoCourse')}
+                      {t('navLink:partners')}
                     </a>
                   </li>
                   <li>
@@ -86,54 +102,15 @@ class NavMenu extends Component {
                       rel="noopener noreferrer"
                       href="https://nquestionblob.blob.core.windows.net/images/Full%20Disclaimer%20_%20Legal%20Information%20and%20Disclosures_%20Nth%20Opinion.pdf"
                     >
-                      {t('navLink:disclaimer')}
+                      {t('navLink:contactUs')}
                     </a>
                   </li>
-                  <div>
-                    {this.props.account ? (
-                      <Button
-                        onClick={this.props.onSignOut}
-                        className="logInlogOut"
-                      >
-                        {t('navLink:logOut')}
-                      </Button>
-                    ) : (
-                      <Button
-                        target="_blank"
-                        onClick={() =>
-                          this.props.history.push('/bIiOOIIqgwEXwUU3SaD0F9')
-                        }
-                        className="logInlogOut"
-                      >
-                        {t('navLink:logIn')}
-                      </Button>
-                    )}
-                  </div>
+                  <li>
+                    <Link to="/bIiOOIIqgwEXwUU3SaD0F9">
+                      {t('navLink:logIn')}
+                    </Link>
+                  </li>
                 </ul>
-                <div>
-                  <div>
-                    <Button
-                      id="sponsors"
-                      href="https://about.askco19.com/sponsors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {' '}
-                      {t('navLink:ourSponsors')}{' '}
-                    </Button>
-                  </div>
-                  <div>
-                    <Button
-                      id="contributors"
-                      href="https://about.askco19.com/contributors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {' '}
-                      {t('navLink:ourContributors')}{' '}
-                    </Button>
-                  </div>
-                </div>
               </nav>
             </div>
           </div>

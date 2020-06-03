@@ -1,8 +1,15 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react';
+import { Trans, withTranslation } from 'react-i18next';
 import { ReactTinyLink } from 'react-tiny-link';
 import { List, Image, Label, Button, Icon } from 'semantic-ui-react';
+
 import clockIcon from '../assets/images/clockIcon.png';
+
+import LikeButton from './LikeButton';
+import FlagButton from './FlagButton';
+import TelevideoButton from './TelevideoButton';
+import ShareButton from './ShareButton';
 
 import avatar from '../assets/images/askco-avatar.svg';
 
@@ -12,6 +19,19 @@ const PREVIEW_CHARS = 200;
 
 const AnswerItem = (props) => {
   const [expanded, setExpanded] = useState(false);
+  const { t } = props;
+  const firstAnsweredBy = props.answer.firstAnsweredBy
+    ? props.answer.firstAnsweredBy.name
+    : '';
+  const firstAnsweredOn = new Date(props.answer.firstAnsweredOn * 1000)
+    .toDateString()
+    .substring(4);
+  const lastAnsweredBy = props.answer.lastAnsweredBy
+    ? props.answer.lastAnsweredBy.name
+    : '';
+  const lastAnsweredOn = new Date(props.answer.lastAnsweredOn * 1000)
+    .toDateString()
+    .substring(4);
 
   return (
     <List.Item>
@@ -19,20 +39,14 @@ const AnswerItem = (props) => {
         <div className="answerTitle">
           <div className="answeredByName">
             <span1>A.</span1>
-            <span2>
-              {props.answer.firstAnsweredBy &&
-                props.answer.firstAnsweredBy.name}
-            </span2>
+            <span2>{firstAnsweredBy}</span2>
             <span3>
               <img src={clockIcon} alt="clock_icon" height="11" width="11" />
             </span3>
-            <span4>
-              Posted:{' '}
-              {new Date(props.answer.firstAnsweredOn).toLocaleDateString()}
-            </span4>
+            <span4>Posted: {firstAnsweredOn}</span4>
             <span5>
               Last Edited:{' '}
-              {new Date(props.answer.lastAnsweredOn).toLocaleDateString()}
+              {lastAnsweredOn}
             </span5>
           </div>
           <img
@@ -51,7 +65,7 @@ const AnswerItem = (props) => {
               </span>
               <br />
               <a onClick={() => setExpanded(!expanded)}>
-                Show {expanded ? 'less' : 'more'}
+                {expanded ? t('common:showLess') : t('common:showMore')}
               </a>
             </>
           ) : (
@@ -79,6 +93,7 @@ const AnswerItem = (props) => {
                     minLine={1}
                     url={link}
                     proxyUrl={config.corsProxyUrl}
+                    loadSecureUrl
                   />
                 )}
               </List.Content>
@@ -98,6 +113,7 @@ const AnswerItem = (props) => {
                     minLine={1}
                     url={source}
                     proxyUrl={config.corsProxyUrl}
+                    loadSecureUrl
                   />
                 )}
               </List.Content>
@@ -124,24 +140,25 @@ const AnswerItem = (props) => {
             );
           })}
 
-        {/* <div className="answer-metadata">
+        {props.answer.lastAnsweredOn !== props.answer.firstAnsweredOn && (
           <div>
-            Answered By:{' '}
-            {props.answer.firstAnsweredBy && props.answer.firstAnsweredBy.name}
+            <p>
+              <Trans
+                i18nKey="common:lastEditedBy"
+                lastAnsweredBy={lastAnsweredBy}
+                lastAnsweredOn={lastAnsweredOn}
+              >
+                <span className="bold">{{ lastAnsweredBy }}</span>
+                <span className="bold">{{ lastAnsweredOn }}</span>
+              </Trans>
+            </p>
           </div>
-          <div>
-            Posted:{' '}
-            {new Date(props.answer.firstAnsweredOn).toLocaleDateString()}
-          </div>
-          <div>
-            Edited: {new Date(props.answer.lastAnsweredOn).toLocaleDateString()}
-          </div>
-        </div> */}
+        )}
 
         <div className="qPanelBottom">
           <div className="qTag">
-            {props.tags &&
-              props.tags.map((tag, index) => {
+            {props.answer.tags &&
+              props.answer.tags.map((tag, index) => {
                 return (
                   <Label color="blue" key={index}>
                     {tag}
@@ -149,48 +166,23 @@ const AnswerItem = (props) => {
                 );
               })}
           </div>
-
           <div>
-            <div className="qPanelBottom-buttons-wrapper">
-              <Button as="div" labelPosition="right">
-                <Button
-                  color="red"
-                  onClick={() => {
-                    props.handleAnswerLike(props.question.id, props.answer.id);
-                  }}
-                >
-                  <Icon name="heart" />
-                  Like
-                </Button>
-                <Label as="a" basic color="red" pointing="left">
-                  {props.answer.like || 0}
-                </Label>
-              </Button>
-              <Button animated="vertical" color="twitter">
-                <a
-                  style={{ color: 'white' }}
-                  href={`https://twitter.com/intent/tweet?text=${
-                    props.question.title
-                  }%20Answer:%20${
-                    props.answer &&
-                    props.answer.text.length > 0 &&
-                    props.answer.text.slice(0, 50)
-                  }...%20at%20${`${config.domainURL}?qid=${props.answer.id}`}%20@thenthopinion`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button.Content visible>
-                    <Icon name="twitter" /> Tweet
-                  </Button.Content>
-                </a>
-              </Button>
-              <Button
-                icon="flag"
+            <div className="buttonGroupCustom">
+              <TelevideoButton />
+              <FlagButton
+                selected={props.answer.id === props.selected ? 1 : 0}
                 color="red"
                 basic
                 title="report an issue"
-                onClick={() => props.handleReportIssue(props.answer)}
+                onClick={() => props.handleReportAnswer(props.answer)}
               />
+              <LikeButton
+                onClick={() =>
+                  props.handleAnswerLike(props.question.id, props.answer.id)
+                }
+                likes={props.answer.like || 0}
+              />
+              <ShareButton question={props.question} answer={props.answer} />
             </div>
           </div>
         </div>
@@ -198,4 +190,4 @@ const AnswerItem = (props) => {
     </List.Item>
   );
 };
-export default AnswerItem;
+export default withTranslation()(AnswerItem);

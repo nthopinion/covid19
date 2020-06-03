@@ -1,22 +1,25 @@
 import React from 'react';
 
 import '../styles/Footer.css';
+import { withTranslation, Trans } from 'react-i18next';
 
 const Footer = () => {
   const disclaimerLink =
     'https://nquestionblob.blob.core.windows.net/images/' +
     'Full%20Disclaimer%20_%20Legal%20Information%20and%20Disclosures_%20Nth%20Opinion.pdf';
 
+  /* eslint-disable jsx-a11y/anchor-has-content */
   return (
-    <div className="footer">
-      <p>Powered by Nth Opinion. </p>
-      <p>AskCo19.com does not provide medical advice,</p>
+    <div className="footer-wrapper">
       <p>
-        diagnosis or treatment. See{' '}
-        <a href={disclaimerLink}>additional information.</a>
+        <Trans i18nKey="patientBoard:footer">
+          <br />
+          <br />
+          <a href={disclaimerLink} target="_blank" rel="noopener noreferrer" />
+        </Trans>
       </p>
     </div>
   );
 };
 
-export default Footer;
+export default withTranslation()(Footer);

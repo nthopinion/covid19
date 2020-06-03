@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Grid, Ref } from 'semantic-ui-react';
 import { withTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 import {
   fetchQuestions,
@@ -15,18 +16,19 @@ import {
   clickLikeQuestion,
   handleAnswerLike,
   handleNewQuestionAnswered,
+  changeLanguage,
 } from '../actions';
 
+import config from '../config';
 import '../styles/PatientBoard.css';
 
-import Options from '../components/Options';
-import QuestionBoard from '../components/QuestionBoard';
+import Footer from '../components/Footer';
 import StickyHeader from '../components/StickyHeader';
+import QuestionBoard from '../components/QuestionBoard';
+import HeaderWithLink from '../components/HeaderWithLink';
 import TranslationsSuspense from '../components/TranslationsSuspense';
 
-import config from '../config';
 import { normalizeResults } from '../helpers/normalizeResults';
-import Footer from '../components/Footer';
 
 class PatientBoard extends Component {
   constructor(props) {
@@ -67,6 +69,14 @@ class PatientBoard extends Component {
     this.props.handleAnswerLike(questionId, answerId);
   };
 
+  handleClickLike = (id, index) => {
+    return () => this.props.clickLikeQuestion(id, index);
+  };
+
+  handleChangeLanguage = (language) => {
+    this.props.changeLanguage(language);
+  };
+
   handleResultSelect = (e, { result }) => {
     this.props.searchQuestions(this.props.questions, result.title);
   };
@@ -82,7 +92,7 @@ class PatientBoard extends Component {
       this.props.searchQuestions(this.props.questions, this.props.searchTerm);
     }, 500);
 
-    // submit question
+    /*     // submit question
     if (this.props.results.length !== 0) return;
     // var self = this
     if (
@@ -96,12 +106,13 @@ class PatientBoard extends Component {
         this.handleSubmitNewQuestion();
       }, 1000);
     }
+ */
   };
 
   handleSubmitNewQuestion = () => {
     this.props.postQuestion(this.props.searchTerm);
 
-    this.setState({ prevSearchTerm: this.props.searchTerm });
+    // this.setState({ prevSearchTerm: this.props.searchTerm });
     // dispatch(resetSearchResult());
     // dispatch(searchQuestions(this.props.questions, this.props.searchTerm))
   };
@@ -130,9 +141,15 @@ class PatientBoard extends Component {
           handleKeyPress={this.handleKeyPress}
           account={this.props.account}
           onSignOut={this.props.onSignOut}
+          handleChangeLanguage={this.handleChangeLanguage}
         />
         <div className="containerDiv">
           <div className="banner clearfix">
+            <img
+              src="health-care.svg"
+              className="health-care"
+              alt="health-care"
+            />
             <div className="banner-text">
               {this.props.t('patientBoard:banner.text')}
             </div>
@@ -140,6 +157,12 @@ class PatientBoard extends Component {
               {this.props.t('patientBoard:banner.subText')}
             </div>
           </div>
+          <div className="header-with-link-wrapper">
+            <HeaderWithLink
+              buttonLabel={this.props.t('patientBoard:addQuestion.askADoctor')}
+            />
+          </div>
+
           {this.state.displayNewQuestion && (
             <div
               className="new-answers"
@@ -150,12 +173,31 @@ class PatientBoard extends Component {
           )}
           <Grid centered columns={2} stackable>
             <Grid.Column>
-              <Options />
-              <div className="board-title">
-                {this.props.t(
-                  'patientBoard:questionBoard.answersFromFrontline'
-                )}
+              <div className="patient-header-wrapper">
+                {
+                  // Visibility is set to hidden for this component.
+                  // Please remove visibility:hidden from css while implementing filtering
+                  //  <div className="filter-wrapper">
+                  //   <div className="button-wrapper">
+                  //     <button>filer all</button>
+                  //     <button>popular</button>
+                  //   </div>
+                  // </div>
+                }
+                <div className="header-container">
+                  <div className="board-title">
+                    {this.props.t(
+                      'patientBoard:questionBoard.answersFromFrontline'
+                    )}
+                  </div>
+                  <div className="board-link">
+                    <Link to="/bIiOOIIqgwEXwUU3SaD0F9">
+                      {this.props.t('patientBoard:addQuestion.areyouphysician')}
+                    </Link>
+                  </div>
+                </div>
               </div>
+
               <Ref innerRef={this.contextRef}>
                 <div>
                   <QuestionBoard
@@ -218,6 +260,7 @@ const mapDispatchToProps = (dispatch) =>
       clickLikeQuestion,
       handleAnswerLike,
       handleNewQuestionAnswered,
+      changeLanguage,
     },
     dispatch
   );

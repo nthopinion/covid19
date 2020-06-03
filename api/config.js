@@ -5,6 +5,7 @@ config.key = process.env["DBKEY"];
 config.databaseId = process.env["DBID"];
 config.questionContainerId = process.env["QUESTION_CONTAINERID"];
 config.answerContainerId = process.env["ANSWER_CONTAINERID"];
+config.userContainerId = process.env["USER_CONTAINERID"];
 
 config.pusher = {
   appId: process.env["PUSHER_ID"],

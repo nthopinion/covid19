@@ -1,0 +1,33 @@
+﻿{
+  "addQuestion": {
+    "askAQuestion": "मेडिकल प्रोफेशनल से पूछें",
+    "askADoctor": "एक डॉक्टर से पूछें",
+    "newQuestion": "नया प्रश्न",
+    "areyouphysician": "क्या आप एक चिकित्सक हैं?"
+  },
+  "stickyHeader": {
+    "questionSubmitted": "हमने आपका प्रश्न प्रस्तुत कर दिया है",
+    "checkBackLater": "कृपया फिर से बाद में जाँच करें।",
+    "triedToSubmit": "हमने आपका प्रश्न प्रस्तुत करने का प्रयास किया है",
+    "somethingWentWrong": "क्षमा करें, कुछ गलत हो गया। बाद में पुन: प्रयास करें"
+  },
+  "questionBoard": {
+    "answersFromFrontline": "मोर्चे से जवाब:"
+  },
+  "answers": {
+    "seeNew": "नए जवाब देखें"
+  },
+  "banner": {
+    "text": "सत्यापित फ्रंटलाइन डॉक्टरों से COVID​​-19 पर वास्तविक समय की जानकारी",
+    "subText": "हम मूल रूप से एनटी ओपिनियन द्वारा स्थापित एक स्वतंत्र, गैर-लाभकारी ओपन सोर्स प्रोजेक्ट हैं",
+    "cannotAnswer": "उत्तर नहीं मिल रहा है?",
+    "aboutUs": "हमारे बारे में",
+    "faq": "पूछे जाने वाले प्रश्न"
+  },
+  "searchBar": {
+    "haveAQuestion": "एक सवाल है? खोजने के लिए यहां टाइप करें",
+    "noResultsFound": "कोई परिणाम नहीं मिला।",
+    "selectAskAQuestion": "जारी रखने के लिए एक प्रश्न पूछें का चयन करें"
+  },
+  "footer": "[hi-IN] Powered by Nth Opinion.<0/>AskCo19.com does not provide medical advice,<1/>diagnosis or treatment. See <2>additional information.</2>"
+}

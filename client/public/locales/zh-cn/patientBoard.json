@@ -1,0 +1,29 @@
+﻿{
+  "addQuestion": {
+    "askAQuestion": "询问医疗专业人员",
+    "askADoctor": "询问医生",
+    "newQuestion": "新问题",
+    "areyouphysician": "你是医师吗？"
+  },
+  "stickyHeader": {
+    "questionSubmitted": "我们已提交您的问题",
+    "checkBackLater": "请稍后再检查。",
+    "triedToSubmit": "我们已尝试提交您的问题",
+    "somethingWentWrong": "抱歉，出了一些问题。请稍后再试"
+  },
+  "questionBoard": { "answersFromFrontline": "来自前线的答案：" },
+  "answers": { "seeNew": "查看新答案" },
+  "banner": {
+    "text": "来自经过验证的一线医生的有关COVID-19的实时信息",
+    "subText": "我们是一个由Nth Opinion最初创建的免费，非营利性开源项目",
+    "cannotAnswer": "找不到答案？",
+    "aboutUs": "关于我们",
+    "faq": "常见问题"
+  },
+  "searchBar": {
+    "haveAQuestion": "有一个问题？在此处输入内容进行搜索",
+    "noResultsFound": "未找到结果。",
+    "selectAskAQuestion": "选择问一个问题以继续"
+  },
+  "footer": "[zh-cn] Powered by Nth Opinion.<0/>AskCo19.com does not provide medical advice,<1/>diagnosis or treatment. See <2>additional information.</2>"
+}

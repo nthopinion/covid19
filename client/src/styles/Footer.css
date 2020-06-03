@@ -1,10 +1,10 @@
-.footer {
+.footer-wrapper {
   position: absolute;
   bottom: 35px;
   width: 100%;
 }
 
-.footer p {
+.footer-wrapper p {
   margin: 0;
   font-family: Roboto;
   font-style: normal;
@@ -17,8 +17,8 @@
   color: #000000;
 }
 
-.footer a:link,
-a:hover {
+.footer-wrapper a,
+.footer-wrapper a:hover {
   font-weight: bold;
   color: Black;
   border-bottom: 1px solid black;

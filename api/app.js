@@ -43,6 +43,7 @@ const CosmosClient = require("@azure/cosmos").CosmosClient;
 const config = require("./config");
 const QuestionList = require("./routes/questionList");
 const QuestionDao = require("./models/questionDao");
+const UserList = require("./routes/userList");
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
@@ -66,9 +67,11 @@ const questionDao = new QuestionDao(
   cosmosClient,
   config.databaseId,
   config.questionContainerId,
-  config.answerContainerId
+  config.answerContainerId,
+  config.userContainerId
 );
 const questionList = new QuestionList(questionDao);
+const userList = new UserList(questionDao);
 questionDao
   .init((err) => {
     console.error(err);
@@ -80,6 +83,9 @@ questionDao
     );
     // process.exit(1)
   });
+app.post("/api/changeLanguage", (req, res, next) =>
+  questionList.changeQnAcontainer(req, res).catch(next)
+);
 app.get("/api/questions", (req, res, next) =>
   questionList.showQuestions(req, res, true).catch(next)
 );
@@ -129,6 +135,27 @@ app.post("/api/addQuestion", (req, res, next) =>
 
 app.delete("/api/deleteQuestion", (req, res, next) =>
   questionList.deleteQuestion(req, res).catch(next)
+);
+
+app.get("/api/users", (req, res, next) =>
+userList.showUsers(req, res, true).catch(next)
+);
+app.post("/api/addUser", (req, res, next) =>
+  userList.addUser(req, res).catch(next)
+);
+
+app.post("/api/editUser", (req, res, next) =>
+  userList.editUser(req, res).catch(next)
+);
+
+app.post("/api/validateUser", (req, res, next) =>
+  userList.validateUser(req, res).catch(next)
+);
+
+
+
+app.delete("/api/deleteUser", (req, res, next) =>
+userList.deleteUser(req, res).catch(next)
 );
 
 const swaggerSpec = swaggerJSDoc(options);

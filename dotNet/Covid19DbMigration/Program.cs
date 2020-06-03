@@ -7,6 +7,7 @@ using Covid19DbMigration.OldDataModel;
 using Covid19DbMigration.Utility;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Configuration;
+using Xunit;
 
 namespace Covid19DbMigration
 {
@@ -17,36 +18,142 @@ namespace Covid19DbMigration
     {
         private static CosmosConfig.DatabaseSettings _databaseSettings;
         private static CosmosConfig.NthUserSettings _nthUserSettings;
+        // The database we will create
+        private Database database;
+        private CosmosClient cosmosClient;
 
         static async Task Main(string[] args)
         {
-            var iConfig = GetIConfigurationRoot();
-            var performMigration = false;
+            try
+            {
+                PrintCommands();
+                Program p = new Program();
+                var iConfig = GetIConfigurationRoot();
 
-            _databaseSettings = iConfig.GetSection("DatabaseSettings").Get<CosmosConfig.DatabaseSettings>();
-            _nthUserSettings = iConfig.GetSection("NthUserSettings").Get<CosmosConfig.NthUserSettings>();
+                _databaseSettings = iConfig.GetSection("DatabaseSettings").Get<CosmosConfig.DatabaseSettings>();
+                _nthUserSettings = iConfig.GetSection("NthUserSettings").Get<CosmosConfig.NthUserSettings>();
+                await p.InitializeDatabaseConnection();
+                while (true)
+                {
+                    Console.Write("Enter command, then press ENTER: ");
+                    string decision = Console.ReadLine();
+                    switch (decision.ToLower())
+                    {
+                        case "1":
+                            //await p.GetStartedUserDBsync();
+                            break;
+                        case "2":
+                            await p.ExecuteCommand("");
+                            break;
+                        case "help":
+                            Program.PrintCommands();
+                            break;
+                        case "3":
+                            await p.ExecuteCommand("_Hindi");
+                            break;
+                        case "4":
+                            await p.ExecuteCommand("_Chinese");
+                            break;
+                        case "5":
+                            await p.ExecuteCommand("_Deutsch");
+                            break;
+                        case "6":
+                            await p.ExecuteCommand("_Korean");
+                            break;
+                        case "exit":
+                            return;
+                        default:
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Invalid command. Enter 'help' to show a list of commands.");
+                            Console.ResetColor();
+                            break;
+                    }
 
-            var oldDataFromAzure = await GetLegacyData();
+                    Console.ResetColor();
+                }
+            }
+            catch (CosmosException de)
+            {
+                Exception baseException = de.GetBaseException();
+                Console.WriteLine("{0} error occurred: {1}", de.StatusCode, de);
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"An error occurred: {ex}");
+                Console.ResetColor();
+            }
+            Console.ReadLine();
+        }
+
+        public async Task ExecuteCommand(string language)
+        {
+            var performMigration = true;
+            var oldDataFromAzure = await this.GetLegacyData(language);
             var newDataModel = ConvertToNewModel(oldDataFromAzure);
 
             if (performMigration)
             {
-                var newQuestionDataAfterUpdate = await MigrateData<Question>(newDataModel.Questions, _databaseSettings.TargetQuestionContainer, "/id");
-                var newAnswerDataAfterUpdate = await MigrateData<Answer>(newDataModel.Answers, _databaseSettings.TargetAnswerContainer, "/questionId");
+                var newQuestionDataAfterUpdate = await MigrateData<Question>(newDataModel.Questions, _databaseSettings.TargetQuestionContainer + language, "/id");
+                var newAnswerDataAfterUpdate = await MigrateData<Answer>(newDataModel.Answers, _databaseSettings.TargetAnswerContainer + language, "/questionId");
+
+                Assert.True(newQuestionDataAfterUpdate.Count > 0);
+                Assert.True(newAnswerDataAfterUpdate.Count > 0);
+
+                //verify the contents of the containers.
+                var newQuestionData = await GetNewData<Question>(_databaseSettings.TargetQuestionContainer + language);
+                var newAnswerData = await GetNewData<Answer>(_databaseSettings.TargetAnswerContainer + language);
+
+                Assert.True(newQuestionData.Count > 0);
+                Assert.True(newAnswerData.Count > 0);
             }
-
-            //verify the contents of the containers.
-            var newQuestionData = await GetNewData<Question>(_databaseSettings.TargetQuestionContainer);
-            var newAnswerData = await GetNewData<Answer>(_databaseSettings.TargetAnswerContainer);
-
         }
 
-        public static async Task<List<QuestionAnswer_V1>> GetLegacyData()
+        private static void PrintCommands()
+        {
+            Console.ResetColor();
+            Console.WriteLine();
+            Console.WriteLine("Command  Description");
+            Console.WriteLine("====================");
+            Console.WriteLine("[1]      Migrate question database");
+            Console.WriteLine("[2]      Migrate to English (Default)");
+            Console.WriteLine("[3]      Migrate to Hindi");
+            Console.WriteLine("[4]      Migrate to Chinese");
+            Console.WriteLine("[5]      Migrate to Deutsch");
+            Console.WriteLine("[6]      Migrate to Korean");
+            Console.WriteLine("[help]   Show available commands");
+            Console.WriteLine("[exit]   Exit the program");
+            Console.WriteLine("-------------------------");
+        }
+
+        public async Task InitializeDatabaseConnection()
+        {
+            // Create a new instance of the Cosmos Client
+            //this.cosmosClient = new CosmosClient(EndpointUri, PrimaryKey);
+            this.cosmosClient = new CosmosClient(_databaseSettings.Endpoint, _databaseSettings.AuthKey, new CosmosClientOptions()
+            {
+                ConnectionMode = ConnectionMode.Gateway
+            });
+            await this.CreateDatabaseAsync();
+        }
+
+
+        /// <summary>
+        /// Create the database if it does not exist
+        /// </summary>
+        private async Task CreateDatabaseAsync()
+        {
+            // Create a new database
+            this.database = await this.cosmosClient.CreateDatabaseIfNotExistsAsync(_databaseSettings.Database);
+            Console.WriteLine("Created Database: {0}\n", _databaseSettings.Database);
+        }
+
+        public async Task<List<QuestionAnswer_V1>> GetLegacyData(string language)
         {
             var modelList = new List<QuestionAnswer_V1>();
-            CosmosClient client = new CosmosClient(_databaseSettings.Endpoint, _databaseSettings.AuthKey);
-            Database database = client.GetDatabase(_databaseSettings.Database);
-            Container container = database.GetContainer(_databaseSettings.SourceContainer);
+            //CosmosClient client = new CosmosClient(_databaseSettings.Endpoint, _databaseSettings.AuthKey);
+            //Database database = client.GetDatabase(_databaseSettings.Database);
+            Container container = this.database.GetContainer(_databaseSettings.SourceContainer + language);
             FeedIterator<QuestionAnswer_V1> feedIterator = container.GetItemQueryIterator<QuestionAnswer_V1>(
                 "Select * from c");
 
@@ -62,12 +169,12 @@ namespace Covid19DbMigration
             return modelList;
         }
 
-        public static async Task<List<T>> GetNewData<T>(string targetContainer) where T : IQuestionAnswerItem
+        public  async Task<List<T>> GetNewData<T>(string targetContainer) where T : IQuestionAnswerItem
         {
             var modelList = new List<T>();
-            CosmosClient client = new CosmosClient(_databaseSettings.Endpoint, _databaseSettings.AuthKey);
-            Database database = client.GetDatabase(_databaseSettings.Database);
-            Container container = database.GetContainer(targetContainer);
+            //CosmosClient client = new CosmosClient(_databaseSettings.Endpoint, _databaseSettings.AuthKey);
+            //Database database = client.GetDatabase(_databaseSettings.Database);
+            Container container = this.database.GetContainer(targetContainer);
             FeedIterator<T> feedIterator = container.GetItemQueryIterator<T>(
                 "Select * from c");
 
@@ -83,13 +190,13 @@ namespace Covid19DbMigration
             return modelList;
         }
 
-        private static async Task<List<T>> MigrateData<T>(List<T> newModel, string targetContainer, string partitionKey) where T : IQuestionAnswerItem
+        private async Task<List<T>> MigrateData<T>(List<T> newModel, string targetContainer, string partitionKey) where T : IQuestionAnswerItem
         {
-            CosmosClient client = new CosmosClient(_databaseSettings.Endpoint, _databaseSettings.AuthKey);
-            Database database = client.GetDatabase(_databaseSettings.Database);
+            //CosmosClient client = new CosmosClient(_databaseSettings.Endpoint, _databaseSettings.AuthKey);
+            //Database database = client.GetDatabase(_databaseSettings.Database);
             await DeleteContainerData<T>(targetContainer);
 
-            Container container = await database.CreateContainerIfNotExistsAsync(targetContainer, partitionKey);
+            Container container = await this.database.CreateContainerIfNotExistsAsync(targetContainer, partitionKey);
             List<T> result = new List<T>();
 
             foreach (var question in newModel)
@@ -108,9 +215,17 @@ namespace Covid19DbMigration
 
             Container container = database.GetContainer(containerName);
 
-            if (container != null)
+            try
             {
                 var response = await container.DeleteContainerAsync();
+            }
+            catch (CosmosException ex)
+            {
+                if (ex.StatusCode != System.Net.HttpStatusCode.NotFound)
+                {
+                    //404 is acceptable as it just means the container did not already exist.
+                    throw ex;
+                }
             }
 
         }
@@ -124,7 +239,7 @@ namespace Covid19DbMigration
                 var question = new Question()
                 {
                     Id = questionAnswer.Id,
-                    Date = questionAnswer.Date,
+                    Date = questionAnswer.TimeStamp,
                     Title = questionAnswer.Title,
                     Answered = questionAnswer.Answered,
                     Like = questionAnswer.Like,
@@ -188,6 +303,7 @@ namespace Covid19DbMigration
             };
 
             ItemResponse<Question> responseFromQuestionInsert = await containerQuestion.CreateItemAsync(testQuestion);
+            Assert.NotNull(responseFromQuestionInsert.Resource);
         }
 
         private static async Task PostTestAnswer(string text, string questionId)
@@ -214,6 +330,7 @@ namespace Covid19DbMigration
             };
 
             ItemResponse<Answer> responseFromAnswerInsert = await containerAnswer.CreateItemAsync(testAnswer);
+            Assert.NotNull(responseFromAnswerInsert.Resource);
 
             //Get question
             Question question = null;
@@ -233,6 +350,7 @@ namespace Covid19DbMigration
             //Add answer id to question.Answers
             question.Answers.Add(testAnswer.Id);
             ItemResponse<Question> responseFromQuestionUpdate = await containerQuestion.UpsertItemAsync(question);
+            Assert.NotNull(responseFromQuestionUpdate.Resource);
         }
 
         public static IConfiguration GetIConfigurationRoot()

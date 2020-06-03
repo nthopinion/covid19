@@ -11,7 +11,7 @@ import {
 } from 'semantic-ui-react';
 
 import { bindActionCreators } from 'redux';
-import { deleteQuestion, setQuestion } from '../actions';
+import { deleteQuestion, setQuestion, fetchQuestions } from '../actions';
 
 import AuthProvider from '../AuthProvider';
 import AnswerItem from './AnswerItem';
@@ -26,7 +26,13 @@ class AnswerForm extends Component {
   constructor(props) {
     super(props);
     const newQ = { ...props.q };
-    this.state = { q: newQ, idx: props.idx, newAnswer: '' };
+    this.state = {
+      q: newQ,
+      idx: props.idx,
+      newAnswer: '',
+      idToken: props.userToken,
+      userProfileStatus: props.profileStatus,
+    };
   }
 
   postQuestionAnswer = (question) => {
@@ -38,6 +44,7 @@ class AnswerForm extends Component {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
+        idToken: this.props.userToken,
       },
       body: JSON.stringify({ ...question }),
     })
@@ -45,19 +52,50 @@ class AnswerForm extends Component {
       .catch((error) => console.log(error));
   };
 
-  addNewAnswer = (payload) => {
-    const endpoint = 'addanswer';
+  updateAnswers = async (payload) => {
+    const { q, newAnswer } = this.state;
+    const addAnswerEndpoint = 'addanswer';
+    const editAnswerEndpoint = 'editanswer';
+    let addAnswerPromise = [];
+    let editAnswerPromise = [];
+    let editedAnswers = [];
 
-    return fetch(`${config.domainURL}/api/${endpoint}`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ ...payload }),
-    })
-      .then((response) => response)
-      .catch((error) => console.log(error));
+    q.answers.forEach((answer) => {
+      if (answer.isEdited) {
+        const { isEdited, ...rest } = answer;
+        editedAnswers = [...editedAnswers, rest];
+      }
+    });
+
+    if (newAnswer) {
+      addAnswerPromise = [
+        fetch(`${config.domainURL}/api/${addAnswerEndpoint}`, {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            idToken: this.props.userToken,
+          },
+          body: JSON.stringify({ ...payload }),
+        }),
+      ];
+    }
+
+    editedAnswers.forEach((answer) => {
+      const promise = fetch(`${config.domainURL}/api/${editAnswerEndpoint}`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          idToken: this.props.userToken,
+        },
+        body: JSON.stringify({ ...answer }),
+      });
+
+      editAnswerPromise = [...editAnswerPromise, promise];
+    });
+
+    return Promise.all([...addAnswerPromise, ...editAnswerPromise]);
   };
 
   // eslint-disable-next-line react/no-deprecated
@@ -86,28 +124,42 @@ class AnswerForm extends Component {
     setThisQuestion(question);
 
     history.push('/questionView');
-    // console.log(this.props)
   };
 
-  handleAddNewAnswer = async (q) => {
-    console.log(this.state.newAnswer);
+  handleUpdateAnswers = async (q) => {
+    try {
+      const payload = {
+        questionId: q.id,
+        text: this.state.newAnswer,
+      };
 
-    const payload = {
-      questionId: q.id,
-      text: this.state.newAnswer,
-    };
+      await this.updateAnswers(payload);
 
-    await this.addNewAnswer(payload);
+      this.setState(
+        {
+          submitted: true,
+          // [`newAnswers${q.id}`]: updatedQuestion.answers,
+        },
+        async () => {
+          await this.props.fetchQuestions();
 
-    this.setState({
-      submitted: true,
-      // [`newAnswers${q.id}`]: updatedQuestion.answers,
-    });
+          const newQ = { ...this.props.q };
+          this.setState({
+            submitted: false,
+            q: newQ,
+            idx: this.props.idx,
+            newAnswer: '',
+          });
+        }
+      );
+    } catch (err) {
+      // TODO: Handle errors properly
+    }
   };
 
   handleSubmit = async (e, value, q) => {
     if (!this.props.isUnanswered) {
-      this.handleAddNewAnswer(q);
+      this.handleUpdateAnswers(q);
 
       return;
     }
@@ -130,12 +182,14 @@ class AnswerForm extends Component {
 
   handleUpdatedAnswerChange = (e, { value }, q, ansIdx) => {
     const qu = { ...q };
-    qu.answers[ansIdx] = value;
-    // const key = 'q_'+q.id;
+
+    qu.answers[ansIdx] = {
+      ...qu.answers[ansIdx],
+      text: value,
+      isEdited: true,
+    };
+
     this.setState({ q: qu });
-    // this.props.setAnswerForQuestion()
-    // await this.postQuestionAnswer(updatedQuestion)
-    // this.setState({ submitted: true, newAnswer: q})
   };
 
   handleNewAnswerChange = (e) => {
@@ -145,7 +199,9 @@ class AnswerForm extends Component {
   };
 
   render() {
-    const { q, idx, newAnswer } = this.state;
+    const { q, idx, newAnswer, userProfileStatus } = this.state;
+    const isUserUnverified =
+      userProfileStatus && userProfileStatus === 'level 0';
     const metaData = q.flagIssue && (
       <Label as="a" color="red" tag>
         Report Issues: <span> {q.flagIssue}</span>
@@ -163,46 +219,29 @@ class AnswerForm extends Component {
         {!this.state.submitted && !q.undeleted && (
           <>
             <Form>
-              {q.answers &&
+              {!this.props.showUnanswered &&
+                q.answers &&
                 q.answers.map((answer, index) => {
                   return (
-                    <>
-                      {this.props.showUnanswered ? (
-                        <Form.TextArea
-                          value={q.answers[index].text}
-                          placeholder="Tell us more about it..."
-                          onChange={(e, { value }) =>
-                            this.handleUpdatedAnswerChange(
-                              e,
-                              { value },
-                              q,
-                              index
-                            )
-                          }
-                        />
-                      ) : (
-                        <>
-                          <AnswerItem
-                            answer={answer}
-                            key={index}
-                            question={q}
-                            handleReportIssue={this.handleReportIssue}
-                            handleClickLike={this.props.handleClickLike}
-                            handleAnswerLike={this.props.handleAnswerLike}
-                          />
-                        </>
-                      )}
-                    </>
+                    <Form.TextArea
+                      readOnly={isUserUnverified}
+                      value={answer.text}
+                      placeholder="Tell us more about it..."
+                      onChange={(e, { value }) =>
+                        this.handleUpdatedAnswerChange(e, { value }, q, index)
+                      }
+                    />
                   );
                 })}
-              {!this.props.showUnanswered && (
+              {
                 <Form.TextArea
+                  readOnly={isUserUnverified}
                   value={newAnswer}
                   className="multiple-answers"
                   placeholder="Tell us more about it..."
                   onChange={this.handleNewAnswerChange}
                 />
-              )}
+              }
               <div>
                 {false && <Icon name="attach" />}
                 {false && <FileUpload />}
@@ -212,6 +251,7 @@ class AnswerForm extends Component {
             <Card.Content extra>
               <div className="ui three buttons">
                 <Button
+                  disabled={isUserUnverified}
                   basic
                   color="green"
                   onClick={(e, { value }) => this.handleSubmit(e, { value }, q)}
@@ -219,6 +259,7 @@ class AnswerForm extends Component {
                   Submit
                 </Button>
                 <Button
+                  disabled={isUserUnverified}
                   basic
                   color="red"
                   onClick={() => this.handleDeleteQuestion(q.id, idx)}
@@ -226,6 +267,7 @@ class AnswerForm extends Component {
                   Delete
                 </Button>
                 <Button
+                  disabled={isUserUnverified}
                   basic
                   color="blue"
                   onClick={() => this.handleExpandQuestion(q)}
@@ -268,6 +310,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       deleteQuestion,
+      fetchQuestions,
       setThisQuestion: setQuestion,
     },
     dispatch

@@ -1,6 +1,10 @@
 {
   "addQuestion": {
-    "askAQuestion": "Ask a Medical Professional"
+    "askAQuestion": "Ask a Medical Professional",
+    "askADoctor": "Ask A Doctor",
+    "newQuestion": "New Question",
+    "questionRequired": "Question can not be blank.",
+    "areyouphysician": "Are you a physician?"
   },
   "stickyHeader": {
     "questionSubmitted": "We've submitted your question",
@@ -16,11 +20,15 @@
   },
   "banner": {
     "text": "Real-time information on COVID-19 from verified frontline doctors",
-    "subText": "We are a free, non-profit open source project originally founded by Nth Opinion"
+    "subText": "We are a free, non-profit open source project originally founded by Nth Opinion",
+    "cannotAnswer": "Can't find an answer?",
+    "aboutUs": "About Us",
+    "faq": "FAQs"
   },
   "searchBar": {
     "haveAQuestion": "Have a question? Type here to search",
     "noResultsFound": "No results found.",
     "selectAskAQuestion": "Select Ask a Question to Continue"
-  }
+  },
+  "footer": "Powered by Nth Opinion.<0/>AskCo19.com does not provide medical advice,<1/>diagnosis or treatment. See <2>additional information.</2>"
 }

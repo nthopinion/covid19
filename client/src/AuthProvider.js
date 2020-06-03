@@ -8,10 +8,9 @@ import {
   GRAPH_SCOPES,
   GRAPH_REQUESTS,
 } from './auth-utils';
+import config from './config';
 
-// If you support IE, our recommendation is that you sign-in using Redirect APIs
 const useRedirectFlow = isIE();
-// const useRedirectFlow = true;
 
 export default (C) =>
   class AuthProvider extends Component {
@@ -20,6 +19,8 @@ export default (C) =>
 
       this.state = {
         account: null,
+        idToken: null,
+        authuser: null,
         error: null,
         emailMessages: null,
         graphProfile: null,
@@ -39,6 +40,18 @@ export default (C) =>
       });
     }
 
+    // eslint-disable-next-line class-methods-use-this
+    async verifyUser(idToken) {
+      return fetch(`${config.domainURL}/api/validateUser`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ jwt: idToken }),
+      }).then((response) => response.json());
+    }
+
     async onSignIn(redirect) {
       if (redirect) {
         return msalApp.loginRedirect(GRAPH_REQUESTS.LOGIN);
@@ -54,6 +67,20 @@ export default (C) =>
 
       if (loginResponse) {
         this.setState({
+          idToken: loginResponse.idToken.rawIdToken,
+          error: null,
+        });
+
+        const verifiedUser = await this.verifyUser(
+          loginResponse.idToken.rawIdToken
+        ).catch((error) => {
+          this.setState({
+            error: error.message,
+          });
+        });
+
+        this.setState({
+          authuser: verifiedUser,
           account: loginResponse.account,
           error: null,
         });
@@ -181,6 +208,8 @@ export default (C) =>
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...this.props}
           account={this.state.account}
+          authuser={this.state.authuser}
+          idToken={this.state.idToken}
           emailMessages={this.state.emailMessages}
           error={this.state.error}
           graphProfile={this.state.graphProfile}

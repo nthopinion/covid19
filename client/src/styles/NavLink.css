@@ -15,7 +15,6 @@
 }
 
 .ui.right.sidebar {
-  position: relative;
   background: #006eaa;
 }
 
@@ -37,7 +36,8 @@ nav ul li {
   border-bottom: 1px solid white;
 }
 
-nav ul li a {
+nav ul li a,
+nav ul li span {
   color: white;
   padding: 20px 0px;
   font-size: 24px;
@@ -57,6 +57,13 @@ nav ul li a:hover {
   opacity: 0.75;
 }
 
+.close-menu{
+  text-align: right;
+  font-size: 2em;
+  padding:10px 10px 0px 0px;
+  color: white;
+  opacity: 1.0;
+}
 .row#sponsors {
   margin-top: 500px;
   margin-bottom: 60px;
@@ -101,3 +108,9 @@ button.ui.button.logInlogOut {
   background: transparent;
   height: 50px;
 }
+
+.sidebar_language_dropdown {
+  background-color: #1678c2;
+}
+
+

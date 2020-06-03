@@ -134,6 +134,27 @@ export const handleNewQuestionAnswered = (question) => (dispatch) => {
   });
 };
 
+export const changeLanguage = (selectLanguage) => {
+  const lang = selectLanguage;
+  return (dispatch) => {
+    return fetch(`${config.domainURL}/api/changeLanguage`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        language: lang,
+      },
+      body: JSON.stringify({ language: lang }),
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        json = sortQuestions(json);
+
+        dispatch(receiveQuestions(json));
+      });
+  };
+};
+
 export const fetchQuestions = () => {
   return (dispatch) => {
     return fetch(`${config.domainURL}/api/questions`)
@@ -185,7 +206,7 @@ export const postQuestion = (title) => {
 
 export const deleteQuestion = (qId, idx, isUnanswered) => {
   return (dispatch) => {
-    return fetch(`${config.domainURL}/api/question`, {
+    return fetch(`${config.domainURL}/api/deleteQuestion`, {
       method: 'DELETE',
       headers: {
         Accept: 'application/json',
