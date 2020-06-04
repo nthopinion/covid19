@@ -9,6 +9,10 @@ body {
   /* max-width: 80%; */
   /* padding-top: 100px; */
   margin: auto;
+
+  /* border-style: solid;
+  border-color: black;
+  border-width: 10px; */
 }
 .ui.input > input {
   background-color: #f7fafc;
@@ -43,7 +47,10 @@ body {
 
 .qCard {
   padding: 40px !important;
-  border: none;
+
+  /* border-style: solid;
+  border-color: black;
+  border-width: 2px; */
 }
 .ui.card,
 .ui.cards > .card {
@@ -57,9 +64,16 @@ body {
 .qTitle,
 .answeredByName {
   /* height: 30px; */
+  display: flex;
   font-size: 18px;
   line-height: 1.6;
   font-weight: bold;
+  color: #006eaa;
+  align-items: baseline;
+
+  /* border-style: solid;
+  border-color: black;
+  border-width: 2px; */
 }
 .qTag {
   display: flex;
@@ -77,21 +91,70 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  /* border-style: solid;
+  border-color: black;
+  border-width: 2px; */
 }
 
 .qLeftCard .line {
   width: 80%;
-  height: 1px;
+  height: 2px;
   background: rgba(0, 110, 170, 0.1);
   /* margin: 15px auto; */
 }
 .qTitle > span,
-.answeredByName > span {
+.answeredByName > span1 {
   display: inline-flex;
   width: 50px;
   font-weight: 300;
   font-size: 20px;
   color: #006eaa;
+}
+
+.answeredByName > span2 {
+  display: inline-flex;
+  font-weight: bold;
+  font-size: 20px;
+  color: black;
+  padding-right: 5px;
+
+  /* border-style: dotted;
+  border-color: black;
+  border-width: 2px; */
+}
+
+.answeredByName > span3 {
+  display: inline-flex;
+  padding-right: 5px;
+
+  /* border-style: dotted;
+  border-color: black;
+  border-width: 2px; */
+}
+
+.answeredByName > span4 {
+  display: inline-flex;
+  font-weight: 300;
+  font-size: 14px;
+  color: grey;
+  padding-right: 5px;
+
+  /* border-style: dotted;
+  border-color: black;
+  border-width: 2px; */
+}
+
+.answeredByName > span5 {
+  display: inline-flex;
+  font-weight: 300;
+  font-size: 14px;
+  color: grey;
+  padding-right: 5px;
+
+  /* border-style: dotted;
+  border-color: black;
+  border-width: 2px; */
 }
 
 .answerTitle {
@@ -109,6 +172,10 @@ body {
   line-height: 1.5em;
   margin-bottom: 10px;
   white-space: pre-wrap;
+
+  /* border-style: dotted;
+  border-color: black;
+  border-width: 2px; */
 }
 
 .answer-image {
@@ -160,9 +227,9 @@ body {
   }
 }
 
-.answer-metadata {
+/* .answer-metadata {
   margin: 10px 0px;
 }
 .answer-metadata .bold {
   font-weight: bold;
-}
+} */
