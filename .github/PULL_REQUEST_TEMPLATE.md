@@ -3,6 +3,7 @@
 --> Replace this with text explaining what this change is and why it was made.
 
 ## Description
+
 --> Please include a summary of the change and which issue is fixed. 
 
 Fixes # (issue)
@@ -12,6 +13,7 @@ Fixes # (issue)
 --> Replace this with the main points explaining how the change was made.
 
 ## Type of change
+
 Please delete options that are not relevant.
 
 - [] Bug fix (non-breaking change which fixes an issue)

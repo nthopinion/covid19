@@ -19,6 +19,7 @@
 > Please list the steps required to attempt to replicate the bug
 
 ## Specifications
+
 + Version:
 + Platform:
 + Subsystem:
