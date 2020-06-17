@@ -27,8 +27,34 @@ export default (C) =>
       };
     }
 
+    async handleRedirectCallback(tokenReceivedCallback, errorReceivedCallback){
+      
+    }
+
+    async tokenReceivedCallback(response){
+      console.log(response);
+    }
+
+    async errorReceivedCallback(response){
+      console.log(response);
+    }
+
+
     // eslint-disable-next-line class-methods-use-this
-    async acquireToken(request, redirect) {
+    async acquireToken(request, redirect=true) {
+      // let token = sessionStorage.getItem('msal.idtoken');
+      // if(token){
+      //   return { accessToken: token };
+      // }
+      // const account = msalApp.getAccount();
+      // const resp = msalApp.acquireTokenRedirect(request, "http://localhost:3000")
+      // .then(data => {
+      //   console.log(data);
+      // })
+      // .catch((error) => {
+      //   console.log(error);
+      // });
+      // return resp;
       return msalApp.acquireTokenSilent(request).catch((error) => {
         // Call acquireTokenPopup (popup window) in case of acquireTokenSilent failure
         // due to consent or interaction required ONLY
@@ -54,9 +80,11 @@ export default (C) =>
 
     async onSignIn(redirect) {
       if (redirect) {
-        return msalApp.loginRedirect(GRAPH_REQUESTS.LOGIN);
+        return msalApp.loginRedirect({
+              scopes: GRAPH_REQUESTS.LOGIN.scopes,
+              redirectUri: "http://localhost:3000"
+          })
       }
-
       const loginResponse = await msalApp
         .loginPopup(GRAPH_REQUESTS.LOGIN)
         .catch((error) => {
@@ -86,7 +114,7 @@ export default (C) =>
         });
 
         const tokenResponse = await this.acquireToken(
-          GRAPH_REQUESTS.LOGIN
+          GRAPH_REQUESTS.LOGIN, useRedirectFlow
         ).catch((error) => {
           this.setState({
             error: error.message,
@@ -109,7 +137,7 @@ export default (C) =>
             });
           }
 
-          if (tokenResponse.scopes.indexOf(GRAPH_SCOPES.MAIL_READ) > 0) {
+          if (tokenResponse.scopes && tokenResponse.scopes.indexOf(GRAPH_SCOPES.MAIL_READ) > 0) {
             return this.readMail(tokenResponse.accessToken);
           }
         }
@@ -195,7 +223,21 @@ export default (C) =>
             });
           }
 
-          if (tokenResponse.scopes.indexOf(GRAPH_SCOPES.MAIL_READ) > 0) {
+          const verifiedUser = await this.verifyUser(
+            tokenResponse.idToken.rawIdToken
+          ).catch((error) => {
+            this.setState({
+              error: error.message,
+            });
+          });
+  
+          this.setState({
+            authuser: verifiedUser,
+            account: account,
+            error: null,
+          });
+
+          if (tokenResponse.scopes && tokenResponse.scopes.indexOf(GRAPH_SCOPES.MAIL_READ) > 0) {
             return this.readMail(tokenResponse.accessToken);
           }
         }
