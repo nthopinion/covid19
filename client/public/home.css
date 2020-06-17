@@ -1,0 +1,402 @@
+* { box-sizing: border-box; }
+
+html, body{
+	height:100vh;
+	padding:0;
+	margin:0;
+	
+}
+
+.loginScreen {
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+	
+}
+
+.loginScreen section {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginSection{
+	background-color:#f7fafc;
+    padding: 55px;
+}
+
+.heroSection{
+	color: rgba(0,0,0,.87);
+	/* background: -webkit-gradient(linear,left top,left bottom,from(rgba(71,105,123,.7)),to(rgba(71,105,123,.7))), url(https://ememisaac2root.blob.core.windows.net/sites/covid19/login-bg.bddb78cd.jpg) no-repeat center center fixed; 
+	background: linear-gradient(rgba(71, 105, 123, 0.7), rgba(71, 105, 123, 0.7)) url(https://ememisaac2root.blob.core.windows.net/sites/covid19/login-bg.bddb78cd.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; */
+	background: -webkit-gradient(linear,left top,left bottom,from(rgba(71,105,123,.7)),to(rgba(71,105,123,.7))),url(https://ememisaac2root.blob.core.windows.net/sites/covid19/login-bg.bddb78cd.jpg);
+    background: linear-gradient(rgba(71,105,123,.7),rgba(71,105,123,.7)),url(https://ememisaac2root.blob.core.windows.net/sites/covid19/login-bg.bddb78cd.jpg);
+    background-size: cover;
+}
+
+.heroSection img {
+    width: 500px;
+}
+
+.loginSection h1 {
+    color: #006eaa;
+    font-size: 70px;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    line-height: 1.28571429em;
+    margin: calc(2rem - .14285714em) 0 1rem;
+    font-weight: 700;
+    padding: 0;
+}
+
+.entry-item{
+	margin-bottom: 1.2em;
+}
+
+.entry-item label{
+	display: none;
+}
+
+#email_ver_input_label{
+	display: none;
+	visibility:collapse;
+	font-size:0px;
+}
+
+.entry-item input{
+	width: 100%;
+	padding:10px;
+}
+
+.verifyInput{
+	width: 100%;
+	padding:10px;
+	grid-column-start: 1;
+	grid-column-end:end;
+	margin-top: 1.2em;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    font-style: italic;
+}
+::-moz-placeholder { /* Firefox 19+ */
+	font-style: italic;
+}
+:-ms-input-placeholder { /* IE 10+ */
+    font-style: italic;
+}
+:-moz-placeholder { /* Firefox 18- */
+    font-style: italic;
+}
+
+#forgotPassword{
+	position: absolute;
+    bottom: 0px;
+    clear: right;
+    cursor: pointer;
+    float: right;
+    text-align: right;
+}
+
+.loginSection .ui.button {
+    font-size: 18px;
+    font-weight: 400;
+    height: auto;
+    color: #fff;
+    background: #006eaa;
+}
+
+#next{
+    font-size: 18px;
+    font-weight: 400;
+    height: auto;
+    color: #fff;
+    background: #006eaa;
+    box-shadow: 0 0 0 1px transparent inset;
+	cursor: pointer;
+    display: inline-block;
+    min-height: 1em;
+    outline: 0;
+    border: none;
+    vertical-align: baseline;
+	font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    margin: 0 .25em 0 0;
+    padding: .78571429em 1.5em .78571429em;
+    text-transform: none;
+    text-shadow: none;
+	line-height: 1em;
+    font-style: normal;
+    text-align: center;
+    text-decoration: none;
+    border-radius: .28571429rem;
+}
+
+#next:hover{
+	background: lightgray;
+	color:black;
+}
+
+#createAccount {
+	padding-left: 10px;
+}
+
+.divider{
+	margin-top:20px;
+}
+
+.buttons{
+	display:block;
+	text-align: right;
+}
+
+#GoogleExchange{
+	
+	border-radius: .5rem;
+	box-shadow: none;
+	background-size: 10% 70%;
+    background-position-x: 3%;
+    background-position-y: 50%;
+    background-repeat: no-repeat;
+    display: block;
+    font-size: 16px;
+    height: 45px;
+    width: 100%;
+    margin-left: auto;
+    overflow: hidden;
+    padding: 0 50px;
+    max-width: 380px;
+	min-width: 350px;
+	background-image: url(https://ntocustomer.b2clogin.com/static/tenant/templates/idp_logos/colored/google.svg);
+	background-color: #fff;
+}
+
+#GoogleExchange:hover {
+    background-color: #c64a29!important;
+}
+#GoogleExchange:hover {
+    background-image: url(https://ntocustomer.b2clogin.com/static/tenant/templates/idp_logos/white/google.svg);
+}
+
+.attrEntry label{
+	display:none;
+}
+
+.attrEntry{
+	margin-bottom: 1.2em;
+}
+
+.attrEntry label{
+	display: none;
+}
+
+.attrEntry input{
+	width: 100%;
+	padding:10px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin:0;
+}
+
+#email_ver_but_send{
+    font-size: 18px;
+    font-weight: 400;
+    height: auto;
+    color: #fff;
+    background: #006eaa;
+    box-shadow: 0 0 0 1px transparent inset;
+	cursor: pointer;
+    display: inline-block;
+    min-height: 1em;
+    outline: 0;
+    border: none;
+    vertical-align: baseline;
+	font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    margin: 0.5em 0 0 0;
+    padding: .78571429em 1.5em .78571429em;
+    text-transform: none;
+    text-shadow: none;
+	line-height: 1em;
+    font-style: normal;
+    text-align: center;
+    text-decoration: none;
+    border-radius: .28571429rem;
+	width: 100%;
+	grid-column-start: 1;
+	grid-column-end:end;
+}
+
+#email_ver_but_send:hover{
+	background: lightgray;
+	color:black;
+}
+
+#email_ver_but_verify{
+    font-size: 18px;
+    font-weight: 400;
+    height: auto;
+    color: #fff;
+    background: #006eaa;
+    box-shadow: 0 0 0 1px transparent inset;
+	cursor: pointer;
+    display: inline-block;
+    min-height: 1em;
+    outline: 0;
+    border: none;
+    vertical-align: baseline;
+	font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    margin: 0.5em 0 0 0;
+    padding: .78571429em 0em .78571429em;
+    text-transform: none;
+    text-shadow: none;
+	line-height: 1em;
+    font-style: normal;
+    text-align: center;
+    text-decoration: none;
+    border-radius: .28571429rem;
+	width: 100%;
+	grid-column-start: 1;
+	grid-column-end:3;
+}
+
+#email_ver_but_verify:hover{
+	background: lightgray;
+	color:black;
+}
+
+#email_ver_but_resend{
+    font-size: 18px;
+    font-weight: 400;
+    height: auto;
+    color: #fff;
+    background: #006eaa;
+    box-shadow: 0 0 0 1px transparent inset;
+	cursor: pointer;
+    display: inline-block;
+    min-height: 1em;
+    outline: 0;
+    border: none;
+    vertical-align: baseline;
+	font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    margin: 0.5em 0 0 0;
+    padding: .78571429em 0em .78571429em;
+    text-transform: none;
+    text-shadow: none;
+	line-height: 1em;
+    font-style: normal;
+    text-align: center;
+    text-decoration: none;
+    border-radius: .28571429rem;
+	width: 100%;
+	grid-column-start: 3;
+	grid-column-end:end;
+}
+
+#email_ver_but_resend:hover{
+	background: lightgray;
+	color:black;
+}
+
+
+#continue{
+    font-size: 18px;
+    font-weight: 400;
+    height: auto;
+    color: #fff;
+    background: #006eaa;
+    box-shadow: 0 0 0 1px transparent inset;
+	cursor: pointer;
+    /* display: inline-block; */
+    min-height: 1em;
+    outline: 0;
+    border: none;
+    vertical-align: baseline;
+	font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    /* margin: 0 .25em 0 0; */
+    padding: .78571429em 1.5em .78571429em;
+    text-transform: none;
+    text-shadow: none;
+	line-height: 1em;
+    font-style: normal;
+    text-align: center;
+    text-decoration: none;
+    border-radius: .28571429rem;
+	/* grid-column-start:2;
+	grid-column-end: end; */
+}
+
+#continue:hover{
+	background: lightgray;
+	color:black;
+}
+
+.helpLink {
+	display:none;
+}
+
+.dropdown_single {
+	width: 100%;
+	padding:10px;	
+	/* margin-bottom: 1.2em; */
+}
+
+.dropdown_single *{
+	padding:10px;
+}
+
+#attributeVerification .buttons {
+	display: grid;
+    grid-template-columns: 2fr 1fr 1fr 3fr;
+	align-items: center;
+	column-gap: 10px;
+}
+
+#cancel{
+	display: none;
+	/* grid-column-start: 1;
+	grid-column-end: 2; */
+}
+
+#continue{
+	grid-column-start: 1;
+	grid-column-end:end;
+}
+
+#email_ver_but_edit{
+	font-size: 18px;
+    font-weight: 400;
+    height: auto;
+    color: #fff;
+    background: #006eaa;
+    box-shadow: 0 0 0 1px transparent inset;
+	cursor: pointer;
+    /* display: inline-block; */
+    min-height: 1em;
+    outline: 0;
+    border: none;
+    vertical-align: baseline;
+	font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    margin: 1.2em 0 0 0;
+    padding: .78571429em 1.5em .78571429em;
+    text-transform: none;
+    text-shadow: none;
+	line-height: 1em;
+    font-style: normal;
+    text-align: center;
+    text-decoration: none;
+    border-radius: .28571429rem;
+	/* grid-column-start:2;
+	grid-column-end: end; */
+}
