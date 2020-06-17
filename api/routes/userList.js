@@ -39,23 +39,29 @@ class UserList{
     }
 
     async validateUser (req, res) {
-      const jwtToken = req.body;
-      const user = parseToken(jwtToken.jwt);
-      const verifiedUser = await this.userDao.getUser(user.email);
-      user.profilestatus = "level 0";  //initializing the access
-      if (verifiedUser !== undefined)
-      {
-          user.id = verifiedUser.id;
-          user.npiidentifier = verifiedUser.npiidentifier;
-          user.role = verifiedUser.role;
-          user.country = verifiedUser.country;
-          user.profilelink = verifiedUser.profilelink;
-          user.anonymous = verifiedUser.anonymous;
-          user.profilestatus = verifiedUser.profilestatus;
-          user.email = verifiedUser.email;
-          await this.userDao.updatesignintime(user);
+      try{
+        const jwtToken = req.body;
+        const user = parseToken(jwtToken.jwt);
+        const verifiedUser = await this.userDao.getUser(user.email);
+        user.profilestatus = "level 0";  //initializing the access
+        if (verifiedUser !== undefined)
+        {
+            user.id = verifiedUser.id;
+            user.npiidentifier = verifiedUser.npiidentifier;
+            user.role = verifiedUser.role;
+            user.country = verifiedUser.country;
+            user.profilelink = verifiedUser.profilelink;
+            user.anonymous = verifiedUser.anonymous;
+            user.profilestatus = verifiedUser.profilestatus;
+            user.email = verifiedUser.email;
+            await this.userDao.updatesignintime(user);
+        }
+        res.send(user);
+      }catch(error){
+        console.log(error);
+        res.status(403).send("Could not verify user");
+        return;
       }
-      res.send(user);
     }
 
     async getUser (email) {
