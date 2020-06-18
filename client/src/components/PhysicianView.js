@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-has-content */
-/* eslint-disable no-shadow */
-
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -24,6 +21,7 @@ const PhysicianView = (props) => {
   const [isMessageVisible, setIsMessageVisible] = useState(true);
   const [isUnansweredShown, setIsUnansweredShown] = useState(true);
 
+  /* eslint-disable-next-line no-shadow */
   const { fetchUnansweredQuestions, fetchQuestions } = props;
 
   useEffect(() => {
@@ -60,6 +58,7 @@ const PhysicianView = (props) => {
                 })}
               </Message.Header>
               <Trans i18nKey="physicianView:unverifiedUserMessage">
+                {/* eslint-disable-next-line jsx-a11y/anchor-has-content */}
                 <a
                   href="//www.askco19.com/j-2-lightbox.html"
                   target="_blank"
