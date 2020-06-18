@@ -68,7 +68,7 @@ const PhysicianView = (props) => {
             </Message>
           ) : (
             isMessageVisible && (
-              <Message color="green" onDismiss={() => handleDismissMessage()}>
+              <Message color="green" onDismiss={handleDismissMessage}>
                 {props.t('physicianView:welcome')} {props.authuser.fullname}
               </Message>
             )
