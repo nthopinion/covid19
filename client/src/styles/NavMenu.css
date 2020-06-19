@@ -66,6 +66,7 @@ nav ul li a:hover {
   font-size: 2em;
   padding: 10px 10px 0px 0px;
   color: white;
+  cursor: pointer;
   opacity: 1;
 }
 .row#sponsors {
