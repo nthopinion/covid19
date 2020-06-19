@@ -84,6 +84,7 @@ button#menu.ui.button {
 
 button#menu.ui.button i.bars.icon {
   font-size: 2em;
+  line-height: 1.75em;
   margin: 0;
   height: 100%;
   color: #006eaa;
