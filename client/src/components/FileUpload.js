@@ -104,6 +104,7 @@ class Upload extends Component {
     if (this.state.successfullUploaded) {
       return (
         <button
+          className="file-upload-button"
           onClick={() =>
             this.setState({ files: [], successfullUploaded: false })
           }
@@ -114,6 +115,7 @@ class Upload extends Component {
     }
     return (
       <button
+        className="file-upload-button"
         disabled={this.state.files.length < 0 || this.state.uploading}
         onClick={this.uploadFiles}
       >
