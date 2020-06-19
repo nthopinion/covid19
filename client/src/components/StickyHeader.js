@@ -7,7 +7,7 @@ import { normalizeResults } from '../helpers/normalizeResults';
 
 import LanguageSelector from './LanguageSelector';
 import SearchBar from './SearchBar';
-import Menu from './NavLink';
+import NavMenu from './NavMenu';
 
 class StickyHeader extends Component {
   render() {
@@ -46,7 +46,7 @@ class StickyHeader extends Component {
             />
           </div>
 
-          <Menu account={account} onSignOut={onSignOut} />
+          <NavMenu account={account} onSignOut={onSignOut} />
           {addSuccess && messageActive && (
             <Message positive>
               <Message.Header>
@@ -67,8 +67,6 @@ class StickyHeader extends Component {
             </Message>
           )}
         </div>
-
-        {/* <AddQuestionForm/> */}
       </Sticky>
     );
   }

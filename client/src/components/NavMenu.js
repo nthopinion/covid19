@@ -3,7 +3,7 @@ import { Button } from 'semantic-ui-react';
 import { Link, withRouter } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 
-import styles from '../styles/NavLink.css';
+import styles from '../styles/NavMenu.css';
 
 class NavMenu extends Component {
   constructor() {
@@ -53,20 +53,20 @@ class NavMenu extends Component {
         {this.state.showMenu ? (
           <div className="menu" ref={this.WrapperRef}>
             <div
-              className={`ui visible right demo vertical sidebar labeled icon menu ${styles.NavLink}`}
+              className={`ui visible right demo vertical sidebar labeled icon menu ${styles.NavMenu}`}
             >
-            <div onClick={this.showmenu} className="close-menu">
+              <div onClick={this.showmenu} className="close-menu">
                 X
-            </div>
+              </div>
               <nav>
-                <ul>                  
+                <ul>
                   <li>
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
                       href="https://www.askco19.com/"
                     >
-                      {t('navLink:about')}
+                      {t('navMenu:about')}
                     </a>
                   </li>
                   <li>
@@ -75,7 +75,7 @@ class NavMenu extends Component {
                       rel="noopener noreferrer"
                       href="https://www.askco19.com/contributors"
                     >
-                      {t('navLink:getInvolved')}
+                      {t('navMenu:getInvolved')}
                     </a>
                   </li>
                   <li>
@@ -84,7 +84,7 @@ class NavMenu extends Component {
                       rel="noopener noreferrer"
                       href="https://www.askco19.com/sponsors"
                     >
-                      {t('navLink:ourSponsors')}
+                      {t('navMenu:ourSponsors')}
                     </a>
                   </li>
                   <li>
@@ -93,7 +93,7 @@ class NavMenu extends Component {
                       rel="noopener noreferrer"
                       href="https://www.askco19.com/dxyopencourse/"
                     >
-                      {t('navLink:partners')}
+                      {t('navMenu:partners')}
                     </a>
                   </li>
                   <li>
@@ -102,12 +102,12 @@ class NavMenu extends Component {
                       rel="noopener noreferrer"
                       href="https://nquestionblob.blob.core.windows.net/images/Full%20Disclaimer%20_%20Legal%20Information%20and%20Disclosures_%20Nth%20Opinion.pdf"
                     >
-                      {t('navLink:contactUs')}
+                      {t('navMenu:contactUs')}
                     </a>
                   </li>
                   <li>
                     <Link to="/bIiOOIIqgwEXwUU3SaD0F9">
-                      {t('navLink:logIn')}
+                      {t('navMenu:logIn')}
                     </Link>
                   </li>
                 </ul>
