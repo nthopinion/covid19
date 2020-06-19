@@ -1,15 +1,15 @@
 {
-  "about": "ABOUT",
-  "physicians": "PHYSICIANS",
-  "developers": "DEVELOPERS",
-  "videoCourse": "VIDEO COURSE",
-  "disclaimer": "DISCLAIMER",
-  "ourSponsors": "Our Sponsors",
-  "ourContributors": "Our Contributors",
-  "logOut": "Log out",
-  "logIn": "Log in",
-  "getInvolved": "GET INVOLVED",
-  "partners": "PARTNERS",
-  "contactUs": "CONTACT US",
-  "language": "LANGUAGE"
+  "about": "[hi-IN] ABOUT",
+  "physicians": "[hi-IN] PHYSICIANS",
+  "developers": "[hi-IN] DEVELOPERS",
+  "videoCourse": "[hi-IN] VIDEO COURSE",
+  "disclaimer": "[hi-IN] DISCLAIMER",
+  "ourSponsors": "[hi-IN] Our Sponsors",
+  "ourContributors": "[hi-IN] Our Contributors",
+  "logOut": "[hi-IN] Log out",
+  "logIn": "[hi-IN] Log in",
+  "getInvolved": "[hi-IN] GET INVOLVED",
+  "partners": "[hi-IN] PARTNERS",
+  "contactUs": "[hi-IN] CONTACT US",
+  "language": "[hi-IN] LANGUAGE"
 }
