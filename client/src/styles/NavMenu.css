@@ -52,6 +52,10 @@ nav .ui.button {
   justify-self: center;
 }
 
+nav ul li a {
+  cursor: pointer;
+}
+
 nav ul li a:hover {
   color: white;
   opacity: 0.75;

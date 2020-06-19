@@ -106,9 +106,19 @@ class NavMenu extends Component {
                     </a>
                   </li>
                   <li>
-                    <Link to="/bIiOOIIqgwEXwUU3SaD0F9">
-                      {t('navMenu:logIn')}
-                    </Link>
+                    {this.props.account ? (
+                      <a
+                        href
+                        name={this.props.t('navMenu.logOut')}
+                        onClick={this.props.onSignOut}
+                      >
+                        {t('navMenu:logOut')}
+                      </a>
+                    ) : (
+                      <Link to="/bIiOOIIqgwEXwUU3SaD0F9">
+                        {t('navMenu:logIn')}
+                      </Link>
+                    )}
                   </li>
                 </ul>
               </nav>
