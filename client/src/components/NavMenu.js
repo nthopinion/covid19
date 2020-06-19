@@ -12,7 +12,7 @@ class NavMenu extends Component {
       showMenu: false,
     };
 
-    this.showmenu = this.showmenu.bind(this);
+    this.toggleMenu = this.toggleMenu.bind(this);
     this.WrapperRef = this.WrapperRef.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
@@ -29,7 +29,7 @@ class NavMenu extends Component {
     this.wrapperRef = node;
   }
 
-  showmenu() {
+  toggleMenu() {
     this.setState({
       showMenu: !this.state.showMenu,
     });
@@ -37,7 +37,7 @@ class NavMenu extends Component {
 
   handleClick(event) {
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-      this.showmenu();
+      this.toggleMenu();
     }
   }
 
@@ -45,9 +45,9 @@ class NavMenu extends Component {
     const { t } = this.props;
     return (
       <div>
-        <Button id="menu" className="ui icon button" onClick={this.showmenu}>
+        <Button id="menu" className="ui icon button" onClick={this.toggleMenu}>
           {' '}
-          <i className="bars icon" onClick={this.showmenu} />
+          <i className="bars icon" onClick={this.toggleMenu} />
         </Button>
 
         {this.state.showMenu ? (
@@ -55,8 +55,8 @@ class NavMenu extends Component {
             <div
               className={`ui visible right demo vertical sidebar labeled icon menu ${styles.NavMenu}`}
             >
-              <div onClick={this.showmenu} className="close-menu">
-                X
+              <div onClick={this.toggleMenu} className="close-menu">
+                x
               </div>
               <nav>
                 <ul>
