@@ -39,9 +39,9 @@ body {
       from(rgba(71, 105, 123, 0.7)),
       to(rgba(71, 105, 123, 0.7))
     ),
-    url(https://ememisaac2root.blob.core.windows.net/sites/covid19/login-bg.bddb78cd.jpg);
+    url(https://qna.askco19.com/static/media/login-bg.bddb78cd.jpg);
   background: linear-gradient(rgba(71, 105, 123, 0.7), rgba(71, 105, 123, 0.7)),
-    url(https://ememisaac2root.blob.core.windows.net/sites/covid19/login-bg.bddb78cd.jpg);
+    url(https://qna.askco19.com/static/media/login-bg.bddb78cd.jpg);
   background-size: cover;
 }
 
