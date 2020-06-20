@@ -58,7 +58,7 @@ class UserList{
         }
         res.send(user);
       }catch(error){
-        console.log(error);
+        //TODO: log error
         res.status(403).send("Could not verify user");
         return;
       }
