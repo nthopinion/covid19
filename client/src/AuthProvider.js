@@ -57,7 +57,7 @@ export default (C) =>
       if (redirect) {
         return msalApp.loginRedirect({
           scopes: GRAPH_REQUESTS.LOGIN.scopes,
-          redirectUri: 'http://localhost:3000',
+          redirectUri: config.siteURL,
         });
       }
       const loginResponse = await msalApp
