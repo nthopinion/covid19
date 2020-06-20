@@ -27,34 +27,9 @@ export default (C) =>
       };
     }
 
-    async handleRedirectCallback(tokenReceivedCallback, errorReceivedCallback){
-      
-    }
-
-    async tokenReceivedCallback(response){
-      console.log(response);
-    }
-
-    async errorReceivedCallback(response){
-      console.log(response);
-    }
-
 
     // eslint-disable-next-line class-methods-use-this
-    async acquireToken(request, redirect=true) {
-      // let token = sessionStorage.getItem('msal.idtoken');
-      // if(token){
-      //   return { accessToken: token };
-      // }
-      // const account = msalApp.getAccount();
-      // const resp = msalApp.acquireTokenRedirect(request, "http://localhost:3000")
-      // .then(data => {
-      //   console.log(data);
-      // })
-      // .catch((error) => {
-      //   console.log(error);
-      // });
-      // return resp;
+    async acquireToken(request, redirect = true) {
       return msalApp.acquireTokenSilent(request).catch((error) => {
         // Call acquireTokenPopup (popup window) in case of acquireTokenSilent failure
         // due to consent or interaction required ONLY
@@ -81,9 +56,9 @@ export default (C) =>
     async onSignIn(redirect) {
       if (redirect) {
         return msalApp.loginRedirect({
-              scopes: GRAPH_REQUESTS.LOGIN.scopes,
-              redirectUri: "http://localhost:3000"
-          })
+          scopes: GRAPH_REQUESTS.LOGIN.scopes,
+          redirectUri: 'http://localhost:3000',
+        });
       }
       const loginResponse = await msalApp
         .loginPopup(GRAPH_REQUESTS.LOGIN)
@@ -114,7 +89,8 @@ export default (C) =>
         });
 
         const tokenResponse = await this.acquireToken(
-          GRAPH_REQUESTS.LOGIN, useRedirectFlow
+          GRAPH_REQUESTS.LOGIN,
+          useRedirectFlow
         ).catch((error) => {
           this.setState({
             error: error.message,
@@ -137,7 +113,10 @@ export default (C) =>
             });
           }
 
-          if (tokenResponse.scopes && tokenResponse.scopes.indexOf(GRAPH_SCOPES.MAIL_READ) > 0) {
+          if (
+            tokenResponse.scopes &&
+            tokenResponse.scopes.indexOf(GRAPH_SCOPES.MAIL_READ) > 0
+          ) {
             return this.readMail(tokenResponse.accessToken);
           }
         }
@@ -230,14 +209,17 @@ export default (C) =>
               error: error.message,
             });
           });
-  
+
           this.setState({
             authuser: verifiedUser,
             account: account,
             error: null,
           });
 
-          if (tokenResponse.scopes && tokenResponse.scopes.indexOf(GRAPH_SCOPES.MAIL_READ) > 0) {
+          if (
+            tokenResponse.scopes &&
+            tokenResponse.scopes.indexOf(GRAPH_SCOPES.MAIL_READ) > 0
+          ) {
             return this.readMail(tokenResponse.accessToken);
           }
         }
