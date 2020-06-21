@@ -27,8 +27,9 @@ export default (C) =>
       };
     }
 
+
     // eslint-disable-next-line class-methods-use-this
-    async acquireToken(request, redirect) {
+    async acquireToken(request, redirect = true) {
       return msalApp.acquireTokenSilent(request).catch((error) => {
         // Call acquireTokenPopup (popup window) in case of acquireTokenSilent failure
         // due to consent or interaction required ONLY
@@ -54,9 +55,11 @@ export default (C) =>
 
     async onSignIn(redirect) {
       if (redirect) {
-        return msalApp.loginRedirect(GRAPH_REQUESTS.LOGIN);
+        return msalApp.loginRedirect({
+          scopes: GRAPH_REQUESTS.LOGIN.scopes,
+          redirectUri: config.siteURL,
+        });
       }
-
       const loginResponse = await msalApp
         .loginPopup(GRAPH_REQUESTS.LOGIN)
         .catch((error) => {
@@ -86,7 +89,8 @@ export default (C) =>
         });
 
         const tokenResponse = await this.acquireToken(
-          GRAPH_REQUESTS.LOGIN
+          GRAPH_REQUESTS.LOGIN,
+          useRedirectFlow
         ).catch((error) => {
           this.setState({
             error: error.message,
@@ -109,7 +113,10 @@ export default (C) =>
             });
           }
 
-          if (tokenResponse.scopes.indexOf(GRAPH_SCOPES.MAIL_READ) > 0) {
+          if (
+            tokenResponse.scopes &&
+            tokenResponse.scopes.indexOf(GRAPH_SCOPES.MAIL_READ) > 0
+          ) {
             return this.readMail(tokenResponse.accessToken);
           }
         }
@@ -195,7 +202,24 @@ export default (C) =>
             });
           }
 
-          if (tokenResponse.scopes.indexOf(GRAPH_SCOPES.MAIL_READ) > 0) {
+          const verifiedUser = await this.verifyUser(
+            tokenResponse.idToken.rawIdToken
+          ).catch((error) => {
+            this.setState({
+              error: error.message,
+            });
+          });
+
+          this.setState({
+            authuser: verifiedUser,
+            account: account,
+            error: null,
+          });
+
+          if (
+            tokenResponse.scopes &&
+            tokenResponse.scopes.indexOf(GRAPH_SCOPES.MAIL_READ) > 0
+          ) {
             return this.readMail(tokenResponse.accessToken);
           }
         }

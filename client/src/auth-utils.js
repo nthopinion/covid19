@@ -23,6 +23,7 @@ export const fetchMsGraph = async (url, accessToken) => {
 };
 
 export const isIE = () => {
+  return true; //this ensures we are always redirecting, never popping up
   const ua = window.navigator.userAgent;
   const msie = ua.indexOf('MSIE ') > -1;
   const msie11 = ua.indexOf('Trident/') > -1;
@@ -34,8 +35,8 @@ export const isIE = () => {
 };
 
 export const GRAPH_SCOPES = {
-  OPENID: 'openid',
-  PROFILE: 'profile',
+  OPENID: 'https://ntocustomer.onmicrosoft.com/api/openid',
+  PROFILE: 'https://ntocustomer.onmicrosoft.com/api/profile',
   USER_READ: 'User.Read',
   MAIL_READ: 'Mail.Read',
 };
