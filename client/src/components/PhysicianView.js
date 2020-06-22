@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { withTranslation } from 'react-i18next';
+import { Trans, withTranslation } from 'react-i18next';
 import { Menu, Button, Message, Grid } from 'semantic-ui-react';
 
 import '../styles/QuestionBoard.css';
@@ -17,155 +17,156 @@ import AnswerForm from './AnswerForm';
 import NavMenu from './NavMenu';
 import Footer from './Footer';
 
-class PhysicianView extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isMessageVisible: true,
-      showUnanswered: true,
-    };
-    this.idToken = null;
-  }
+const PhysicianView = (props) => {
+  const [isMessageVisible, setIsMessageVisible] = useState(true);
+  const [isUnansweredShown, setIsUnansweredShown] = useState(true);
 
-  componentDidMount() {
-    this.props.fetchUnansweredQuestions();
-    this.props.fetchQuestions();
-  }
+  /* eslint-disable-next-line no-shadow */
+  const { fetchUnansweredQuestions, fetchQuestions } = props;
 
-  handleToggleView(showUnanswered) {
-    this.setState({ showUnanswered });
-  }
+  useEffect(() => {
+    fetchUnansweredQuestions();
+    fetchQuestions();
+  }, [fetchUnansweredQuestions, fetchQuestions]);
 
-  handleDismissMessage = () => {
-    this.setState({ isMessageVisible: false });
+  const handleToggleView = (showUnanswered) => {
+    setIsUnansweredShown(showUnanswered);
   };
 
-  render() {
-    return !this.props.authuser ? (
-      <PhysicianLogin onSignIn={this.props.onSignIn} />
-    ) : (
-      <>
-        <NavMenu
-          account={this.props.account}
-          onSignOut={this.props.onSignOut}
-          idToken={this.props.idToken}
-        />
+  const handleDismissMessage = () => {
+    setIsMessageVisible(false);
+  };
 
-        <Grid centered columns={2} stackable>
-          <Grid.Column>
-            {this.props.authuser.profilestatus === 'level 0' ? (
-              <Message
-                color="yellow"
-                header={`${this.props.t('physicianView:welcome')} ${
-                  this.props.authuser.fullname
-                }`}
-                content={this.props.t('physicianView:unverifiedUserMessage')}
-              />
-            ) : (
-              this.state.isMessageVisible && (
-                <Message color="green" onDismiss={this.handleDismissMessage}>
-                  {this.props.t('physicianView:welcome')}{' '}
-                  {this.props.authuser.fullname}
-                </Message>
-              )
-            )}
-          </Grid.Column>
-        </Grid>
+  return !props.authuser ? (
+    <PhysicianLogin onSignIn={props.onSignIn} />
+  ) : (
+    <>
+      <NavMenu
+        account={props.account}
+        onSignOut={props.onSignOut}
+        idToken={props.idToken}
+      />
 
-        <div className="physician-view-container">
-          <Menu secondary style={{ display: 'flex', flexDirection: 'column' }}>
-            <div className="right menu" style={{ margin: '1rem 0' }}>
-              <a
-                href="https://ai-passion.appspot.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="active item"
-              >
-                {this.props.t('physicianView:buttons.televideo')}
-              </a>
-            </div>
-            <Menu.Menu position="right">
-              {this.props.account && (
-                <Menu.Item
-                  active
-                  name={this.props.t('physicianView:buttons.logOut')}
-                  onClick={this.props.onSignOut}
+      <Grid centered columns={2} stackable>
+        <Grid.Column>
+          {props.authuser.profilestatus === 'level 0' ? (
+            <Message color="yellow">
+              <Message.Header>
+                {props.t('physicianView:welcome', {
+                  returnObjects: true,
+                  userFullName: props.authuser.fullname,
+                })}
+              </Message.Header>
+              <Trans i18nKey="physicianView:unverifiedUserMessage">
+                {/* eslint-disable-next-line jsx-a11y/anchor-has-content */}
+                <a
+                  href="//www.askco19.com/j-2-lightbox.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 />
-              )}
-            </Menu.Menu>
-          </Menu>
-          <div className="buttonGroupCustom">
-            {this.props.account && (
-              <Button.Group>
-                <Button
-                  basic
-                  color="blue"
-                  onClick={() => this.handleToggleView(true)}
-                  active={this.state.showUnanswered}
-                >
-                  {this.props.t('physicianView:buttons.unansweredQuestions')}
-                </Button>
-                <Button
-                  basic
-                  color="green"
-                  onClick={() => this.handleToggleView(false)}
-                  active={!this.state.showUnanswered}
-                >
-                  {this.props.t('physicianView:buttons.answeredQuestions')}
-                </Button>
-              </Button.Group>
-            )}
-          </div>
-          <section className="container">
-            {this.props.error && (
-              <Message negative>
-                <Message.Header>
-                  {this.props.t('physicianView:errorMessage')}
-                </Message.Header>
-                <p>{this.props.error}</p>
+              </Trans>
+            </Message>
+          ) : (
+            isMessageVisible && (
+              <Message color="green" onDismiss={handleDismissMessage}>
+                {props.t('physicianView:welcome')} {props.authuser.fullname}
               </Message>
-            )}
-          </section>
-          <section className="data" />
-          <div>
-            <Grid centered columns={2} stackable>
-              <Grid.Column>
-                {this.state.showUnanswered &&
-                  this.props.account &&
-                  this.props.unansweredQuestions &&
-                  this.props.unansweredQuestions.map((q, idx) => (
-                    <AnswerForm
-                      history={this.props.history}
-                      userToken={this.props.idToken}
-                      profileStatus={this.props.authuser.profilestatus}
-                      q={q}
-                      idx={idx}
-                      showUnanswered={this.state.showUnanswered}
-                    />
-                  ))}
+            )
+          )}
+        </Grid.Column>
+      </Grid>
 
-                {!this.state.showUnanswered &&
-                  this.props.account &&
-                  this.props.questions &&
-                  this.props.questions.map((q, idx) => (
-                    <AnswerForm
-                      history={this.props.history}
-                      userToken={this.props.idToken}
-                      profileStatus={this.props.authuser.profilestatus}
-                      q={q}
-                      idx={idx}
-                      showUnanswered={this.state.showUnanswered}
-                    />
-                  ))}
-              </Grid.Column>
-            </Grid>
+      <div className="physician-view-container">
+        <Menu secondary style={{ display: 'flex', flexDirection: 'column' }}>
+          <div className="right menu" style={{ margin: '1rem 0' }}>
+            <a
+              href="https://ai-passion.appspot.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="active item"
+            >
+              {props.t('physicianView:buttons.televideo')}
+            </a>
           </div>
-          <Footer />
+          <Menu.Menu position="right">
+            {props.account && (
+              <Menu.Item
+                active
+                name={props.t('physicianView:buttons.logOut')}
+                onClick={props.onSignOut}
+              />
+            )}
+          </Menu.Menu>
+        </Menu>
+        <div className="buttonGroupCustom">
+          {props.account && (
+            <Button.Group>
+              <Button
+                basic
+                color="blue"
+                onClick={() => handleToggleView(true)}
+                active={isUnansweredShown}
+              >
+                {props.t('physicianView:buttons.unansweredQuestions')}
+              </Button>
+              <Button
+                basic
+                color="green"
+                onClick={() => handleToggleView(false)}
+                active={!isUnansweredShown}
+              >
+                {props.t('physicianView:buttons.answeredQuestions')}
+              </Button>
+            </Button.Group>
+          )}
         </div>
-      </>
-    );
-  }
-}
+        <section className="container">
+          {props.error && (
+            <Message negative>
+              <Message.Header></Message.Header>
+              <p>{props.error}</p>
+            </Message>
+          )}
+        </section>
+        <section className="data" />
+        <div>
+          <Grid centered columns={2} stackable>
+            <Grid.Column>
+              {isUnansweredShown &&
+                props.account &&
+                props.unansweredQuestions &&
+                props.unansweredQuestions.map((q, idx) => (
+                  <AnswerForm
+                    history={props.history}
+                    userToken={props.idToken}
+                    profileStatus={props.authuser.profilestatus}
+                    q={q}
+                    idx={idx}
+                    showUnanswered={isUnansweredShown}
+                  />
+                ))}
+
+              {!isUnansweredShown &&
+                props.account &&
+                props.questions &&
+                props.questions.map((q, idx) => (
+                  <AnswerForm
+                    history={props.history}
+                    userToken={props.idToken}
+                    profileStatus={props.authuser.profilestatus}
+                    q={q}
+                    idx={idx}
+                    showUnanswered={isUnansweredShown}
+                  />
+                ))}
+            </Grid.Column>
+          </Grid>
+        </div>
+        <Footer />
+      </div>
+    </>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {

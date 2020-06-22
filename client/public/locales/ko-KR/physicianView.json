@@ -1,11 +1,11 @@
 {
-  "welcome": "Welcome, ",
-  "unverifiedUserMessage": "You have been granted READ-ONLY access to rate, review, and flag answers until your account has been verified. Please submit a Physician Registration form if you have not already done so. Thank you.",
+  "welcome": "[ko-KR] Welcome, {{userFullName}}",
+  "unverifiedUserMessage": "[ko-KR] You have been granted READ-ONLY access to rate, review, and flag answers until your account has been verified. Please submit <0>a Physician Registration form</0> if you have not already done so. Thank you.",
   "buttons": {
-    "answeredQuestions": "Answered Questions",
-    "unansweredQuestions": "Unanswered Questions",
-    "televideo": "Televideo",
-    "logOut": "Log out"
+    "answeredQuestions": "[ko-KR] Answered Questions",
+    "unansweredQuestions": "[ko-KR] Unanswered Questions",
+    "televideo": "[ko-KR] Televideo",
+    "logOut": "[ko-KR] Log out"
   },
-  "errorMessage": "Sorry, something went wrong!"
+  "errorMessage": "[ko-KR] Sorry, something went wrong!"
 }

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Trans, withTranslation } from 'react-i18next';
 import { ReactTinyLink } from 'react-tiny-link';
-import { List, Image, Label, Button, Icon } from 'semantic-ui-react';
+import { List, Image, Label } from 'semantic-ui-react';
 
 import clockIcon from '../assets/images/clockIcon.png';
 
@@ -44,10 +44,7 @@ const AnswerItem = (props) => {
               <img src={clockIcon} alt="clock_icon" height="11" width="11" />
             </span3>
             <span4>Posted: {firstAnsweredOn}</span4>
-            <span5>
-              Last Edited:{' '}
-              {lastAnsweredOn}
-            </span5>
+            <span5>Last Edited: {lastAnsweredOn}</span5>
           </div>
           <img
             src={props.answerByAvatarUrl || avatar}
