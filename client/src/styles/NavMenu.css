@@ -52,17 +52,21 @@ nav .ui.button {
   justify-self: center;
 }
 
+nav ul li a {
+  cursor: pointer;
+}
+
 nav ul li a:hover {
   color: white;
   opacity: 0.75;
 }
 
-.close-menu{
+.close-menu {
   text-align: right;
   font-size: 2em;
-  padding:10px 10px 0px 0px;
+  padding: 10px 10px 0px 0px;
   color: white;
-  opacity: 1.0;
+  opacity: 1;
 }
 .row#sponsors {
   margin-top: 500px;
@@ -112,5 +116,3 @@ button.ui.button.logInlogOut {
 .sidebar_language_dropdown {
   background-color: #1678c2;
 }
-
-

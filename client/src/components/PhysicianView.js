@@ -14,7 +14,7 @@ import {
 
 import PhysicianLogin from './PhysicianLogin';
 import AnswerForm from './AnswerForm';
-import NavMenu from './NavLink';
+import NavMenu from './NavMenu';
 import Footer from './Footer';
 
 class PhysicianView extends Component {

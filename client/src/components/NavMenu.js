@@ -3,7 +3,7 @@ import { Button } from 'semantic-ui-react';
 import { Link, withRouter } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 
-import styles from '../styles/NavLink.css';
+import styles from '../styles/NavMenu.css';
 
 class NavMenu extends Component {
   constructor() {
@@ -12,7 +12,7 @@ class NavMenu extends Component {
       showMenu: false,
     };
 
-    this.showmenu = this.showmenu.bind(this);
+    this.toggleMenu = this.toggleMenu.bind(this);
     this.WrapperRef = this.WrapperRef.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
@@ -29,7 +29,7 @@ class NavMenu extends Component {
     this.wrapperRef = node;
   }
 
-  showmenu() {
+  toggleMenu() {
     this.setState({
       showMenu: !this.state.showMenu,
     });
@@ -37,7 +37,7 @@ class NavMenu extends Component {
 
   handleClick(event) {
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-      this.showmenu();
+      this.toggleMenu();
     }
   }
 
@@ -45,28 +45,28 @@ class NavMenu extends Component {
     const { t } = this.props;
     return (
       <div>
-        <Button id="menu" className="ui icon button" onClick={this.showmenu}>
+        <Button id="menu" className="ui icon button" onClick={this.toggleMenu}>
           {' '}
-          <i className="bars icon" onClick={this.showmenu} />
+          <i className="bars icon" />
         </Button>
 
         {this.state.showMenu ? (
           <div className="menu" ref={this.WrapperRef}>
             <div
-              className={`ui visible right demo vertical sidebar labeled icon menu ${styles.NavLink}`}
+              className={`ui visible right demo vertical sidebar labeled icon menu ${styles.NavMenu}`}
             >
-            <div onClick={this.showmenu} className="close-menu">
-                X
-            </div>
+              <div onClick={this.toggleMenu} className="close-menu">
+                x
+              </div>
               <nav>
-                <ul>                  
+                <ul>
                   <li>
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
                       href="https://www.askco19.com/"
                     >
-                      {t('navLink:about')}
+                      {t('navMenu:about')}
                     </a>
                   </li>
                   <li>
@@ -75,7 +75,7 @@ class NavMenu extends Component {
                       rel="noopener noreferrer"
                       href="https://www.askco19.com/contributors"
                     >
-                      {t('navLink:getInvolved')}
+                      {t('navMenu:getInvolved')}
                     </a>
                   </li>
                   <li>
@@ -84,7 +84,7 @@ class NavMenu extends Component {
                       rel="noopener noreferrer"
                       href="https://www.askco19.com/sponsors"
                     >
-                      {t('navLink:ourSponsors')}
+                      {t('navMenu:ourSponsors')}
                     </a>
                   </li>
                   <li>
@@ -93,7 +93,7 @@ class NavMenu extends Component {
                       rel="noopener noreferrer"
                       href="https://www.askco19.com/dxyopencourse/"
                     >
-                      {t('navLink:partners')}
+                      {t('navMenu:partners')}
                     </a>
                   </li>
                   <li>
@@ -102,13 +102,23 @@ class NavMenu extends Component {
                       rel="noopener noreferrer"
                       href="https://nquestionblob.blob.core.windows.net/images/Full%20Disclaimer%20_%20Legal%20Information%20and%20Disclosures_%20Nth%20Opinion.pdf"
                     >
-                      {t('navLink:contactUs')}
+                      {t('navMenu:contactUs')}
                     </a>
                   </li>
                   <li>
-                    <Link to="/bIiOOIIqgwEXwUU3SaD0F9">
-                      {t('navLink:logIn')}
-                    </Link>
+                    {this.props.account ? (
+                      <a
+                        href
+                        name={this.props.t('navMenu.logOut')}
+                        onClick={this.props.onSignOut}
+                      >
+                        {t('navMenu:logOut')}
+                      </a>
+                    ) : (
+                      <Link to="/bIiOOIIqgwEXwUU3SaD0F9">
+                        {t('navMenu:logIn')}
+                      </Link>
+                    )}
                   </li>
                 </ul>
               </nav>
