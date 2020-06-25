@@ -10,7 +10,7 @@ import {
 } from './auth-utils';
 import config from './config';
 
-const useRedirectFlow = isIE();
+const useRedirectFlow = true;
 
 export default (C) =>
   class AuthProvider extends Component {
