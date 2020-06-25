@@ -22,18 +22,6 @@ export const fetchMsGraph = async (url, accessToken) => {
   return response.json();
 };
 
-export const isIE = () => {
-  return true; //this ensures we are always redirecting, never popping up
-  const ua = window.navigator.userAgent;
-  const msie = ua.indexOf('MSIE ') > -1;
-  const msie11 = ua.indexOf('Trident/') > -1;
-
-  // If you as a developer are testing using Edge InPrivate mode, please add "isEdge" to the if check
-  // const isEdge = ua.indexOf("Edge/") > -1;
-
-  return msie || msie11;
-};
-
 export const GRAPH_SCOPES = {
   OPENID: 'https://ntocustomer.onmicrosoft.com/api/openid',
   PROFILE: 'https://ntocustomer.onmicrosoft.com/api/profile',
@@ -67,11 +55,10 @@ export const msalApp = new UserAgentApplication({
     validateAuthority: false,
     postLogoutRedirectUri: window.location.origin,
     navigateToLoginRequestUrl: false,
-    
   },
   cache: {
     cacheLocation: 'sessionStorage',
-    storeAuthStateInCookie: isIE(),
+    storeAuthStateInCookie: true,
   },
   system: {
     navigateFrameWait: 0,
