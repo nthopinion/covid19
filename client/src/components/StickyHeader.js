@@ -25,6 +25,7 @@ class StickyHeader extends Component {
       t,
       account,
       onSignOut,
+      onSignIn,
       handleChangeLanguage,
     } = this.props;
 
@@ -46,7 +47,7 @@ class StickyHeader extends Component {
             />
           </div>
 
-          <Menu account={account} onSignOut={onSignOut} />
+          <Menu account={account} onSignOut={onSignOut} onSignIn={onSignIn}/>
           {addSuccess && messageActive && (
             <Message positive>
               <Message.Header>
