@@ -48,6 +48,7 @@ class PhysicianView extends Component {
         <NavMenu
           account={this.props.account}
           onSignOut={this.props.onSignOut}
+          onSignIn={this.props.onSignIn}
           idToken={this.props.idToken}
         />
 
