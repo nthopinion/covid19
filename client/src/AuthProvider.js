@@ -3,14 +3,13 @@ import {
   msalApp,
   requiresInteraction,
   fetchMsGraph,
-  isIE,
   GRAPH_ENDPOINTS,
   GRAPH_SCOPES,
   GRAPH_REQUESTS,
 } from './auth-utils';
 import config from './config';
 
-const useRedirectFlow = isIE();
+const useRedirectFlow = true;
 
 export default (C) =>
   class AuthProvider extends Component {
@@ -27,8 +26,9 @@ export default (C) =>
       };
     }
 
+
     // eslint-disable-next-line class-methods-use-this
-    async acquireToken(request, redirect) {
+    async acquireToken(request, redirect = true) {
       return msalApp.acquireTokenSilent(request).catch((error) => {
         // Call acquireTokenPopup (popup window) in case of acquireTokenSilent failure
         // due to consent or interaction required ONLY
@@ -54,9 +54,11 @@ export default (C) =>
 
     async onSignIn(redirect) {
       if (redirect) {
-        return msalApp.loginRedirect(GRAPH_REQUESTS.LOGIN);
+        return msalApp.loginRedirect({
+          scopes: GRAPH_REQUESTS.LOGIN.scopes,
+          redirectUri: config.physiciansPage,
+        });
       }
-
       const loginResponse = await msalApp
         .loginPopup(GRAPH_REQUESTS.LOGIN)
         .catch((error) => {
@@ -64,15 +66,21 @@ export default (C) =>
             error: error.message,
           });
         });
+      if(loginResponse){
+        await this.postAuthenticationSteps(loginResponse.idToken, loginResponse.account);
+      }
+    }
 
-      if (loginResponse) {
+    async postAuthenticationSteps(rawIdToken, account, useRedirectFlow = true){
+      
         this.setState({
-          idToken: loginResponse.idToken.rawIdToken,
+          idToken: rawIdToken,
           error: null,
+          account: account,
         });
 
         const verifiedUser = await this.verifyUser(
-          loginResponse.idToken.rawIdToken
+          rawIdToken
         ).catch((error) => {
           this.setState({
             error: error.message,
@@ -81,12 +89,12 @@ export default (C) =>
 
         this.setState({
           authuser: verifiedUser,
-          account: loginResponse.account,
           error: null,
         });
 
         const tokenResponse = await this.acquireToken(
-          GRAPH_REQUESTS.LOGIN
+          GRAPH_REQUESTS.LOGIN,
+          useRedirectFlow
         ).catch((error) => {
           this.setState({
             error: error.message,
@@ -109,13 +117,14 @@ export default (C) =>
             });
           }
 
-          if (tokenResponse.scopes.indexOf(GRAPH_SCOPES.MAIL_READ) > 0) {
+          if (
+            tokenResponse.scopes &&
+            tokenResponse.scopes.indexOf(GRAPH_SCOPES.MAIL_READ) > 0
+          ) {
             return this.readMail(tokenResponse.accessToken);
           }
-        }
-      }
+        }      
     }
-
     // eslint-disable-next-line class-methods-use-this
     onSignOut() {
       msalApp.logout();
@@ -155,7 +164,8 @@ export default (C) =>
     }
 
     async componentDidMount() {
-      msalApp.handleRedirectCallback((error) => {
+      let responseObject =null;
+      msalApp.handleRedirectCallback((error, response) => {
         if (error) {
           const errorMessage = error.errorMessage
             ? error.errorMessage
@@ -165,40 +175,12 @@ export default (C) =>
             error: errorMessage,
           });
         }
-      });
-
-      const account = msalApp.getAccount();
-
-      this.setState({
-        account,
-      });
-
-      if (account) {
-        const tokenResponse = await this.acquireToken(
-          GRAPH_REQUESTS.LOGIN,
-          useRedirectFlow
-        );
-
-        if (tokenResponse) {
-          const graphProfile = await fetchMsGraph(
-            GRAPH_ENDPOINTS.ME,
-            tokenResponse.accessToken
-          ).catch(() => {
-            this.setState({
-              error: 'Unable to fetch Graph profile.',
-            });
-          });
-
-          if (graphProfile) {
-            this.setState({
-              graphProfile,
-            });
-          }
-
-          if (tokenResponse.scopes.indexOf(GRAPH_SCOPES.MAIL_READ) > 0) {
-            return this.readMail(tokenResponse.accessToken);
-          }
+        if(response){
+          responseObject = response;
         }
+      });
+      if(responseObject){
+        await this.postAuthenticationSteps(responseObject.idToken.rawIdToken, responseObject.account);
       }
     }
 

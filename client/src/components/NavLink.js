@@ -106,7 +106,7 @@ class NavMenu extends Component {
                     </a>
                   </li>
                   <li>
-                    <Link to="/bIiOOIIqgwEXwUU3SaD0F9">
+                    <Link onClick={this.props.onSignIn}>
                       {t('navLink:logIn')}
                     </Link>
                   </li>

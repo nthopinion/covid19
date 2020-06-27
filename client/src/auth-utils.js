@@ -1,4 +1,4 @@
-import { UserAgentApplication } from 'msal';
+import { UserAgentApplication, Logger, LogLevel  } from 'msal';
 
 export const requiresInteraction = (errorMessage) => {
   if (!errorMessage || !errorMessage.length) {
@@ -22,20 +22,9 @@ export const fetchMsGraph = async (url, accessToken) => {
   return response.json();
 };
 
-export const isIE = () => {
-  const ua = window.navigator.userAgent;
-  const msie = ua.indexOf('MSIE ') > -1;
-  const msie11 = ua.indexOf('Trident/') > -1;
-
-  // If you as a developer are testing using Edge InPrivate mode, please add "isEdge" to the if check
-  // const isEdge = ua.indexOf("Edge/") > -1;
-
-  return msie || msie11;
-};
-
 export const GRAPH_SCOPES = {
-  OPENID: 'openid',
-  PROFILE: 'profile',
+  OPENID: 'https://ntocustomer.onmicrosoft.com/api/openid',
+  PROFILE: 'https://ntocustomer.onmicrosoft.com/api/profile',
   USER_READ: 'User.Read',
   MAIL_READ: 'Mail.Read',
 };
@@ -66,23 +55,25 @@ export const msalApp = new UserAgentApplication({
     validateAuthority: false,
     postLogoutRedirectUri: window.location.origin,
     navigateToLoginRequestUrl: false,
-    
   },
   cache: {
     cacheLocation: 'sessionStorage',
-    storeAuthStateInCookie: isIE(),
+    storeAuthStateInCookie: true,
   },
   system: {
     navigateFrameWait: 0,
-    logger: {
-      error: console.error,
-      errorPii: console.error,
-      info: console.log,
-      infoPii: console.log,
-      verbose: console.log,
-      verbosePii: console.log,
-      warning: console.warn,
-      warningPii: console.warn,
-    },
+    logger: new Logger((logLevel, message) => {
+      console.log(message);
+    }, {
+        level: LogLevel.Verbose,
+        piiLoggingEnabled: true
+    }),
+    telemetry: {
+        applicationName: "react-sample-app",
+        applicationVersion: "1.0.0",
+        telemetryEmitter: (events) => {
+            console.log('Telemetry Events:', events);
+        }
+    }
   },
 });

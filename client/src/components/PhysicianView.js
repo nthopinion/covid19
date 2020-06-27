@@ -13,6 +13,7 @@ import {
 } from '../actions';
 
 import PhysicianLogin from './PhysicianLogin';
+import PhysicianViewLoading from './PhysicianViewLoading';
 import AnswerForm from './AnswerForm';
 import NavMenu from './NavLink';
 import Footer from './Footer';
@@ -41,13 +42,17 @@ class PhysicianView extends Component {
   };
 
   render() {
+    if(this.props.account && !this.props.authuser){
+      return (<PhysicianViewLoading account={this.props.account}/>)
+    }
     return !this.props.authuser ? (
-      <PhysicianLogin onSignIn={this.props.onSignIn} />
+      <PhysicianLogin onSignIn={this.props.onSignIn}/>
     ) : (
       <>
         <NavMenu
           account={this.props.account}
           onSignOut={this.props.onSignOut}
+          onSignIn={this.props.onSignIn}
           idToken={this.props.idToken}
         />
 
