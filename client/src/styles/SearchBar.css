@@ -1,3 +1,23 @@
 .searchBarDiv {
   margin-right: 10%;
 }
+
+.searchBar {
+  display: flex;
+  justify-content: center;
+}
+
+.searchBar .input {
+  max-width: 700px;
+  width: 100%;
+}
+
+.ui.search > .results {
+  left: auto;
+  max-width: 700px;
+  width: 100%;
+}
+
+.ui.search .prompt {
+  border-radius: 30px;
+}

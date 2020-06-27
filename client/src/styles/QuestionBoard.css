@@ -31,20 +31,6 @@ body {
   font-style: italic;
 }
 
-.searchBar {
-  display: flex;
-  justify-content: center;
-}
-
-.searchBar .input {
-  width: 100%;
-  max-width: 700px;
-}
-
-.ui.search .prompt {
-  border-radius: 30px;
-}
-
 .qCard {
   padding: 40px !important;
 
