@@ -141,6 +141,7 @@ class PatientBoard extends Component {
           handleKeyPress={this.handleKeyPress}
           account={this.props.account}
           onSignOut={this.props.onSignOut}
+          onSignIn={this.props.onSignIn}
           handleChangeLanguage={this.handleChangeLanguage}
         />
         <div className="containerDiv">
