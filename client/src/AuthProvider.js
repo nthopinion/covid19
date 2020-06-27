@@ -3,7 +3,6 @@ import {
   msalApp,
   requiresInteraction,
   fetchMsGraph,
-  isIE,
   GRAPH_ENDPOINTS,
   GRAPH_SCOPES,
   GRAPH_REQUESTS,
