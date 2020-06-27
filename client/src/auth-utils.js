@@ -1,4 +1,4 @@
-import { UserAgentApplication } from 'msal';
+import { UserAgentApplication, Logger, LogLevel  } from 'msal';
 
 export const requiresInteraction = (errorMessage) => {
   if (!errorMessage || !errorMessage.length) {
@@ -62,15 +62,18 @@ export const msalApp = new UserAgentApplication({
   },
   system: {
     navigateFrameWait: 0,
-    logger: {
-      error: console.error,
-      errorPii: console.error,
-      info: console.log,
-      infoPii: console.log,
-      verbose: console.log,
-      verbosePii: console.log,
-      warning: console.warn,
-      warningPii: console.warn,
-    },
+    logger: new Logger((logLevel, message) => {
+      console.log(message);
+    }, {
+        level: LogLevel.Verbose,
+        piiLoggingEnabled: true
+    }),
+    telemetry: {
+        applicationName: "react-sample-app",
+        applicationVersion: "1.0.0",
+        telemetryEmitter: (events) => {
+            console.log('Telemetry Events:', events);
+        }
+    }
   },
 });
