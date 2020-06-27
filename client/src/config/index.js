@@ -7,7 +7,7 @@ const basedConfig = {
     channel: process.env.REACT_APP_CORS_PUSHER_CHANNEL,
   },
   aboutURL: process.env.REACT_APP_ABOUT_URL,
-  siteURL: process.env.REACT_APP_SITE_URL
+  physiciansPage: process.env.REACT_APP_PHYSICIANS_PAGE
 };
 
 export default basedConfig;

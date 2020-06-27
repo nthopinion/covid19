@@ -56,7 +56,7 @@ export default (C) =>
       if (redirect) {
         return msalApp.loginRedirect({
           scopes: GRAPH_REQUESTS.LOGIN.scopes,
-          redirectUri: config.siteURL,
+          redirectUri: config.physiciansPage,
         });
       }
       const loginResponse = await msalApp
