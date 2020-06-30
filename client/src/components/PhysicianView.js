@@ -78,16 +78,18 @@ const PhysicianView = (props) => {
 
       <div className="physician-view-container">
         <Menu secondary style={{ display: 'flex', flexDirection: 'column' }}>
-          <div className="right menu" style={{ margin: '1rem 0' }}>
-            <a
-              href="https://ai-passion.appspot.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="active item"
-            >
-              {props.t('physicianView:buttons.televideo')}
-            </a>
-          </div>
+          {props.authuser.profileStatus === 'level 2' && (
+            <div className="right menu" style={{ margin: '1rem 0' }}>
+              <a
+                href="https://ai-passion.appspot.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="active item"
+              >
+                {props.t('physicianView:buttons.televideo')}
+              </a>
+            </div>
+          )}
           <Menu.Menu position="right">
             {props.account && (
               <Menu.Item
