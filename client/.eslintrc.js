@@ -7,7 +7,7 @@ module.exports = {
     'prettier',
     'prettier/react',
   ],
-  plugins: ['jsx-a11y', 'prettier'],
+  plugins: ['jsx-a11y', 'prettier', 'react-hooks'],
   rules: {
     semi: 0,
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
@@ -26,6 +26,8 @@ module.exports = {
     'jsx-a11y/click-events-have-key-events': 'off',
     'react/no-unescaped-entities': 'off',
     'react/no-array-index-key': 'off',
-    'jsx-a11y/no-static-element-interactions': 'off'
+    'jsx-a11y/no-static-element-interactions': 'off',
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
   },
 };

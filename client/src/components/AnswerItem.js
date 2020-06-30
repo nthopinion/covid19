@@ -4,6 +4,8 @@ import { Trans, withTranslation } from 'react-i18next';
 import { ReactTinyLink } from 'react-tiny-link';
 import { List, Image, Label } from 'semantic-ui-react';
 
+import clockIcon from '../assets/images/clockIcon.png';
+
 import LikeButton from './LikeButton';
 import FlagButton from './FlagButton';
 import TelevideoButton from './TelevideoButton';
@@ -36,7 +38,13 @@ const AnswerItem = (props) => {
       <List.Content>
         <div className="answerTitle">
           <div className="answeredByName">
-            <span>A.</span>
+            <span1>A.</span1>
+            <span2>{firstAnsweredBy}</span2>
+            <span3>
+              <img src={clockIcon} alt="clock_icon" height="11" width="11" />
+            </span3>
+            <span4>Posted: {firstAnsweredOn}</span4>
+            <span5>Last Edited: {lastAnsweredOn}</span5>
           </div>
           <img
             src={props.answerByAvatarUrl || avatar}
@@ -129,34 +137,20 @@ const AnswerItem = (props) => {
             );
           })}
 
-        <div className="answer-metadata">
+        {props.answer.lastAnsweredOn !== props.answer.firstAnsweredOn && (
           <div>
             <p>
               <Trans
-                i18nKey="common:answeredBy"
-                firstAnsweredBy={firstAnsweredBy}
-                firstAnsweredOn={firstAnsweredOn}
+                i18nKey="common:lastEditedBy"
+                lastAnsweredBy={lastAnsweredBy}
+                lastAnsweredOn={lastAnsweredOn}
               >
-                <span className="bold">{{ firstAnsweredBy }}</span>
-                <span className="bold">{{ firstAnsweredOn }}</span>
+                <span className="bold">{{ lastAnsweredBy }}</span>
+                <span className="bold">{{ lastAnsweredOn }}</span>
               </Trans>
             </p>
           </div>
-          {props.answer.lastAnsweredOn !== props.answer.firstAnsweredOn && (
-            <div>
-              <p>
-                <Trans
-                  i18nKey="common:lastEditedBy"
-                  lastAnsweredBy={lastAnsweredBy}
-                  lastAnsweredOn={lastAnsweredOn}
-                >
-                  <span className="bold">{{ lastAnsweredBy }}</span>
-                  <span className="bold">{{ lastAnsweredOn }}</span>
-                </Trans>
-              </p>
-            </div>
-          )}
-        </div>
+        )}
 
         <div className="qPanelBottom">
           <div className="qTag">
