@@ -4,7 +4,9 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { I18nextProvider } from 'react-i18next';
+
 import i18n from './i18n';
+import { loginPath } from './helpers/urls';
 
 import PatientBoard from './containers/PatientBoard';
 import About from './components/About';
@@ -27,7 +29,7 @@ export class App extends Component {
             <Router>
               <Route
                 exact
-                path="/bIiOOIIqgwEXwUU3SaD0F9"
+                path={loginPath}
                 component={AuthProvider(PhysicianView)}
               />
               <Route exact path="/physician-public" component={PhysicianView} />

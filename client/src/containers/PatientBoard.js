@@ -28,6 +28,7 @@ import QuestionBoard from '../components/QuestionBoard';
 import HeaderWithLink from '../components/HeaderWithLink';
 import TranslationsSuspense from '../components/TranslationsSuspense';
 
+import { loginPath } from '../helpers/urls';
 import { normalizeResults } from '../helpers/normalizeResults';
 
 class PatientBoard extends Component {
@@ -191,7 +192,7 @@ class PatientBoard extends Component {
                     )}
                   </div>
                   <div className="board-link">
-                    <Link to="/bIiOOIIqgwEXwUU3SaD0F9">
+                    <Link to={loginPath}>
                       {this.props.t('patientBoard:addQuestion.areyouphysician')}
                     </Link>
                   </div>
