@@ -15,7 +15,7 @@ Our application is a web app. It has a public facing interface, and a doctor/hea
 
 [Explore the website](https://www.covid19webapp.com/)
 
-[Join our Slack](https://join.slack.com/t/hackingcovid19/shared_invite/zt-cs0oy49c-bwn5uoilSme1iqFDDK7~zg)
+[Join our Slack](https://join.slack.com/t/hackingcovid19/shared_invite/zt-ejzxbxdg-W5ZpBrT7PmkebzZhUO7pdQ)
 
 [Request Feature](https://github.com/nthopinion/covid19/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc)
 
@@ -30,9 +30,7 @@ Our application is a web app. It has a public facing interface, and a doctor/hea
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
-- [Tests](#test)
-- [Build](#build)
-- [Learn More](#learn-more)
+- [Tests](#tests)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
 - [Communication channels](#communication-channels)
