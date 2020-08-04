@@ -3,6 +3,7 @@ import { Button } from 'semantic-ui-react';
 import { Link, withRouter } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 
+import { loginPath } from '../helpers/urls';
 import styles from '../styles/NavMenu.css';
 
 class NavMenu extends Component {
@@ -117,9 +118,7 @@ class NavMenu extends Component {
                         {t('navMenu:logOut')}
                       </a>
                     ) : (
-                      <Link to="/bIiOOIIqgwEXwUU3SaD0F9">
-                        {t('navMenu:logIn')}
-                      </Link>
+                      <Link to={loginPath}>{t('navMenu:logIn')}</Link>
                     )}
                   </li>
                 </ul>

@@ -5,6 +5,7 @@ import AuthProvider from '../AuthProvider';
 
 import { clearQuestion, updateFocusedQuestionAnswers } from '../actions';
 import config from '../config';
+import { loginPath } from '../helpers/urls';
 
 import AnswerCard from './AnswerCard';
 import AnswerSubmission from './AnswerSubmission';
@@ -19,7 +20,7 @@ class QuestionCard extends Component {
   componentDidMount() {
     const { question } = this.props;
     if (!question || !question.id) {
-      this.props.history.push('/bIiOOIIqgwEXwUU3SaD0F9');
+      this.props.history.push(loginPath);
     }
   }
 
@@ -29,7 +30,7 @@ class QuestionCard extends Component {
   }
 
   backToPhysicianView = () => {
-    this.props.history.push('/bIiOOIIqgwEXwUU3SaD0F9');
+    this.props.history.push({ loginPath });
   };
 
   updateAnswer = async (answer) => {
